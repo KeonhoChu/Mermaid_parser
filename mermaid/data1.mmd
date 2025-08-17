@@ -1,0 +1,18 @@
+flowchart TD
+    subgraph S1['Subgraph1']
+        N1['A']
+        N2['B']
+    end
+
+    subgraph S2['Subgraph2']
+        N3['C']
+        N4['D']
+        N5['E']
+    end
+
+    S1 --> N1 & N2
+    S1 --> N5
+    N1 --> N3 & N4
+    N2 --> N3
+    N4 --> N1
+    S2 --> N5 & N1

@@ -1,0 +1,14 @@
+flowchart TB
+    CEO["CEO"]
+    CTO["CTO"] --> DEV1["개발팀"]
+    CTO --> DEV2["AI팀"]
+    CFO["CFO"] --> FIN1["회계팀"]
+    COO["COO"] --> OPS1["운영팀"]
+
+    CEO --> CTO & CFO & COO
+    DEV1 -->|보고| CTO
+    DEV2 -->|보고| CTO
+    FIN1 -->|보고| CFO
+    OPS1 -->|보고| COO
+    COO --> CEO
+    CEO --> COO

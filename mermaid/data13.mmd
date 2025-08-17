@@ -1,0 +1,107 @@
+flowchart LR
+    START([Start]) --> HUB{"업무 도메인 라우팅"}
+
+    %% A. 영업/주문
+    subgraph S_SALES["SALES"]
+      direction TB
+      subgraph S_SALES_PIPE["Sales-Pipe"]
+        SA1["리드 수집"] --> SA2["기회 생성"] --> SA3{"성사?"}
+        SA3 -- Yes --> SA4["주문 생성"]
+        SA3 -- No --> SA5["후속캠페인"] --> SA2
+      end
+      SA4 --> SA_OUT["주문 완료"]
+    end
+
+    %% B. 결제/정산
+    subgraph S_PAY["PAYMENTS"]
+      direction TB
+      subgraph S_PAY_PROC["결제흐름"]
+        PY1["결제요청"] --> PY2{"승인?"}
+        PY2 -- Yes --> PY3["정산 예정"]
+        PY2 -- No --> PY4["재시도/대체수단"]
+        PY4 --> PY2
+      end
+      PY3 --> PY_OUT["정산 라인"]
+    end
+
+    %% C. 물류/배송
+    subgraph S_LOGI["LOGISTICS"]
+      direction TB
+      subgraph S_LOGI_FLOW["배송흐름"]
+        LG1["피킹"] --> LG2["패킹"] --> LG3["출고"]
+        LG3 --> LG4{"지연?"}
+        LG4 -- Yes --> LG5["경로 재계획"] --> LG3
+        LG4 -- No --> LG6["배송 진행"]
+      end
+      LG6 --> LG_OUT["배송 추적"]
+    end
+
+    %% D. 고객지원
+    subgraph S_CS["CUSTOMER SUPPORT"]
+      direction TB
+      subgraph S_CS_PIPE["CS흐름"]
+        CS1["티켓 접수"] --> CS2{"우선순위?"}
+        CS2 -- High --> CS3["전담 처리"]
+        CS2 -- Normal --> CS4["일반 처리"]
+        CS3 --> CS5["해결/콜백"]
+        CS4 --> CS5
+      end
+      CS5 --> CS_OUT["CS 종료"]
+    end
+
+    %% E. 리스크/사기탐지
+    subgraph S_RISK["RISK & FRAUD"]
+      direction TB
+      subgraph S_RISK_ENG["탐지엔진"]
+        RK1["피쳐수집"] --> RK2["모델스코어링"] --> RK3{"위험>임계?"}
+        RK3 -- Yes --> RK4["차단/리뷰"] --> RK5["정책업데이트"]
+        RK3 -- No --> RK6["승인 통과"]
+      end
+      RK5 --> RK_OUT["정책 반영"]
+    end
+
+    %% F. 리포팅/BI
+    subgraph S_BI["REPORTING/BI"]
+      direction TB
+      subgraph S_BI_PIPE["리포트"]
+        BI1["데이터 집계"] --> BI2["대시보드 갱신"]
+        BI2 --> BI3{"이상징후?"}
+        BI3 -- Yes --> BI4["알림/깃발"] --> BI5["원인분석"]
+        BI3 -- No --> BI6["정상 리포트"]
+      end
+      BI5 --> BI_OUT["분석결과"]
+      BI6 --> BI_OUT
+    end
+
+    %% 허브 라우팅(서브그래프 간 직접 연결 포함)
+    HUB -- "주문" --> S_SALES
+    HUB -- "결제" --> S_PAY
+    HUB -- "물류" --> S_LOGI
+    HUB -- "CS" --> S_CS
+    HUB -- "리스크" --> S_RISK
+    HUB -- "리포팅" --> S_BI
+
+    %% 교차 도메인 연결 (서브그래프→노드, 노드→서브그래프, 서브그래프→서브그래프)
+    S_SALES --> PY1
+    PY3 --> S_LOGI
+    LG_OUT --> S_CS
+    S_CS --> BI1
+    S_RISK --> PY2
+    RK4 --> CS1
+    RK5 --> BI1
+    BI4 --> RK1
+    SA_OUT --> BI1
+    PY_OUT --> BI1
+    LG_OUT --> BI1
+    CS_OUT --> BI1
+
+    %% 순환 루프(다중)
+    PY4 --> PY2
+    LG5 --> LG3
+    BI4 --> BI5 --> BI4
+    RK4 --> RK5 --> RK2
+    CS3 --> CS5 --> CS1
+
+    %% 출입구
+    BI_OUT --> END([End])
+    START --> HUB

@@ -1,0 +1,22 @@
+flowchart LR
+    subgraph CLIENT
+        C1["Web"]
+        C2["Mobile"]
+    end
+    subgraph SERVER
+        S1["API Gateway"]
+        S2["Auth Service"]
+        S3["Data Service"]
+        S4["ML Service"]
+    end
+    subgraph DB
+        D1["SQL DB"]
+        D2["NoSQL DB"]
+    end
+    CLIENT --> S1
+    S1 --> S2 & S3 & S4
+    S2 --> D1
+    S3 --> D2
+    S4 --> D2
+    D1 --> S3
+    D2 --> S1

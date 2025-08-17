@@ -1,0 +1,149 @@
+flowchart TB
+    %% 최상위 라우팅 노드
+    START([Start]) --> R_GATE{"데이터 라우팅"}
+    END([End])
+
+    %% 1. 수집 레이어
+    subgraph S_ING["INGEST (수집 레이어)"]
+      direction TB
+      I1["에이전트 수집"] --> I2["Batch Loader"]
+      I1 --> I3["Stream Ingest"]
+      I2 --> I4["Staging-RAW 적재"]
+      I3 --> I5["Realtime-RAW 큐"]
+      I5 --> I6{"지연>3s?"}
+      I6 -- Yes --> I7["Backpressure 조절"] --> I5
+      I6 -- No --> I8["실시간 정제"]
+      I4 --> I9["배치 정제"]
+    end
+
+    %% 2. 품질·거버넌스 (중첩)
+    subgraph S_GOV["GOV (품질/거버넌스)"]
+      direction TB
+      subgraph S_GOV_QC["QC(품질검증)"]
+        direction LR
+        G1["스키마 검증"] --> G2{"결측률>5%?"}
+        G2 -- Yes --> G3["대체/삭제"] --> G4["유효성 승인"]
+        G2 -- No --> G4
+      end
+      subgraph S_GOV_SEC["SEC(보안/마스킹)"]
+        direction LR
+        GS1["PII 탐지"] --> GS2["마스킹"]
+        GS2 --> GS3["권한 라벨"]
+      end
+      G4 --> GS1
+      GS3 --> G_OUT["QC/SEC 통과"]
+    end
+
+    %% 3. 처리 레이어 (중첩: 파싱/정규화/특징화)
+    subgraph S_PROC["PROC (처리 레이어)"]
+      direction TB
+      subgraph S_PARSE["PARSE"]
+        direction LR
+        P1["포맷 식별"] --> P2["JSON/CSV/XML 파싱"]
+        P2 --> P3["스키마 매핑"]
+      end
+      subgraph S_NORM["NORMALIZE"]
+        direction LR
+        N1["타입 캐스팅"] --> N2["스케일링"]
+        N2 --> N3["카테고리 인코딩"]
+      end
+      subgraph S_FEAT["FEATUREIZE"]
+        direction LR
+        F1["피쳐 선택"] --> F2["피쳐 결합"]
+        F2 --> F3["피쳐 검증"]
+      end
+      P3 --> N1 --> F1
+      F3 --> PROC_OUT["PROC 완료"]
+    end
+
+    %% 4. 스토리지 (핫/콜드)
+    subgraph S_STORE["STORE (저장소)"]
+      direction LR
+      subgraph S_HOT["HOT-DB"]
+        direction TB
+        H1[("KV-Cache")] --> H2[("Feature Store")]
+      end
+      subgraph S_COLD["COLD-LAKE"]
+        direction TB
+        C1[("Data Lake - Bronze")] --> C2[("Lake - Silver")] --> C3[("Lake - Gold")]
+      end
+      H2 --> ST_OUT["저장 완료"]
+      C3 --> ST_OUT
+    end
+
+    %% 5. 학습/튜닝
+    subgraph S_TRAIN["TRAIN (학습/튜닝)"]
+      direction TB
+      T1["데이터 로더"] --> T2["학습 파이프라인"]
+      T2 --> T3{"성능 AUC>=0.90?"}
+      T3 -- Yes --> T4["아티팩트 저장"]
+      T3 -- No --> T5["하이퍼파라미터 탐색"] --> T2
+    end
+
+    %% 6. 배포/서빙
+    subgraph S_SERVE["SERVE (배포/서빙)"]
+      direction TB
+      SV1["모델 레지스트리 조회"] --> SV2["카나리 배포(10%)"]
+      SV2 --> SV3{"오류율<1%?"}
+      SV3 -- Yes --> SV4["전면배포(100%)"]
+      SV3 -- No --> SV5["롤백"] --> SV1
+      SV4 --> SV_OUT["서빙 활성"]
+    end
+
+    %% 7. 모니터링/관측
+    subgraph S_MON["MON (관측/모니터링)"]
+      direction TB
+      M1["지표수집"] --> M2["성능/드리프트 감지"]
+      M2 --> M3{"드리프트>0.1?"}
+      M3 -- Yes --> M4["알림&차단"] --> M5["세이프가드 정책"]
+      M3 -- No --> M6["정상 상태 유지"]
+      M5 --> M_OUT["조치 완료"]
+      M6 --> M_OUT
+    end
+
+    %% 8. 제어/오케스트레이션
+    subgraph S_CTRL["CTRL (제어/오케스트레이션)"]
+      direction TB
+      O1["스케줄러"] --> O2["워크플로우 엔진"]
+      O2 --> O3{"재시도 필요?"}
+      O3 -- Yes --> O4["Retry w/Backoff"] --> O2
+      O3 -- No --> O5["휴지"]
+      O2 --> O_OUT["오케스트레이션 완료"]
+    end
+
+    %% 라우팅 및 교차 연결 (서브그래프/노드 간 연결 다수)
+    R_GATE -- "배치" --> S_ING
+    R_GATE -- "실시간" --> S_ING
+    S_ING --> S_GOV
+    S_GOV --> S_PROC
+    S_PROC --> S_STORE
+    S_STORE --> S_TRAIN
+    S_TRAIN --> S_SERVE
+    S_SERVE --> S_MON
+    S_MON --> S_CTRL
+
+    %% 서브그래프→노드, 노드→서브그래프, 서브그래프→서브그래프 직접 연결
+    S_ING --> G1
+    GS3 --> S_PROC
+    PROC_OUT --> H2
+    C2 --> S_TRAIN
+    T4 --> S_SERVE
+    SV4 --> M1
+    M4 --> S_SERVE
+    M5 --> T2
+    O1 --> S_ING
+    O2 --> G1
+    O_OUT --> M1
+
+    %% 노드간 순환 루프 (다중)
+    I5 --> I6
+    I7 --> I5
+    M2 --> M3 --> M2
+    SV5 --> SV1
+    T5 --> T2
+    %% 전체 파이프라인 재순환 (드리프트/정책으로 학습 재개)
+    M5 --> T1
+
+    %% 출입구
+    S_CTRL --> END
+    START --> R_GATE

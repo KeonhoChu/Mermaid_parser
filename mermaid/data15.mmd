@@ -1,0 +1,127 @@
+flowchart TB
+    START([Start]) --> ENTRY["요청 수신"]
+    ENTRY --> ROUTER{"도메인/경로 라우팅"}
+    END([End])
+
+    %% A. 인증/권한 (중첩)
+    subgraph S_AUTH["AUTH (인증/권한)"]
+      direction TB
+      subgraph S_IDP["IDP 연동"]
+        A1["OIDC 로그인"] --> A2["토큰 발급"]
+      end
+      subgraph S_ACL["권한/스코프"]
+        A3["스코프 파싱"] --> A4{"권한 충족?"}
+      end
+      A2 --> A3
+      A4 -- No --> A5["403 반환"]
+      A4 -- Yes --> A_OK["Auth OK"]
+    end
+
+    %% B. 테넌트 라우터 (중첩)
+    subgraph S_TENANT["TENANT ROUTER"]
+      direction TB
+      subgraph S_TMAP["테넌트 매핑"]
+        T1["도메인→테넌트ID"] --> T2{"존재?"}
+      end
+      subgraph S_TPLAN["플랜/쿼터"]
+        T3["플랜 조회"] --> T4{"쿼터 초과?"}
+      end
+      T2 -- No --> T_ERR["404 테넌트 없음"]
+      T2 -- Yes --> T3
+      T4 -- Yes --> T_LIM["429 쿼터 초과"]
+      T4 -- No --> T_OK["Tenant OK"]
+    end
+
+    %% C. 결제/정산 (중첩)
+    subgraph S_BILL["BILLING"]
+      direction LR
+      subgraph S_CHARGE["과금흐름"]
+        B1["사용량 누계"] --> B2{"청구 시점?"}
+        B2 -- Yes --> B3["결제 시도"] --> B4{"승인?"}
+        B2 -- No --> B1
+        B4 -- No --> B5["재시도/대체수단"] --> B3
+        B4 -- Yes --> B6["청구 완료"]
+      end
+      subgraph S_AR["정산/미수"]
+        B7["미수금 체크"] --> B8{"연체?"}
+        B8 -- Yes --> B9["알림/제한"] --> B7
+        B8 -- No --> B_AR_OK["정상"]
+      end
+      B6 --> B7
+      B_AR_OK --> B_OUT["Billing OK"]
+    end
+
+    %% D. 기능 플래그/릴리즈
+    subgraph S_FLAG["FEATURE FLAG & RELEASE"]
+      direction TB
+      F1["플래그 평가"] --> F2{"활성?"}
+      F2 -- Yes --> F3["신규 경로"]
+      F2 -- No --> F4["기존 경로"]
+      F3 --> F_OUT["Flag OK"]
+      F4 --> F_OUT
+    end
+
+    %% E. 데이터 파이프라인 (중첩)
+    subgraph S_PIPE["DATA PIPELINE"]
+      direction TB
+      subgraph S_ING["수집"]
+        P1["API 이벤트"] --> P2["큐 적재"]
+        P2 --> P3{"지연>2s?"}
+        P3 -- Yes --> P4["Backpressure"] --> P2
+        P3 -- No --> P5["정제"]
+      end
+      subgraph S_PROC["처리"]
+        P6["파싱/정규화"] --> P7["특징 생성"]
+        P7 --> P8["검증"]
+      end
+      subgraph S_STORE["저장"]
+        P9[("Hot KV")] --> P10[("Cold Lake")]
+      end
+      P5 --> P6
+      P8 --> P9 --> P10
+      P_OUT["Pipe OK"]
+    end
+
+    %% F. 컴플라이언스/감사 (중첩)
+    subgraph S_COMP["COMPLIANCE & AUDIT"]
+      direction TB
+      C1["PII 스캔"] --> C2["마스킹/토큰화"]
+      C2 --> C3{"위반?"}
+      C3 -- Yes --> C4["차단/알림"] --> C5["정책 업데이트"]
+      C3 -- No --> C_OK["Compliant"]
+      C5 --> C1
+    end
+
+    %% G. 사건대응(온콜)
+    subgraph S_IR["INCIDENT RESPONSE"]
+      direction TB
+      IR1["오류율 모니터"] --> IR2{"임계 초과?"}
+      IR2 -- Yes --> IR3["온콜 호출"] --> IR4["대응/롤백"]
+      IR2 -- No --> IR_OK["정상"]
+      IR4 --> IR_OK
+    end
+
+    %% 교차 연결 (서브그래프↔노드/서브그래프)
+    ROUTER --> S_AUTH
+    A_OK --> S_TENANT
+    S_TENANT --> S_FLAG
+    S_FLAG --> S_PIPE
+    S_PIPE --> S_COMP
+    S_COMP --> S_BILL
+    S_BILL --> S_IR
+
+    %% 서브그래프→노드 / 노드→서브그래프
+    A5 --> END
+    T_ERR --> END
+    T_LIM --> END
+    B_OUT --> IR1
+    F_OUT --> P1
+    C_OK --> B1
+    C4 --> IR3
+    IR_OK --> END
+
+    %% 노드↔노드 순환 루프들
+    B5 --> B3
+    P4 --> P2
+    B7 --> B8 --> B7
+    C5 --> C1

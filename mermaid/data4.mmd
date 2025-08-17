@@ -1,0 +1,11 @@
+flowchart LR
+    A --> B & C
+    B --> D & E
+    C --> E & F
+    D --> G
+    E --> H & I
+    F --> I
+    G --> J
+    H --> J
+    I --> J
+    J -->|피드백| A

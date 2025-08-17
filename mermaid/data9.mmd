@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph EDGE["Edge Devices"]
+        E1["센서1"]
+        E2["센서2"]
+        E3["게이트웨이"]
+    end
+    subgraph CLOUD["클라우드"]
+        C1["데이터 수집"]
+        C2["실시간 분석"]
+        C3["대시보드"]
+        C4["알림 시스템"]
+    end
+
+    E1 --> E3
+    E2 --> E3
+    E3 --> C1
+    C1 --> C2
+    C2 --> C3 & C4
+    C4 --> E3

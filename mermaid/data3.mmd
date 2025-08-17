@@ -1,0 +1,14 @@
+flowchart TD
+    subgraph PIPE1["데이터 수집"]
+        P1["크롤링"] --> P2["정제"]
+    end
+    subgraph PIPE2["AI 모델링"]
+        M1["전처리"] --> M2["학습"] --> M3["평가"]
+    end
+    subgraph PIPE3["시각화"]
+        V1["통계분석"] --> V2["대시보드"]
+    end
+
+    P2 --> M1
+    M3 --> V1
+    V2 --> P1

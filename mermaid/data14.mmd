@@ -1,0 +1,136 @@
+flowchart LR
+    START([Start]) --> HUB{"워크로드 라우팅"}
+    END([End])
+
+    %% 1. 데이터 관리
+    subgraph S_DATA["DATA MGMT"]
+      direction TB
+      D1["원천 수집"] --> D2["메타데이터 등록"]
+      D2 --> D3{"품질 OK?"}
+      D3 -- No --> D4["정제/라벨 수정"] --> D2
+      D3 -- Yes --> D5[("버전 스냅샷")]
+    end
+
+    %% 2. 실험/재현성 (중첩: 실험·추적)
+    subgraph S_EXP["EXPERIMENTS"]
+      direction TB
+      subgraph S_RUN["실험 실행"]
+        E1["전처리 파이프"] --> E2["학습"] --> E3["평가"]
+        E3 --> E4{"목표 달성?"}
+        E4 -- No --> E2
+        E4 -- Yes --> E_OK["모델 후보"]
+      end
+      subgraph S_TRACK["추적/버저닝"]
+        ET1["파라미터/메트릭 로깅"] --> ET2["아티팩트 저장소"]
+      end
+      E2 --> ET1
+      E_OK --> ET2
+    end
+
+    %% 3. 컴퓨트 클러스터 (중첩: 스케줄·큐·모니터)
+    subgraph S_COMP["COMPUTE CLUSTER"]
+      direction TB
+      subgraph S_SCH["스케줄링"]
+        C1["큐 등록"] --> C2{"GPU 가용?"}
+        C2 -- No --> C3["대기/프리엠션"] --> C1
+        C2 -- Yes --> C4["노드 할당"]
+      end
+      subgraph S_MON["모니터링"]
+        C5["리소스 모니터"] --> C6{"오류/OOM?"}
+        C6 -- Yes --> C7["자동 중단/재시작"] --> C1
+        C6 -- No --> C_OK["정상"]
+      end
+      C4 --> C5
+    end
+
+    %% 4. 윤리/IRB
+    subgraph S_IRB["ETHICS/IRB"]
+      direction TB
+      R1["프로토콜 제출"] --> R2{"보완 필요?"}
+      R2 -- Yes --> R3["수정 반영"] --> R1
+      R2 -- No --> R_OK["승인"]
+    end
+
+    %% 5. 출판/심사
+    subgraph S_PUB["PUBLICATION"]
+      direction TB
+      P1["원고 초안"] --> P2["실험표 정리"]
+      P2 --> P3["그림/부록 생성"]
+      P3 --> P4{"저널 포맷 충족?"}
+      P4 -- No --> P5["포맷 수정"] --> P3
+      P4 -- Yes --> P6["투고"] --> P7{"리뷰 결과"}
+      P7 -- Reject --> P8["대폭수정"] --> P1
+      P7 -- Minor --> P9["경미수정"] --> P6
+      P7 -- Accept --> P_OK["게재"]
+    end
+
+    %% 6. 협업/저장소
+    subgraph S_COL["COLLAB & REPO"]
+      direction TB
+      L1["이슈 등록"] --> L2["브랜치 생성"]
+      L2 --> L3["PR 제출"] --> L4{"리뷰 통과?"}
+      L4 -- No --> L5["수정"] --> L3
+      L4 -- Yes --> L6["병합"] --> L_OK["릴리즈 태그"]
+    end
+
+    %% 7. 자금/그랜트
+    subgraph S_GRANT["GRANT MGMT"]
+      direction TB
+      G1["공고 탐색"] --> G2["제안서 작성"]
+      G2 --> G3{"내부 승인?"}
+      G3 -- No --> G4["수정/재검토"] --> G2
+      G3 -- Yes --> G5["제출"] --> G6{"선정?"}
+      G6 -- No --> G7["피드백 반영"] --> G2
+      G6 -- Yes --> G_OK["예산 집행"]
+    end
+
+    %% 8. 지식베이스/세미나
+    subgraph S_KB["KNOWLEDGE BASE"]
+      direction TB
+      K1["노트 업로드"] --> K2["태깅/검색 인덱스"]
+      K2 --> K3{"중복/품질?"}
+      K3 -- Yes --> K4["정제/합치기"] --> K2
+      K3 -- No --> K_OK["게시"]
+    end
+
+    %% 허브 라우팅
+    HUB -- 데이터 --> S_DATA
+    HUB -- 실험 --> S_EXP
+    HUB -- 컴퓨트 --> S_COMP
+    HUB -- 윤리 --> S_IRB
+    HUB -- 출판 --> S_PUB
+    HUB -- 협업 --> S_COL
+    HUB -- 그랜트 --> S_GRANT
+    HUB -- 지식 --> S_KB
+
+    %% 서브그래프↔노드/서브그래프 연결
+    S_DATA --> E1
+    D5 --> C1
+    S_COMP --> E2
+    R_OK --> P1
+    ET2 --> P2
+    S_COL --> P3
+    S_GRANT --> P1
+    K_OK --> P3
+
+    %% 피드백/순환
+    C7 --> C1
+    E4 --> E2
+    P5 --> P3
+    P8 --> P1
+    L5 --> L3
+    G7 --> G2
+    K4 --> K2
+
+    %% 교차 피드백(품질/윤리/출판 상호작용)
+    P2 --> K1
+    K_OK --> L1
+    R1 --> K1
+    P7 --> K1
+
+    %% 종료 경로
+    P_OK --> END
+    L_OK --> END
+    G_OK --> END
+    C_OK --> END
+    START --> HUB

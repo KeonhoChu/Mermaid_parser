@@ -1,0 +1,40 @@
+flowchart TD
+    %% 글로벌 스타일/클래스
+    classDef hot stroke-width:2px,stroke:#c00,color:#c00
+    classDef cold stroke:#06c,color:#06c
+    %% 상위 파이프라인
+    START([Start]) --> INJ[데이터 주입]
+    INJ --> VAL{"스키마 유효?"}
+    VAL -- 예 --> ROUTE{"배치/실시간?"}
+    VAL -- 아니오 --> ERR[보정 파이프라인]:::hot -->|재시도| VAL
+
+    subgraph ETL["ETL 파이프라인"]
+      direction TB
+      E1[추출] --> E2[정제]
+      E2 --> E3{"결측>5%?"}
+      E3 -- 예 --> E4[대체/삭제]
+      E3 -- 아니오 --> E5[스케일링]
+      E4 --> E5 --> OUT1[(Staging)]
+    end
+
+    subgraph STREAM["실시간 파이프라인"]
+      direction LR
+      S1[[Kafka]] --> S2[Window Agg]
+      S2 --> S3{지연>3s?}
+      S3 -- 예 --> S4[Backpressure]:::hot --> S2
+      S3 -- 아니오 --> OUT2[(Feature Store)]
+    end
+
+    ROUTE -- 배치 --> ETL
+    ROUTE -- 실시간 --> STREAM
+
+    OUT1 --> TRAIN[모델 학습]
+    OUT2 --> TRAIN
+    TRAIN --> EVAL{"AUC ≥ 0.88?"}
+    EVAL -- 예 --> DEPLOY[배포]:::cold
+    EVAL -- 아니오 --> TUNE[하이퍼파라미터 탐색] --> TRAIN
+    DEPLOY --> MON[모니터링] -->|drift>0.1| ROLL[롤백] --> DEPLOY
+    MON -->|정상| END([End])
+
+    click OUT2 "https://example.com/feature-store" "Feature Store 문서"
+    class VAL,EVAL,ROLL hot
