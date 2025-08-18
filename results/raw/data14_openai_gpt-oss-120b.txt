@@ -1,175 +1,74 @@
 We need to parse the Mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (maybe decision nodes?), summary.
 
-We need to extract all nodes: each node defined with label and shape based on brackets.
+We need to extract all nodes: each node defined with label syntax: e.g., START([Start]) => shape rect (since []), label "Start". ID is "START". Similarly END([End]).
 
-Mapping: [] = rect, {} = diamond, () = circle, (()) = double_circle, [[]] = double_rect, >> = subroutine.
+Subgraphs: each subgraph defined: subgraph S_DATA["DATA MGMT"] etc. So subgraph id S_DATA, title "DATA MGMT". Also nested subgraphs: S_EXP contains subgraphs S_RUN["실험 실행"] and S_TRACK["추적/버저닝"]; also S_COMP contains S_SCH["스케줄링"] and S_MON["모니터링"]; etc. So we need to list all subgraphs (including nested). The schema expects subgraphs array with objects id and title.
 
-We need to list nodes with id, label, shape, subgraphs (list of subgraph ids they belong to?). The schema includes subgraphs field per node, but we can maybe leave empty list if not needed. Probably we need to include subgraph membership.
+Nodes: need to list each node with id, label, shape, subgraphs (list of subgraph ids that contain this node?). The schema includes "subgraphs": [] for each node. We should include which subgraphs the node belongs to (maybe hierarchical). For simplicity, we can include immediate parent subgraph(s). For nested nodes, they belong to both outer and inner? Could include both. But not required? The schema expects subgraphs array; we can fill with list of subgraph ids that node is part of. Let's include all containing subgraphs (outermost to innermost). For nodes not in any subgraph, empty.
 
-Edges: source, target, type (the arrow type). In Mermaid, edges are defined with -->, --, etc. Use "-->" as type. Label may be null unless edge has label (e.g., "No", "Yes", "Reject", etc). Those are labels on edges. So we need to capture label.
+Edges: need source, target, type, label. Type is "-->" for normal arrow, maybe "--" for decision? In diagram, they use "-->" for all connections, also decision edges like D3 -- No --> D4. That's also "--". Actually syntax: D3 -- No --> D4. So type is "--". The label is "No". For edges without label, label null.
 
-Decisions: maybe nodes that are diamond shape? The schema includes decisions array; maybe list decision node ids? Could be empty.
+Decisions: maybe list decision nodes (diamond shape). The schema includes "decisions": [] but not defined. Could list nodes that are decisions? Probably include node ids of decision nodes. Let's include each decision node id with label maybe. But schema expects array of objects? Not defined. Could be empty. Safer to leave empty array.
 
-Subgraphs: list each subgraph with id and title. Subgraph ids are like S_DATA, S_EXP, etc. Title is the string inside quotes after subgraph id: e.g., "DATA MGMT". So we need to list all subgraphs.
+Summary: natural_language brief description, entry_nodes ["START"], exit_nodes ["END"].
 
-We also need summary: natural_language brief description, entry_nodes ["START"], exit_nodes ["END"].
+Warnings: empty.
 
-We must output valid JSON only.
+Ok.
 
-Now parse nodes.
+Now compile nodes.
 
-List all node definitions:
-
-START([Start]) => id START, label "Start", shape rect (since []), subgraphs [].
-
-END([End]) => id END, label "End", shape rect.
-
-Now subgraph S_DATA "DATA MGMT": nodes inside:
-
-D1["원천 수집"] => id D1, label "원천 수집", shape rect.
-
-D2["메타데이터 등록"] => rect.
-
-D3{"품질 OK?"} => diamond.
-
-D4["정제/라벨 수정"] => rect.
-
-D5[("버전 스냅샷")] => shape circle? Actually [("...")] means outer [] with inner (). The syntax: [("text")] is a rectangle containing a circle? In Mermaid, parentheses inside brackets produce a circle shape? Actually shape mapping: () = circle, [] = rect. If you have [("text")] it's a rectangle with a circle? Not standard. Probably treat as circle? But mapping says [] = rect, () = circle. The node is defined as [("버전 스냅샷")]; the outer [] indicates rect, inner () maybe just part of label. I'd treat shape rect. But maybe they intend double shape? Not sure. Safer to treat as rect because outer [].
-
-But there is also node E_OK["모델 후보"] etc.
-
-Let's list all nodes.
-
-Subgraph S_EXP "EXPERIMENTS": contains subgraph S_RUN "실험 실행" and S_TRACK "추적/버저닝". Nodes:
-
-E1["전처리 파이프"] rect.
-
-E2["학습"] rect.
-
-E3["평가"] rect.
-
-E4{"목표 달성?"} diamond.
-
-E_OK["모델 후보"] rect.
-
-ET1["파라미터/메트릭 로깅"] rect.
-
-ET2["아티팩트 저장소"] rect.
-
-Subgraph S_COMP "COMPUTE CLUSTER": subgraphs S_SCH "스케줄링" and S_MON "모니터링". Nodes:
-
-C1["큐 등록"] rect.
-
-C2{"GPU 가용?"} diamond.
-
-C3["대기/프리엠션"] rect.
-
-C4["노드 할당"] rect.
-
-C5["리소스 모니터"] rect.
-
-C6{"오류/OOM?"} diamond.
-
-C7["자동 중단/재시작"] rect.
-
-C_OK["정상"] rect.
-
-Subgraph S_IRB "ETHICS/IRB": nodes:
-
-R1["프로토콜 제출"] rect.
-
-R2{"보완 필요?"} diamond.
-
-R3["수정 반영"] rect.
-
-R_OK["승인"] rect.
-
-Subgraph S_PUB "PUBLICATION": nodes:
-
-P1["원고 초안"] rect.
-
-P2["실험표 정리"] rect.
-
-P3["그림/부록 생성"] rect.
-
-P4{"저널 포맷 충족?"} diamond.
-
-P5["포맷 수정"] rect.
-
-P6["투고"] rect.
-
-P7{"리뷰 결과"} diamond? Actually it's {"리뷰 결과"}? In diagram: P7{"리뷰 결과"}? Actually they wrote P7{"리뷰 결과"}? Let's check: "P7{"리뷰 결과"}". In code: P7{"리뷰 결과"}? The snippet: P7{"리뷰 결과"}? Actually they wrote: P7{"리뷰 결과"}? Let's scroll: In the flowchart: 
-```
-P6["투고"] --> P7{"리뷰 결과"}
-P7 -- Reject --> P8["대폭수정"] --> P1
-P7 -- Minor --> P9["경미수정"] --> P6
-P7 -- Accept --> P_OK["게재"]
-```
-So P7 is a diamond decision node.
-
-P8["대폭수정"] rect.
-
-P9["경미수정"] rect.
-
-P_OK["게재"] rect.
-
-Subgraph S_COL "COLLAB & REPO": nodes:
-
-L1["이슈 등록"] rect.
-
-L2["브랜치 생성"] rect.
-
-L3["PR 제출"] rect.
-
-L4{"리뷰 통과?"} diamond.
-
-L5["수정"] rect.
-
-L6["병합"] rect.
-
-L_OK["릴리즈 태그"] rect.
-
-Subgraph S_GRANT "GRANT MGMT": nodes:
-
-G1["공고 탐색"] rect.
-
-G2["제안서 작성"] rect.
-
-G3{"내부 승인?"} diamond.
-
-G4["수정/재검토"] rect.
-
-G5["제출"] rect.
-
-G6{"선정?"} diamond.
-
-G7["피드백 반영"] rect.
-
-G_OK["예산 집행"] rect.
-
-Subgraph S_KB "KNOWLEDGE BASE": nodes:
-
-K1["노트 업로드"] rect.
-
-K2["태깅/검색 인덱스"] rect.
-
-K3{"중복/품질?"} diamond.
-
-K4["정제/합치기"] rect.
-
-K_OK["게시"] rect.
-
-Now also HUB{"워크로드 라우팅"} => diamond.
-
-Now edges: need to capture all connections.
-
-List edges in order.
+List all nodes:
 
 From top:
 
+START, HUB, END.
+
+Subgraph S_DATA nodes: D1, D2, D3, D4, D5.
+
+S_EXP: includes subgraph S_RUN nodes: E1, E2, E3, E4, E_OK. Also subgraph S_TRACK nodes: ET1, ET2.
+
+S_COMP: subgraph S_SCH nodes: C1, C2, C3, C4. Subgraph S_MON nodes: C5, C6, C7, C_OK.
+
+S_IRB nodes: R1, R2, R3, R_OK.
+
+S_PUB nodes: P1, P2, P3, P4, P5, P6, P7, P8, P9, P_OK.
+
+S_COL nodes: L1, L2, L3, L4, L5, L6, L_OK.
+
+S_GRANT nodes: G1, G2, G3, G4, G5, G6, G7, G_OK.
+
+S_KB nodes: K1, K2, K3, K4, K_OK.
+
+Also maybe nodes like "버전 스냅샷" D5 is a double parentheses? Actually D5[("버전 스냅샷")] uses parentheses inside brackets? Syntax: D5[("버전 스냅샷")] => shape? The outer [] indicates rect, inside parentheses maybe just part of label. So shape rect.
+
+Similarly E_OK["모델 후보"] rect.
+
+C_OK["정상"] rect.
+
+R_OK["승인"] rect.
+
+P_OK["게재"] rect.
+
+L_OK["릴리즈 태그"] rect.
+
+G_OK["예산 집행"] rect.
+
+K_OK["게시"] rect.
+
+Now shapes: [] => rect, {} => diamond, () => circle, (()) => double_circle, [[]] => double_rect, >> => subroutine.
+
+Thus decision nodes: D3, E4, C2, C6, R2, P4, L4, G3, G6, K3. Also maybe others: C2 {"GPU 가용?"} diamond. C6 {"오류/OOM?"} diamond. etc.
+
+Now edges: need to list all connections.
+
+Let's enumerate.
+
+Top-level edges:
+
 START --> HUB (type "-->", label null)
 
-HUB -- 데이터 --> S_DATA (edge label "데이터")
+HUB -- 데이터 --> S_DATA (source HUB, target S_DATA, type "--", label "데이터")
 
 HUB -- 실험 --> S_EXP
 
@@ -181,11 +80,13 @@ HUB -- 출판 --> S_PUB
 
 HUB -- 협업 --> S_COL
 
-HUB -- 그랜트 --> S_GRANT
+H HUB -- 그랜트 --> S_GRANT
 
-HUB -- 지식 --> S_KB
+H HUB -- 지식 --> S_KB
 
-Now within S_DATA:
+Now edges within subgraphs.
+
+S_DATA subgraph:
 
 D1 --> D2
 
@@ -197,51 +98,13 @@ D4 --> D2
 
 D3 -- Yes --> D5
 
-Now subgraph connections:
+Now edges from S_DATA to other nodes:
 
-S_DATA --> E1 (edge from subgraph to node). Source is S_DATA (subgraph id) target E1, label null.
+S_DATA --> E1 (source S_DATA, target E1, type "-->", label null)
 
 D5 --> C1
 
-S_COMP --> E2
-
-R_OK --> P1
-
-ET2 --> P2
-
-S_COL --> P3
-
-S_GRANT --> P1
-
-K_OK --> P3
-
-Now feedback loops:
-
-C7 --> C1
-
-E4 --> E2
-
-P5 --> P3
-
-P8 --> P1
-
-L5 --> L3
-
-G7 --> G2
-
-K4 --> K2
-
-Cross feedback:
-
-P2 --> K1
-
-K_OK --> L1
-
-R1 --> K1
-
-P7 --> K1
-
-Now within S_EXP:
+Now S_EXP subgraph:
 
 Inside S_RUN:
 
@@ -259,13 +122,13 @@ Inside S_TRACK:
 
 ET1 --> ET2
 
-Now connections between subgraphs:
+Also connections:
 
 E2 --> ET1
 
 E_OK --> ET2
 
-Now within S_COMP:
+Now S_COMP subgraph:
 
 Inside S_SCH:
 
@@ -283,11 +146,15 @@ C5 --> C6
 
 C6 -- Yes --> C7
 
+C7 --> C1
+
 C6 -- No --> C_OK
+
+Also connections:
 
 C4 --> C5
 
-Now within S_IRB:
+Now S_IRB subgraph:
 
 R1 --> R2
 
@@ -297,7 +164,7 @@ R3 --> R1
 
 R2 -- No --> R_OK
 
-Now within S_PUB:
+Now S_PUB subgraph:
 
 P1 --> P2
 
@@ -323,7 +190,7 @@ P9 --> P6
 
 P7 -- Accept --> P_OK
 
-Now within S_COL:
+Now S_COL subgraph:
 
 L1 --> L2
 
@@ -339,7 +206,7 @@ L4 -- Yes --> L6
 
 L6 --> L_OK
 
-Now within S_GRANT:
+Now S_GRANT subgraph:
 
 G1 --> G2
 
@@ -359,7 +226,7 @@ G7 --> G2
 
 G6 -- Yes --> G_OK
 
-Now within S_KB:
+Now S_KB subgraph:
 
 K1 --> K2
 
@@ -371,6 +238,44 @@ K4 --> K2
 
 K3 -- No --> K_OK
 
+Now cross connections:
+
+S_COMP --> E2 (source S_COMP, target E2, type "-->", label null)
+
+R_OK --> P1
+
+ET2 --> P2
+
+S_COL --> P3
+
+S_GRANT --> P1
+
+K_OK --> P3
+
+C7 --> C1 (already defined earlier as part of S_MON? Actually C7 --> C1 already defined; but we have that edge already. It's okay duplicate? Already defined as part of S_MON: C7 --> C1. So we already have.
+
+E4 --> E2 (already defined as part of S_RUN: E4 -- No --> E2). Already captured.
+
+P5 --> P3 (already captured as part of P4 No path: P5 --> P3). Already captured.
+
+P8 --> P1 (already captured as part of P7 Reject path). Already captured.
+
+L5 --> L3 (already captured as part of L4 No path). Already captured.
+
+G7 --> G2 (already captured as part of G6 No path). Already captured.
+
+K4 --> K2 (already captured as part of K3 Yes path). Already captured.
+
+Cross feedback edges:
+
+P2 --> K1
+
+K_OK --> L1
+
+R1 --> K1
+
+P7 --> K1
+
 Now termination edges:
 
 P_OK --> END
@@ -381,141 +286,242 @@ G_OK --> END
 
 C_OK --> END
 
-START --> HUB already captured.
+Also maybe other exit nodes? Not needed.
 
-Now also there is edge from S_DATA --> E1 (already captured). Also D5 --> C1 captured.
+Now we need to list edges with type and label.
 
-Now also S_COMP --> E2 captured.
+Edge type: For arrows with label, they use "-- label -->". So type is "--". For simple arrows without label, they use "-->" (type "-->"). We'll follow that.
 
-Now also S_EXP? Not needed.
+Now compile edges list.
 
-Now also S_COL --> P3 captured.
+Let's enumerate systematically.
 
-Now also S_GRANT --> P1 captured.
+I'll create list:
 
-Now also K_OK --> P3 captured.
+1. START --> HUB (type "-->", label null)
 
-Now also K_OK --> L1 captured.
+2. HUB -- 데이터 --> S_DATA (type "--", label "데이터")
 
-Now also R1 --> K1 captured.
+3. HUB -- 실험 --> S_EXP
 
-Now also P7 --> K1 captured.
+4. HUB -- 컴퓨트 --> S_COMP
 
-Now also P2 --> K1 captured.
+5. HUB -- 윤리 --> S_IRB
 
-Now also K_OK --> L1 captured (already).
+6. HUB -- 출판 --> S_PUB
 
-Now also K_OK --> P3 captured.
+7. HUB -- 협업 --> S_COL
 
-Now also S_DATA --> E1 captured.
+8. HUB -- 그랜트 --> S_GRANT
 
-Now also S_COMP --> E2 captured.
+9. HUB -- 지식 --> S_KB
 
-Now also S_EXP? Not.
+10. D1 --> D2 (type "-->", null)
 
-Now also S_IRB? Not.
+11. D2 --> D3
 
-Now also S_KB? Not.
+12. D3 -- No --> D4 (type "--", label "No")
 
-Now also S_PUB? Not.
+13. D4 --> D2
 
-Now also S_COL? Already.
+14. D3 -- Yes --> D5 (type "--", label "Yes")
 
-Now also S_GRANT? Already.
+15. S_DATA --> E1 (type "-->", null)
 
-Now also S_DATA? Already.
+16. D5 --> C1
 
-Now also S_COMP? Already.
+17. C1 --> C2
 
-Now also S_EXP? Not needed.
+18. C2 -- No --> C3
 
-Now also S_IRB? Not.
+19. C3 --> C1
 
-Now also S_KB? Not.
+20. C2 -- Yes --> C4
 
-Now also S_PUB? Not.
+21. C4 --> C5
 
-Now also S_COL? Already.
+22. C5 --> C6
 
-Now also S_GRANT? Already.
+23. C6 -- Yes --> C7
 
-Now also S_KB? Already.
+24. C7 --> C1 (already captured but include)
 
-Now also S_DATA? Already.
+25. C6 -- No --> C_OK
 
-Now also S_COMP? Already.
+26. E1 --> E2
 
-Now also S_EXP? Not.
+27. E2 --> E3
 
-Now also S_IRB? Not.
+28. E3 --> E4
 
-Now also S_PUB? Not.
+29. E4 -- No --> E2
 
-Now also S_COL? Already.
+30. E4 -- Yes --> E_OK
 
-Now also S_GRANT? Already.
+31. ET1 --> ET2
 
-Now also S_KB? Already.
+32. E2 --> ET1
 
-Now also S_DATA? Already.
+33. E_OK --> ET2
 
-Now also S_COMP? Already.
+34. R1 --> R2
 
-Now also S_EXP? Not.
+35. R2 -- Yes --> R3
 
-Now also S_IRB? Not.
+36. R3 --> R1
 
-Now also S_PUB? Not.
+37. R2 -- No --> R_OK
 
-Now also S_COL? Already.
+38. P1 --> P2
 
-Now also S_GRANT? Already.
+39. P2 --> P3
 
-Now also S_KB? Already.
+40. P3 --> P4
 
-Now also S_DATA? Already.
+41. P4 -- No --> P5
+
+42. P5 --> P3
+
+43. P4 -- Yes --> P6
+
+44. P6 --> P7
+
+45. P7 -- Reject --> P8
+
+46. P8 --> P1
+
+47. P7 -- Minor --> P9
+
+48. P9 --> P6
+
+49. P7 -- Accept --> P_OK
+
+50. L1 --> L2
+
+51. L2 --> L3
+
+52. L3 --> L4
+
+53. L4 -- No --> L5
+
+54. L5 --> L3
+
+55. L4 -- Yes --> L6
+
+56. L6 --> L_OK
+
+57. G1 --> G2
+
+58. G2 --> G3
+
+59. G3 -- No --> G4
+
+60. G4 --> G2
+
+61. G3 -- Yes --> G5
+
+62. G5 --> G6
+
+63. G6 -- No --> G7
+
+64. G7 --> G2
+
+65. G6 -- Yes --> G_OK
+
+66. K1 --> K2
+
+67. K2 --> K3
+
+68. K3 -- Yes --> K4
+
+69. K4 --> K2
+
+70. K3 -- No --> K_OK
+
+71. S_COMP --> E2
+
+72. R_OK --> P1
+
+73. ET2 --> P2
+
+74. S_COL --> P3
+
+75. S_GRANT --> P1
+
+76. K_OK --> P3
+
+77. P2 --> K1
+
+78. K_OK --> L1
+
+79. R1 --> K1
+
+80. P7 --> K1
+
+81. P_OK --> END
+
+82. L_OK --> END
+
+83. G_OK --> END
+
+84. C_OK --> END
+
+Now also need edge S_DATA --> E1 already captured.
+
+Edge S_DATA --> E1 is #15.
+
+Edge S_DATA --> E1 is type "-->", null.
+
+Edge S_DATA --> E1 already.
+
+Edge S_DATA --> E1 is fine.
+
+Edge S_DATA --> E1.
+
+Edge S_DATA --> E1.
+
+Edge S_DATA --> E1.
+
+Now also edge S_DATA --> E1 is captured.
+
+Edge S_DATA --> E1.
+
+Now also edge S_DATA --> E1.
 
 Ok.
 
-Now we need to list nodes with subgraphs membership. For each node, we can list subgraph ids they belong to (maybe immediate subgraph). For simplicity, we can leave empty list for all nodes, as schema allows subgraphs: [].
+Now we need to list nodes with shape.
 
-But maybe they expect to list subgraph ids. Not required but could be.
+Define shape mapping:
 
-We'll set subgraphs empty for all nodes.
+- [] => rect
 
-Now decisions array: maybe list ids of decision nodes (diamond). Could include D3, E4, C2, C6, R2, P4, P7, L4, G3, G6, K3, HUB, etc. We'll include them.
+- {} => diamond
 
-Now summary natural_language: "Workflow for data management, experiments, compute, ethics, publication, collaboration, grant, and knowledge base with routing hub."
+- () => circle
 
-Now entry_nodes ["START"], exit_nodes ["END"].
+- (()) => double_circle
 
-Now warnings empty.
+- [[]] => double_rect
 
-Now produce JSON.
+- >> => subroutine
 
-Need to ensure proper escaping of Korean characters in JSON strings; they can be raw Unicode.
+Thus for each node:
 
-Now compile nodes list.
+START: label "Start", shape rect.
 
-Let's enumerate all node ids:
+HUB: label "워크로드 라우팅", shape diamond? Actually HUB{"워크로드 라우팅"} uses {} => diamond. So shape diamond.
 
-START, END, HUB,
-D1, D2, D3, D4, D5,
-E1, E2, E3, E4, E_OK,
-ET1, ET2,
-C1, C2, C3, C4, C5, C6, C7, C_OK,
-R1, R2, R3, R_OK,
-P1, P2, P3, P4, P5, P6, P7, P8, P9, P_OK,
-L1, L2, L3, L4, L5, L6, L_OK,
-G1, G2, G3, G4, G5, G6, G7, G_OK,
-K1, K2, K3, K4, K_OK
+END: label "End", shape rect.
 
-Check also any other nodes: maybe D5 is a node with shape rect; fine.
+D1: label "원천 수집", shape rect.
 
-Now edges list: need to include all edges with source, target, type "-->", label (null or string). For edges with label like "No", "Yes", "Reject", "Minor", "Accept", "데이터", etc.
+D2: "메타데이터 등록", rect.
 
-Now compile edges.
+D3: "품질 OK?" diamond.
 
-I'll create array.
+D4: "정제/라벨 수정", rect.
 
-Edge1: {"source":"
+D5: "버전 스냅샷", rect.
+
+E1: "전처

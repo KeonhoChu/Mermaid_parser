@@ -5,96 +5,125 @@
   ],
   "nodes": [
     {
-      "id": "n1",
-      "label": "발주기관 수요기관",
-      "shape": "rect",
-      "subgraphs": [
-        "s1"
-      ]
+      "id": "ROOT",
+      "label": "최상위 결정",
+      "shape": "diamond",
+      "subgraphs": []
     },
     {
-      "id": "n2",
-      "label": "선행사업자",
-      "shape": "rect",
-      "subgraphs": [
-        "s1"
-      ]
+      "id": "A1",
+      "label": "세부결정 A",
+      "shape": "diamond",
+      "subgraphs": []
     },
     {
-      "id": "n3",
-      "label": "DIDC 통합유지보수 사업자",
-      "shape": "rect",
-      "subgraphs": [
-        "s1"
-      ]
+      "id": "B1",
+      "label": "세부결정 B",
+      "shape": "diamond",
+      "subgraphs": []
     },
     {
-      "id": "n4",
-      "label": "제안사, 제조사, 기술지원업체",
+      "id": "A2",
+      "label": "액션 A2",
       "shape": "rect",
-      "subgraphs": [
-        "s1"
-      ]
+      "subgraphs": []
     },
     {
-      "id": "n5",
-      "label": "KIDA (국정단)",
+      "id": "A3",
+      "label": "액션 A3",
       "shape": "rect",
-      "subgraphs": [
-        "s2"
-      ]
+      "subgraphs": []
     },
     {
-      "id": "n6",
-      "label": "DIDC",
+      "id": "B2",
+      "label": "액션 B2",
       "shape": "rect",
-      "subgraphs": [
-        "s2"
-      ]
+      "subgraphs": []
     },
     {
-      "id": "s1",
-      "label": "의사소통 협의체",
+      "id": "B3",
+      "label": "액션 B3",
       "shape": "rect",
-      "subgraphs": [
-        "s2"
-      ]
+      "subgraphs": []
     },
     {
-      "id": "s2",
-      "label": "의사소통 협의체 구성 방안",
+      "id": "F",
+      "label": "최종결론",
       "shape": "rect",
       "subgraphs": []
     }
   ],
   "edges": [
     {
-      "source": "s1",
-      "target": "n5",
+      "source": "ROOT",
+      "target": "A1",
       "type": "-->",
-      "label": "현황보고"
+      "label": null
     },
     {
-      "source": "n6",
-      "target": "s1",
+      "source": "ROOT",
+      "target": "B1",
       "type": "-->",
-      "label": "통제 및 지원"
-    }
-  ],
-  "subgraphs": [
-    {
-      "id": "s1",
-      "title": "의사소통 협의체"
+      "label": null
     },
     {
-      "id": "s2",
-      "title": "의사소통 협의체 구성 방안"
+      "source": "A1",
+      "target": "A2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A1",
+      "target": "A3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B1",
+      "target": "B2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B1",
+      "target": "B3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A2",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A3",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B3",
+      "target": "F",
+      "type": "-->",
+      "label": null
     }
   ],
+  "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "The diagram depicts a communication council (s1) containing several agencies and companies, nested within a larger council configuration (s2). Edges show that the council reports to KIDA and receives control/support from DIDC.",
-    "entry_nodes": [],
-    "exit_nodes": []
+    "natural_language": "최상위 결정에서 A 또는 B를 선택하고, 각각의 조건에 따라 액션을 수행한 뒤 최종결론에 도달한다.",
+    "entry_nodes": [
+      "ROOT"
+    ],
+    "exit_nodes": [
+      "F"
+    ]
   }
 }

@@ -1,0 +1,117 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "S",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "데이터 유효?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "P",
+      "label": "처리",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E1",
+      "label": "에러 로그",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "조건 충족?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "R",
+      "label": "결과 저장",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "재처리 요청",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "X",
+      "label": "종료",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "S",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "P",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "D",
+      "target": "E1",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "P",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "R",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "C",
+      "target": "F",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "F",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "R",
+      "target": "X",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E1",
+      "target": "X",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "Flowchart for data validation, processing, conditional handling, and termination.",
+    "entry_nodes": ["S"],
+    "exit_nodes": ["X"]
+  }
+}

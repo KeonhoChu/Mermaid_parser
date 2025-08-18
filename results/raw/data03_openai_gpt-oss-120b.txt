@@ -3,146 +3,110 @@
   "warnings": [],
   "nodes": [
     {
-      "id": "AA",
-      "label": "시험계획수립<br>  - 품질목표에 부합하는 시험평가 대상 및 항목 점검",
+      "id": "P1",
+      "label": "크롤링",
       "shape": "rect",
-      "subgraphs": ["A"]
+      "subgraphs": ["PIPE1"]
     },
     {
-      "id": "AAA",
-      "label": "시험환경 사전점검",
+      "id": "P2",
+      "label": "정제",
       "shape": "rect",
-      "subgraphs": ["A"]
+      "subgraphs": ["PIPE1"]
     },
     {
-      "id": "B2",
-      "label": "시험실시",
+      "id": "M1",
+      "label": "전처리",
       "shape": "rect",
-      "subgraphs": ["B"]
+      "subgraphs": ["PIPE2"]
     },
     {
-      "id": "B3",
-      "label": "요건충족",
-      "shape": "diamond",
-      "subgraphs": ["B"]
+      "id": "M2",
+      "label": "학습",
+      "shape": "rect",
+      "subgraphs": ["PIPE2"]
     },
     {
-      "id": "B4",
-      "label": "단위시험 결과기록",
+      "id": "M3",
+      "label": "평가",
       "shape": "rect",
-      "subgraphs": ["B"]
+      "subgraphs": ["PIPE2"]
     },
     {
-      "id": "B5",
-      "label": "결함등록 원인분석",
+      "id": "V1",
+      "label": "통계분석",
       "shape": "rect",
-      "subgraphs": ["B"]
+      "subgraphs": ["PIPE3"]
     },
     {
-      "id": "B6",
-      "label": "개선방안 제시/적용<br>  - 결함처리결과 확인 및 시정조치현황 관리",
+      "id": "V2",
+      "label": "대시보드",
       "shape": "rect",
-      "subgraphs": ["B"]
-    },
-    {
-      "id": "B7",
-      "label": "단위시험 결과제출<br>  - 단위시험 결과 산출물 품질점검",
-      "shape": "rect",
-      "subgraphs": ["B"]
-    },
-    {
-      "id": "B8",
-      "label": "단위시험 결과검토",
-      "shape": "rect",
-      "subgraphs": ["B"]
-    },
-    {
-      "id": "CC",
-      "label": "시험종료",
-      "shape": "rect",
-      "subgraphs": ["C"]
+      "subgraphs": ["PIPE3"]
     }
   ],
   "edges": [
     {
-      "source": "AA",
-      "target": "AAA",
+      "source": "P1",
+      "target": "P2",
       "type": "-->",
       "label": null
     },
     {
-      "source": "AAA",
-      "target": "B2",
+      "source": "M1",
+      "target": "M2",
       "type": "-->",
       "label": null
     },
     {
-      "source": "B2",
-      "target": "B3",
+      "source": "M2",
+      "target": "M3",
       "type": "-->",
       "label": null
     },
     {
-      "source": "B3",
-      "target": "B4",
-      "type": "-->",
-      "label": "Yes<br>품질목표치 만족여부확인"
-    },
-    {
-      "source": "B4",
-      "target": "B7",
+      "source": "P2",
+      "target": "M1",
       "type": "-->",
       "label": null
     },
     {
-      "source": "B7",
-      "target": "B8",
+      "source": "M3",
+      "target": "V1",
       "type": "-->",
       "label": null
     },
     {
-      "source": "B8",
-      "target": "CC",
+      "source": "V1",
+      "target": "V2",
       "type": "-->",
       "label": null
     },
     {
-      "source": "B3",
-      "target": "B5",
-      "type": "-->",
-      "label": "No"
-    },
-    {
-      "source": "B5",
-      "target": "B6",
-      "type": "-->",
-      "label": null
-    },
-    {
-      "source": "B6",
-      "target": "B2",
+      "source": "V2",
+      "target": "P1",
       "type": "-->",
       "label": null
     }
   ],
   "subgraphs": [
     {
-      "id": "A",
-      "title": "준비"
+      "id": "PIPE1",
+      "title": "데이터 수집"
     },
     {
-      "id": "B",
-      "title": "시험"
+      "id": "PIPE2",
+      "title": "AI 모델링"
     },
     {
-      "id": "C",
-      "title": "완료"
+      "id": "PIPE3",
+      "title": "시각화"
     }
   ],
-  "decisions": ["B3"],
+  "decisions": [],
   "summary": {
-    "natural_language": "The flowchart outlines preparation, testing, and completion steps, with a decision point checking requirement satisfaction leading to either recording results or handling defects.",
-    "entry_nodes": ["AA"],
-    "exit_nodes": ["CC"]
+    "natural_language": "Data collection, AI modeling, and visualization pipeline with cyclic connections.",
+    "entry_nodes": [],
+    "exit_nodes": []
   }
 }

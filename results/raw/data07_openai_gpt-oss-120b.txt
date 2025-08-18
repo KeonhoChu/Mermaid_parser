@@ -1,0 +1,148 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "CEO",
+      "label": "CEO",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "CTO",
+      "label": "CTO",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "DEV1",
+      "label": "개발팀",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "DEV2",
+      "label": "AI팀",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "CFO",
+      "label": "CFO",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "FIN1",
+      "label": "회계팀",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "COO",
+      "label": "COO",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OPS1",
+      "label": "운영팀",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "CTO",
+      "target": "DEV1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CTO",
+      "target": "DEV2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CFO",
+      "target": "FIN1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "COO",
+      "target": "OPS1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CEO",
+      "target": "CTO",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CEO",
+      "target": "CFO",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CEO",
+      "target": "COO",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "DEV1",
+      "target": "CTO",
+      "type": "-->",
+      "label": "보고"
+    },
+    {
+      "source": "DEV2",
+      "target": "CTO",
+      "type": "-->",
+      "label": "보고"
+    },
+    {
+      "source": "FIN1",
+      "target": "CFO",
+      "type": "-->",
+      "label": "보고"
+    },
+    {
+      "source": "OPS1",
+      "target": "COO",
+      "type": "-->",
+      "label": "보고"
+    },
+    {
+      "source": "COO",
+      "target": "CEO",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CEO",
+      "target": "COO",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "Organizational chart showing the CEO at the top with direct reporting lines to the CTO, CFO, and COO, each of whom oversees their respective teams.",
+    "entry_nodes": [
+      "CEO"
+    ],
+    "exit_nodes": [
+      "DEV1",
+      "DEV2",
+      "FIN1",
+      "OPS1"
+    ]
+  }
+}

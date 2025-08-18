@@ -1,176 +1,114 @@
-We need to parse the Mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (empty list?), summary.
+We need to parse the Mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (empty?), summary.
 
-We need to extract all nodes: each node defined with label and shape based on brackets.
+We need to extract all nodes: each node defined with label syntax: e.g., START([Start]) => shape rect? Actually [] is rect. So shape "rect". ID is the identifier before parentheses: START. Label is "Start". Similarly END([End]) shape rect.
 
-Shapes mapping: [] = rect, {} = diamond, () = circle, (()) = double_circle, [[]] = double_rect, >> = subroutine. Also note that nodes like ("Hot KV") uses parentheses with quotes? Actually syntax: P9[("Hot KV")] => square brackets with parentheses inside? In Mermaid, [("Hot KV")] is a node with label "Hot KV" and shape? The outer [] indicates rect. So shape rect.
+Other nodes: ENTRY["요청 수신"] => shape rect (since []), id ENTRY, label "요청 수신". ROUTER{"도메인/경로 라우팅"} => shape diamond ({}). id ROUTER, label "도메인/경로 라우팅". etc.
 
-Similarly P10[("Cold Lake")] same.
+Subgraphs: each subgraph S_AUTH["AUTH (인증/권한)"] => id S_AUTH, title "AUTH (인증/권한)". Similarly S_IDP, S_ACL, S_TENANT, S_TMAP, S_TPLAN, S_BILL, S_CHARGE, S_AR, S_FLAG, S_PIPE, S_ING, S_PROC, S_STORE, S_COMP, S_IR.
 
-Also nodes like START([Start]) => parentheses inside square brackets? Actually START([Start]) means node id START with label "Start" and shape? The outer parentheses? In Mermaid, node syntax: id[Label] is rectangle, id((Label)) is circle, id{{Label}} is diamond, id((()))? Not sure. Here they use START([Start]) which is id START with label "Start" inside parentheses inside square brackets? Actually syntax: START([Start]) means a node with shape "rect" and label "Start"? The parentheses inside square brackets maybe just part of label? Usually you can do id([Label]) to have a round rectangle? Not sure. But mapping says [] = rect, {} = diamond, () = circle, (()) = double_circle, [[]] = double_rect, >> = subroutine. So we need to detect shape based on surrounding characters of label. For START([Start]), the outermost is parentheses? Actually the node definition is START([Start]) meaning the label is [Start] inside parentheses? The shape is determined by the outermost brackets around label: parentheses => circle. But there is also square brackets inside parentheses. This is ambiguous. Probably they intend START([Start]) to be a circle with label "Start". Because they used parentheses around [Start] to indicate a circle node with label "[Start]"? But typical Mermaid: id((Label)) is circle, id([Label]) is rectangle. So START([Start]) is rectangle with label "Start"? Actually id([Label]) is rectangle. So START([Start]) is rectangle with label "Start". The extra parentheses are part of label? No, syntax: id([Label]) means label is "Label" inside square brackets, parentheses are part of syntax? Wait typical: id([Label]) is rectangle. So the parentheses are part of the syntax: id([Label]) means node id with shape rect and label "Label". So shape rect.
+We need to list subgraphs array with id and title.
 
-Similarly END([End]) same.
+Nodes also include those inside subgraphs. All nodes have shape based on brackets.
 
-Thus shape mapping: if node definition uses [] => rect, {} => diamond, () => circle, (()) => double_circle, [[]] => double_rect, >> => subroutine.
+We also have decision nodes: those with {} shape are diamonds. In schema there is "decisions": [] maybe we need to list decision nodes? The schema includes decisions array, but not defined. Probably we can leave empty or include decision node ids. The instruction says "decisions": [] . So we can keep empty.
 
-We need to parse each node definition.
+Edges: need to list each connection. Edge type is "-->" as per example. Some edges have labels like "No", "Yes". In Mermaid syntax, they are like A4 -- No --> A5. So label "No". So edge object includes label maybe string. If no label, null.
 
-List nodes:
+We must capture all edges.
 
-START([Start]) -> shape rect, label "Start", id "START"
+Let's enumerate nodes:
 
-ENTRY["요청 수신"] -> shape rect (square brackets), label "요청 수신", id "ENTRY"
+List all node definitions:
 
-ROUTER{"도메인/경로 라우팅"} -> shape diamond (curly braces), label "도메인/경로 라우팅", id "ROUTER"
+START, END, ENTRY, ROUTER, A1, A2, A3, A4, A5, A_OK, T1, T2, T_ERR, T3, T4, T_LIM, T_OK, B1, B2, B3, B4, B5, B6, B7, B8, B_AR_OK, B_OUT, B_OUT? Actually B_OUT is defined as B_OUT["Billing OK"]? Wait B_OUT is defined as B_OUT["Billing OK"]? Actually in subgraph S_BILL, after B_AR_OK --> B_OUT["Billing OK"] . So B_OUT node label "Billing OK". shape rect.
 
-END([End]) -> rect, label "End", id "END"
+Also B_OUT appears later: B_OUT --> IR1.
 
-Now subgraph S_AUTH["AUTH (인증/권한)"]? Actually subgraph S_AUTH["AUTH (인증/권한)"] defines subgraph id S_AUTH, title "AUTH (인증/권한)". Subgraph not a node.
+F1, F2, F3, F4, F_OUT.
 
-Inside S_AUTH:
+P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P_OUT? Actually P_OUT["Pipe OK"] defined but not connected? It's defined as P_OUT["Pipe OK"] but not used elsewhere. So node P_OUT.
 
-A1["OIDC 로그인"] -> rect, label "OIDC 로그인", id "A1"
+C1, C2, C3, C4, C5, C_OK.
 
-A2["토큰 발급"] -> rect, label "토큰 발급", id "A2"
+IR1, IR2, IR3, IR4, IR_OK.
 
-A3["스코프 파싱"] -> rect, label "스코프 파싱", id "A3"
+Also maybe B_AR_OK node defined as B_AR_OK["정상"] shape rect.
 
-A4{"권한 충족?"} -> diamond, label "권한 충족?", id "A4"
+Also B_OUT defined.
 
-A5["403 반환"] -> rect, label "403 반환", id "A5"
+Also B5 node label "재시도/대체수단". shape rect.
 
-A_OK["Auth OK"] -> rect, label "Auth OK", id "A_OK"
+Also B7 node label "미수금 체크". shape rect.
 
-Now subgraph S_TENANT["TENANT ROUTER"] id S_TENANT, title "TENANT ROUTER"
+Also B8 node label "연체?" shape diamond.
 
-Inside:
+Also B_AR_OK shape rect.
 
-T1["도메인→테넌트ID"] -> rect, label "도메인→테넌트ID", id "T1"
+Also B_OUT shape rect.
 
-T2{"존재?"} -> diamond, label "존재?", id "T2"
+Also B6 shape rect.
 
-T_ERR["404 테넌트 없음"] -> rect, label "404 테넌트 없음", id "T_ERR"
+Also B5 shape rect.
 
-T3["플랜 조회"] -> rect, label "플랜 조회", id "T3"
+Also B3 shape rect.
 
-T4{"쿼터 초과?"} -> diamond, label "쿼터 초과?", id "T4"
+Also B4 diamond.
 
-T_LIM["429 쿼터 초과"] -> rect, label "429 쿼터 초과", id "T_LIM"
+Also B2 diamond.
 
-T_OK["Tenant OK"] -> rect, label "Tenant OK", id "T_OK"
+Also B1 rect.
 
-Now subgraph S_BILL["BILLING"] id S_BILL, title "BILLING"
+Also B7 rect.
 
-Inside subgraph S_CHARGE "과금흐름":
+Also B8 diamond.
 
-B1["사용량 누계"] -> rect, label "사용량 누계", id "B1"
+Also B_AR_OK rect.
 
-B2{"청구 시점?"} -> diamond, label "청구 시점?", id "B2"
+Also B_OUT rect.
 
-B3["결제 시도"] -> rect, label "결제 시도", id "B3"
+Also B_OUT is used as source to IR1.
 
-B4{"승인?"} -> diamond, label "승인?", id "B4"
+Also F_OUT node label "Flag OK". shape rect.
 
-B5["재시도/대체수단"] -> rect, label "재시도/대체수단", id "B5"
+Also P_OUT node label "Pipe OK". shape rect.
 
-B6["청구 완료"] -> rect, label "청구 완료", id "B6"
+Also C_OK node label "Compliant". shape rect.
 
-Now subgraph S_AR "정산/미수":
+Also IR_OK node label "정상". shape rect.
 
-B7["미수금 체크"] -> rect, label "미수금 체크", id "B7"
+Also A_OK node label "Auth OK". shape rect.
 
-B8{"연체?"} -> diamond, label "연체?", id "B8"
+Also T_OK node label "Tenant OK". shape rect.
 
-B9["알림/제한"] -> rect, label "알림/제한", id "B9"
+Also T_ERR node label "404 테넌트 없음". shape rect.
 
-B_AR_OK["정상"] -> rect, label "정상", id "B_AR_OK"
+Also T_LIM node label "429 쿼터 초과". shape rect.
 
-B_OUT["Billing OK"] -> rect, label "Billing OK", id "B_OUT"
+Also B_OUT node label "Billing OK". shape rect.
 
-Now subgraph S_FLAG["FEATURE FLAG & RELEASE"] id S_FLAG, title "FEATURE FLAG & RELEASE"
+Also B_AR_OK node label "정상". shape rect.
 
-Inside:
+Also B_OUT appears also as node.
 
-F1["플래그 평가"] -> rect, label "플래그 평가", id "F1"
+Also B_OUT is used as source to IR1.
 
-F2{"활성?"} -> diamond, label "활성?", id "F2"
+Also B_OUT is defined as B_OUT["Billing OK"].
 
-F3["신규 경로"] -> rect, label "신규 경로", id "F3"
+Also B_OUT is also used as target? Not.
 
-F4["기존 경로"] -> rect, label "기존 경로", id "F4"
+Also B_OUT is not inside any subgraph? It's inside S_BILL after B_AR_OK --> B_OUT["Billing OK"].
 
-F_OUT["Flag OK"] -> rect, label "Flag OK", id "F_OUT"
+Now edges: Let's list all edges in order.
 
-Now subgraph S_PIPE["DATA PIPELINE"] id S_PIPE, title "DATA PIPELINE"
+From top:
 
-Inside subgraph S_ING "수집":
-
-P1["API 이벤트"] -> rect, label "API 이벤트", id "P1"
-
-P2["큐 적재"] -> rect, label "큐 적재", id "P2"
-
-P3{"지연>2s?"} -> diamond, label "지연>2s?", id "P3"
-
-P4["Backpressure"] -> rect, label "Backpressure", id "P4"
-
-P5["정제"] -> rect, label "정제", id "P5"
-
-Now subgraph S_PROC "처리":
-
-P6["파싱/정규화"] -> rect, label "파싱/정규화", id "P6"
-
-P7["특징 생성"] -> rect, label "특징 생성", id "P7"
-
-P8["검증"] -> rect, label "검증", id "P8"
-
-Now subgraph S_STORE "저장":
-
-P9[("Hot KV")] -> rect, label "Hot KV", id "P9"
-
-P10[("Cold Lake")] -> rect, label "Cold Lake", id "P10"
-
-P_OUT["Pipe OK"] -> rect, label "Pipe OK", id "P_OUT"
-
-Now subgraph S_COMP["COMPLIANCE & AUDIT"] id S_COMP, title "COMPLIANCE & AUDIT"
-
-Inside:
-
-C1["PII 스캔"] -> rect, label "PII 스캔", id "C1"
-
-C2["마스킹/토큰화"] -> rect, label "마스킹/토큰화", id "C2"
-
-C3{"위반?"} -> diamond, label "위반?", id "C3"
-
-C4["차단/알림"] -> rect, label "차단/알림", id "C4"
-
-C5["정책 업데이트"] -> rect, label "정책 업데이트", id "C5"
-
-C_OK["Compliant"] -> rect, label "Compliant", id "C_OK"
-
-Now subgraph S_IR["INCIDENT RESPONSE"] id S_IR, title "INCIDENT RESPONSE"
-
-Inside:
-
-IR1["오류율 모니터"] -> rect, label "오류율 모니터", id "IR1"
-
-IR2{"임계 초과?"} -> diamond, label "임계 초과?", id "IR2"
-
-IR3["온콜 호출"] -> rect, label "온콜 호출", id "IR3"
-
-IR4["대응/롤백"] -> rect, label "대응/롤백", id "IR4"
-
-IR_OK["정상"] -> rect, label "정상", id "IR_OK"
-
-Now edges: need to list all connections with type "-->" (as per diagram). Also edges with labels like "-- No -->". The type is "-->" but label maybe "No" or "Yes". The schema includes "label": null. It doesn't mention label. But we could include label? The schema says label: null. So we set label null for all edges. Probably ignore labels.
-
-List edges in order:
-
-START --> ENTRY
+START --> ENTRY (no label)
 
 ENTRY --> ROUTER
 
-ROUTER --> S_AUTH (subgraph as target). Edge source ROUTER, target S_AUTH.
+ROUTER --> S_AUTH (subgraph as target). Edge type "-->" label null.
 
-Now within S_AUTH:
+Within S_AUTH:
 
 A1 --> A2
 
@@ -178,17 +116,15 @@ A2 --> A3
 
 A3 --> A4
 
-A4 -- No --> A5 (edge A4->A5)
+A4 -- No --> A5
 
-A4 -- Yes --> A_OK (A4->A_OK)
+A4 -- Yes --> A_OK
 
-A5? No further.
+A_OK --> S_TENANT (outside subgraph). Edge.
 
-Now after subgraph connections:
+Also A5 --> END
 
-A_OK --> S_TENANT
-
-Now within S_TENANT:
+Now S_TENANT internal:
 
 T1 --> T2
 
@@ -202,9 +138,15 @@ T4 -- Yes --> T_LIM
 
 T4 -- No --> T_OK
 
-Now after subgraph: S_TENANT --> S_FLAG
+Also T_ERR --> END
 
-Now within S_FLAG:
+T_LIM --> END
+
+T_OK --> ??? Not used further.
+
+S_TENANT --> S_FLAG (edge)
+
+Now S_FLAG internal:
 
 F1 --> F2
 
@@ -216,9 +158,9 @@ F3 --> F_OUT
 
 F4 --> F_OUT
 
-Now after subgraph: S_FLAG --> S_PIPE
+F_OUT --> P1
 
-Within S_PIPE:
+Now S_PIPE internal:
 
 P1 --> P2
 
@@ -240,11 +182,11 @@ P8 --> P9
 
 P9 --> P10
 
-Now also P_OUT? Not connected? Actually after P10 maybe? There's P_OUT["Pipe OK"] defined but not linked. No edges.
+P_OUT? Not connected.
 
-Now after subgraph: S_PIPE --> S_COMP
+S_PIPE --> S_COMP
 
-Within S_COMP:
+Now S_COMP internal:
 
 C1 --> C2
 
@@ -252,35 +194,31 @@ C2 --> C3
 
 C3 -- Yes --> C4
 
+C3 -- No --> C_OK
+
 C4 --> C5
 
 C5 --> C1
 
-C3 -- No --> C_OK
+C_OK --> B1
 
-Now after subgraph: S_COMP --> S_BILL
-
-Within S_BILL:
-
-Subgraph S_CHARGE edges:
+Now S_BILL internal:
 
 B1 --> B2
 
 B2 -- Yes --> B3
 
-B3 --> B4
-
 B2 -- No --> B1
+
+B3 --> B4
 
 B4 -- No --> B5
 
-B5 --> B3 (loop)
+B5 --> B3
 
 B4 -- Yes --> B6
 
 B6 --> B7
-
-Now subgraph S_AR edges:
 
 B7 --> B8
 
@@ -292,9 +230,15 @@ B8 -- No --> B_AR_OK
 
 B_AR_OK --> B_OUT
 
-Now after subgraph: S_BILL --> S_IR
+B_OUT --> IR1
 
-Within S_IR:
+Also B6 --> B7 already.
+
+Also B7 --> B8 already.
+
+Also B7 --> B8 --> B7 loop.
+
+Now S_IR internal:
 
 IR1 --> IR2
 
@@ -306,42 +250,188 @@ IR4 --> IR_OK
 
 IR2 -- No --> IR_OK
 
-Now cross connections:
-
-A5 --> END
-
-T_ERR --> END
-
-T_LIM --> END
-
-B_OUT --> IR1
-
-F_OUT --> P1
-
-C_OK --> B1
-
-C4 --> IR3
-
 IR_OK --> END
 
-Also loops already captured: B5 --> B3 (already), P4 --> P2 (already), B7 --> B8 --> B7 (already captured as B7->B8 and B8->B7? Actually B8->B7 not defined; they have B7 --> B8 --> B7 meaning B8 --> B7? The line "B7 --> B8 --> B7" indicates B7->B8 and B8->B7. So add edge B8 -> B7.
+Also C4 --> IR3 (edge from C4 to IR3)
 
-C5 --> C1 already captured.
+Also B_OUT --> IR1 already captured.
 
-Now also there is edge B5 --> B3 already captured.
+Also F_OUT --> P1 captured.
 
-Now also edge B_OUT --> IR1 captured.
+Also C_OK --> B1 captured.
 
-Now also edge F_OUT --> P1 captured.
+Also A5 --> END captured.
 
-Now also edge C_OK --> B1 captured.
+Also T_ERR --> END captured.
 
-Now also edge C4 --> IR3 captured.
+Also T_LIM --> END captured.
 
-Now also edge IR_OK --> END captured.
+Also B_OUT --> IR1 captured.
 
-Now also edge B5 --> B3 already.
+Also B_OUT is also target of B_AR_OK.
 
-Now also edge P4 --> P2 already.
+Now also there is edge S_TENANT --> S_FLAG captured earlier.
 
-Now also edge B7 --> B8 already, and B8 --> B7 added
+Also S_FLAG --> S_PIPE captured.
+
+Also S_PIPE --> S_COMP captured.
+
+Also S_COMP --> S_BILL captured.
+
+Also S_BILL --> S_IR captured.
+
+Now also there is edge A_OK --> S_TENANT captured.
+
+Now also there is edge ROUTER --> S_AUTH captured.
+
+Now also there is edge S_AUTH? Not other.
+
+Now also there is edge S_TENANT? Already.
+
+Now also there is edge S_BILL? Already.
+
+Now also there is edge S_IR? Not.
+
+Now also there is edge S_COMP? Already.
+
+Now also there is edge S_FLAG? Already.
+
+Now also there is edge S_PIPE? Already.
+
+Now also there is edge S_TENANT? Already.
+
+Now also there is edge S_AUTH? Already.
+
+Now also there is edge S_TENANT? Already.
+
+Now also there is edge S_BILL? Already.
+
+Now also there is edge S_IR? Already.
+
+Now also there is edge S_COMP? Already.
+
+Now also there is edge S_FLAG? Already.
+
+Now also there is edge S_PIPE? Already.
+
+Now also there is edge S_TENANT? Already.
+
+Now also there is edge S_AUTH? Already.
+
+Now also there is edge S_TENANT? Already.
+
+Now also there is edge S_TENANT? Already.
+
+Ok.
+
+Now we need to list subgraphs: each subgraph id and title.
+
+List:
+
+S_AUTH title "AUTH (인증/권한)"
+
+S_IDP title "IDP 연동"
+
+S_ACL title "권한/스코프"
+
+S_TENANT title "TENANT ROUTER"
+
+S_TMAP title "테넌트 매핑"
+
+S_TPLAN title "플랜/쿼터"
+
+S_BILL title "BILLING"
+
+S_CHARGE title "과금흐름"
+
+S_AR title "정산/미수"
+
+S_FLAG title "FEATURE FLAG & RELEASE"
+
+S_PIPE title "DATA PIPELINE"
+
+S_ING title "수집"
+
+S_PROC title "처리"
+
+S_STORE title "저장"
+
+S_COMP title "COMPLIANCE & AUDIT"
+
+S_IR title "INCIDENT RESPONSE"
+
+Now nodes: need to include all nodes with id, label, shape, subgraphs: [] (maybe list of subgraph ids they belong to? The schema says subgraphs: [] but we can leave empty for each node.
+
+We'll set subgraphs empty.
+
+Now edges: need to include source, target, type "-->", label (null or string). For edges with label "Yes"/"No". Also edges like B5 --> B3 have no label.
+
+Now summary: natural_language: brief description. entry_nodes: ["START"]; exit_nodes: ["END"].
+
+Now warnings: empty.
+
+Now ok: true.
+
+Now decisions: empty.
+
+Now produce JSON.
+
+We must ensure proper JSON formatting, arrays, objects.
+
+Let's compile nodes list.
+
+I'll enumerate nodes with id and label and shape.
+
+- START: label "Start", shape "rect"
+- ENTRY: "요청 수신", rect
+- ROUTER: "도메인/경로 라우팅", diamond
+- END: "End", rect
+- A1: "OIDC 로그인", rect
+- A2: "토큰 발급", rect
+- A3: "스코프 파싱", rect
+- A4: "권한 충족?", diamond
+- A5: "403 반환", rect
+- A_OK: "Auth OK", rect
+- T1: "도메인→테넌트ID", rect
+- T2: "존재?", diamond
+- T_ERR: "404 테넌트 없음", rect
+- T3: "플랜 조회", rect
+- T4: "쿼터 초과?", diamond
+- T_LIM: "429 쿼터 초과", rect
+- T_OK: "Tenant OK", rect
+- F1: "플래그 평가", rect
+- F2: "활성?", diamond
+- F3: "신규 경로", rect
+- F4: "기존 경로", rect
+- F_OUT: "Flag OK", rect
+- P1: "API 이벤트", rect
+- P2: "큐 적재", rect
+- P3: "지연>2s?", diamond
+- P4: "Backpressure", rect
+- P5: "정제", rect
+- P6: "파싱/정규화", rect
+- P7: "특징 생성", rect
+- P8: "검증", rect
+- P9: "Hot KV", circle? Actually syntax P9[("Hot KV")] uses double parentheses? It's [("Hot KV")] meaning parentheses inside brackets? In Mermaid, [("text")] is a circle? Actually (()) is double_circle, () is circle. [()] is rectangle with rounded? Not sure. The shape mapping: [] = rect, () = circle, (()) = double_circle, [[]] = double_rect, >> = subroutine. Here we have P9[("Hot KV")] which is bracket with parentheses inside, but outer is [] so shape rect. So label "Hot KV". shape rect.
+- P10[("Cold Lake")] similarly rect, label "Cold Lake".
+- P_OUT: "Pipe OK", rect
+- C1: "PII 스캔", rect
+- C2: "마스킹/토큰화", rect
+- C3: "위반?", diamond
+- C4: "차단/알림", rect
+- C5: "정책 업데이트", rect
+- C_OK: "Compliant", rect
+- B1: "사용량 누계", rect
+- B2: "청구 시점?", diamond
+- B3: "결제 시도", rect
+- B4: "승인?", diamond
+- B5: "재시도/대체수단", rect
+- B6: "청구 완료", rect
+- B7: "미수금 체크", rect
+- B8: "연체?", diamond
+- B9: "알림/제한", rect
+- B_AR_OK: "정상", rect
+- B_OUT: "Billing OK", rect
+- IR1: "오류율 모니터", rect
+- IR2: "임계 초과?", diamond
+- IR3: "온콜 호출",

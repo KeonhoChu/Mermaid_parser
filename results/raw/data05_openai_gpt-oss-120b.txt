@@ -1,0 +1,164 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A1",
+      "label": "요구사항 수집",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "A2",
+      "label": "타당성 분석",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "A3",
+      "label": "자원 배분",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B1",
+      "label": "아키텍처 설계",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B2",
+      "label": "모듈 개발",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B3",
+      "label": "단위 테스트",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B4",
+      "label": "통합",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C1",
+      "label": "배포",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C2",
+      "label": "모니터링",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C3",
+      "label": "장애 대응",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C4",
+      "label": "버전 관리",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "PLAN",
+      "target": "DEV",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A3",
+      "target": "B2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "B3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "B4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B4",
+      "target": "C1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C1",
+      "target": "C2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C2",
+      "target": "C3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C3",
+      "target": "C4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C4",
+      "target": "C1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B1",
+      "target": "C4",
+      "type": "-.->",
+      "label": null
+    },
+    {
+      "source": "A2",
+      "target": "B1",
+      "type": "-.->",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "PLAN",
+      "title": "계획 단계"
+    },
+    {
+      "id": "DEV",
+      "title": "개발 단계"
+    },
+    {
+      "id": "OPS",
+      "title": "운영 단계"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "The diagram outlines a three-phase workflow: planning, development, and operations, with tasks and their dependencies.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

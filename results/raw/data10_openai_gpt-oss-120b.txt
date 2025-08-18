@@ -1,0 +1,105 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "R",
+      "label": "요구사항",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "설계",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "I",
+      "label": "구현",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "T",
+      "label": "테스트",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "DEP",
+      "label": "배포",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "M",
+      "label": "운영",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "R",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "I",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "I",
+      "target": "T",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T",
+      "target": "DEP",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "DEP",
+      "target": "M",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "M",
+      "target": "R",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "T",
+      "type": "-.->",
+      "label": null
+    },
+    {
+      "source": "I",
+      "target": "DEP",
+      "type": "-.->",
+      "label": null
+    },
+    {
+      "source": "T",
+      "target": "R",
+      "type": "-.->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "The diagram shows a cyclic process from requirements to design, implementation, testing, deployment, and operation, with additional dotted connections between design and testing, implementation and deployment, and testing back to requirements.",
+    "entry_nodes": [],
+    "exit_nodes": []
+  }
+}
