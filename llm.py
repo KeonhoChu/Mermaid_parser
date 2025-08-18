@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Tuple, Optional
 
 import requests
+import random
 
 VLLM_ENDPOINT = "http://10.240.1.8:8001/v1/chat/completions"
 MODEL_NAME = "openai/gpt-oss-120b"
@@ -82,6 +83,9 @@ def call_vllm(messages: List[Dict[str, str]],
     """
     vLLM OpenAI 호환 /v1/chat/completions 호출.
     반환: 모델의 text(assistant content)
+    - 200/4xx 모두 JSON 파싱 시도하여 에러 메시지 보존
+    - choices/message/delta 폴백 처리
+    - 지수+지터 백오프 재시도
     """
     payload = {
         "model": MODEL_NAME,
@@ -89,44 +93,112 @@ def call_vllm(messages: List[Dict[str, str]],
         "temperature": temperature,
         "top_p": top_p,
         "max_tokens": max_tokens,
-        "seed": seed
+        # 일부 서버에서 seed 미지원; 지원 안 하면 서버가 무시하거나 4xx를 낼 수 있음
+        "seed": seed,
     }
-    last_err = None
-    for attempt in range(1, retries+1):
+
+    headers = {"Content-Type": "application/json"}
+    last_err: Optional[Exception] = None
+
+    for attempt in range(1, retries + 1):
         try:
-            resp = requests.post(VLLM_ENDPOINT, json=payload, timeout=timeout)
+            resp = requests.post(VLLM_ENDPOINT, json=payload, timeout=timeout, headers=headers)
+            # 본문을 최대한 보존하기 위해 먼저 JSON 파싱 시도
+            try:
+                data = resp.json()
+            except Exception:
+                data = {"raw_text": resp.text}
+
             if resp.status_code != 200:
-                last_err = RuntimeError(f"HTTP {resp.status_code}: {resp.text[:500]}")
-                time.sleep(retry_backoff ** attempt)
+                last_err = RuntimeError(f"HTTP {resp.status_code}: {str(data)[:500]}")
+                # 재시도
+                delay = (retry_backoff ** attempt) + (0.5 * attempt) + random.random()
+                time.sleep(delay)
                 continue
-            data = resp.json()
-            text = data["choices"][0]["message"]["content"]
-            return text
+
+            # OpenAI 호환 형태 폴백 처리
+            choices = data.get("choices") or []
+            if not choices:
+                raise RuntimeError(f"invalid_response_shape(no choices): {str(data)[:500]}")
+
+            ch0 = choices[0] or {}
+            content = (ch0.get("message") or {}).get("content")
+            if content is None:
+                # 스트리밍 delta 형태 폴백
+                content = (ch0.get("delta") or {}).get("content")
+
+            if not content or not isinstance(content, str):
+                raise RuntimeError(f"invalid_response_shape(no content): {str(data)[:500]}")
+
+            return content
         except Exception as e:
             last_err = e
-            time.sleep(retry_backoff ** attempt)
-    raise last_err
+            delay = (retry_backoff ** attempt) + (0.5 * attempt) + random.random()
+            time.sleep(delay)
+
+    # 모든 재시도 실패
+    raise last_err if last_err else RuntimeError("call_vllm: unknown error")
 
 def strip_code_fences(s: str) -> str:
-    """모델이 ```json ... ``` 같은 fence를 둘러줄 경우 제거"""
-    s = s.strip()
-    if s.startswith("```"):
-        s = re.sub(r"^```(?:json)?\s*", "", s)
-        s = re.sub(r"\s*```$", "", s)
-    return s.strip()
+    """코드펜스 ```...``` (언어 토큰 대/소문자 무시) 제거"""
+    t = s.strip()
+    # 앞/뒤의 코드펜스를 느슨하게 제거
+    t = re.sub(r"^```[\w-]*\s*", "", t, flags=re.IGNORECASE | re.MULTILINE)
+    t = re.sub(r"\s*```$", "", t, flags=re.IGNORECASE | re.MULTILINE)
+    return t.strip()
+
+def extract_json_block(text: str) -> str:
+    """첫 '{'부터 마지막 '}'까지 슬라이스하여 JSON 본문만 추출"""
+    t = strip_code_fences(text)
+    s, e = t.find("{"), t.rfind("}")
+    return t[s:e+1] if s != -1 and e != -1 and e > s else t
+
+
+def _normalize_json_like(s: str) -> str:
+    """주석/트레일링 콤마 등 경미한 위반을 정리 (유효 JSON으로 수선 시도)
+    * 홑따옴표 강제 치환은 위험하므로 하지 않음
+    """
+    # 주석 제거 (// ... 또는 /* ... */)
+    s = re.sub(r"//.*?$|/\*.*?\*/", "", s, flags=re.MULTILINE | re.DOTALL)
+    # 트레일링 콤마 제거: }, ] 직전의 콤마
+    s = re.sub(r",\s*([}\]])", r"\1", s)
+    return s
 
 def parse_llm_json(text: str) -> Tuple[bool, Dict[str, Any], str]:
     """
     모델 출력에서 JSON을 파싱. 성공 여부, JSON 객체, 경고 문자열을 반환.
+    1차: 코드펜스 제거 + {} 블록 슬라이스 후 표준 json.loads
+    2차: 실패 시 주석/트레일링 콤마 제거 후 재시도
+    파싱 이후에 한해 필요한 필드의 HTML escape 복원(\u003e → >)
     """
-    raw = strip_code_fences(text)
-    # 흔한 HTML escape 복원
-    raw = raw.replace("\\u003e", ">")
+    warnings: List[str] = []
+    raw = extract_json_block(text)
+
     try:
         obj = json.loads(raw)
-        return True, obj, ""
-    except Exception as e:
-        return False, {}, f"json_parse_error: {e}"
+    except Exception as e1:
+        warnings.append(f"json_parse_error/pass1: {e1}")
+        fixed = _normalize_json_like(raw)
+        try:
+            obj = json.loads(fixed)
+        except Exception as e2:
+            return False, {}, f"json_parse_error: {e2}"
+
+    # 파싱 이후 필요한 필드에만 escape 복원
+    try:
+        for e in obj.get("edges", []) or []:
+            if isinstance(e.get("type"), str):
+                e["type"] = e["type"].replace("\\u003e", ">")
+    except Exception as _:
+        pass
+
+    # warnings 필드 정규화 + 내부 경고 병합
+    if "warnings" not in obj or not isinstance(obj.get("warnings"), list):
+        obj["warnings"] = list(map(str, warnings)) if warnings else []
+    else:
+        obj["warnings"] = list(map(str, obj["warnings"])) + warnings
+
+    return True, obj, "" if not warnings else ";".join(warnings)
 
 def count_nodes_edges(obj: Dict[str, Any]) -> Tuple[int, int]:
     n_nodes = 0
@@ -148,6 +220,7 @@ def run_batch(mermaid_dir: str = "mermaid",
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     json_dir = Path(out_dir) / "json"
     json_dir.mkdir(parents=True, exist_ok=True)
+    raw_dir = (Path(out_dir) / "raw"); raw_dir.mkdir(parents=True, exist_ok=True)
 
     # 기존 난이도 CSV(선택) 로드 → name 기준 병합용
     level_map: Dict[str, Dict[str, Any]] = {}
@@ -161,6 +234,8 @@ def run_batch(mermaid_dir: str = "mermaid",
             }
 
     files = sorted(glob.glob(os.path.join(mermaid_dir, "*.mmd")))
+    if not files:
+        print(f"[경고] Mermaid 폴더가 비어 있습니다: {mermaid_dir}")
     rows = []
 
     for fp in files:
@@ -174,20 +249,37 @@ def run_batch(mermaid_dir: str = "mermaid",
             {"role": "user", "content": user_msg}
         ]
 
+        text = ""
         try:
             text = call_vllm(messages)
+            # 원문 저장 (성공/실패 불문)
+            raw_path = raw_dir / f"{name}_{model_name.replace('/', '_')}.txt"
+            try:
+                with open(raw_path, "w", encoding="utf-8") as rf:
+                    rf.write(text)
+            except Exception:
+                pass
             ok, obj, warn = parse_llm_json(text)
         except Exception as e:
             ok, obj, warn = False, {}, f"request_error: {e}"
+            # 실패해도 빈 원문 파일 남겨 디버깅에 활용
+            raw_path = raw_dir / f"{name}_{model_name.replace('/', '_')}.txt"
+            try:
+                with open(raw_path, "w", encoding="utf-8") as rf:
+                    rf.write(text or "")
+            except Exception:
+                pass
 
         # 요약 통계
         n_nodes_pred, n_edges_pred = (0, 0)
         warnings_str = ""
         if ok:
             n_nodes_pred, n_edges_pred = count_nodes_edges(obj)
-            # 모델이 warnings 배열을 제공하면 문자열로 붙이기
-            if isinstance(obj.get("warnings"), list):
-                warnings_str = ";".join(map(str, obj["warnings"]))
+            w = obj.get("warnings", [])
+            if isinstance(w, list):
+                warnings_str = ";".join(map(str, w))
+            elif w is not None:
+                warnings_str = str(w)
         else:
             warnings_str = warn
 
