@@ -134,15 +134,8 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "Organizational chart showing the CEO at the top with direct reporting lines to the CTO, CFO, and COO, each of whom oversees their respective teams.",
-    "entry_nodes": [
-      "CEO"
-    ],
-    "exit_nodes": [
-      "DEV1",
-      "DEV2",
-      "FIN1",
-      "OPS1"
-    ]
+    "natural_language": "Organizational chart showing the CEO at the top with direct reporting lines to the CTO, CFO, and COO, and their respective teams reporting to each executive.",
+    "entry_nodes": ["CEO"],
+    "exit_nodes": []
   }
 }

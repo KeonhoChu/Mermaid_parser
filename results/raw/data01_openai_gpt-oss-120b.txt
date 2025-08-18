@@ -101,8 +101,8 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "A flowchart with two subgraphs containing nodes A‑E and directed edges as defined.",
+    "natural_language": "A flowchart with two subgraphs linking nodes A, B, C, D, and E as defined.",
     "entry_nodes": [],
-    "exit_nodes": ["N3", "N5"]
+    "exit_nodes": []
   }
 }

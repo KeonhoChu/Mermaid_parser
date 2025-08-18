@@ -1,166 +1,286 @@
-We need to parse the Mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (empty?), summary.
+We need to parse the Mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (empty list?), summary.
 
-We need to extract all nodes (including START, END, and all labeled nodes). Determine shape based on delimiters: [] => rect, {} => diamond, () => circle, (()) double_circle, [[]] double_rect, >> subroutine. In the diagram, nodes are defined like START([Start]) => label "Start" shape rect. HUB{"업무 도메인 라우팅"} => diamond shape. Others: SA1["리드 수집"] => rect. SA3{"성사?"} => diamond. etc.
+We need to extract all nodes (including START, END, and all labeled nodes). Determine shape based on delimiters: [] => rect, {} => diamond, () => circle, (()) double_circle, [[]] double_rect, >> subroutine. In the diagram, nodes are defined like START([Start]) => shape rect. HUB{"업무 도메인 라우팅"} => shape diamond. Others: SA1["리드 수집"] => rect, SA2["기회 생성"] rect, SA3{"성사?"} diamond, SA4["주문 생성"] rect, SA5["후속캠페인"] rect, SA_OUT["주문 완료"] rect, etc.
 
-Also subgraphs: each subgraph has id and title. For example: subgraph S_SALES["SALES"] => id "S_SALES", title "SALES". Inside there are nested subgraphs: subgraph S_SALES_PIPE["Sales-Pipe"] => id "S_SALES_PIPE", title "Sales-Pipe". Similarly for others.
+Also subgraph IDs: S_SALES, S_SALES_PIPE, etc. The schema for subgraphs expects id and title. Title is the label in quotes after subgraph id: e.g., subgraph S_SALES["SALES"]? Actually syntax: subgraph S_SALES["SALES"] . In given code: subgraph S_SALES["SALES"] . So id S_SALES, title "SALES". Similarly S_SALES_PIPE["Sales-Pipe"], S_PAY["PAYMENTS"], S_PAY_PROC["결제흐름"], S_LOGI["LOGISTICS"], S_LOGI_FLOW["배송흐름"], S_CS["CUSTOMER SUPPORT"], S_CS_PIPE["CS흐름"], S_RISK["RISK & FRAUD"], S_RISK_ENG["탐지엔진"], S_BI["REPORTING/BI"], S_BI_PIPE["리포트"].
 
-We need to list all subgraphs (including nested). Probably include all subgraph definitions.
+We need to list all subgraphs.
 
-Edges: need to capture all connections. Edge syntax: -->, --, -- "label" -->? In Mermaid, edges can have labels like -- "주문" --> S_SALES. The schema expects "type": "-->", label maybe null or string. For labeled edges, we should capture label. The type is the arrow representation? In examples they use "-->" as type. For labeled edges, still type "-->"? Probably yes. So for each edge, source, target, type, label (null if none). For edges like SA3 -- Yes --> SA4, source SA3, target SA4, label "Yes". Type "-->"? The edge uses "-- Yes -->". So type is "-->", label "Yes". For edges like HUB -- "주문" --> S_SALES, label "주문". For edges like PY4 --> PY2 (no label) label null.
+Edges: need to capture all connections. Edge type is "-->" as per schema. Some edges have labels (e.g., "Yes", "No", "주문", etc). For those, label should be string. For unlabeled edges, label null.
 
-Also edges like BI4 --> BI5 --> BI4 is a loop: Actually "BI4 --> BI5 --> BI4" means BI4 to BI5, then BI5 to BI4. So we need two edges: BI4->BI5, BI5->BI4.
+We must include edges for loops etc.
 
-Similarly "CS3 --> CS5 --> CS1" yields CS3->CS5, CS5->CS1.
+Also decisions: maybe list decision nodes? The schema includes "decisions": [] but we can leave empty as per example. Probably we can leave empty.
 
-Also "RK4 --> RK5 --> RK2" yields RK4->RK5, RK5->RK2.
-
-Also "BI4 --> BI5 --> BI4" already captured.
-
-Also "PY4 --> PY2" already captured earlier as loop.
-
-Also "LG5 --> LG3" loop.
-
-Also "BI4 --> BI5 --> BI4" we have.
-
-Also "RK4 --> CS1" edge.
-
-Also "RK5 --> BI1" edge.
-
-Also "BI4 --> RK1" edge.
-
-Also "SA_OUT --> BI1" etc.
-
-Also "PY_OUT --> BI1", "LG_OUT --> BI1", "CS_OUT --> BI1".
-
-Also "S_SALES --> PY1" edge from subgraph to node? Source is subgraph id "S_SALES". So we treat subgraph as node? In schema, edges source and target are node ids. Subgraph ids can be used as source/target. So include them.
-
-Similarly "PY3 --> S_LOGI", "LG_OUT --> S_CS", "S_CS --> BI1", "S_RISK --> PY2", "RK4 --> CS1", "RK5 --> BI1", "BI4 --> RK1", "SA_OUT --> BI1", "PY_OUT --> BI1", "LG_OUT --> BI1", "CS_OUT --> BI1". Also "S_SALES --> PY1". Also "PY3 --> S_LOGI". Also "LG_OUT --> S_CS". Also "S_CS --> BI1". Also "S_RISK --> PY2". Also "S_RISK" is subgraph id.
-
-Also "S_SALES" etc.
-
-Also "START --> HUB" and "BI_OUT --> END([End])". END node defined as End shape rect.
+Summary: natural_language brief description, entry_nodes ["START"], exit_nodes ["END"].
 
 Now compile nodes list.
 
-Let's enumerate all node ids and labels:
+Let's enumerate nodes with IDs and labels.
 
-START: id "START", label "Start", shape rect.
+IDs are the variable names used: START, HUB, SA1, SA2, SA3, SA4, SA5, SA_OUT, PY1, PY2, PY3, PY4, PY_OUT, LG1, LG2, LG3, LG4, LG5, LG6, LG_OUT, CS1, CS2, CS3, CS4, CS5, CS_OUT, RK1, RK2, RK3, RK4, RK5, RK6, RK_OUT, BI1, BI2, BI3, BI4, BI5, BI6, BI_OUT, END.
 
-HUB: id "HUB", label "업무 도메인 라우팅", shape diamond.
+Check also any nodes like S_SALES etc are subgraphs not nodes.
 
-SA1: id "SA1", label "리드 수집", shape rect.
+Now assign shapes:
 
-SA2: id "SA2", label "기회 생성", shape rect.
+START: ([Start]) => rect.
 
-SA3: id "SA3", label "성사?", shape diamond.
+HUB: {"업무 도메인 라우팅"} => diamond.
 
-SA4: id "SA4", label "주문 생성", shape rect.
+SA1: ["리드 수집"] rect.
 
-SA5: id "SA5", label "후속캠페인", shape rect.
+SA2: ["기회 생성"] rect.
 
-SA_OUT: id "SA_OUT", label "주문 완료", shape rect.
+SA3: {"성사?"} diamond.
 
-PY1: id "PY1", label "결제요청", shape rect.
+SA4: ["주문 생성"] rect.
 
-PY2: id "PY2", label "승인?", shape diamond.
+SA5: ["후속캠페인"] rect.
 
-PY3: id "PY3", label "정산 예정", shape rect.
+SA_OUT: ["주문 완료"] rect.
 
-PY4: id "PY4", label "재시도/대체수단", shape rect.
+PY1: ["결제요청"] rect.
 
-PY_OUT: id "PY_OUT", label "정산 라인", shape rect.
+PY2: {"승인?"} diamond.
 
-LG1: id "LG1", label "피킹", shape rect.
+PY3: ["정산 예정"] rect.
 
-LG2: id "LG2", label "패킹", shape rect.
+PY4: ["재시도/대체수단"] rect.
 
-LG3: id "LG3", label "출고", shape rect.
+PY_OUT: ["정산 라인"] rect.
 
-LG4: id "LG4", label "지연?", shape diamond.
+LG1: ["피킹"] rect.
 
-LG5: id "LG5", label "경로 재계획", shape rect.
+LG2: ["패킹"] rect.
 
-LG6: id "LG6", label "배송 진행", shape rect.
+LG3: ["출고"] rect.
 
-LG_OUT: id "LG_OUT", label "배송 추적", shape rect.
+LG4: {"지연?"} diamond.
 
-CS1: id "CS1", label "티켓 접수", shape rect.
+LG5: ["경로 재계획"] rect.
 
-CS2: id "CS2", label "우선순위?", shape diamond.
+LG6: ["배송 진행"] rect.
 
-CS3: id "CS3", label "전담 처리", shape rect.
+LG_OUT: ["배송 추적"] rect.
 
-CS4: id "CS4", label "일반 처리", shape rect.
+CS1: ["티켓 접수"] rect.
 
-CS5: id "CS5", label "해결/콜백", shape rect.
+CS2: {"우선순위?"} diamond.
 
-CS_OUT: id "CS_OUT", label "CS 종료", shape rect.
+CS3: ["전담 처리"] rect.
 
-RK1: id "RK1", label "피쳐수집", shape rect.
+CS4: ["일반 처리"] rect.
 
-RK2: id "RK2", label "모델스코어링", shape rect.
+CS5: ["해결/콜백"] rect.
 
-RK3: id "RK3", label "위험>임계?", shape diamond.
+CS_OUT: ["CS 종료"] rect.
 
-RK4: id "RK4", label "차단/리뷰", shape rect.
+RK1: ["피쳐수집"] rect.
 
-RK5: id "RK5", label "정책업데이트", shape rect.
+RK2: ["모델스코어링"] rect.
 
-RK6: id "RK6", label "승인 통과", shape rect.
+RK3: {"위험>임계?"} diamond.
 
-RK_OUT: id "RK_OUT", label "정책 반영", shape rect.
+RK4: ["차단/리뷰"] rect.
 
-BI1: id "BI1", label "데이터 집계", shape rect.
+RK5: ["정책업데이트"] rect.
 
-BI2: id "BI2", label "대시보드 갱신", shape rect.
+RK6: ["승인 통과"] rect.
 
-BI3: id "BI3", label "이상징후?", shape diamond.
+RK_OUT: ["정책 반영"] rect.
 
-BI4: id "BI4", label "알림/깃발", shape rect.
+BI1: ["데이터 집계"] rect.
 
-BI5: id "BI5", label "원인분석", shape rect.
+BI2: ["대시보드 갱신"] rect.
 
-BI6: id "BI6", label "정상 리포트", shape rect.
+BI3: {"이상징후?"} diamond.
 
-BI_OUT: id "BI_OUT", label "분석결과", shape rect.
+BI4: ["알림/깃발"] rect.
 
-END: id "END", label "End", shape rect.
+BI5: ["원인분석"] rect.
 
-Also maybe nodes for subgraph internal? No.
+BI6: ["정상 리포트"] rect.
 
-Now subgraphs list:
+BI_OUT: ["분석결과"] rect.
 
-S_SALES: id "S_SALES", title "SALES"
+END: ([End]) rect.
 
-S_SALES_PIPE: id "S_SALES_PIPE", title "Sales-Pipe"
+Now edges.
 
-S_PAY: id "S_PAY", title "PAYMENTS"
-
-S_PAY_PROC: id "S_PAY_PROC", title "결제흐름"
-
-S_LOGI: id "S_LOGI", title "LOGISTICS"
-
-S_LOGI_FLOW: id "S_LOGI_FLOW", title "배송흐름"
-
-S_CS: id "S_CS", title "CUSTOMER SUPPORT"
-
-S_CS_PIPE: id "S_CS_PIPE", title "CS흐름"
-
-S_RISK: id "S_RISK", title "RISK & FRAUD"
-
-S_RISK_ENG: id "S_RISK_ENG", title "탐지엔진"
-
-S_BI: id "S_BI", title "REPORTING/BI"
-
-S_BI_PIPE: id "S_BI_PIPE", title "리포트"
-
-Now edges list. Let's enumerate all edges in order.
+List each arrow line.
 
 From diagram:
 
-START([Start]) --> HUB
+START([Start]) --> HUB{"업무 도메인 라우팅"}
+
+Edge: source START, target HUB, label null.
+
+Within SALES subgraph:
+
+SA1 --> SA2
+
+Edge SA1->SA2 null.
+
+SA2 --> SA3
+
+Edge SA2->SA3 null.
+
+SA3 -- Yes --> SA4
+
+Edge SA3->SA4 label "Yes".
+
+SA3 -- No --> SA5
+
+Edge SA3->SA5 label "No".
+
+SA5 --> SA2
+
+Edge SA5->SA2 null.
+
+SA4 --> SA_OUT
+
+Edge SA4->SA_OUT null.
+
+Now PAYMENTS subgraph:
+
+PY1 --> PY2
+
+Edge PY1->PY2 null.
+
+PY2 -- Yes --> PY3
+
+Edge PY2->PY3 label "Yes".
+
+PY2 -- No --> PY4
+
+Edge PY2->PY4 label "No".
+
+PY4 --> PY2 (also later loop defined again but same edge). Edge PY4->PY2 null (or label null). Already there is a loop defined later as "PY4 --> PY2" again under "순환 루프". We'll include once.
+
+PY3 --> PY_OUT
+
+Edge PY3->PY_OUT null.
+
+Now LOGISTICS subgraph:
+
+LG1 --> LG2
+
+Edge LG1->LG2 null.
+
+LG2 --> LG3
+
+Edge LG2->LG3 null.
+
+LG3 --> LG4
+
+Edge LG3->LG4 null.
+
+LG4 -- Yes --> LG5
+
+Edge LG4->LG5 label "Yes".
+
+LG4 -- No --> LG6
+
+Edge LG4->LG6 label "No".
+
+LG5 --> LG3 (loop)
+
+Edge LG5->LG3 null.
+
+LG6 --> LG_OUT
+
+Edge LG6->LG_OUT null.
+
+Now CUSTOMER SUPPORT subgraph:
+
+CS1 --> CS2
+
+Edge CS1->CS2 null.
+
+CS2 -- High --> CS3
+
+Edge CS2->CS3 label "High".
+
+CS2 -- Normal --> CS4
+
+Edge CS2->CS4 label "Normal".
+
+CS3 --> CS5
+
+Edge CS3->CS5 null.
+
+CS4 --> CS5
+
+Edge CS4->CS5 null.
+
+CS5 --> CS_OUT
+
+Edge CS5->CS_OUT null.
+
+Now RISK & FRAUD subgraph:
+
+RK1 --> RK2
+
+Edge RK1->RK2 null.
+
+RK2 --> RK3
+
+Edge RK2->RK3 null.
+
+RK3 -- Yes --> RK4
+
+Edge RK3->RK4 label "Yes".
+
+RK3 -- No --> RK6
+
+Edge RK3->RK6 label "No".
+
+RK4 --> RK5
+
+Edge RK4->RK5 null.
+
+RK5 --> RK_OUT
+
+Edge RK5->RK_OUT null.
+
+Now REPORTING/BI subgraph:
+
+BI1 --> BI2
+
+Edge BI1->BI2 null.
+
+BI2 --> BI3
+
+Edge BI2->BI3 null.
+
+BI3 -- Yes --> BI4
+
+Edge BI3->BI4 label "Yes".
+
+BI3 -- No --> BI6
+
+Edge BI3->BI6 label "No".
+
+BI4 --> BI5
+
+Edge BI4->BI5 null.
+
+BI5 --> BI_OUT
+
+Edge BI5->BI_OUT null.
+
+BI6 --> BI_OUT
+
+Edge BI6->BI_OUT null.
+
+Now hub routing edges:
 
 HUB -- "주문" --> S_SALES
+
+Edge HUB->S_SALES label "주문". Note target is subgraph ID. Should we treat subgraph as node? In schema nodes list only nodes, subgraphs separate. Edge target can be subgraph ID. We'll include as is.
+
+Similarly:
 
 HUB -- "결제" --> S_PAY
 
@@ -172,225 +292,150 @@ HUB -- "리스크" --> S_RISK
 
 HUB -- "리포팅" --> S_BI
 
-Now within subgraphs:
-
-SA1 --> SA2
-
-SA2 --> SA3
-
-SA3 -- Yes --> SA4
-
-SA3 -- No --> SA5
-
-SA5 --> SA2
-
-SA4 --> SA_OUT
-
-PY1 --> PY2
-
-PY2 -- Yes --> PY3
-
-PY2 -- No --> PY4
-
-PY4 --> PY2 (also later loop but same)
-
-PY3 --> PY_OUT
-
-LG1 --> LG2
-
-LG2 --> LG3
-
-LG3 --> LG4
-
-LG4 -- Yes --> LG5
-
-LG5 --> LG3
-
-LG4 -- No --> LG6
-
-LG6 --> LG_OUT
-
-CS1 --> CS2
-
-CS2 -- High --> CS3
-
-CS2 -- Normal --> CS4
-
-CS3 --> CS5
-
-CS4 --> CS5
-
-CS5 --> CS_OUT
-
-RK1 --> RK2
-
-RK2 --> RK3
-
-RK3 -- Yes --> RK4
-
-RK4 --> RK5
-
-RK5 --> RK_OUT
-
-RK3 -- No --> RK6
-
-BI1 --> BI2
-
-BI2 --> BI3
-
-BI3 -- Yes --> BI4
-
-BI4 --> BI5
-
-BI5 --> BI4 (loop)
-
-BI3 -- No --> BI6
-
-BI6 --> BI_OUT
-
-BI5 --> BI_OUT (actually BI5 --> BI_OUT? In diagram: BI5 --> BI_OUT["분석결과"]; yes edge BI5 -> BI_OUT)
-
-BI6 --> BI_OUT (already)
-
-Now cross-domain edges:
+Now cross-domain connections:
 
 S_SALES --> PY1
 
+Edge S_SALES->PY1 null.
+
 PY3 --> S_LOGI
+
+Edge PY3->S_LOGI null.
 
 LG_OUT --> S_CS
 
+Edge LG_OUT->S_CS null.
+
 S_CS --> BI1
+
+Edge S_CS->BI1 null.
 
 S_RISK --> PY2
 
+Edge S_RISK->PY2 null.
+
 RK4 --> CS1
+
+Edge RK4->CS1 null.
 
 RK5 --> BI1
 
+Edge RK5->BI1 null.
+
 BI4 --> RK1
+
+Edge BI4->RK1 null.
 
 SA_OUT --> BI1
 
+Edge SA_OUT->BI1 null.
+
 PY_OUT --> BI1
 
-LG_OUT --> BI1
+Edge PY_OUT->BI1 null.
+
+LG_OUT --> BI1 (already have LG_OUT->S_CS earlier, also LG_OUT->BI1)
+
+Edge LG_OUT->BI1 null.
 
 CS_OUT --> BI1
 
-Also earlier we have "PY4 --> PY2" already captured.
+Edge CS_OUT->BI1 null.
 
-Also "LG5 --> LG3" captured.
+Now loops already captured: PY4->PY2 (already), LG5->LG3 (already), BI4 --> BI5 --> BI4 (this is a cycle: BI4->BI5 (already), BI5->BI4? Actually "BI4 --> BI5 --> BI4" indicates BI5->BI4 edge. So we need edge BI5->BI4 null.
 
-Also "BI4 --> BI5 --> BI4" captured.
+RK4 --> RK5 --> RK2: we have RK4->RK5 already, and RK5->RK2 edge (new). So edge RK5->RK2 null.
 
-Also "RK4 --> RK5 --> RK2": we have RK4->RK5, RK5->RK2 (need edge RK5->RK2). Already have RK5->RK_OUT, but also RK5->RK2 as per loop. So add edge RK5 -> RK2.
+CS3 --> CS5 --> CS1: we have CS3->CS5 already, and CS5->CS1 edge (new). So edge CS5->CS1 null.
 
-Also "CS3 --> CS5 --> CS1": we have CS3->CS5, CS5->CS1 (add edge CS5->CS1). Already have CS5->CS_OUT, but also CS5->CS1.
+Now final exit:
 
-Also "BI4 --> BI5 --> BI4" we have both edges.
+BI_OUT --> END([End])
 
-Now also "PY4 --> PY2" already.
+Edge BI_OUT->END null.
 
-Now also "BI4 --> BI5 --> BI4" we have both.
+START --> HUB already captured earlier.
 
-Now also "RK4 --> RK5 --> RK2" we have both.
+Now ensure we have all edges.
 
-Now also "CS3 --> CS5 --> CS1" we have both.
+Now subgraphs list: include all subgraph IDs and titles.
 
-Now also "S_SALES --> PY1" we have.
+List:
 
-Now also "PY3 --> S_LOGI" we have.
+S_SALES "SALES"
+S_SALES_PIPE "Sales-Pipe"
+S_PAY "PAYMENTS"
+S_PAY_PROC "결제흐름"
+S_LOGI "LOGISTICS"
+S_LOGI_FLOW "배송흐름"
+S_CS "CUSTOMER SUPPORT"
+S_CS_PIPE "CS흐름"
+S_RISK "RISK & FRAUD"
+S_RISK_ENG "탐지엔진"
+S_BI "REPORTING/BI"
+S_BI_PIPE "리포트"
 
-Now also "LG_OUT --> S_CS" we have.
+Now decisions list: maybe include decision nodes (diamond). But schema says decisions: [] . Could leave empty.
 
-Now also "S_CS --> BI1" we have.
+Now summary: natural_language: "Flowchart of business domain routing covering sales, payments, logistics, customer support, risk/fraud detection, and reporting/BI with start and end nodes." entry_nodes ["START"], exit_nodes ["END"].
 
-Now also "S_RISK --> PY2" we have.
+Now produce JSON.
 
-Now also "RK4 --> CS1" we have.
+Need to ensure proper ordering? Not required.
 
-Now also "RK5 --> BI1" we have.
+Make sure each node object includes "subgraphs": [] (empty list). No need to list which subgraph they belong to.
 
-Now also "BI4 --> RK1" we have.
+Now produce JSON.
 
-Now also "SA_OUT --> BI1" we have.
+Check for any duplicate edges: we should include each unique edge. For edges that appear twice (like PY4->PY2 defined twice) we include once.
 
-Now also "PY_OUT --> BI1" we have.
+Now compile edges list.
 
-Now also "LG_OUT --> BI1" we have.
+Let's enumerate edges with source, target, type "-->", label (string or null). Ensure label strings exactly as in diagram (including Korean). For labels with quotes like "주문", "결제", etc. Use the label without quotes.
 
-Now also "CS_OUT --> BI1" we have.
+Edge list:
 
-Now also "BI5 --> BI_OUT" we have.
-
-Now also "BI6 --> BI_OUT" we have.
-
-Now also "BI5 --> BI_OUT" already.
-
-Now also "BI6 --> BI_OUT" already.
-
-Now also "BI5 --> BI_OUT" duplicate? fine.
-
-Now also "BI5 --> BI_OUT" we have.
-
-Now also "BI6 --> BI_OUT" we have.
-
-Now also "BI5 --> BI_OUT" done.
-
-Now also "BI6 --> BI_OUT" done.
-
-Now also "BI5 --> BI_OUT" done.
-
-Now also "BI6 --> BI_OUT" done.
-
-Now also "BI5 --> BI_OUT" done.
-
-Ok.
-
-Now also "BI5 --> BI_OUT" is edge.
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT" already.
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT".
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT".
-
-Ok.
-
-Now also "BI5 --> BI_OUT" done.
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT".
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT".
-
-Stop.
-
-Now also "BI5 --> BI_OUT" is fine.
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT".
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT".
-
-Ok.
-
-Now also "BI5 --> BI_OUT".
-
-Now also "BI6 --> BI_OUT".
-
-Now also "BI5 --> BI_OUT".
-
+1 START -> HUB label null
+2 HUB -> S_SALES label "주문"
+3 HUB -> S_PAY label "결제"
+4 HUB -> S_LOGI label "물류"
+5 HUB -> S_CS label "CS"
+6 HUB -> S_RISK label "리스크"
+7 HUB -> S_BI label "리포팅"
+8 SA1 -> SA2 null
+9 SA2 -> SA3 null
+10 SA3 -> SA4 label "Yes"
+11 SA3 -> SA5 label "No"
+12 SA5 -> SA2 null
+13 SA4 -> SA_OUT null
+14 PY1 -> PY2 null
+15 PY2 -> PY3 label "Yes"
+16 PY2 -> PY4 label "No"
+17 PY4 -> PY2 null
+18 PY3 -> PY_OUT null
+19 LG1 -> LG2 null
+20 LG2 -> LG3 null
+21 LG3 -> LG4 null
+22 LG4 -> LG5 label "Yes"
+23 LG4 -> LG6 label "No"
+24 LG5 -> LG3 null
+25 LG6 -> LG_OUT null
+26 CS1 -> CS2 null
+27 CS2 -> CS3 label "High"
+28 CS2 -> CS4 label "Normal"
+29 CS3 -> CS5 null
+30 CS4 -> CS5 null
+31 CS5 -> CS_OUT null
+32 RK1 -> RK2 null
+33 RK2 -> RK3 null
+34 RK3 -> RK4 label "Yes"
+35 RK3 -> RK6 label "No"
+36 RK4 -> RK5 null
+37 RK5 -> RK_OUT null
+38 BI1 -> BI2 null
+39 BI2 -> BI3 null
+40 BI3 -> BI4 label "Yes"
+41 BI3 -> BI6 label "No"
+42 BI4 -> BI5 null
+43 BI5 -> BI_OUT null
+44 BI6 -> BI_OUT null

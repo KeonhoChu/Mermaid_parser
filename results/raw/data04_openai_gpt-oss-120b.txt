@@ -2,38 +2,158 @@
   "ok": true,
   "warnings": [],
   "nodes": [
-    { "id": "A", "label": "A", "shape": "rect", "subgraphs": [] },
-    { "id": "B", "label": "B", "shape": "rect", "subgraphs": [] },
-    { "id": "C", "label": "C", "shape": "rect", "subgraphs": [] },
-    { "id": "D", "label": "D", "shape": "rect", "subgraphs": [] },
-    { "id": "E", "label": "E", "shape": "rect", "subgraphs": [] },
-    { "id": "F", "label": "F", "shape": "rect", "subgraphs": [] },
-    { "id": "G", "label": "G", "shape": "rect", "subgraphs": [] },
-    { "id": "H", "label": "H", "shape": "rect", "subgraphs": [] },
-    { "id": "I", "label": "I", "shape": "rect", "subgraphs": [] },
-    { "id": "J", "label": "J", "shape": "rect", "subgraphs": [] }
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "C",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "D",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "E",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "F",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "G",
+      "label": "G",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "H",
+      "label": "H",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "I",
+      "label": "I",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "J",
+      "label": "J",
+      "shape": "rect",
+      "subgraphs": []
+    }
   ],
   "edges": [
-    { "source": "A", "target": "B", "type": "-->", "label": null },
-    { "source": "A", "target": "C", "type": "-->", "label": null },
-    { "source": "B", "target": "D", "type": "-->", "label": null },
-    { "source": "B", "target": "E", "type": "-->", "label": null },
-    { "source": "C", "target": "E", "type": "-->", "label": null },
-    { "source": "C", "target": "F", "type": "-->", "label": null },
-    { "source": "D", "target": "G", "type": "-->", "label": null },
-    { "source": "E", "target": "H", "type": "-->", "label": null },
-    { "source": "E", "target": "I", "type": "-->", "label": null },
-    { "source": "F", "target": "I", "type": "-->", "label": null },
-    { "source": "G", "target": "J", "type": "-->", "label": null },
-    { "source": "H", "target": "J", "type": "-->", "label": null },
-    { "source": "I", "target": "J", "type": "-->", "label": null },
-    { "source": "J", "target": "A", "type": "-->", "label": "피드백" }
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "G",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "H",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "I",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F",
+      "target": "I",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "G",
+      "target": "J",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "H",
+      "target": "J",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "I",
+      "target": "J",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "J",
+      "target": "A",
+      "type": "-->",
+      "label": "피드백"
+    }
   ],
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "A cyclic flowchart connecting nodes A through J with feedback from J back to A.",
-    "entry_nodes": [],
+    "natural_language": "The diagram shows a directed flow starting at A, branching to B and C, further expanding through D, E, F, G, H, and I, converging at J, which feeds back to A with a feedback label.",
+    "entry_nodes": ["A"],
     "exit_nodes": []
   }
 }

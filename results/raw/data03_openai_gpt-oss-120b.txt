@@ -53,6 +53,12 @@
       "label": null
     },
     {
+      "source": "P2",
+      "target": "M1",
+      "type": "-->",
+      "label": null
+    },
+    {
       "source": "M1",
       "target": "M2",
       "type": "-->",
@@ -61,12 +67,6 @@
     {
       "source": "M2",
       "target": "M3",
-      "type": "-->",
-      "label": null
-    },
-    {
-      "source": "P2",
-      "target": "M1",
       "type": "-->",
       "label": null
     },
@@ -105,7 +105,7 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "Data collection, AI modeling, and visualization pipeline with cyclic connections.",
+    "natural_language": "The flowchart shows data collection (crawling → cleaning), then AI modeling (preprocessing → training → evaluation), followed by visualization (statistical analysis → dashboard), with connections forming a cycle.",
     "entry_nodes": [],
     "exit_nodes": []
   }

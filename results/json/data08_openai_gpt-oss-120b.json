@@ -125,7 +125,7 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "The diagram shows client components (Web and Mobile) connecting to an API Gateway, which routes requests to Auth, Data, and ML services. Auth interacts with a SQL database, while Data and ML services use a NoSQL database, and the NoSQL database also feeds back to the API Gateway.",
+    "natural_language": "Web and Mobile clients send requests to the API Gateway, which routes to Auth, Data, and ML services; these services interact with SQL and NoSQL databases, with data flowing back to services.",
     "entry_nodes": [],
     "exit_nodes": []
   }

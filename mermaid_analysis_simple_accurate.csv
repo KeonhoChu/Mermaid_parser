@@ -1,0 +1,16 @@
+file,nodes,edges,subgraphs,total_elements,node_list,subgraph_list
+data01,5,9,2,5,"['N1', 'N2', 'N3', 'N4', 'N5']","['S1', 'S2']"
+data02,8,10,0,8,"['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'F', 'ROOT']",[]
+data03,7,7,3,7,"['M1', 'M2', 'M3', 'P1', 'P2', 'V1', 'V2']","['PIPE1', 'PIPE2', 'PIPE3']"
+data04,10,14,0,10,"['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']",[]
+data05,11,11,3,11,"['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4']","['DEV', 'OPS', 'PLAN']"
+data06,8,9,0,8,"['C', 'D', 'E1', 'F', 'P', 'R', 'S', 'X']",[]
+data07,8,13,0,8,"['CEO', 'CFO', 'COO', 'CTO', 'DEV1', 'DEV2', 'FIN1', 'OPS1']",[]
+data08,8,9,3,8,"['C1', 'C2', 'D1', 'D2', 'S1', 'S2', 'S3', 'S4']","['CLIENT', 'DB', 'SERVER']"
+data09,7,7,2,7,"['C1', 'C2', 'C3', 'C4', 'E1', 'E2', 'E3']","['CLOUD', 'EDGE']"
+data10,6,9,0,6,"['D', 'DEP', 'I', 'M', 'R', 'T']",[]
+data11,62,82,15,62,"['C1', 'C2', 'C3', 'END', 'F1', 'F2', 'F3', 'G1', 'G2', 'G3', 'G4', 'GS1', 'GS2', 'GS3', 'G_OUT', 'H1', 'H2', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M_OUT', 'N1', 'N2', 'N3', 'No', 'O1', 'O2', 'O3', 'O4', 'O5', 'O_OUT', 'P1', 'P2', 'P3', 'PROC_OUT', 'R_GATE', 'START', 'ST_OUT', 'SV1', 'SV2', 'SV3', 'SV4', 'SV5', 'SV_OUT', 'T1', 'T2', 'T3', 'T4', 'T5', 'Yes']","['S_COLD', 'S_CTRL', 'S_FEAT', 'S_GOV', 'S_GOV_QC', 'S_GOV_SEC', 'S_HOT', 'S_ING', 'S_MON', 'S_NORM', 'S_PARSE', 'S_PROC', 'S_SERVE', 'S_STORE', 'S_TRAIN']"
+data12,22,14,2,22,"['DEPLOY', 'E1', 'E2', 'E3', 'E4', 'E5', 'END', 'EVAL', 'INJ', 'MON', 'OUT1', 'OUT2', 'ROLL', 'ROUTE', 'S1', 'S2', 'S3', 'START', 'TRAIN', 'TUNE', 'VAL', 'hot']","['ETL', 'STREAM']"
+data13,45,59,12,45,"['BI1', 'BI2', 'BI3', 'BI4', 'BI5', 'BI6', 'BI_OUT', 'CS1', 'CS2', 'CS3', 'CS4', 'CS5', 'CS_OUT', 'END', 'HUB', 'High', 'LG1', 'LG2', 'LG3', 'LG4', 'LG5', 'LG6', 'LG_OUT', 'No', 'Normal', 'PY1', 'PY2', 'PY3', 'PY4', 'PY_OUT', 'RK1', 'RK2', 'RK3', 'RK4', 'RK5', 'RK6', 'RK_OUT', 'SA1', 'SA2', 'SA3', 'SA4', 'SA5', 'SA_OUT', 'START', 'Yes']","['S_BI', 'S_BI_PIPE', 'S_CS', 'S_CS_PIPE', 'S_LOGI', 'S_LOGI_FLOW', 'S_PAY', 'S_PAY_PROC', 'S_RISK', 'S_RISK_ENG', 'S_SALES', 'S_SALES_PIPE']"
+data14,62,83,12,62,"['Accept', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C_OK', 'D1', 'D2', 'D3', 'D4', 'D5', 'E1', 'E2', 'E3', 'E4', 'END', 'ET1', 'ET2', 'E_OK', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G_OK', 'HUB', 'K1', 'K2', 'K3', 'K4', 'K_OK', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L_OK', 'Minor', 'No', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P_OK', 'R1', 'R2', 'R3', 'R_OK', 'Reject', 'START', 'Yes']","['S_COL', 'S_COMP', 'S_DATA', 'S_EXP', 'S_GRANT', 'S_IRB', 'S_KB', 'S_MON', 'S_PUB', 'S_RUN', 'S_SCH', 'S_TRACK']"
+data15,57,72,16,57,"['A1', 'A2', 'A3', 'A4', 'A5', 'A_OK', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B_AR_OK', 'B_OUT', 'C1', 'C2', 'C3', 'C4', 'C5', 'C_OK', 'END', 'ENTRY', 'F1', 'F2', 'F3', 'F4', 'F_OUT', 'IR1', 'IR2', 'IR3', 'IR4', 'IR_OK', 'No', 'P1', 'P10', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P_OUT', 'ROUTER', 'START', 'T1', 'T2', 'T3', 'T4', 'T_ERR', 'T_LIM', 'T_OK', 'Yes']","['S_ACL', 'S_AR', 'S_AUTH', 'S_BILL', 'S_CHARGE', 'S_COMP', 'S_FLAG', 'S_IDP', 'S_ING', 'S_IR', 'S_PIPE', 'S_PROC', 'S_STORE', 'S_TENANT', 'S_TMAP', 'S_TPLAN']"

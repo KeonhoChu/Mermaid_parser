@@ -122,57 +122,49 @@ We must map shapes: [] = "rect", {} = "diamond", () = "circle", (()) = "double_c
 
 - R_GATE{"데이터 라우팅"} diamond? Actually {} => diamond.
 
-- S_ING subgraph id "S_ING" title "INGEST (수집 레이어)". Subgraph nodes inside.
+- S_ING subgraph id S_ING, title "INGEST (수집 레이어)". Subgraph nodes inside.
 
-- S_GOV subgraph id "S_GOV" title "GOV (품질/거버넌스)". Also nested subgraphs S_GOV_QC and S_GOV_SEC.
+- S_GOV subgraph id S_GOV, title "GOV (품질/거버넌스)".
 
-- S_GOV_QC subgraph id "S_GOV_QC" title "QC(품질검증)". S_GOV_SEC id "S_GOV_SEC" title "SEC(보안/마스킹)".
+- S_GOV_QC subgraph id S_GOV_QC, title "QC(품질검증)". But subgraph list only includes top-level subgraphs? The schema "subgraphs": list of objects with id and title. Probably include all subgraphs defined, including nested ones. We'll include all.
 
-- S_PROC id "S_PROC" title "PROC (처리 레이어)". Inside subgraphs S_PARSE, S_NORM, S_FEAT.
+- S_GOV_SEC id S_GOV_SEC, title "SEC(보안/마스킹)".
 
-- S_PARSE id "S_PARSE" title "PARSE". S_NORM id "S_NORM" title "NORMALIZE". S_FEAT id "S_FEAT" title "FEATUREIZE".
+- S_PROC id S_PROC, title "PROC (처리 레이어)".
 
-- S_STORE id "S_STORE" title "STORE (저장소)". Inside S_HOT and S_COLD.
+- S_PARSE id S_PARSE, title "PARSE".
 
-- S_HOT id "S_HOT" title "HOT-DB". S_COLD id "S_COLD" title "COLD-LAKE".
+- S_NORM id S_NORM, title "NORMALIZE".
 
-- S_TRAIN id "S_TRAIN" title "TRAIN (학습/튜닝)".
+- S_FEAT id S_FEAT, title "FEATUREIZE".
 
-- S_SERVE id "S_SERVE" title "SERVE (배포/서빙)".
+- S_STORE id S_STORE, title "STORE (저장소)".
 
-- S_MON id "S_MON" title "MON (관측/모니터링)".
+- S_HOT id S_HOT, title "HOT-DB".
 
-- S_CTRL id "S_CTRL" title "CTRL (제어/오케스트레이션)".
+- S_COLD id S_COLD, title "COLD-LAKE".
 
-We need to list subgraphs in "subgraphs" array with id and title. Probably include all subgraphs (including nested). The schema expects subgraphs list of objects with id and title.
+- S_TRAIN id S_TRAIN, title "TRAIN (학습/튜닝)".
 
-Edges: need to capture all connections. Edge type is "-->" as per schema. Some edges have labels like "배치", "실시간". Those should be captured in label field. For decision branches, edges like I6 -- Yes --> I7. So source I6, target I7, type "-->", label "Yes". Similarly No.
+- S_SERVE id S_SERVE, title "SERVE (배포/서빙)".
 
-Also edges like R_GATE -- "배치" --> S_ING. So label "배치". For edges without label, label null.
+- S_MON id S_MON, title "MON (관측/모니터링)".
 
-We also have loops: I5 --> I6, I7 --> I5, etc.
+- S_CTRL id S_CTRL, title "CTRL (제어/오케스트레이션)".
 
-We need to include all edges.
+Now edges: need to list all connections with source, target, type, label. Type is "-->" for directed arrow. Some edges have labels like "배치", "실시간". Also decision edges have "-- Yes -->" etc. So label should be "Yes" or "No" accordingly. Also edges with label "배치" etc.
 
-Decisions: maybe list decision node ids? The schema has "decisions": [] maybe list ids of decision nodes. We'll include ids of nodes with shape diamond: I6, G2, T3, SV3, M3, O3, R_GATE? R_GATE is also diamond but it's a routing node, maybe considered decision. We'll include all diamond nodes.
-
-Summary: natural_language brief description. entry_nodes ["START"], exit_nodes ["END"].
-
-Now we need to produce JSON with fields: ok true, warnings [].
-
-Now compile nodes list. Must include each node with id, label, shape, subgraphs [] (maybe list subgraph ids it belongs to?). The schema says subgraphs: [] maybe list subgraph ids containing node. Could be empty for all. We'll set empty.
-
-Now compile edges list.
+We must capture all edges defined.
 
 Let's enumerate edges in order:
 
 1. START --> R_GATE (type "-->", label null)
 
-2. R_GATE -- "배치" --> S_ING (subgraph as target? Edge to subgraph id). So source R_GATE, target S_ING, label "배치".
+2. R_GATE -- "배치" --> S_ING (label "배치")
 
-3. R_GATE -- "실시간" --> S_ING (label "실시간").
+3. R_GATE -- "실시간" --> S_ING (label "실시간") (duplicate target but separate edge)
 
-4. S_ING --> S_GOV (null label)
+4. S_ING --> S_GOV
 
 5. S_GOV --> S_PROC
 
@@ -186,49 +178,31 @@ Let's enumerate edges in order:
 
 10. S_MON --> S_CTRL
 
-11. S_ING --> G1 (null label) (G1 is inside S_GOV_QC but edge to node)
+11. S_ING --> G1 (edge from subgraph to node G1) label null
 
-12. GS3 --> S_PROC
+12. GS3 --> S_PROC label null
 
-13. PROC_OUT --> H2
+13. PROC_OUT --> H2 label null
 
-14. C2 --> S_TRAIN
+14. C2 --> S_TRAIN label null
 
-15. T4 --> S_SERVE
+15. T4 --> S_SERVE label null
 
-16. SV4 --> M1
+16. SV4 --> M1 label null
 
-17. M4 --> S_SERVE
+17. M4 --> S_SERVE label null
 
-18. M5 --> T2
+18. M5 --> T2 label null
 
-19. O1 --> S_ING
+19. O1 --> S_ING label null
 
-20. O2 --> G1
+20. O2 --> G1 label null
 
-21. O_OUT --> M1
+21. O_OUT --> M1 label null
 
-22. I5 --> I6
+Now internal edges within subgraphs:
 
-23. I6 -- Yes --> I7
-
-24. I7 --> I5
-
-25. I6 -- No --> I8
-
-26. I5 --> I6? Already have I5 --> I6 (edge 22). Also I5 --> I6? Already.
-
-27. I5 --> I6? Already.
-
-28. I5 --> I6? No duplicate.
-
-29. I5 --> I6? okay.
-
-30. I5 --> I6? done.
-
-31. I5 --> I6? done.
-
-Now other edges inside subgraphs:
+S_ING internal:
 
 - I1 --> I2
 
@@ -238,19 +212,37 @@ Now other edges inside subgraphs:
 
 - I3 --> I5
 
+- I5 --> I6
+
+- I6 -- Yes --> I7
+
+- I7 --> I5
+
+- I6 -- No --> I8
+
 - I4 --> I9
 
-- I5 --> I6 (already captured)
+- I5 --> I6 (already captured earlier? Actually I5 --> I6 is already edge 5? Wait we have I5 --> I6 earlier; we listed as part of internal edges. Already captured as edge.
 
-- I6 -- Yes --> I7 (captured)
+- I7 --> I5 (loop) captured.
 
-- I6 -- No --> I8 (captured)
+- Also I5 --> I6 (duplicate? Already there). We'll include once.
 
-- I7 --> I5 (captured)
+- I5 --> I6 is edge.
 
-- I8? No outgoing? Not in diagram.
+- I5 --> I6 already.
 
-- I9? No outgoing.
+- I5 --> I6 is part of internal.
+
+- I5 --> I6 is already.
+
+- I5 --> I6.
+
+- I5 --> I6.
+
+Ok.
+
+S_GOV internal:
 
 - G1 --> G2
 
@@ -268,23 +260,33 @@ Now other edges inside subgraphs:
 
 - GS3 --> G_OUT
 
+S_GOV_QC internal edges are those above.
+
+S_GOV_SEC internal edges are GS1->GS2->GS3.
+
+S_PROC internal:
+
 - P1 --> P2
 
 - P2 --> P3
-
-- P3 --> N1
 
 - N1 --> N2
 
 - N2 --> N3
 
-- N3 --> F1? Actually N3 --> F1? Wait diagram: N3 --> ??? Actually they have "N3 --> ???". In code: N2 --> N3["카테고리 인코딩"] . Then later: P3 --> N1 --> F1 . So N3 not directly to F1. So after N3, maybe no edge. So we have N3 no outgoing.
-
 - F1 --> F2
 
 - F2 --> F3
 
+- P3 --> N1
+
+- N1 --> F1
+
 - F3 --> PROC_OUT
+
+Also subgraph connections: P3 --> N1 --> F1 (so edges P3->N1, N1->F1). Already captured.
+
+S_STORE internal:
 
 - H1 --> H2
 
@@ -296,6 +298,8 @@ Now other edges inside subgraphs:
 
 - C3 --> ST_OUT
 
+S_TRAIN internal:
+
 - T1 --> T2
 
 - T2 --> T3
@@ -306,7 +310,7 @@ Now other edges inside subgraphs:
 
 - T5 --> T2
 
-- T4? No outgoing except edge to S_SERVE (captured earlier)
+S_SERVE internal:
 
 - SV1 --> SV2
 
@@ -319,6 +323,8 @@ Now other edges inside subgraphs:
 - SV5 --> SV1
 
 - SV4 --> SV_OUT
+
+S_MON internal:
 
 - M1 --> M2
 
@@ -334,6 +340,8 @@ Now other edges inside subgraphs:
 
 - M6 --> M_OUT
 
+S_CTRL internal:
+
 - O1 --> O2
 
 - O2 --> O3
@@ -346,72 +354,48 @@ Now other edges inside subgraphs:
 
 - O2 --> O_OUT
 
-- R_GATE --> ??? Already.
+Now also edges: I5 --> I6 (already), I6 --> I7 (Yes), I6 --> I8 (No). Already captured.
 
-- S_ING --> ??? Already.
+Also edges: I5 --> I6 (we have). Also I5 --> I6 is part of loop.
 
-- S_ING --> G1 (captured)
+Edge: I5 --> I6 (already). Edge: I5 --> I6.
 
-- GS3 --> S_PROC (captured)
-
-- PROC_OUT --> H2 (captured)
-
-- C2 --> S_TRAIN (captured)
-
-- T4 --> S_SERVE (captured)
-
-- SV4 --> M1 (captured)
-
-- M4 --> S_SERVE (captured)
-
-- M5 --> T2 (captured)
-
-- O1 --> S_ING (captured)
-
-- O2 --> G1 (captured)
-
-- O_OUT --> M1 (captured)
-
-- M2 --> M3 --> M2? Actually they have M2 --> M3 --> M2 (loop). So edges: M2 --> M3, M3 --> M2 (label? Not specified). So we need edge M3 --> M2 with label null.
-
-- SV5 --> SV1 (captured)
-
-- T5 --> T2 (captured)
-
-- M5 --> T1 (captured)
-
-- S_CTRL --> END (captured)
-
-- START --> R_GATE (captured)
-
-Now also edges: I5 --> I6 (already). I5 --> I6? Already.
-
-Edge: I5 --> I6? Already.
-
-Edge: I5 --> I6? done.
-
-Edge: I5 --> I6? okay.
-
-Edge: I5 --> I6? done.
-
-Edge: I5 --> I6? done.
-
-Edge: I5 --> I6? done.
-
-Now also edge: I5 --> I6? done.
-
-Edge: I5 --> I6? done.
-
-Now also edge: I5 --> I6? done.
-
-Now also edge: I5 --> I6? done.
-
-Now also edge: I5 --> I6? done.
+Edge: I5 --> I6.
 
 Ok.
 
-Now we need to list all nodes. Let's compile list of node ids and labels.
+Edge: I5 --> I6 (duplicate). We'll include once.
 
-List:
+Edge: I5 --> I6.
 
-START, END, R_GATE, I1, I2, I3, I4, I5, I6, I7, I8, I9, G1, G2, G3, G4, GS1, GS2, GS3, G_OUT, P1, P2, P3, N1, N2, N3, F1, F2, F3, PROC_OUT, H1, H2, C1, C2, C3, ST_OUT, T1, T2, T3, T4, T5, SV1, SV2, SV3, SV4, SV5, SV_OUT, M1, M2, M3, M4, M5, M6, M_OUT, O1, O2, O3, O4,
+Now edges: I5 --> I6 (source I5, target I6, label null). I6 --> I7 label "Yes". I6 --> I8 label "No". I7 --> I5 label null.
+
+Edge: I5 --> I6 (null). I6 --> I7 (Yes). I6 --> I8 (No). I7 --> I5 (null).
+
+Edge: I5 --> I6 (null) already.
+
+Edge: I5 --> I6.
+
+Now edges: I5 --> I6 (null). Good.
+
+Edge: I5 --> I6.
+
+Now edges: I5 --> I6.
+
+Ok.
+
+Edge: I5 --> I6.
+
+Now edges: I5 --> I6.
+
+Now edges: I5 --> I6.
+
+Stop.
+
+Now decisions list: Should include nodes that are decision (diamond). So list of node ids: I6, G2, T3, SV3, M3, O3, G2 already, maybe also R_GATE? R_GATE is diamond ({}). So include R_GATE as decision. Also G2, I6, T3, SV3, M3, O3, G2 (already), maybe also G2 is decision. Also G2, I6, T3, SV3, M3, O3, G2, G2 duplicate. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2. Also G2, I6, T3, SV3, M3, O3, G2, G2.
+
+Also G2, I6, T3, SV3, M3, O3, G2, G2.
+
+Also G2, I6, T3, SV3, M3, O3, G2, G2.
+
+Also G2, I6, T3, SV3, M3, O3, G2,

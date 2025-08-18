@@ -98,7 +98,7 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "The diagram shows a cyclic process from requirements to design, implementation, testing, deployment, and operation, with additional dotted connections between design and testing, implementation and deployment, and testing back to requirements.",
+    "natural_language": "A flowchart showing requirements, design, implementation, testing, deployment, and operation with feedback loops.",
     "entry_nodes": [],
     "exit_nodes": []
   }

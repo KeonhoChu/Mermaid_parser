@@ -154,8 +154,10 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "A cyclic flowchart connecting nodes A through J with feedback from J back to A.",
-    "entry_nodes": [],
+    "natural_language": "The diagram shows a directed flow starting at A, branching to B and C, further expanding through D, E, F, G, H, and I, converging at J, which feeds back to A with a feedback label.",
+    "entry_nodes": [
+      "A"
+    ],
     "exit_nodes": []
   }
 }

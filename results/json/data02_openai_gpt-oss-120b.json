@@ -58,37 +58,37 @@
       "source": "ROOT",
       "target": "A1",
       "type": "-->",
-      "label": null
+      "label": "A선택"
     },
     {
       "source": "ROOT",
       "target": "B1",
       "type": "-->",
-      "label": null
+      "label": "B선택"
     },
     {
       "source": "A1",
       "target": "A2",
       "type": "-->",
-      "label": null
+      "label": "조건1"
     },
     {
       "source": "A1",
       "target": "A3",
       "type": "-->",
-      "label": null
+      "label": "조건2"
     },
     {
       "source": "B1",
       "target": "B2",
       "type": "-->",
-      "label": null
+      "label": "조건3"
     },
     {
       "source": "B1",
       "target": "B3",
       "type": "-->",
-      "label": null
+      "label": "조건4"
     },
     {
       "source": "A2",
@@ -118,7 +118,7 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "최상위 결정에서 A 또는 B를 선택하고, 각각의 조건에 따라 액션을 수행한 뒤 최종결론에 도달한다.",
+    "natural_language": "A top-level decision splits into two branches (A and B), each leading to two actions, all converging to a final conclusion.",
     "entry_nodes": [
       "ROOT"
     ],

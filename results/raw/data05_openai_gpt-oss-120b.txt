@@ -153,12 +153,12 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "The diagram outlines a three-phase workflow: planning, development, and operations, with tasks and their dependencies.",
+    "natural_language": "The process starts with planning, moves to development tasks, then to operations with a monitoring loop, including dotted dependencies between analysis and architecture and between architecture and version management.",
     "entry_nodes": [
-      "START"
+      "PLAN"
     ],
     "exit_nodes": [
-      "END"
+      "OPS"
     ]
   }
 }

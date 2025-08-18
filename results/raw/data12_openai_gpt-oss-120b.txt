@@ -21,7 +21,151 @@
       "subgraphs": []
     },
     {
+      "id": "ROUTE",
+      "label": "배치/실시간?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
       "id": "ERR",
       "label": "보정 파이프라인",
       "shape": "rect",
-     
+      "subgraphs": []
+    },
+    {
+      "id": "E1",
+      "label": "추출",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E2",
+      "label": "정제",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E3",
+      "label": "결측>5%?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "E4",
+      "label": "대체/삭제",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E5",
+      "label": "스케일링",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OUT1",
+      "label": "Staging",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "S1",
+      "label": "Kafka",
+      "shape": "double_rect",
+      "subgraphs": []
+    },
+    {
+      "id": "S2",
+      "label": "Window Agg",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "S3",
+      "label": "지연>3s?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "S4",
+      "label": "Backpressure",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OUT2",
+      "label": "Feature Store",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "TRAIN",
+      "label": "모델 학습",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "EVAL",
+      "label": "AUC ≥ 0.88?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "DEPLOY",
+      "label": "배포",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "MON",
+      "label": "모니터링",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ROLL",
+      "label": "롤백",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "TUNE",
+      "label": "하이퍼파라미터 탐색",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "START",
+      "target": "INJ",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "INJ",
+      "target": "VAL",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "VAL",
+      "target": "ROUTE",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "VAL",
+      "target": "ERR",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "ERR",
+      "target": "VAL
