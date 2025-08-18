@@ -1,0 +1,176 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "AA",
+      "label": "시험계획수립<br>  - 품질목표에 부합하는 시험평가 대상 및 항목 점검",
+      "shape": "rect",
+      "subgraphs": [
+        "A"
+      ]
+    },
+    {
+      "id": "AAA",
+      "label": "시험환경 사전점검",
+      "shape": "rect",
+      "subgraphs": [
+        "A"
+      ]
+    },
+    {
+      "id": "B2",
+      "label": "시험실시",
+      "shape": "rect",
+      "subgraphs": [
+        "B"
+      ]
+    },
+    {
+      "id": "B3",
+      "label": "요건충족",
+      "shape": "diamond",
+      "subgraphs": [
+        "B"
+      ]
+    },
+    {
+      "id": "B4",
+      "label": "단위시험 결과기록",
+      "shape": "rect",
+      "subgraphs": [
+        "B"
+      ]
+    },
+    {
+      "id": "B5",
+      "label": "결함등록 원인분석",
+      "shape": "rect",
+      "subgraphs": [
+        "B"
+      ]
+    },
+    {
+      "id": "B6",
+      "label": "개선방안 제시/적용<br>  - 결함처리결과 확인 및 시정조치현황 관리",
+      "shape": "rect",
+      "subgraphs": [
+        "B"
+      ]
+    },
+    {
+      "id": "B7",
+      "label": "단위시험 결과제출<br>  - 단위시험 결과 산출물 품질점검",
+      "shape": "rect",
+      "subgraphs": [
+        "B"
+      ]
+    },
+    {
+      "id": "B8",
+      "label": "단위시험 결과검토",
+      "shape": "rect",
+      "subgraphs": [
+        "B"
+      ]
+    },
+    {
+      "id": "CC",
+      "label": "시험종료",
+      "shape": "rect",
+      "subgraphs": [
+        "C"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "AA",
+      "target": "AAA",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "AAA",
+      "target": "B2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "B3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B3",
+      "target": "B4",
+      "type": "-->",
+      "label": "Yes<br>품질목표치 만족여부확인"
+    },
+    {
+      "source": "B4",
+      "target": "B7",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B7",
+      "target": "B8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B8",
+      "target": "CC",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B3",
+      "target": "B5",
+      "type": "-->",
+      "label": "No"
+    },
+    {
+      "source": "B5",
+      "target": "B6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B6",
+      "target": "B2",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "A",
+      "title": "준비"
+    },
+    {
+      "id": "B",
+      "title": "시험"
+    },
+    {
+      "id": "C",
+      "title": "완료"
+    }
+  ],
+  "decisions": [
+    "B3"
+  ],
+  "summary": {
+    "natural_language": "The flowchart outlines preparation, testing, and completion steps, with a decision point checking requirement satisfaction leading to either recording results or handling defects.",
+    "entry_nodes": [
+      "AA"
+    ],
+    "exit_nodes": [
+      "CC"
+    ]
+  }
+}

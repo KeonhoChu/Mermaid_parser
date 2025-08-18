@@ -1,0 +1,148 @@
+We need to parse the Mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (maybe decision nodes?), summary.
+
+We must map shapes: [] = "rect", {} = "diamond", () = "circle", (()) = "double_circle", [[]] = "double_rect", >> = "subroutine". In the diagram, nodes are defined with various brackets: e.g., START([Start]) uses [] inside parentheses? Actually syntax: START([Start]) means node id START with label "Start" and shape []? In Mermaid, node definition: id[Label] is rectangle, id((Label)) is circle, id{{Label}} is diamond, id((Label))? Actually they use parentheses for shape. In given diagram, they use START([Start]) which is id START with label "Start" inside [] inside parentheses? Wait syntax: START([Start]) means a node with shape "rect"? In Mermaid, you can specify shape by using brackets: id[Label] rectangle, id((Label)) circle, id{{Label}} diamond, id((Label))? Actually double parentheses for double circle. For double rectangle, use [[Label]]. For subroutine, use [>Label]. But they used START([Start]) which is id START with label "Start" inside [] inside parentheses? That is unusual but maybe they used parentheses to group? Actually typical syntax: START([Start]) means a node with shape "rect" but with parentheses around the whole? I think the shape is determined by outermost brackets: [] => rect. So START([Start]) is rectangle with label "Start". Similarly END([End]) rectangle.
+
+Other nodes: I1["에이전트 수집"] uses double quotes and brackets [] => rect. I2["Batch Loader"] rect. I3["Stream Ingest"] rect. I4["Staging-RAW 적재"] rect. I5["Realtime-RAW 큐"] rect. I6{"지연>3s?"} uses {} => diamond (decision). I7["Backpressure 조절"] rect. I8["실시간 정제"] rect. I9["배치 정제"] rect.
+
+G1["스키마 검증"] rect. G2{"결측률>5%?"} diamond. G3["대체/삭제"] rect. G4["유효성 승인"] rect. GS1["PII 탐지"] rect. GS2["마스킹"] rect. GS3["권한 라벨"] rect. G_OUT["QC/SEC 통과"] rect.
+
+P1["포맷 식별"] rect. P2["JSON/CSV/XML 파싱"] rect. P3["스키마 매핑"] rect. N1["타입 캐스팅"] rect. N2["스케일링"] rect. N3["카테고리 인코딩"] rect. F1["피쳐 선택"] rect. F2["피쳐 결합"] rect. F3["피쳐 검증"] rect. PROC_OUT["PROC 완료"] rect.
+
+H1[("KV-Cache")] This uses parentheses inside brackets? Actually H1[("KV-Cache")] outer [] => rect, label includes parentheses. So shape rect. H2[("Feature Store")] rect. ST_OUT["저장 완료"] rect. C1[("Data Lake - Bronze")] rect. C2[("Lake - Silver")] rect. C3[("Lake - Gold")] rect.
+
+T1["데이터 로더"] rect. T2["학습 파이프라인"] rect. T3{"성능 AUC>=0.90?"} diamond. T4["아티팩트 저장"] rect. T5["하이퍼파라미터 탐색"] rect.
+
+SV1["모델 레지스트리 조회"] rect. SV2["카나리 배포(10%)"] rect. SV3{"오류율<1%?"} diamond. SV4["전면배포(100%)"] rect. SV5["롤백"] rect. SV_OUT["서빙 활성"] rect.
+
+M1["지표수집"] rect. M2["성능/드리프트 감지"] rect. M3{"드리프트>0.1?"} diamond. M4["알림&차단"] rect. M5["세이프가드 정책"] rect. M6["정상 상태 유지"] rect. M_OUT["조치 완료"] rect.
+
+O1["스케줄러"] rect. O2["워크플로우 엔진"] rect. O3{"재시도 필요?"} diamond. O4["Retry w/Backoff"] rect. O5["휴지"] rect. O_OUT["오케스트레이션 완료"] rect.
+
+R_GATE{"데이터 라우팅"} diamond. S_ING subgraph id. S_GOV subgraph. S_PROC subgraph. S_STORE subgraph. S_TRAIN subgraph. S_SERVE subgraph. S_MON subgraph. S_CTRL subgraph. Also nested subgraphs: S_GOV_QC, S_GOV_SEC, S_PARSE, S_NORM, S_FEAT, S_HOT, S_COLD.
+
+We need to list subgraphs with id and title. Titles are the label in quotes after subgraph id: e.g., subgraph S_ING["INGEST (수집 레이어)"] => id S_ING, title "INGEST (수집 레이어)". Similarly S_GOV["GOV (품질/거버넌스)"], S_GOV_QC["QC(품질검증)"], S_GOV_SEC["SEC(보안/마스킹)"], S_PROC["PROC (처리 레이어)"], S_PARSE["PARSE"], S_NORM["NORMALIZE"], S_FEAT["FEATUREIZE"], S_STORE["STORE (저장소)"], S_HOT["HOT-DB"], S_COLD["COLD-LAKE"], S_TRAIN["TRAIN (학습/튜닝)"], S_SERVE["SERVE (배포/서빙)"], S_MON["MON (관측/모니터링)"], S_CTRL["CTRL (제어/오케스트레이션)"].
+
+Now edges: need to capture all connections. Edge type is "-->" as per schema. Some edges have labels like "배치", "실시간". Those should be captured in label field. Others have decision branches: e.g., I6 -- Yes --> I7. So source I6, target I7, label "Yes". Similarly I6 -- No --> I8 label "No". G2 -- Yes --> G3, G2 -- No --> G4. T3 -- Yes --> T4, T3 -- No --> T5. SV3 -- Yes --> SV4, SV3 -- No --> SV5. O3 -- Yes --> O4, O3 -- No --> O5. Also edges with label "배치" etc.
+
+Also edges like R_GATE -- "배치" --> S_ING. So label "배치". R_GATE -- "실시간" --> S_ING label "실시간". Others have no label.
+
+Also loops: I5 --> I6 (no label). I7 --> I5. M2 --> M3 --> M2: edges M2->M3, M3->M2. Also M3 -- Yes --> M4, M3 -- No --> M6. M4 --> M5, M5 --> T1 (later). M5 --> T1 is edge with no label.
+
+SV5 --> SV1 (no label). T5 --> T2 (no label). Also edges like I5 --> I6 already captured.
+
+Now also edges connecting subgraphs to nodes: e.g., S_ING --> G1 (node G1). Edge source subgraph id? In Mermaid, you can connect subgraph to node; treat subgraph as node? Probably we treat subgraph as source/target id. So include edges with source "S_ING" target "G1". Similarly GS3 --> S_PROC, PROC_OUT --> H2, C2 --> S_TRAIN, T4 --> S_SERVE, SV4 --> M1, M4 --> S_SERVE, M5 --> T2, O1 --> S_ING, O2 --> G1, O_OUT --> M1. Also S_CTRL --> END, START --> R_GATE.
+
+Also edges: S_ING --> S_GOV, S_GOV --> S_PROC, S_PROC --> S_STORE, S_STORE --> S_TRAIN, S_TRAIN --> S_SERVE, S_SERVE --> S_MON, S_MON --> S_CTRL.
+
+Also edges: S_ING --> G1 (already). GS3 --> S_PROC (already). PROC_OUT --> H2 (already). C2 --> S_TRAIN (already). T4 --> S_SERVE (already). SV4 --> M1 (already). M4 --> S_SERVE (already). M5 --> T2 (already). O1 --> S_ING (already). O2 --> G1 (already). O_OUT --> M1 (already). Also S_ING --> G1 is duplicate? Already.
+
+Now we need to list all nodes. Node list includes all node ids with label and shape. Also include decision nodes (diamond) shape "diamond". The schema also has "decisions": [] maybe list decision node ids? The spec says "decisions": [] but not defined. Probably we list decision node ids. We'll include objects with id and condition? Not specified. Could leave empty array. But better to include decision nodes? The schema expects array of something, but not defined. Safer to leave empty [].
+
+Now summary: natural_language brief description. entry_nodes ["START"], exit_nodes ["END"].
+
+Now produce JSON.
+
+We must ensure no extra text. Must start with {. Must include all nodes, edges, subgraphs.
+
+Let's compile nodes list.
+
+I'll enumerate:
+
+START: label "Start", shape rect.
+END: label "End", shape rect.
+R_GATE: label "데이터 라우팅", shape diamond.
+
+I1: label "에이전트 수집", rect.
+I2: "Batch Loader", rect.
+I3: "Stream Ingest", rect.
+I4: "Staging-RAW 적재", rect.
+I5: "Realtime-RAW 큐", rect.
+I6: "지연>3s?", diamond.
+I7: "Backpressure 조절", rect.
+I8: "실시간 정제", rect.
+I9: "배치 정제", rect.
+
+G1: "스키마 검증", rect.
+G2: "결측률>5%?", diamond.
+G3: "대체/삭제", rect.
+G4: "유효성 승인", rect.
+GS1: "PII 탐지", rect.
+GS2: "마스킹", rect.
+GS3: "권한 라벨", rect.
+G_OUT: "QC/SEC 통과", rect.
+
+P1: "포맷 식별", rect.
+P2: "JSON/CSV/XML 파싱", rect.
+P3: "스키마 매핑", rect.
+N1: "타입 캐스팅", rect.
+N2: "스케일링", rect.
+N3: "카테고리 인코딩", rect.
+F1: "피쳐 선택", rect.
+F2: "피쳐 결합", rect.
+F3: "피쳐 검증", rect.
+PROC_OUT: "PROC 완료", rect.
+
+H1: "KV-Cache", rect.
+H2: "Feature Store", rect.
+C1: "Data Lake - Bronze", rect.
+C2: "Lake - Silver", rect.
+C3: "Lake - Gold", rect.
+ST_OUT: "저장 완료", rect.
+
+T1: "데이터 로더", rect.
+T2: "학습 파이프라인", rect.
+T3: "성능 AUC>=0.90?", diamond.
+T4: "아티팩트 저장", rect.
+T5: "하이퍼파라미터 탐색", rect.
+
+SV1: "모델 레지스트리 조회", rect.
+SV2: "카나리 배포(10%)", rect.
+SV3: "오류율<1%?", diamond.
+SV4: "전면배포(100%)", rect.
+SV5: "롤백", rect.
+SV_OUT: "서빙 활성", rect.
+
+M1: "지표수집", rect.
+M2: "성능/드리프트 감지", rect.
+M3: "드리프트>0.1?", diamond.
+M4: "알림&차단", rect.
+M5: "세이프가드 정책", rect.
+M6: "정상 상태 유지", rect.
+M_OUT: "조치 완료", rect.
+
+O1: "스케줄러", rect.
+O2: "워크플로우 엔진", rect.
+O3: "재시도 필요?", diamond.
+O4: "Retry w/Backoff", rect.
+O5: "휴지", rect.
+O_OUT: "오케스트레이션 완료", rect.
+
+Also maybe include subgraph nodes? Not needed as nodes.
+
+Now edges list. Let's enumerate all edges in order.
+
+1. START --> R_GATE (type "-->", label null)
+2. R_GATE --> S_ING (label "배치")
+3. R_GATE --> S_ING (label "실시간") (two edges same source/target with different label)
+4. S_ING --> S_GOV
+5. S_GOV --> S_PROC
+6. S_PROC --> S_STORE
+7. S_STORE --> S_TRAIN
+8. S_TRAIN --> S_SERVE
+9. S_SERVE --> S_MON
+10. S_MON --> S_CTRL
+11. S_CTRL --> END
+
+Now internal edges within subgraphs:
+
+I1 --> I2
+I1 --> I3
+I2 --> I4
+I3 --> I5
+I5 --> I6
+I6 -- Yes --> I7
+I6 -- No --> I8
+I7 --> I5
+I4 --> I9
+
+S_ING --> G1 (

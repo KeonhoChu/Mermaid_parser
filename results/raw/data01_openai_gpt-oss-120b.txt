@@ -1,0 +1,107 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A1",
+      "label": "시험 평가 전 백업정책 수립",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "A2",
+      "label": "백업스케줄 작성",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "A3",
+      "label": "백업 수행",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "A4",
+      "label": "진행상황 및 결과 모니터링",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "A5",
+      "label": "문제해결 및 시도",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "A6",
+      "label": "백업 완료",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "B1",
+      "label": "장애 발생",
+      "shape": "rect",
+      "subgraphs": ["B"]
+    },
+    {
+      "id": "B2",
+      "label": "해결방안 수립",
+      "shape": "rect",
+      "subgraphs": ["B"]
+    },
+    {
+      "id": "B3",
+      "label": "복구 수행<br>  01.일부 자료 사용불가<br>  02.시스템 전체 사용불가<br>  03.스토리지 디스크 사용불가",
+      "shape": "rect",
+      "subgraphs": ["B"]
+    },
+    {
+      "id": "B4",
+      "label": "복구 완료",
+      "shape": "rect",
+      "subgraphs": ["B"]
+    },
+    {
+      "id": "C1",
+      "label": "01.일부 자료 사용불가<br>  - 장애 테이블 스페이스 또는 로그파일 Restore로 복구<br>  - DB Shutdown<br>  - 정의된 복구 스크립트를 수정<br>  - DB Startup",
+      "shape": "rect",
+      "subgraphs": ["C"]
+    },
+    {
+      "id": "C2",
+      "label": "02.시스템 전체 사용불가<br>  - 장애 데이터베이스 확인<br>  - 백업 데이터 원복<br>  - DB Restart<br>  - 정의된 복구 스크립트를 수정",
+      "shape": "rect",
+      "subgraphs": ["C"]
+    },
+    {
+      "id": "C3",
+      "label": "03.스토리지디스크 사용불가<br>  - 장애 디스크 확인<br>  - 디스크 및 볼륨 mapping 정보 확인<br>  - DB Shutdown<br>  - 정의된 복구 스크립트를 수정<br>  - DB Startup",
+      "shape": "rect",
+      "subgraphs": ["C"]
+    }
+  ],
+  "edges": [
+    { "source": "A1", "target": "A2", "type": "-->", "label": null },
+    { "source": "A2", "target": "A3", "type": "-->", "label": null },
+    { "source": "A3", "target": "A4", "type": "-->", "label": null },
+    { "source": "A4", "target": "A5", "type": "-->", "label": null },
+    { "source": "A5", "target": "A6", "type": "-->", "label": null },
+    { "source": "B1", "target": "B2", "type": "-->", "label": null },
+    { "source": "B2", "target": "B3", "type": "-->", "label": null },
+    { "source": "B3", "target": "B4", "type": "-->", "label": null },
+    { "source": "C1", "target": "C2", "type": "-->", "label": null },
+    { "source": "C2", "target": "C3", "type": "-->", "label": null }
+  ],
+  "subgraphs": [
+    { "id": "A", "title": "백업 절차" },
+    { "id": "B", "title": "복구 절차" },
+    { "id": "C", "title": "주요 장애 유형별 대응방안" }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "Flowchart describing backup procedures, recovery procedures, and response actions for major failure types.",
+    "entry_nodes": ["A1", "B1", "C1"],
+    "exit_nodes": ["A6", "B4", "C3"]
+  }
+}

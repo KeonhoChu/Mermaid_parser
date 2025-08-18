@@ -1,0 +1,100 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "발주기관 수요기관",
+      "shape": "rect",
+      "subgraphs": [
+        "s1"
+      ]
+    },
+    {
+      "id": "n2",
+      "label": "선행사업자",
+      "shape": "rect",
+      "subgraphs": [
+        "s1"
+      ]
+    },
+    {
+      "id": "n3",
+      "label": "DIDC 통합유지보수 사업자",
+      "shape": "rect",
+      "subgraphs": [
+        "s1"
+      ]
+    },
+    {
+      "id": "n4",
+      "label": "제안사, 제조사, 기술지원업체",
+      "shape": "rect",
+      "subgraphs": [
+        "s1"
+      ]
+    },
+    {
+      "id": "n5",
+      "label": "KIDA (국정단)",
+      "shape": "rect",
+      "subgraphs": [
+        "s2"
+      ]
+    },
+    {
+      "id": "n6",
+      "label": "DIDC",
+      "shape": "rect",
+      "subgraphs": [
+        "s2"
+      ]
+    },
+    {
+      "id": "s1",
+      "label": "의사소통 협의체",
+      "shape": "rect",
+      "subgraphs": [
+        "s2"
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "의사소통 협의체 구성 방안",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "s1",
+      "target": "n5",
+      "type": "-->",
+      "label": "현황보고"
+    },
+    {
+      "source": "n6",
+      "target": "s1",
+      "type": "-->",
+      "label": "통제 및 지원"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "s1",
+      "title": "의사소통 협의체"
+    },
+    {
+      "id": "s2",
+      "title": "의사소통 협의체 구성 방안"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "The diagram depicts a communication council (s1) containing several agencies and companies, nested within a larger council configuration (s2). Edges show that the council reports to KIDA and receives control/support from DIDC.",
+    "entry_nodes": [],
+    "exit_nodes": []
+  }
+}

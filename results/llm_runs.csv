@@ -1,16 +1,9 @@
 name,model,level,score_final,llm_ok,llm_warnings,n_nodes_pred,n_edges_pred,json_raw_path
-data1,openai/gpt-oss-120b,nan,nan,False,json_parse_error: Unterminated string starting at: line 86 column 7 (char 1354),0,0,results\json\data1_openai_gpt-oss-120b.json
-data10,openai/gpt-oss-120b,L1,5.92,True,,6,9,results\json\data10_openai_gpt-oss-120b.json
-data11,openai/gpt-oss-120b,L5,92.26,False,request_error: 'NoneType' object has no attribute 'strip',0,0,results\json\data11_openai_gpt-oss-120b.json
-data12,openai/gpt-oss-120b,L4,55.43,False,request_error: 'NoneType' object has no attribute 'strip',0,0,results\json\data12_openai_gpt-oss-120b.json
-data13,openai/gpt-oss-120b,L5,93.27,False,request_error: 'NoneType' object has no attribute 'strip',0,0,results\json\data13_openai_gpt-oss-120b.json
-data14,openai/gpt-oss-120b,L5,84.41,False,request_error: 'NoneType' object has no attribute 'strip',0,0,results\json\data14_openai_gpt-oss-120b.json
-data15,openai/gpt-oss-120b,L5,88.27,False,request_error: 'NoneType' object has no attribute 'strip',0,0,results\json\data15_openai_gpt-oss-120b.json
-data2,openai/gpt-oss-120b,L1,18.65,True,,8,10,results\json\data2_openai_gpt-oss-120b.json
-data3,openai/gpt-oss-120b,L2,23.0,True,,7,7,results\json\data3_openai_gpt-oss-120b.json
-data4,openai/gpt-oss-120b,L2,36.92,True,,10,14,results\json\data4_openai_gpt-oss-120b.json
-data5,openai/gpt-oss-120b,L4,28.24,False,json_parse_error: Expecting property name enclosed in double quotes: line 61 column 6 (char 905),0,0,results\json\data5_openai_gpt-oss-120b.json
-data6,openai/gpt-oss-120b,L2,24.18,True,,8,9,results\json\data6_openai_gpt-oss-120b.json
-data7,openai/gpt-oss-120b,L4,33.48,False,json_parse_error: Expecting value: line 90 column 7 (char 1461),0,0,results\json\data7_openai_gpt-oss-120b.json
-data8,openai/gpt-oss-120b,L4,29.46,False,json_parse_error: Expecting property name enclosed in double quotes: line 96 column 21 (char 1721),0,0,results\json\data8_openai_gpt-oss-120b.json
-data9,openai/gpt-oss-120b,L2,27.49,True,,7,7,results\json\data9_openai_gpt-oss-120b.json
+data01,openai/gpt-oss-120b,L1,18.69,True,원본 텍스트 직접 파싱 성공,13,10,results\json\data01_openai_gpt-oss-120b.json
+data02,openai/gpt-oss-120b,L1,17.82,True,원본 텍스트 직접 파싱 성공,8,2,results\json\data02_openai_gpt-oss-120b.json
+data03,openai/gpt-oss-120b,L4,34.37,True,원본 텍스트 직접 파싱 성공,10,10,results\json\data03_openai_gpt-oss-120b.json
+data11,openai/gpt-oss-120b,L5,92.26,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data11_openai_gpt-oss-120b.json
+data12,openai/gpt-oss-120b,L4,55.43,False,JSON 파싱 실패: Expecting value: line 1 column 1 (char 0),0,0,results\json\data12_openai_gpt-oss-120b.json
+data13,openai/gpt-oss-120b,L5,93.27,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data13_openai_gpt-oss-120b.json
+data14,openai/gpt-oss-120b,L5,84.41,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data14_openai_gpt-oss-120b.json
+data15,openai/gpt-oss-120b,L5,88.27,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data15_openai_gpt-oss-120b.json
