@@ -1,0 +1,124 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "C",
+      "label": "조건 충족?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "데이터 유효?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "E1",
+      "label": "에러 로그",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "재처리 요청",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P",
+      "label": "처리",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "R",
+      "label": "결과 저장",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "S",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "X",
+      "label": "종료",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "C",
+      "target": "F",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "C",
+      "target": "R",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "D",
+      "target": "E1",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "D",
+      "target": "P",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "E1",
+      "target": "X",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "R",
+      "target": "X",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [
+    "C",
+    "D"
+  ],
+  "summary": {
+    "natural_language": "The flow starts at the Start node (S) and checks data validity (D). If valid (예), it proceeds to processing (P); otherwise (아니오) it logs an error (E1). After processing, it evaluates a condition (C). If the condition is met (예), the result is saved (R) and the flow ends at 종료 (X). If not met (아니오), a re‑processing request (F) is sent, looping back to the data validity check (D). Both the error path (E1) and the successful result path (R) lead to the termination node (X).",
+    "entry_nodes": [
+      "S"
+    ],
+    "exit_nodes": [
+      "X"
+    ]
+  }
+}

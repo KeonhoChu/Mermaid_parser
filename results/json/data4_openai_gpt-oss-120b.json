@@ -1,0 +1,159 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "G",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "H",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "I",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "J",
+      "label": null,
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "G",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "H",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "I",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F",
+      "target": "I",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "G",
+      "target": "J",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "H",
+      "target": "J",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "I",
+      "target": "J",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "J",
+      "target": "A",
+      "type": "-->",
+      "label": "피드백"
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "The diagram consists of ten rectangular nodes (A‑J) connected by directed edges. A branches to B and C; B to D and E; C to E and F; D to G; E to H and I; F to I; G, H, and I each lead to J; and J feeds back to A with the label \"피드백\".",
+    "entry_nodes": [],
+    "exit_nodes": []
+  }
+}
