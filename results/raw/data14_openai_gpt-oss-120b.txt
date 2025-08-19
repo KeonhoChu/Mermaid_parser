@@ -1,314 +1,222 @@
-We need to parse the Mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (maybe decision nodes?), summary.
-
-We must map shapes: [] = "rect", {} = "diamond", () = "circle", (()) = "double_circle", [[]] = "double_rect", >> = "subroutine". In the diagram, nodes are defined with [] (rect), {} (diamond), () (circle). Also there are double parentheses? Not present. Subgraphs are defined with subgraph S_DATA["DATA MGMT"] etc. So subgraph id is S_DATA, title is "DATA MGMT". Need to list all subgraphs.
-
-Nodes: each node defined with an identifier and label. For example START([Start]) => id "START", label "Start", shape rect. END([End]) => id "END", label "End". Others: HUB{"워크로드 라우팅"} => id "HUB", label "워크로드 라우팅", shape diamond. D1["원천 수집"] => rect. D2["메타데이터 등록"] rect. D3{"품질 OK?"} diamond. D4["정제/라벨 수정"] rect. D5[("버전 스냅샷")] => shape circle? Actually label inside parentheses: ("버전 스냅샷") uses parentheses inside brackets? Syntax: D5[("버전 스냅샷")] means node D5 with shape? In Mermaid, [()] indicates a circle? Actually syntax: (()) double circle, () circle. But they used [("...")] which is a rectangle containing parentheses? Usually shape is determined by surrounding characters: () for circle, [] for rectangle, {} for diamond, (( )) for double circle, [[ ]] for double rectangle, >> for subroutine. Here they have D5[("버전 스냅샷")] which is rectangle with parentheses inside label, but shape is rectangle because outer is [] . So shape rect. Similarly E_OK["모델 후보"] rect. ET1["파라미터/메트릭 로깅"] rect. ET2["아티팩트 저장소"] rect. etc.
-
-We need to list all nodes with id, label, shape, subgraphs: list of subgraph ids that node belongs to? The schema includes "subgraphs": [] for each node. Probably we need to include which subgraph(s) the node is part of. We'll assign based on nesting. For nodes inside subgraph S_DATA, subgraphs: ["S_DATA"]. For nested subgraphs, like nodes inside S_EXP->S_RUN, they belong to both S_EXP and S_RUN? Probably include both. We'll include all parent subgraphs.
-
-Edges: need to capture all connections. Edge type is "-->" as per schema. Some edges have labels like "No", "Yes", "Reject", etc. The schema includes "label": null. But we could include label? The spec says label: null. So we set null for all edges, ignoring labels.
-
-Decisions: maybe list decision nodes (diamond) with their options? The schema includes "decisions": [] but not defined. Could be empty.
-
-Summary: natural_language brief description, entry_nodes ["START"], exit_nodes ["END"].
-
-We must output warnings empty.
-
-Now compile list.
-
-First, collect subgraphs:
-
-S_DATA title "DATA MGMT"
-S_EXP title "EXPERIMENTS"
-S_RUN title "실험 실행"
-S_TRACK title "추적/버저닝"
-S_COMP title "COMPUTE CLUSTER"
-S_SCH title "스케줄링"
-S_MON title "모니터링"
-S_IRB title "ETHICS/IRB"
-S_PUB title "PUBLICATION"
-S_COL title "COLLAB & REPO"
-S_GRANT title "GRANT MGMT"
-S_KB title "KNOWLEDGE BASE"
-
-Also maybe subgraph S_DATA etc.
-
-Now nodes list:
-
-Let's enumerate all node ids and labels:
-
-START: "Start", shape rect, subgraphs [] (outside any subgraph)
-END: "End", rect, subgraphs [].
-
-HUB: "워크로드 라우팅", diamond, subgraphs [].
-
-Now inside S_DATA:
-
-D1: "원천 수집", rect, subgraphs ["S_DATA"]
-D2: "메타데이터 등록", rect, subgraphs ["S_DATA"]
-D3: "품질 OK?", diamond, subgraphs ["S_DATA"]
-D4: "정제/라벨 수정", rect, subgraphs ["S_DATA"]
-D5: "버전 스냅샷", rect, subgraphs ["S_DATA"] (since shape rect)
-
-Now S_EXP contains subgraphs S_RUN and S_TRACK.
-
-Nodes in S_RUN:
-
-E1: "전처리 파이프", rect, subgraphs ["S_EXP","S_RUN"]
-E2: "학습", rect, subgraphs ["S_EXP","S_RUN"]
-E3: "평가", rect, subgraphs ["S_EXP","S_RUN"]
-E4: "목표 달성?", diamond, subgraphs ["S_EXP","S_RUN"]
-E_OK: "모델 후보", rect, subgraphs ["S_EXP","S_RUN"]
-
-Nodes in S_TRACK:
-
-ET1: "파라미터/메트릭 로깅", rect, subgraphs ["S_EXP","S_TRACK"]
-ET2: "아티팩트 저장소", rect, subgraphs ["S_EXP","S_TRACK"]
-
-Now S_COMP with subgraphs S_SCH and S_MON.
-
-Nodes in S_SCH:
-
-C1: "큐 등록", rect, subgraphs ["S_COMP","S_SCH"]
-C2: "GPU 가용?", diamond, subgraphs ["S_COMP","S_SCH"]
-C3: "대기/프리엠션", rect, subgraphs ["S_COMP","S_SCH"]
-C4: "노드 할당", rect, subgraphs ["S_COMP","S_SCH"]
-
-Nodes in S_MON:
-
-C5: "리소스 모니터", rect, subgraphs ["S_COMP","S_MON"]
-C6: "오류/OOM?", diamond, subgraphs ["S_COMP","S_MON"]
-C7: "자동 중단/재시작", rect, subgraphs ["S_COMP","S_MON"]
-C_OK: "정상", rect, subgraphs ["S_COMP","S_MON"]
-
-Now S_IRB:
-
-R1: "프로토콜 제출", rect, subgraphs ["S_IRB"]
-R2: "보완 필요?", diamond, subgraphs ["S_IRB"]
-R3: "수정 반영", rect, subgraphs ["S_IRB"]
-R_OK: "승인", rect, subgraphs ["S_IRB"]
-
-Now S_PUB:
-
-P1: "원고 초안", rect, subgraphs ["S_PUB"]
-P2: "실험표 정리", rect, subgraphs ["S_PUB"]
-P3: "그림/부록 생성", rect, subgraphs ["S_PUB"]
-P4: "저널 포맷 충족?", diamond, subgraphs ["S_PUB"]
-P5: "포맷 수정", rect, subgraphs ["S_PUB"]
-P6: "투고", rect, subgraphs ["S_PUB"]
-P7: "리뷰 결과", diamond, subgraphs ["S_PUB"]
-P8: "대폭수정", rect, subgraphs ["S_PUB"]
-P9: "경미수정", rect, subgraphs ["S_PUB"]
-P_OK: "게재", rect, subgraphs ["S_PUB"]
-
-Now S_COL:
-
-L1: "이슈 등록", rect, subgraphs ["S_COL"]
-L2: "브랜치 생성", rect, subgraphs ["S_COL"]
-L3: "PR 제출", rect, subgraphs ["S_COL"]
-L4: "리뷰 통과?", diamond, subgraphs ["S_COL"]
-L5: "수정", rect, subgraphs ["S_COL"]
-L6: "병합", rect, subgraphs ["S_COL"]
-L_OK: "릴리즈 태그", rect, subgraphs ["S_COL"]
-
-Now S_GRANT:
-
-G1: "공고 탐색", rect, subgraphs ["S_GRANT"]
-G2: "제안서 작성", rect, subgraphs ["S_GRANT"]
-G3: "내부 승인?", diamond, subgraphs ["S_GRANT"]
-G4: "수정/재검토", rect, subgraphs ["S_GRANT"]
-G5: "제출", rect, subgraphs ["S_GRANT"]
-G6: "선정?", diamond, subgraphs ["S_GRANT"]
-G7: "피드백 반영", rect, subgraphs ["S_GRANT"]
-G_OK: "예산 집행", rect, subgraphs ["S_GRANT"]
-
-Now S_KB:
-
-K1: "노트 업로드", rect, subgraphs ["S_KB"]
-K2: "태깅/검색 인덱스", rect, subgraphs ["S_KB"]
-K3: "중복/품질?", diamond, subgraphs ["S_KB"]
-K4: "정제/합치기", rect, subgraphs ["S_KB"]
-K_OK: "게시", rect, subgraphs ["S_KB"]
-
-Now edges: need to list all connections.
-
-We'll go through each arrow.
-
-Top-level:
-
-START --> HUB
-HUB -- 데이터 --> S_DATA (edge from HUB to subgraph S_DATA)
-HUB -- 실험 --> S_EXP
-HUB -- 컴퓨트 --> S_COMP
-HUB -- 윤리 --> S_IRB
-HUB -- 출판 --> S_PUB
-HUB -- 협업 --> S_COL
-HUB -- 그랜트 --> S_GRANT
-HUB -- 지식 --> S_KB
-
-Now within S_DATA:
-
-D1 --> D2
-D2 --> D3
-D3 -- No --> D4
-D4 --> D2
-D3 -- Yes --> D5
-
-Now S_EXP internal:
-
-Within S_RUN:
-
-E1 --> E2
-E2 --> E3
-E3 --> E4
-E4 -- No --> E2
-E4 -- Yes --> E_OK
-
-Within S_TRACK:
-
-ET1 --> ET2
-
-Cross connections inside S_EXP:
-
-E2 --> ET1
-E_OK --> ET2
-
-Now S_COMP internal:
-
-Within S_SCH:
-
-C1 --> C2
-C2 -- No --> C3
-C3 --> C1
-C2 -- Yes --> C4
-
-Within S_MON:
-
-C5 --> C6
-C6 -- Yes --> C7
-C7 --> C1
-C6 -- No --> C_OK
-
-Cross:
-
-C4 --> C5
-
-Now S_IRB internal:
-
-R1 --> R2
-R2 -- Yes --> R3
-R3 --> R1
-R2 -- No --> R_OK
-
-Now S_PUB internal:
-
-P1 --> P2
-P2 --> P3
-P3 --> P4
-P4 -- No --> P5
-P5 --> P3
-P4 -- Yes --> P6
-P6 --> P7
-P7 -- Reject --> P8
-P8 --> P1
-P7 -- Minor --> P9
-P9 --> P6
-P7 -- Accept --> P_OK
-
-Now S_COL internal:
-
-L1 --> L2
-L2 --> L3
-L3 --> L4
-L4 -- No --> L5
-L5 --> L3
-L4 -- Yes --> L6
-L6 --> L_OK
-
-Now S_GRANT internal:
-
-G1 --> G2
-G2 --> G3
-G3 -- No --> G4
-G4 --> G2
-G3 -- Yes --> G5
-G5 --> G6
-G6 -- No --> G7
-G7 --> G2
-G6 -- Yes --> G_OK
-
-Now S_KB internal:
-
-K1 --> K2
-K2 --> K3
-K3 -- Yes --> K4
-K4 --> K2
-K3 -- No --> K_OK
-
-Now cross connections (outside subgraphs):
-
-S_DATA --> E1 (edge from subgraph S_DATA to node E1)
-D5 --> C1
-S_COMP --> E2
-R_OK --> P1
-ET2 --> P2
-S_COL --> P3
-S_GRANT --> P1
-K_OK --> P3
-
-Feedback loops:
-
-C7 --> C1 (already captured? Actually C7 --> C1 is already in S_MON edges; we have that)
-E4 --> E2 (already captured as E4 -- No --> E2)
-P5 --> P3 (already captured)
-P8 --> P1 (already captured)
-L5 --> L3 (already captured)
-G7 --> G2 (already captured)
-K4 --> K2 (already captured)
-
-Cross feedback:
-
-P2 --> K1
-K_OK --> L1
-R1 --> K1
-P7 --> K1
-
-Now termination edges:
-
-P_OK --> END
-L_OK --> END
-G_OK --> END
-C_OK --> END
-
-Also maybe other exit nodes? Not needed.
-
-Now we need to include edges to subgraphs? The schema expects source and target node IDs. For edges to subgraph, maybe we treat subgraph as node? The spec includes subgraphs list separate. Edges referencing subgraph IDs maybe still included. We'll include them as source/target IDs referencing subgraph IDs (like "S_DATA"). That's okay.
-
-Now compile edges list. Ensure each edge appears once.
-
-Let's enumerate edges with source, target, type "-->", label null.
-
-I'll list them in order.
-
-1. START -> HUB
-2. HUB -> S_DATA
-3. HUB -> S_EXP
-4. HUB -> S_COMP
-5. HUB -> S_IRB
-6. HUB -> S_PUB
-7. HUB -> S_COL
-8. HUB -> S_GRANT
-9. HUB -> S_KB
-
-S_DATA internal:
-10. D1 -> D2
-11. D2 -> D3
-12. D3 -> D4
-13. D4 -> D2
-14. D3 -> D5
-
-S_EXP internal:
-15. E1 -> E2
-16. E2 -> E3
-17. E3 -> E4
-18. E
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "HUB",
+      "label": "워크로드 라우팅",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D1",
+      "label": "원천 수집",
+      "shape": "rect",
+      "subgraphs": ["S_DATA"]
+    },
+    {
+      "id": "D2",
+      "label": "메타데이터 등록",
+      "shape": "rect",
+      "subgraphs": ["S_DATA"]
+    },
+    {
+      "id": "D3",
+      "label": "품질 OK?",
+      "shape": "diamond",
+      "subgraphs": ["S_DATA"]
+    },
+    {
+      "id": "D4",
+      "label": "정제/라벨 수정",
+      "shape": "rect",
+      "subgraphs": ["S_DATA"]
+    },
+    {
+      "id": "D5",
+      "label": "버전 스냅샷",
+      "shape": "double_circle",
+      "subgraphs": ["S_DATA"]
+    },
+    {
+      "id": "E1",
+      "label": "전처리 파이프",
+      "shape": "rect",
+      "subgraphs": ["S_EXP", "S_RUN"]
+    },
+    {
+      "id": "E2",
+      "label": "학습",
+      "shape": "rect",
+      "subgraphs": ["S_EXP", "S_RUN"]
+    },
+    {
+      "id": "E3",
+      "label": "평가",
+      "shape": "rect",
+      "subgraphs": ["S_EXP", "S_RUN"]
+    },
+    {
+      "id": "E4",
+      "label": "목표 달성?",
+      "shape": "diamond",
+      "subgraphs": ["S_EXP", "S_RUN"]
+    },
+    {
+      "id": "E_OK",
+      "label": "모델 후보",
+      "shape": "rect",
+      "subgraphs": ["S_EXP", "S_RUN"]
+    },
+    {
+      "id": "ET1",
+      "label": "파라미터/메트릭 로깅",
+      "shape": "rect",
+      "subgraphs": ["S_EXP", "S_TRACK"]
+    },
+    {
+      "id": "ET2",
+      "label": "아티팩트 저장소",
+      "shape": "rect",
+      "subgraphs": ["S_EXP", "S_TRACK"]
+    },
+    {
+      "id": "C1",
+      "label": "큐 등록",
+      "shape": "rect",
+      "subgraphs": ["S_COMP", "S_SCH"]
+    },
+    {
+      "id": "C2",
+      "label": "GPU 가용?",
+      "shape": "diamond",
+      "subgraphs": ["S_COMP", "S_SCH"]
+    },
+    {
+      "id": "C3",
+      "label": "대기/프리엠션",
+      "shape": "rect",
+      "subgraphs": ["S_COMP", "S_SCH"]
+    },
+    {
+      "id": "C4",
+      "label": "노드 할당",
+      "shape": "rect",
+      "subgraphs": ["S_COMP", "S_SCH"]
+    },
+    {
+      "id": "C5",
+      "label": "리소스 모니터",
+      "shape": "rect",
+      "subgraphs": ["S_COMP", "S_MON"]
+    },
+    {
+      "id": "C6",
+      "label": "오류/OOM?",
+      "shape": "diamond",
+      "subgraphs": ["S_COMP", "S_MON"]
+    },
+    {
+      "id": "C7",
+      "label": "자동 중단/재시작",
+      "shape": "rect",
+      "subgraphs": ["S_COMP", "S_MON"]
+    },
+    {
+      "id": "C_OK",
+      "label": "정상",
+      "shape": "rect",
+      "subgraphs": ["S_COMP", "S_MON"]
+    },
+    {
+      "id": "R1",
+      "label": "프로토콜 제출",
+      "shape": "rect",
+      "subgraphs": ["S_IRB"]
+    },
+    {
+      "id": "R2",
+      "label": "보완 필요?",
+      "shape": "diamond",
+      "subgraphs": ["S_IRB"]
+    },
+    {
+      "id": "R3",
+      "label": "수정 반영",
+      "shape": "rect",
+      "subgraphs": ["S_IRB"]
+    },
+    {
+      "id": "R_OK",
+      "label": "승인",
+      "shape": "rect",
+      "subgraphs": ["S_IRB"]
+    },
+    {
+      "id": "P1",
+      "label": "원고 초안",
+      "shape": "rect",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P2",
+      "label": "실험표 정리",
+      "shape": "rect",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P3",
+      "label": "그림/부록 생성",
+      "shape": "rect",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P4",
+      "label": "저널 포맷 충족?",
+      "shape": "diamond",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P5",
+      "label": "포맷 수정",
+      "shape": "rect",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P6",
+      "label": "투고",
+      "shape": "rect",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P7",
+      "label": "리뷰 결과",
+      "shape": "diamond",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P8",
+      "label": "대폭수정",
+      "shape": "rect",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id": "P9",
+      "label": "경미수정",
+      "shape": "rect",
+      "subgraphs": ["S_PUB"]
+    },
+    {
+      "id":

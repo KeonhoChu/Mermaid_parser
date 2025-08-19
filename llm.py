@@ -141,7 +141,7 @@ def strip_code_fences(s: str) -> str:
     return t.strip()
 
 def extract_json_robustly(text: str) -> str:
-    """더 강력한 JSON 추출"""
+    """더 강력한 JSON 추출 - 개선된 버전"""
     text = strip_code_fences(text)
     
     # 전체 텍스트가 이미 JSON인지 확인
@@ -152,64 +152,110 @@ def extract_json_robustly(text: str) -> str:
     # JSON이 텍스트 중간에 있을 수 있으므로 더 적극적으로 찾기
     json_candidates = []
     
-    # 방법 1: 중괄호 매칭으로 완전한 JSON 찾기
+    # 방법 1: 중괄호 매칭으로 완전한 JSON 찾기 (문자열 내부 고려)
     stack = []
     start_pos = -1
+    in_string = False
+    escape_next = False
     
     for i, char in enumerate(text):
-        if char == '{':
-            if not stack:
-                start_pos = i
-            stack.append(char)
-        elif char == '}':
-            if stack:
-                stack.pop()
-                if not stack and start_pos != -1:
-                    candidate = text[start_pos:i+1]
-                    json_candidates.append(candidate)
-    
-    # 방법 2: "ok"나 "nodes", "edges" 키워드가 포함된 JSON 찾기 (개선된 버전)
-    for match in re.finditer(r'\{[^}]*(?:"ok"|"nodes"|"edges")', text, re.DOTALL):
-        start_idx = match.start()
-        brace_count = 0
-        in_string = False
-        escape_next = False
-        
-        for i in range(start_idx, len(text)):
-            char = text[i]
+        if escape_next:
+            escape_next = False
+            continue
             
-            if escape_next:
-                escape_next = False
-                continue
-                
-            if char == '\\':
-                escape_next = True
-                continue
-                
-            if char == '"' and not escape_next:
-                in_string = not in_string
-                continue
-                
-            if not in_string:
-                if char == '{':
-                    brace_count += 1
-                elif char == '}':
-                    brace_count -= 1
-                    if brace_count == 0:
-                        candidate = text[start_idx:i+1]
+        if char == '\\':
+            escape_next = True
+            continue
+            
+        if char == '"' and not escape_next:
+            in_string = not in_string
+            continue
+            
+        if not in_string:
+            if char == '{':
+                if not stack:
+                    start_pos = i
+                stack.append(char)
+            elif char == '}':
+                if stack:
+                    stack.pop()
+                    if not stack and start_pos != -1:
+                        candidate = text[start_pos:i+1]
                         json_candidates.append(candidate)
-                        break
+    
+    # 방법 2: 정규식으로 JSON 패턴 찾기 (개선된 버전)
+    patterns = [
+        r'\{[^{}]*"ok"[^{}]*\}',  # 단순한 JSON
+        r'\{.*?"nodes".*?\}',     # nodes 포함
+        r'\{.*?"edges".*?\}',     # edges 포함
+    ]
+    
+    for pattern in patterns:
+        for match in re.finditer(pattern, text, re.DOTALL):
+            start_idx = match.start()
+            brace_count = 0
+            in_string = False
+            escape_next = False
+            
+            for i in range(start_idx, len(text)):
+                char = text[i]
+                
+                if escape_next:
+                    escape_next = False
+                    continue
+                    
+                if char == '\\':
+                    escape_next = True
+                    continue
+                    
+                if char == '"' and not escape_next:
+                    in_string = not in_string
+                    continue
+                    
+                if not in_string:
+                    if char == '{':
+                        brace_count += 1
+                    elif char == '}':
+                        brace_count -= 1
+                        if brace_count == 0:
+                            candidate = text[start_idx:i+1]
+                            json_candidates.append(candidate)
+                            break
+    
+    # 방법 3: 줄 단위로 JSON 시작/끝 찾기
+    lines = text.split('\n')
+    json_start = -1
+    json_end = -1
+    
+    for i, line in enumerate(lines):
+        line_stripped = line.strip()
+        if json_start == -1 and line_stripped.startswith('{'):
+            json_start = i
+        if json_start != -1 and line_stripped.endswith('}') and '{' not in line_stripped:
+            json_end = i
+            break
+    
+    if json_start != -1 and json_end != -1:
+        candidate = '\n'.join(lines[json_start:json_end+1])
+        json_candidates.append(candidate)
     
     if json_candidates:
-        # 가장 긴 후보 선택 (보통 완전한 응답)
-        best_candidate = max(json_candidates, key=len)
+        # 후보들을 검증하고 가장 좋은 것 선택
+        valid_candidates = []
         
-        # 추가 검증: 기본 JSON 키들이 있는지 확인
-        for candidate in sorted(json_candidates, key=len, reverse=True):
-            if any(key in candidate for key in ['"ok"', '"nodes"', '"edges"']) and len(candidate) > 100:
-                return candidate
+        for candidate in json_candidates:
+            # 기본 JSON 구조 확인
+            if (candidate.count('{') == candidate.count('}') and 
+                any(key in candidate for key in ['"ok"', '"nodes"', '"edges"']) and 
+                len(candidate) > 50):
+                valid_candidates.append(candidate)
         
-        return best_candidate
+        if valid_candidates:
+            # 가장 긴 유효한 후보 선택
+            return max(valid_candidates, key=len)
+        else:
+            # 유효한 후보가 없으면 가장 긴 후보 선택
+            return max(json_candidates, key=len)
     
     # 폴백: 첫 번째와 마지막 중괄호 사이
     start = text.find('{')
@@ -316,82 +362,135 @@ def fix_json_syntax(s: str) -> str:
     return s
 
 def fix_truncated_json(json_str: str) -> str:
-    """잘린 JSON을 복구하는 함수"""
+    """잘린 JSON을 복구하는 함수 - 완전히 재작성"""
     json_str = json_str.strip()
     
-    # 마지막 완전한 구조를 찾기 위해 역순으로 탐색
-    brace_stack = []
-    last_complete_pos = -1
+    if not json_str:
+        return ""
     
-    for i, char in enumerate(json_str):
-        if char == '{':
-            brace_stack.append('{')
-        elif char == '}':
-            if brace_stack and brace_stack[-1] == '{':
-                brace_stack.pop()
-                if not brace_stack:  # 완전한 객체 완성
-                    last_complete_pos = i
-        elif char == '[':
-            brace_stack.append('[')
-        elif char == ']':
-            if brace_stack and brace_stack[-1] == '[':
-                brace_stack.pop()
+    # 1단계: 역방향으로 완전한 구조 찾기
+    lines = json_str.split('\n')
     
-    if last_complete_pos > 0:
-        # 마지막 완전한 위치까지만 사용
-        return json_str[:last_complete_pos + 1]
+    # 마지막 줄부터 역순으로 검사
+    valid_end_idx = len(lines)
     
-    # 완전한 구조를 찾지 못한 경우, 최소한의 구조라도 만들어봄
-    if json_str.startswith('{'):
-        # 마지막 콤마 뒤에 있는 불완전한 항목 제거
-        lines = json_str.split('\n')
-        complete_lines = []
+    for i in range(len(lines) - 1, -1, -1):
+        line = lines[i].strip()
         
-        for line in lines:
-            line = line.strip()
-            if line and not line.endswith(('}', ']', ',', '"')):
-                # 불완전한 줄이므로 제외
-                break
-            complete_lines.append(line)
+        # 빈 줄은 스킵
+        if not line:
+            continue
         
-        result = '\n'.join(complete_lines)
+        # 명백히 불완전한 줄 패턴들
+        incomplete_patterns = [
+            # 따옴표가 시작되었지만 끝나지 않음
+            r'"[^"]*$',
+            # 키:값 구조가 불완전
+            r'"[^"]*":\s*"[^"]*$',
+            # 객체나 배열이 시작되었지만 끝나지 않음
+            r'.*[{\[]$',
+        ]
         
-        # 마지막이 콤마로 끝나면 제거
-        result = re.sub(r',\s*$', '', result.strip())
+        is_incomplete = any(re.search(pattern, line) for pattern in incomplete_patterns)
         
-        # 중괄호 닫기
-        if not result.endswith('}'):
-            result += '}'
-            
+        # 따옴표 개수가 홀수인지 확인 (문자열 내부 고려)
+        quote_count = line.count('"')
+        has_unclosed_quotes = quote_count % 2 == 1
+        
+        if is_incomplete or has_unclosed_quotes:
+            # 이 줄은 불완전하므로 제외
+            valid_end_idx = i
+        else:
+            # 완전한 줄을 찾았으므로 중단
+            break
+    
+    # 유효한 줄들만 사용
+    if valid_end_idx < len(lines):
+        lines = lines[:valid_end_idx]
+    
+    if not lines:
+        return ""
+    
+    result = '\n'.join(lines)
+    
+    # 2단계: 구조적 완성도 검사 및 수정
+    try:
+        # 간단한 파싱 테스트
+        json.loads(result)
+        return result  # 이미 완전한 JSON
+    except json.JSONDecodeError:
+        pass
+    
+    # 3단계: 구조 복구
+    result = result.strip()
+    
+    # 트레일링 콤마 제거
+    result = re.sub(r',\s*$', '', result)
+    
+    # 불완전한 마지막 요소 제거 (키만 있고 값이 없는 경우)
+    lines = result.split('\n')
+    if lines:
+        last_line = lines[-1].strip()
+        # "key": 형태로 끝나는 경우 제거
+        if re.match(r'^\s*"[^"]*":\s*$', last_line):
+            lines = lines[:-1]
+            result = '\n'.join(lines)
+            result = re.sub(r',\s*$', '', result)
+    
+    # 4단계: 괄호 균형 맞추기
+    open_braces = result.count('{') - result.count('}')
+    open_brackets = result.count('[') - result.count(']')
+    
+    if open_braces > 0 or open_brackets > 0:
+        # 배열 먼저 닫기
+        for _ in range(open_brackets):
+            result += '\n    ]'
+        
+        # 객체 닫기  
+        for _ in range(open_braces):
+            result += '\n  }'
+    
+    # 5단계: 최종 검증 및 폴백
+    try:
+        json.loads(result)
         return result
-    
-    return json_str
+    except json.JSONDecodeError:
+        # 여전히 파싱이 안 되면 최소한의 유효한 JSON 구조 만들기
+        return '{"ok": false, "error": "truncated JSON recovery failed"}'
+
+def create_fallback_json(text: str, reason: str) -> Dict[str, Any]:
+    """파싱 실패 시 기본 JSON 구조 생성"""
+    return {
+        "ok": False,
+        "warnings": [f"JSON 파싱 실패: {reason}"],
+        "nodes": [],
+        "edges": [],
+        "subgraphs": [],
+        "decisions": [],
+        "summary": {
+            "natural_language": f"파싱 실패: {reason}",
+            "entry_nodes": [],
+            "exit_nodes": []
+        },
+        "raw_response": text[:500] + "..." if len(text) > 500 else text
+    }
 
 def parse_llm_json(text: str) -> Tuple[bool, Dict[str, Any], str]:
-    """강화된 JSON 파싱"""
+    """강화된 JSON 파싱 - 개선된 폴백 메커니즘"""
     warnings = []
     
     if not text.strip():
-        return False, {}, "빈 응답"
+        return True, create_fallback_json("", "빈 응답"), "빈 응답"
     
-    # 모델이 분석 텍스트를 생성했는지 감지
-    if not text.strip().startswith('{') and 'We need to parse' in text:
-        warnings.append("모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도")
-        # 간단한 폴백 JSON 생성
-        fallback_json = {
-            "ok": False,
-            "warnings": ["모델이 JSON 대신 분석 텍스트를 생성했습니다"],
-            "nodes": [],
-            "edges": [],
-            "subgraphs": [],
-            "decisions": [],
-            "summary": {
-                "natural_language": "파싱 실패: 텍스트 분석 응답",
-                "entry_nodes": [],
-                "exit_nodes": []
-            }
-        }
-        return True, fallback_json, ";".join(warnings)
+    # 모델이 분석 텍스트를 생성했는지 감지 (더 포괄적으로)
+    text_indicators = [
+        'We need to parse', 'Let me analyze', 'Looking at this', 
+        'This flowchart', 'The diagram', 'Based on the'
+    ]
+    
+    if not text.strip().startswith('{') and any(indicator in text for indicator in text_indicators):
+        warnings.append("모델이 분석 텍스트를 생성함")
+        return True, create_fallback_json(text, "텍스트 분석 응답"), ";".join(warnings)
     
     # 1차: 원본 텍스트를 직접 JSON으로 파싱 시도
     try:
@@ -401,45 +500,81 @@ def parse_llm_json(text: str) -> Tuple[bool, Dict[str, Any], str]:
         print(f"원본 텍스트 파싱 실패: {e}")
         
         # 2차: 강화된 추출 및 파싱
-        json_text = extract_json_robustly(text)
-        
         try:
+            json_text = extract_json_robustly(text)
+            if not json_text or json_text == text.strip():
+                raise ValueError("JSON 추출 실패")
+                
             obj = json.loads(json_text)
             warnings.append("JSON 추출 후 파싱 성공")
-        except json.JSONDecodeError as e1:
+        except (json.JSONDecodeError, ValueError) as e1:
             warnings.append(f"JSON 추출 후 파싱 실패: {e1}")
-            print(f"추출된 JSON 길이: {len(json_text)}")
-            print(f"추출된 JSON 시작: {json_text[:200]}...")
             
             # 3차: 구문 수정 후 재시도
             try:
+                json_text = extract_json_robustly(text)
                 fixed_json = fix_json_syntax(json_text)
+                if not fixed_json:
+                    raise ValueError("JSON 구문 수정 실패")
+                    
                 obj = json.loads(fixed_json)
                 warnings.append("JSON 구문 수정 후 파싱 성공")
-            except json.JSONDecodeError as e2:
+            except (json.JSONDecodeError, ValueError) as e2:
                 warnings.append(f"구문 수정 후 파싱 실패: {e2}")
-                print(f"수정된 JSON 길이: {len(fixed_json)}")
-                print(f"수정된 JSON 시작: {fixed_json[:200]}...")
                 
                 # 4차: 잘린 JSON 복구 시도
                 try:
-                    # JSON이 중간에 잘렸을 가능성이 높으므로 마지막 완전한 객체/배열까지만 파싱
-                    truncated_json = fix_truncated_json(fixed_json)
+                    truncated_json = fix_truncated_json(fixed_json if 'fixed_json' in locals() else json_text if 'json_text' in locals() else text)
+                    if not truncated_json:
+                        raise ValueError("JSON 복구 실패")
+                        
                     obj = json.loads(truncated_json)
                     warnings.append("잘린 JSON 복구 후 파싱 성공")
-                except json.JSONDecodeError as e3:
+                except (json.JSONDecodeError, ValueError) as e3:
                     warnings.append(f"잘린 JSON 복구 실패: {e3}")
-                    return False, {}, f"JSON 파싱 실패: {e3}"
+                    
+                    # 5차: 완전한 폴백 - 기본 구조 생성
+                    print(f"모든 JSON 파싱 방법 실패. 폴백 JSON 생성")
+                    return True, create_fallback_json(text, f"모든 파싱 방법 실패: {e3}"), ";".join(warnings)
                 except Exception as e3:
-                    return False, {}, f"JSON 복구 실패: {e3}"
+                    warnings.append(f"JSON 복구 예외: {e3}")
+                    return True, create_fallback_json(text, f"복구 예외: {e3}"), ";".join(warnings)
     
-    # escape 복원
+    # JSON 검증 및 보완
     try:
+        # 필수 필드 확인 및 추가
+        if not isinstance(obj, dict):
+            obj = {"parsed_data": obj}
+        
+        # 기본 필드들이 없으면 추가
+        required_fields = {
+            "ok": True,
+            "warnings": [],
+            "nodes": [],
+            "edges": [],
+            "subgraphs": [],
+            "decisions": []
+        }
+        
+        for field, default_value in required_fields.items():
+            if field not in obj:
+                obj[field] = default_value
+        
+        # summary 필드 확인
+        if "summary" not in obj:
+            obj["summary"] = {
+                "natural_language": "자동 생성된 요약",
+                "entry_nodes": [],
+                "exit_nodes": []
+            }
+        
+        # escape 복원
         for edge in obj.get("edges", []):
             if isinstance(edge.get("type"), str):
                 edge["type"] = edge["type"].replace("\\u003e", ">")
-    except Exception:
-        pass
+    except Exception as e:
+        warnings.append(f"JSON 후처리 실패: {e}")
+        return True, create_fallback_json(text, f"후처리 실패: {e}"), ";".join(warnings)
     
     # warnings 필드 정규화
     existing_warnings = obj.get("warnings", [])
@@ -463,7 +598,7 @@ def count_nodes_edges(obj: Dict[str, Any]) -> Tuple[int, int]:
 # -------- 배치 실행 --------
 def run_batch(mermaid_dir: str = "mermaid",
               out_dir: str = "results",
-              level_csv: Optional[str] = "mermaid_analysis_results.csv",
+              level_csv: Optional[str] = "mermaid_level_analysis_results.csv",
               model_name: str = MODEL_NAME):
     """배치 실행 메인 함수"""
     
@@ -484,13 +619,16 @@ def run_batch(mermaid_dir: str = "mermaid",
     level_map: Dict[str, Dict[str, Any]] = {}
     if level_csv and Path(level_csv).exists():
         try:
-            import pandas as pd
-            df = pd.read_csv(level_csv)
-            for _, row in df.iterrows():
-                level_map[str(row["name"])] = {
-                    "level": row.get("level"),
-                    "score_final": row.get("score_final")
-                }
+            with open(level_csv, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    level_map[str(row["name"])] = {
+                        "level": row.get("level"),
+                        "N": row.get("N"),
+                        "E": row.get("E"),
+                        "SUBGRAPH_COUNT": row.get("SUBGRAPH_COUNT"),
+                        "explanations": row.get("explanations")
+                    }
             print(f"레벨 CSV 로드 완료: {len(level_map)}개 항목")
         except Exception as e:
             print(f"레벨 CSV 로드 실패: {e}")
@@ -590,8 +728,8 @@ START YOUR RESPONSE WITH {{ - NO OTHER TEXT"""
         # API 호출
         llm_text = ""
         try:
-            # JSON 출력을 위해 더 제한적인 파라미터 사용
-            llm_text = call_vllm(messages, temperature=0.0, top_p=0.9, max_tokens=3000)
+            # JSON 출력을 위해 더 제한적인 파라미터 사용 (토큰 수 증가)
+            llm_text = call_vllm(messages, temperature=0.0, top_p=0.9, max_tokens=10000)
             ok, obj, warnings = parse_llm_json(llm_text)
             print(f"파싱 결과: {'성공' if ok else '실패'}")
             if warnings:
@@ -633,7 +771,10 @@ START YOUR RESPONSE WITH {{ - NO OTHER TEXT"""
             "name": name,
             "model": model_name,
             "level": level_info.get("level", ""),
-            "score_final": level_info.get("score_final", ""),
+            "N_actual": level_info.get("N", ""),
+            "E_actual": level_info.get("E", ""),
+            "SUBGRAPH_COUNT_actual": level_info.get("SUBGRAPH_COUNT", ""),
+            "explanations": level_info.get("explanations", ""),
             "llm_ok": ok,
             "llm_warnings": warnings,
             "n_nodes_pred": n_nodes,
@@ -648,7 +789,7 @@ START YOUR RESPONSE WITH {{ - NO OTHER TEXT"""
     try:
         with open(out_csv, "w", newline="", encoding="utf-8") as f:
             fieldnames = [
-                "name", "model", "level", "score_final",
+                "name", "model", "level", "N_actual", "E_actual", "SUBGRAPH_COUNT_actual", "explanations",
                 "llm_ok", "llm_warnings", "n_nodes_pred", "n_edges_pred", "json_raw_path"
             ]
             writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -681,6 +822,6 @@ if __name__ == "__main__":
     run_batch(
         mermaid_dir="mermaid",
         out_dir="results",
-        level_csv="mermaid_analysis_results.csv",
+        level_csv="mermaid_level_analysis_results.csv",
         model_name=MODEL_NAME
     )

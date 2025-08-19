@@ -110,12 +110,8 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "The flowchart starts at Start, checks if the data is valid, processes when valid, logs an error when not, then checks a condition, stores the result if the condition is met or requests reprocessing otherwise, loops back to validation if reprocessing is requested, and finally ends at 종료.",
-    "entry_nodes": [
-      "Start"
-    ],
-    "exit_nodes": [
-      "종료"
-    ]
+    "natural_language": "Flowchart for data validation, processing, conditional handling, and error logging.",
+    "entry_nodes": ["S"],
+    "exit_nodes": ["X"]
   }
 }

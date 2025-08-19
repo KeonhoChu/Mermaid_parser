@@ -1,15 +1,4 @@
 {
-  "ok": false,
-  "warnings": [
-    "모델이 JSON 대신 분석 텍스트를 생성했습니다"
-  ],
-  "nodes": [],
-  "edges": [],
-  "subgraphs": [],
-  "decisions": [],
-  "summary": {
-    "natural_language": "파싱 실패: 텍스트 분석 응답",
-    "entry_nodes": [],
-    "exit_nodes": []
-  }
+  "error": "API 호출 실패: 요청 타임아웃",
+  "raw_response": ""
 }

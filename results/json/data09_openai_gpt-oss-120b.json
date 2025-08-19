@@ -8,43 +8,57 @@
       "id": "E1",
       "label": "센서1",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "EDGE"
+      ]
     },
     {
       "id": "E2",
       "label": "센서2",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "EDGE"
+      ]
     },
     {
       "id": "E3",
       "label": "게이트웨이",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "EDGE"
+      ]
     },
     {
       "id": "C1",
       "label": "데이터 수집",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "CLOUD"
+      ]
     },
     {
       "id": "C2",
       "label": "실시간 분석",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "CLOUD"
+      ]
     },
     {
       "id": "C3",
       "label": "대시보드",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "CLOUD"
+      ]
     },
     {
       "id": "C4",
       "label": "알림 시스템",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "CLOUD"
+      ]
     }
   ],
   "edges": [
@@ -103,7 +117,7 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "Sensors (E1, E2) send data to a gateway (E3), which forwards to cloud components for data collection (C1), real-time analysis (C2), dashboard (C3) and alert system (C4); alerts (C4) are sent back to the gateway.",
+    "natural_language": "Sensors send data to a gateway, which forwards it to cloud components for data collection, real-time analysis, dashboard display, and alert handling; alerts loop back to the gateway.",
     "entry_nodes": [
       "E1",
       "E2"

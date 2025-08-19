@@ -153,12 +153,8 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "The process starts with planning, moves to development tasks, then to operations with a monitoring loop, including dotted dependencies between analysis and architecture and between architecture and version management.",
-    "entry_nodes": [
-      "PLAN"
-    ],
-    "exit_nodes": [
-      "OPS"
-    ]
+    "natural_language": "The diagram shows three phases—planning, development, and operations—with their respective tasks and the flow of work between them.",
+    "entry_nodes": [],
+    "exit_nodes": []
   }
 }

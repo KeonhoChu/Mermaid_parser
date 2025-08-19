@@ -8,49 +8,65 @@
       "id": "C1",
       "label": "Web",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "CLIENT"
+      ]
     },
     {
       "id": "C2",
       "label": "Mobile",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "CLIENT"
+      ]
     },
     {
       "id": "S1",
       "label": "API Gateway",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "SERVER"
+      ]
     },
     {
       "id": "S2",
       "label": "Auth Service",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "SERVER"
+      ]
     },
     {
       "id": "S3",
       "label": "Data Service",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "SERVER"
+      ]
     },
     {
       "id": "S4",
       "label": "ML Service",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "SERVER"
+      ]
     },
     {
       "id": "D1",
       "label": "SQL DB",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "DB"
+      ]
     },
     {
       "id": "D2",
       "label": "NoSQL DB",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": [
+        "DB"
+      ]
     }
   ],
   "edges": [
@@ -125,8 +141,11 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "Web and Mobile clients send requests to the API Gateway, which routes to Auth, Data, and ML services; these services interact with SQL and NoSQL databases, with data flowing back to services.",
-    "entry_nodes": [],
+    "natural_language": "Web and Mobile clients connect to an API Gateway, which routes requests to Auth, Data, and ML services; these services interact with SQL and NoSQL databases, with data flowing back to services and the gateway.",
+    "entry_nodes": [
+      "C1",
+      "C2"
+    ],
     "exit_nodes": []
   }
 }

@@ -1,16 +1,5 @@
-name,model,level,score_final,llm_ok,llm_warnings,n_nodes_pred,n_edges_pred,json_raw_path
-data01,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,5,9,results\json\data01_openai_gpt-oss-120b.json
-data02,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,8,10,results\json\data02_openai_gpt-oss-120b.json
-data03,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,7,7,results\json\data03_openai_gpt-oss-120b.json
-data04,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,10,14,results\json\data04_openai_gpt-oss-120b.json
-data05,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,11,11,results\json\data05_openai_gpt-oss-120b.json
-data06,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,8,9,results\json\data06_openai_gpt-oss-120b.json
-data07,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,8,13,results\json\data07_openai_gpt-oss-120b.json
-data08,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,8,9,results\json\data08_openai_gpt-oss-120b.json
-data09,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,7,7,results\json\data09_openai_gpt-oss-120b.json
-data10,openai/gpt-oss-120b,,,True,원본 텍스트 직접 파싱 성공,6,9,results\json\data10_openai_gpt-oss-120b.json
-data11,openai/gpt-oss-120b,,,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data11_openai_gpt-oss-120b.json
-data12,openai/gpt-oss-120b,,,False,JSON 파싱 실패: Expecting value: line 1 column 1 (char 0),0,0,results\json\data12_openai_gpt-oss-120b.json
-data13,openai/gpt-oss-120b,,,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data13_openai_gpt-oss-120b.json
-data14,openai/gpt-oss-120b,,,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data14_openai_gpt-oss-120b.json
-data15,openai/gpt-oss-120b,,,True,모델이 분석 텍스트를 생성함 - JSON 형식 변환 시도,0,0,results\json\data15_openai_gpt-oss-120b.json
+name,model,level,N_actual,E_actual,SUBGRAPH_COUNT_actual,explanations,llm_ok,llm_warnings,n_nodes_pred,n_edges_pred,json_raw_path
+real01,openai/gpt-oss-120b,L3,6,7,2,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,7,results\json\real01_openai_gpt-oss-120b.json
+real02,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,results\json\real02_openai_gpt-oss-120b.json
+real03,openai/gpt-oss-120b,L1,3,1,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,results\json\real03_openai_gpt-oss-120b.json
+real04,openai/gpt-oss-120b,L2,0,3,4,"L2: N<5, E<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,results\json\real04_openai_gpt-oss-120b.json

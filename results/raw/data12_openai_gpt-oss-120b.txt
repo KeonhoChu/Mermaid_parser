@@ -117,6 +117,12 @@
       "subgraphs": []
     },
     {
+      "id": "TUNE",
+      "label": "하이퍼파라미터 탐색",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
       "id": "MON",
       "label": "모니터링",
       "shape": "rect",
@@ -131,13 +137,7 @@
     {
       "id": "END",
       "label": "End",
-      "shape": "rect",
-      "subgraphs": []
-    },
-    {
-      "id": "TUNE",
-      "label": "하이퍼파라미터 탐색",
-      "shape": "rect",
+      "shape": "circle",
       "subgraphs": []
     }
   ],
@@ -158,14 +158,177 @@
       "source": "VAL",
       "target": "ROUTE",
       "type": "-->",
-      "label": null
+      "label": "예"
     },
     {
       "source": "VAL",
       "target": "ERR",
       "type": "-->",
-      "label": null
+      "label": "아니오"
     },
     {
       "source": "ERR",
-      "target": "VAL
+      "target": "VAL",
+      "type": "-->",
+      "label": "재시도"
+    },
+    {
+      "source": "ROUTE",
+      "target": "ETL",
+      "type": "-->",
+      "label": "배치"
+    },
+    {
+      "source": "ROUTE",
+      "target": "STREAM",
+      "type": "-->",
+      "label": "실시간"
+    },
+    {
+      "source": "E1",
+      "target": "E2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E2",
+      "target": "E3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E3",
+      "target": "E4",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "E3",
+      "target": "E5",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "E4",
+      "target": "E5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E5",
+      "target": "OUT1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S1",
+      "target": "S2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S2",
+      "target": "S3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S3",
+      "target": "S4",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "S4",
+      "target": "S2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S3",
+      "target": "OUT2",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "OUT1",
+      "target": "TRAIN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "OUT2",
+      "target": "TRAIN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "TRAIN",
+      "target": "EVAL",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "EVAL",
+      "target": "DEPLOY",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "EVAL",
+      "target": "TUNE",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "TUNE",
+      "target": "TRAIN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "DEPLOY",
+      "target": "MON",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "MON",
+      "target": "ROLL",
+      "type": "-->",
+      "label": "drift>0.1"
+    },
+    {
+      "source": "ROLL",
+      "target": "DEPLOY",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "MON",
+      "target": "END",
+      "type": "-->",
+      "label": "정상"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "ETL",
+      "title": "ETL 파이프라인"
+    },
+    {
+      "id": "STREAM",
+      "title": "실시간 파이프라인"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "The diagram describes a data pipeline that injects data, validates the schema, routes to batch ETL or real-time streaming, processes the data, trains a model, evaluates it, and if satisfactory deploys it with monitoring and rollback, otherwise tunes and retrains.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

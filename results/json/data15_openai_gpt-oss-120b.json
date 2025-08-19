@@ -1,14 +1,347 @@
 {
-  "ok": false,
+  "ok": true,
   "warnings": [
-    "모델이 JSON 대신 분석 텍스트를 생성했습니다"
+    "JSON 추출 후 파싱 실패: Expecting ',' delimiter: line 120 column 77 (char 8395)",
+    "구문 수정 후 파싱 실패: Expecting ',' delimiter: line 120 column 77 (char 8395)",
+    "잘린 JSON 복구 후 파싱 성공"
   ],
-  "nodes": [],
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ENTRY",
+      "label": "요청 수신",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ROUTER",
+      "label": "도메인/경로 라우팅",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "A1",
+      "label": "OIDC 로그인",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "A2",
+      "label": "토큰 발급",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "A3",
+      "label": "스코프 파싱",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "A4",
+      "label": "권한 충족?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "A5",
+      "label": "403 반환",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "A_OK",
+      "label": "Auth OK",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "T1",
+      "label": "도메인→테넌트ID",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "T2",
+      "label": "존재?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "T_ERR",
+      "label": "404 테넌트 없음",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "T3",
+      "label": "플랜 조회",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "T4",
+      "label": "쿼터 초과?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "T_LIM",
+      "label": "429 쿼터 초과",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "T_OK",
+      "label": "Tenant OK",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B1",
+      "label": "사용량 누계",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B2",
+      "label": "청구 시점?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "B3",
+      "label": "결제 시도",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B4",
+      "label": "승인?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "B5",
+      "label": "재시도/대체수단",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B6",
+      "label": "청구 완료",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B7",
+      "label": "미수금 체크",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B8",
+      "label": "연체?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "B9",
+      "label": "알림/제한",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B_AR_OK",
+      "label": "정상",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B_OUT",
+      "label": "Billing OK",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F1",
+      "label": "플래그 평가",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F2",
+      "label": "활성?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "F3",
+      "label": "신규 경로",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F4",
+      "label": "기존 경로",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F_OUT",
+      "label": "Flag OK",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P1",
+      "label": "API 이벤트",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P2",
+      "label": "큐 적재",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P3",
+      "label": "지연>2s?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "P4",
+      "label": "Backpressure",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P5",
+      "label": "정제",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P6",
+      "label": "파싱/정규화",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P7",
+      "label": "특징 생성",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P8",
+      "label": "검증",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P9",
+      "label": "Hot KV",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P10",
+      "label": "Cold Lake",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "P_OUT",
+      "label": "Pipe OK",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C1",
+      "label": "PII 스캔",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C2",
+      "label": "마스킹/토큰화",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C3",
+      "label": "위반?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "C4",
+      "label": "차단/알림",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C5",
+      "label": "정책 업데이트",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C_OK",
+      "label": "Compliant",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "IR1",
+      "label": "오류율 모니터",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "IR2",
+      "label": "임계 초과?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "IR3",
+      "label": "온콜 호출",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "IR4",
+      "label": "대응/롤백",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "IR_OK",
+      "label": "정상",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
   "edges": [],
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "파싱 실패: 텍스트 분석 응답",
+    "natural_language": "자동 생성된 요약",
     "entry_nodes": [],
     "exit_nodes": []
   }

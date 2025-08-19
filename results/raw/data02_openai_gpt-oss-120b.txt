@@ -116,7 +116,7 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "A top-level decision splits into two branches (A and B), each leading to two actions, all converging to a final conclusion.",
+    "natural_language": "Root decision branches into detailed decisions A and B, each leading to specific actions and finally converging on the final conclusion.",
     "entry_nodes": [
       "ROOT"
     ],

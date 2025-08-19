@@ -1,418 +1,121 @@
-We need to parse the mermaid flowchart and output JSON with given schema. Must include nodes, edges, subgraphs, decisions (maybe empty), summary.
-
-We need to extract all nodes: each node defined with syntax like ID["label"] (square brackets) => shape rect. ID{"label"} => diamond. ID(("label"))? Actually parentheses: ID[("Hot KV")] uses parentheses inside brackets? Actually syntax: P9[("Hot KV")] => shape rect? In mermaid, parentheses denote circle, but here they used [("Hot KV")] which is a rectangle with parentheses inside label? The shape mapping: [] = rect, {} = diamond, () = circle, (()) = double_circle, [[]] = double_rect, >> = subroutine. So we need to detect shape based on surrounding delimiters of label. For node definitions:
-
-- START([Start]) => parentheses inside brackets? Actually syntax: START([Start]) means node id START with label inside parentheses? In mermaid, syntax: id([label]) is a circle. So shape circle. So shape mapping: () => circle. So START shape circle.
-
-- END([End]) similarly circle.
-
-- ENTRY["요청 수신"] => square brackets => rect.
-
-- ROUTER{"도메인/경로 라우팅"} => diamond.
-
-- A1["OIDC 로그인"] => rect.
-
-- A2["토큰 발급"] => rect.
-
-- A3["스코프 파싱"] => rect.
-
-- A4{"권한 충족?"} => diamond.
-
-- A5["403 반환"] => rect.
-
-- A_OK["Auth OK"] => rect.
-
-- T1["도메인→테넌트ID"] => rect.
-
-- T2{"존재?"} => diamond.
-
-- T_ERR["404 테넌트 없음"] => rect.
-
-- T3["플랜 조회"] => rect.
-
-- T4{"쿼터 초과?"} => diamond.
-
-- T_LIM["429 쿼터 초과"] => rect.
-
-- T_OK["Tenant OK"] => rect.
-
-- B1["사용량 누계"] => rect.
-
-- B2{"청구 시점?"} => diamond.
-
-- B3["결제 시도"] => rect.
-
-- B4{"승인?"} => diamond.
-
-- B5["재시도/대체수단"] => rect.
-
-- B6["청구 완료"] => rect.
-
-- B7["미수금 체크"] => rect.
-
-- B8{"연체?"} => diamond.
-
-- B9["알림/제한"] => rect.
-
-- B_AR_OK["정상"] => rect.
-
-- B_OUT["Billing OK"] => rect.
-
-- B_OUT is defined as B_AR_OK --> B_OUT["Billing OK"]; So B_OUT node.
-
-- F1["플래그 평가"] => rect.
-
-- F2{"활성?"} => diamond.
-
-- F3["신규 경로"] => rect.
-
-- F4["기존 경로"] => rect.
-
-- F_OUT["Flag OK"] => rect.
-
-- P1["API 이벤트"] => rect.
-
-- P2["큐 적재"] => rect.
-
-- P3{"지연>2s?"} => diamond.
-
-- P4["Backpressure"] => rect.
-
-- P5["정제"] => rect.
-
-- P6["파싱/정규화"] => rect.
-
-- P7["특징 생성"] => rect.
-
-- P8["검증"] => rect.
-
-- P9[("Hot KV")] => shape? It's [("Hot KV")] meaning rectangle with parentheses inside label, but shape is still rect because outer delimiters are [].
-
-- P10[("Cold Lake")] => rect.
-
-- P_OUT["Pipe OK"] => rect.
-
-- C1["PII 스캔"] => rect.
-
-- C2["마스킹/토큰화"] => rect.
-
-- C3{"위반?"} => diamond.
-
-- C4["차단/알림"] => rect.
-
-- C5["정책 업데이트"] => rect.
-
-- C_OK["Compliant"] => rect.
-
-- IR1["오류율 모니터"] => rect.
-
-- IR2{"임계 초과?"} => diamond.
-
-- IR3["온콜 호출"] => rect.
-
-- IR4["대응/롤백"] => rect.
-
-- IR_OK["정상"] => rect.
-
-- Also there are subgraph nodes: S_AUTH, S_TENANT, S_BILL, S_FLAG, S_PIPE, S_COMP, S_IR. These are subgraphs, not nodes. But edges connect to subgraph IDs (e.g., ROUTER --> S_AUTH). Should we treat subgraph IDs as nodes? In schema, there is separate "subgraphs" list with id and title. Edges source/target can be node or subgraph IDs. So we include edges referencing subgraph IDs.
-
-Also there are subgraph internal subgraphs: S_IDP, S_ACL, S_TMAP, S_TPLAN, S_CHARGE, S_AR, S_ING, S_PROC, S_STORE, S_ING? Actually S_ING is subgraph, S_PROC, S_STORE, S_CHARGE, S_AR. Also S_TMAP, S_TPLAN, S_IDP, S_ACL. Also S_BILL includes subgraphs S_CHARGE and S_AR. S_PIPE includes S_ING, S_PROC, S_STORE. So we need to list all subgraphs with id and title (title is the label after subgraph id["title"]). For nested subgraphs, they also have titles.
-
-List subgraphs:
-
-- S_AUTH["AUTH (인증/권한)"]
-- S_IDP["IDP 연동"]
-- S_ACL["권한/스코프"]
-- S_TENANT["TENANT ROUTER"]
-- S_TMAP["테넌트 매핑"]
-- S_TPLAN["플랜/쿼터"]
-- S_BILL["BILLING"]
-- S_CHARGE["과금흐름"]
-- S_AR["정산/미수"]
-- S_FLAG["FEATURE FLAG & RELEASE"]
-- S_PIPE["DATA PIPELINE"]
-- S_ING["수집"]
-- S_PROC["처리"]
-- S_STORE["저장"]
-- S_COMP["COMPLIANCE & AUDIT"]
-- S_IR["INCIDENT RESPONSE"]
-
-Also maybe S_BILL includes subgraphs S_CHARGE and S_AR, but we list them all.
-
-Now edges: need to capture all connections.
-
-Let's enumerate:
-
-From top:
-
-START --> ENTRY (type -->, label null)
-
-ENTRY --> ROUTER
-
-ROUTER --> END? Actually END defined but not directly connected except later via A5 etc. There's also END node defined but not used elsewhere except A5, T_ERR, T_LIM, IR_OK.
-
-Now subgraph internal edges:
-
-A1 --> A2
-
-A2 --> A3
-
-A3 --> A4
-
-A4 -- No --> A5 (edge label "No"? The schema includes label field; we can set label "No". type is "-->", but they used "-- No -->". In mermaid, edge with label is "-- No -->". So source A4, target A5, type "-->", label "No". Similarly A4 -- Yes --> A_OK label "Yes".
-
-A_OK --> S_TENANT (edge from node to subgraph). type "-->", label null.
-
-A5 --> END
-
-Now T1 --> T2
-
-T2 -- No --> T_ERR label "No"
-
-T2 -- Yes --> T3 label "Yes"
-
-T3 --> T4
-
-T4 -- Yes --> T_LIM label "Yes"
-
-T4 -- No --> T_OK label "No"
-
-T_ERR --> END
-
-T_LIM --> END
-
-T_OK? Not connected further.
-
-Now B1 --> B2
-
-B2 -- Yes --> B3 label "Yes"
-
-B3 --> B4
-
-B4 -- No --> B5 label "No"
-
-B5 --> B3 (loop) label null? Actually B5 --> B3 defined as B5 --> B3 (no label). So edge.
-
-B4 -- Yes --> B6 label "Yes"
-
-B6 --> B7
-
-B7 --> B8
-
-B8 -- Yes --> B9 label "Yes"
-
-B9 --> B7 (loop) label null
-
-B8 -- No --> B_AR_OK label "No"
-
-B_AR_OK --> B_OUT
-
-B_OUT --> IR1 (edge from B_OUT to IR1)
-
-Now C1 --> C2
-
-C2 --> C3
-
-C3 -- Yes --> C4 label "Yes"
-
-C4 --> C5
-
-C5 --> C1 (loop)
-
-C3 -- No --> C_OK label "No"
-
-C_OK --> B1
-
-Now F1 --> F2
-
-F2 -- Yes --> F3 label "Yes"
-
-F2 -- No --> F4 label "No"
-
-F3 --> F_OUT
-
-F4 --> F_OUT
-
-F_OUT --> P1
-
-Now P1 --> P2
-
-P2 --> P3
-
-P3 -- Yes --> P4 label "Yes"
-
-P4 --> P2 (loop)
-
-P3 -- No --> P5 label "No"
-
-P5 --> P6
-
-P6 --> P7
-
-P7 --> P8
-
-P8 --> P9
-
-P9 --> P10
-
-P_OUT? Actually defined as P_OUT["Pipe OK"] but not connected? At end of subgraph S_PIPE, they have "P_OUT["Pipe OK"]". No edges to/from it except maybe later? Not used elsewhere. So it's isolated node.
-
-Now IR1 --> IR2
-
-IR2 -- Yes --> IR3 label "Yes"
-
-IR3 --> IR4
-
-IR4 --> IR_OK
-
-IR2 -- No --> IR_OK label "No"
-
-IR_OK --> END
-
-Now cross connections:
-
-ROUTER --> S_AUTH
-
-S_AUTH --> A_OK? Actually A_OK --> S_TENANT already.
-
-S_TENANT --> S_FLAG
-
-S_FLAG --> S_PIPE
-
-S_PIPE --> S_COMP
-
-S_COMP --> S_BILL
-
-S_BILL --> S_IR
-
-Also earlier: A_OK --> S_TENANT (already captured)
-
-Now also edges: C_OK --> B1 (captured)
-
-C4 --> IR3 (captured)
-
-B_OUT --> IR1 (captured)
-
-F_OUT --> P1 (captured)
-
-Now also maybe edges from S_TENANT to something else? Already S_TENANT --> S_FLAG.
-
-Now also edges from S_AUTH? Not needed.
-
-Now we need to include edges from subgraph to subgraph: ROUTER --> S_AUTH, S_TENANT --> S_FLAG, S_FLAG --> S_PIPE, S_PIPE --> S_COMP, S_COMP --> S_BILL, S_BILL --> S_IR.
-
-Also maybe edges from S_AUTH to something else? Not.
-
-Now we need to list nodes: all node IDs with label and shape.
-
-Also need to list subgraphs: id and title.
-
-Decisions: maybe list decision nodes (diamond) but schema includes "decisions": [] maybe we can leave empty.
-
-Summary: natural_language brief description, entry_nodes ["START"], exit_nodes ["END"].
-
-Now produce JSON.
-
-We must ensure shape mapping: [] rect, {} diamond, () circle, (()) double_circle, [[]] double_rect, >> subroutine.
-
-Check nodes with shape circle: START, END. Also maybe any node defined with parentheses like (label) but not present.
-
-All others rect or diamond.
-
-Now compile nodes list.
-
-Let's list nodes with id, label, shape, subgraphs: subgraphs field empty list for each node.
-
-Nodes:
-
-START label "Start" shape "circle"
-
-END label "End" shape "circle"
-
-ENTRY label "요청 수신" shape "rect"
-
-ROUTER label "도메인/경로 라우팅" shape "diamond"
-
-A1 label "OIDC 로그인" shape "rect"
-
-A2 label "토큰 발급" shape "rect"
-
-A3 label "스코프 파싱" shape "rect"
-
-A4 label "권한 충족?" shape "diamond"
-
-A5 label "403 반환" shape "rect"
-
-A_OK label "Auth OK" shape "rect"
-
-T1 label "도메인→테넌트ID" shape "rect"
-
-T2 label "존재?" shape "diamond"
-
-T_ERR label "404 테넌트 없음" shape "rect"
-
-T3 label "플랜 조회" shape "rect"
-
-T4 label "쿼터 초과?" shape "diamond"
-
-T_LIM label "429 쿼터 초과" shape "rect"
-
-T_OK label "Tenant OK" shape "rect"
-
-B1 label "사용량 누계" shape "rect"
-
-B2 label "청구 시점?" shape "diamond"
-
-B3 label "결제 시도" shape "rect"
-
-B4 label "승인?" shape "diamond"
-
-B5 label "재시도/대체수단" shape "rect"
-
-B6 label "청구 완료" shape "rect"
-
-B7 label "미수금 체크" shape "rect"
-
-B8 label "연체?" shape "diamond"
-
-B9 label "알림/제한" shape "rect"
-
-B_AR_OK label "정상" shape "rect"
-
-B_OUT label "Billing OK" shape "rect"
-
-F1 label "플래그 평가" shape "rect"
-
-F2 label "활성?" shape "diamond"
-
-F3 label "신규 경로" shape "rect"
-
-F4 label "기존 경로" shape "rect"
-
-F_OUT label "Flag OK" shape "rect"
-
-P1 label "API 이벤트" shape "rect"
-
-P2 label "큐 적재" shape "rect"
-
-P3 label "지연>2s?" shape "diamond"
-
-P4 label "Backpressure" shape "rect"
-
-P5 label "정제" shape "rect"
-
-P6 label "파싱/정규화" shape "rect"
-
-P7 label "특징 생성" shape "rect"
-
-P8 label "검증" shape "rect"
-
-P9 label "Hot KV" shape "rect"
-
-P10 label "Cold Lake" shape "rect"
-
-P_OUT label "Pipe OK" shape "rect"
-
-C1 label "PII 스캔" shape "rect"
-
-C2 label "마스킹/토큰
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    { "id": "START", "label": "Start", "shape": "rect", "subgraphs": [] },
+    { "id": "ENTRY", "label": "요청 수신", "shape": "rect", "subgraphs": [] },
+    { "id": "ROUTER", "label": "도메인/경로 라우팅", "shape": "diamond", "subgraphs": [] },
+    { "id": "END", "label": "End", "shape": "rect", "subgraphs": [] },
+    { "id": "A1", "label": "OIDC 로그인", "shape": "rect", "subgraphs": [] },
+    { "id": "A2", "label": "토큰 발급", "shape": "rect", "subgraphs": [] },
+    { "id": "A3", "label": "스코프 파싱", "shape": "rect", "subgraphs": [] },
+    { "id": "A4", "label": "권한 충족?", "shape": "diamond", "subgraphs": [] },
+    { "id": "A5", "label": "403 반환", "shape": "rect", "subgraphs": [] },
+    { "id": "A_OK", "label": "Auth OK", "shape": "rect", "subgraphs": [] },
+    { "id": "T1", "label": "도메인→테넌트ID", "shape": "rect", "subgraphs": [] },
+    { "id": "T2", "label": "존재?", "shape": "diamond", "subgraphs": [] },
+    { "id": "T_ERR", "label": "404 테넌트 없음", "shape": "rect", "subgraphs": [] },
+    { "id": "T3", "label": "플랜 조회", "shape": "rect", "subgraphs": [] },
+    { "id": "T4", "label": "쿼터 초과?", "shape": "diamond", "subgraphs": [] },
+    { "id": "T_LIM", "label": "429 쿼터 초과", "shape": "rect", "subgraphs": [] },
+    { "id": "T_OK", "label": "Tenant OK", "shape": "rect", "subgraphs": [] },
+    { "id": "B1", "label": "사용량 누계", "shape": "rect", "subgraphs": [] },
+    { "id": "B2", "label": "청구 시점?", "shape": "diamond", "subgraphs": [] },
+    { "id": "B3", "label": "결제 시도", "shape": "rect", "subgraphs": [] },
+    { "id": "B4", "label": "승인?", "shape": "diamond", "subgraphs": [] },
+    { "id": "B5", "label": "재시도/대체수단", "shape": "rect", "subgraphs": [] },
+    { "id": "B6", "label": "청구 완료", "shape": "rect", "subgraphs": [] },
+    { "id": "B7", "label": "미수금 체크", "shape": "rect", "subgraphs": [] },
+    { "id": "B8", "label": "연체?", "shape": "diamond", "subgraphs": [] },
+    { "id": "B9", "label": "알림/제한", "shape": "rect", "subgraphs": [] },
+    { "id": "B_AR_OK", "label": "정상", "shape": "rect", "subgraphs": [] },
+    { "id": "B_OUT", "label": "Billing OK", "shape": "rect", "subgraphs": [] },
+    { "id": "F1", "label": "플래그 평가", "shape": "rect", "subgraphs": [] },
+    { "id": "F2", "label": "활성?", "shape": "diamond", "subgraphs": [] },
+    { "id": "F3", "label": "신규 경로", "shape": "rect", "subgraphs": [] },
+    { "id": "F4", "label": "기존 경로", "shape": "rect", "subgraphs": [] },
+    { "id": "F_OUT", "label": "Flag OK", "shape": "rect", "subgraphs": [] },
+    { "id": "P1", "label": "API 이벤트", "shape": "rect", "subgraphs": [] },
+    { "id": "P2", "label": "큐 적재", "shape": "rect", "subgraphs": [] },
+    { "id": "P3", "label": "지연>2s?", "shape": "diamond", "subgraphs": [] },
+    { "id": "P4", "label": "Backpressure", "shape": "rect", "subgraphs": [] },
+    { "id": "P5", "label": "정제", "shape": "rect", "subgraphs": [] },
+    { "id": "P6", "label": "파싱/정규화", "shape": "rect", "subgraphs": [] },
+    { "id": "P7", "label": "특징 생성", "shape": "rect", "subgraphs": [] },
+    { "id": "P8", "label": "검증", "shape": "rect", "subgraphs": [] },
+    { "id": "P9", "label": "Hot KV", "shape": "rect", "subgraphs": [] },
+    { "id": "P10", "label": "Cold Lake", "shape": "rect", "subgraphs": [] },
+    { "id": "P_OUT", "label": "Pipe OK", "shape": "rect", "subgraphs": [] },
+    { "id": "C1", "label": "PII 스캔", "shape": "rect", "subgraphs": [] },
+    { "id": "C2", "label": "마스킹/토큰화", "shape": "rect", "subgraphs": [] },
+    { "id": "C3", "label": "위반?", "shape": "diamond", "subgraphs": [] },
+    { "id": "C4", "label": "차단/알림", "shape": "rect", "subgraphs": [] },
+    { "id": "C5", "label": "정책 업데이트", "shape": "rect", "subgraphs": [] },
+    { "id": "C_OK", "label": "Compliant", "shape": "rect", "subgraphs": [] },
+    { "id": "IR1", "label": "오류율 모니터", "shape": "rect", "subgraphs": [] },
+    { "id": "IR2", "label": "임계 초과?", "shape": "diamond", "subgraphs": [] },
+    { "id": "IR3", "label": "온콜 호출", "shape": "rect", "subgraphs": [] },
+    { "id": "IR4", "label": "대응/롤백", "shape": "rect", "subgraphs": [] },
+    { "id": "IR_OK", "label": "정상", "shape": "rect", "subgraphs": [] }
+  ],
+  "edges": [
+    { "source": "START", "target": "ENTRY", "type": "-->", "label": null },
+    { "source": "ENTRY", "target": "ROUTER", "type": "-->", "label": null },
+    { "source": "ROUTER", "target": "S_AUTH", "type": "-->", "label": null },
+    { "source": "A1", "target": "A2", "type": "-->", "label": null },
+    { "source": "A2", "target": "A3", "type": "-->", "label": null },
+    { "source": "A3", "target": "A4", "type": "-->", "label": null },
+    { "source": "A4", "target": "A5", "type": "-->", "label": null },
+    { "source": "A4", "target": "A_OK", "type": "-->", "label": null },
+    { "source": "A5", "target": "END", "type": "-->", "label": null },
+    { "source": "A_OK", "target": "S_TENANT", "type": "-->", "label": null },
+    { "source": "S_TENANT", "target": "S_FLAG", "type": "-->", "label": null },
+    { "source": "S_FLAG", "target": "S_PIPE", "type": "-->", "label": null },
+    { "source": "S_PIPE", "target": "S_COMP", "type": "-->", "label": null },
+    { "source": "S_COMP", "target": "S_BILL", "type": "-->", "label": null },
+    { "source": "S_BILL", "target": "S_IR", "type": "-->", "label": null },
+    { "source": "T1", "target": "T2", "type": "-->", "label": null },
+    { "source": "T2", "target": "T_ERR", "type": "-->", "label": null },
+    { "source": "T2", "target": "T3", "type": "-->", "label": null },
+    { "source": "T3", "target": "T4", "type": "-->", "label": null },
+    { "source": "T4", "target": "T_LIM", "type": "-->", "label": null },
+    { "source": "T4", "target": "T_OK", "type": "-->", "label": null },
+    { "source": "T_ERR", "target": "END", "type": "-->", "label": null },
+    { "source": "T_LIM", "target": "END", "type": "-->", "label": null },
+    { "source": "F1", "target": "F2", "type": "-->", "label": null },
+    { "source": "F2", "target": "F3", "type": "-->", "label": null },
+    { "source": "F2", "target": "F4", "type": "-->", "label": null },
+    { "source": "F3", "target": "F_OUT", "type": "-->", "label": null },
+    { "source": "F4", "target": "F_OUT", "type": "-->", "label": null },
+    { "source": "F_OUT", "target": "P1", "type": "-->", "label": null },
+    { "source": "P1", "target": "P2", "type": "-->", "label": null },
+    { "source": "P2", "target": "P3", "type": "-->", "label": null },
+    { "source": "P3", "target": "P4", "type": "-->", "label": null },
+    { "source": "P4", "target": "P2", "type": "-->", "label": null },
+    { "source": "P3", "target": "P5", "type": "-->", "label": null },
+    { "source": "P5", "target": "P6", "type": "-->", "label": null },
+    { "source": "P6", "target": "P7", "type": "-->", "label": null },
+    { "source": "P7", "target": "P8", "type": "-->", "label": null },
+    { "source": "P8", "target": "P9", "type": "-->", "label": null },
+    { "source": "P9", "target": "P10", "type": "-->", "label": null },
+    { "source": "C1", "target": "C2", "type": "-->", "label": null },
+    { "source": "C2", "target": "C3", "type": "-->", "label": null },
+    { "source": "C3", "target": "C4", "type": "-->", "label": null },
+    { "source": "C4", "target": "C5", "type": "-->", "label": null },
+    { "source": "C5", "target": "C1", "type": "-->", "label": null },
+    { "source": "C3", "target": "C_OK", "type": "-->", "label": null },
+    { "source": "C_OK", "target": "B1", "type": "-->", "label": null },
+    { "source": "B1", "target": "B2", "type": "-->", "label": null },
+    { "source": "B2", "target": "B3", "type": "-->", "label": null },
+    { "source": "B2", "target": "B1", "type": "-->", "label": null },
+    { "source": "B3", "target": "B4", "type": "-->", "label": null },
+    { "source": "B4", "target": "B5", "type": "-->", "label": null },
+    { "source": "B5", "target": "B3", "type": "-->", "label": null },
+    { "source": "B4", "target": "B6", "type": "-->", "label": null },
+    { "source": "B6", "target": "B7", "type": "-->", "label": null },
+    { "source": "B7", "target": "B8", "type": "-->", "label": null },
+    { "source": "B8", "target": "B9", "type": "-->", "label": null },
+    { "source": "B9", "target": "B7", "type": "-->", "label": null },
+    { "source": "B8", "target": "B_AR_OK", "type": "-->", "label": null },
+    { "source": "B_AR_OK", "target": "B_OUT", "type": "-->", "label": null },
+    { "source": "B_OUT", "target

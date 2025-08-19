@@ -6,31 +6,31 @@
       "id": "N1",
       "label": "A",
       "shape": "rect",
-      "subgraphs": ["S1"]
+      "subgraphs": []
     },
     {
       "id": "N2",
       "label": "B",
       "shape": "rect",
-      "subgraphs": ["S1"]
+      "subgraphs": []
     },
     {
       "id": "N3",
       "label": "C",
       "shape": "rect",
-      "subgraphs": ["S2"]
+      "subgraphs": []
     },
     {
       "id": "N4",
       "label": "D",
       "shape": "rect",
-      "subgraphs": ["S2"]
+      "subgraphs": []
     },
     {
       "id": "N5",
       "label": "E",
       "shape": "rect",
-      "subgraphs": ["S2"]
+      "subgraphs": []
     }
   ],
   "edges": [
@@ -101,8 +101,12 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "A flowchart with two subgraphs linking nodes A, B, C, D, and E as defined.",
-    "entry_nodes": [],
-    "exit_nodes": []
+    "natural_language": "Flowchart with two subgraphs and five nodes showing connections.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
   }
 }

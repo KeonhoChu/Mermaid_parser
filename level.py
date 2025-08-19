@@ -6,7 +6,7 @@ from typing import Dict, Set, List, Tuple, Iterable
 from pathlib import Path
 
 # =========================
-# fin_new.py -- 250818 17:02
+# level.py -- 새로운 레벨 기준 250819.09:53
 # =========================
 
 @dataclass
@@ -394,92 +394,85 @@ def compute_metrics(parsed: Parsed):
     return metrics, aux
 
 # =========================
-# 점수/레벨 산정
+# 새로운 레벨 판정 기준
 # =========================
 
-CAPS = {
-    "N": 30, "E": 40, "DEPTH": 10, "BR": 8, "JN": 8, "X_LINK": 5,
-    "SUBGRAPH_COUNT": 4, "SUBGRAPH_DEPTH_max": 3, "DEC": 6, "ELR": 1.0, 
-    "EDGE_TYPE_DIVERSITY": 3, "STYLE_LINES": 6
-}
-
-WEIGHTS = {
-    "N": 0.07, "E": 0.07, "DEPTH": 0.16, "BR": 0.10, "JN": 0.06, "X_LINK": 0.14,
-    "SUBGRAPH_COUNT": 0.05, "SUBGRAPH_DEPTH_max": 0.05, "DEC": 0.08, "ELR": 0.04, 
-    "EDGE_TYPE_DIVERSITY": 0.05, "STYLE_LINES": 0.08
-}
-
-def normalize(metrics):
-    """지표 정규화"""
-    f = {}
-    for k, cap in CAPS.items():
-        x = metrics[k]
-        if k == "ELR":
-            f[k] = max(0.0, min(float(x), 1.0))
-        else:
-            f[k] = min(x / cap, 1.0)
-    return f
-
-def score(metrics):
-    """점수 계산"""
-    f = normalize(metrics)
-    base = sum(WEIGHTS[k] * f[k] for k in WEIGHTS) * 100.0
+def level_from_metrics(metrics: dict) -> Tuple[str, List[str]]:
+    """범용적인 기준에 따른 레벨 판정 - 2개 이상 해당하면 레벨 부여"""
+    N = metrics["N"]
+    E = metrics["E"] 
+    S = metrics["SUBGRAPH_COUNT"]
     
-    booster = 0.0
-    if metrics["has_cycle"]:
-        booster += 6.0
-        if metrics["N"] <= 6:
-            booster += 2.0
+    explanations = []
     
-    if metrics["PAR"] >= 4:
-        booster += 6.0
-    elif metrics["PAR"] >= 2:
-        booster += 3.0
+    # L1 조건: 매우 단순 (N<3, E<3, S=0)
+    l1_conditions = []
+    if N < 3:
+        l1_conditions.append("N<3")
+    if E < 3:
+        l1_conditions.append("E<3")
+    if S == 0:
+        l1_conditions.append("S=0")
     
-    final = min(base + booster, 100.0)
-    return {
-        "base": round(base, 2), 
-        "booster": round(booster, 2), 
-        "final": round(final, 2)
-    }, f
-
-def level_from_score(S, m):
-    """점수로부터 레벨 결정"""
-    if S < 20:
-        lvl = "L1"
-    elif S < 40:
-        lvl = "L2"
-    elif S < 60:
-        lvl = "L3"
-    elif S < 80:
-        lvl = "L4"
-    else:
-        lvl = "L5"
+    if len(l1_conditions) >= 2:
+        explanations.append(f"L1: {', '.join(l1_conditions)} (2+ conditions met)")
+        return "L1", explanations
     
-    overrides = []
+    # L2 조건: 단순 (N<5, E<5, S<3)
+    l2_conditions = []
+    if N < 5:
+        l2_conditions.append("N<5")
+    if E < 5:
+        l2_conditions.append("E<5")
+    if S < 3:
+        l2_conditions.append("S<3")
     
-    # 규칙 A: 사이클이 있고 노드가 많으면 최소 L4
-    if m["has_cycle"] and m["N"] >= 8 and lvl in ("L1", "L2", "L3"):
-        overrides.append("A: cycle+N>=8 → min L4")
-        lvl = "L4"
+    if len(l2_conditions) >= 2:
+        explanations.append(f"L2: {', '.join(l2_conditions)} (2+ conditions met)")
+        return "L2", explanations
     
-    # 규칙 B: 교차링크와 서브그래프가 많으면 최소 L4
-    if m["X_LINK"] >= 2 and m["SUBGRAPH_COUNT"] >= 2 and lvl in ("L1", "L2", "L3"):
-        overrides.append("B: X_LINK>=2 & SUBGRAPH>=2 → min L4")
-        lvl = "L4"
+    # L3 조건: 보통 (N<7, E<7, S<5)
+    l3_conditions = []
+    if N < 7:
+        l3_conditions.append("N<7")
+    if E < 7:
+        l3_conditions.append("E<7")
+    if S < 5:
+        l3_conditions.append("S<5")
     
-    # 규칙 C: 서브그래프 깊이와 분기가 많으면 최소 L4
-    if m["SUBGRAPH_DEPTH_max"] >= 3 and m["BR"] >= 3 and lvl in ("L1", "L2", "L3"):
-        overrides.append("C: SUBGRAPH_DEPTH>=3 & BR>=3 → min L4")
-        lvl = "L4"
+    if len(l3_conditions) >= 2:
+        explanations.append(f"L3: {', '.join(l3_conditions)} (2+ conditions met)")
+        return "L3", explanations
     
-    # 규칙 D: A와 B 조건을 모두 만족하면 최소 L5
-    if (m["has_cycle"] and m["N"] >= 8 and m["X_LINK"] >= 2 and 
-        m["SUBGRAPH_COUNT"] >= 2 and lvl != "L5"):
-        overrides.append("D: (A&B) → min L5")
-        lvl = "L5"
+    # L4 조건: 복잡 (N<9, E<9, S<7)
+    l4_conditions = []
+    if N < 9:
+        l4_conditions.append("N<9")
+    if E < 9:
+        l4_conditions.append("E<9")
+    if S < 7:
+        l4_conditions.append("S<7")
     
-    return lvl, overrides
+    if len(l4_conditions) >= 2:
+        explanations.append(f"L4: {', '.join(l4_conditions)} (2+ conditions met)")
+        return "L4", explanations
+    
+    # L5 조건: 매우 복잡 (N<11, E<11, S<9)
+    l5_conditions = []
+    if N < 11:
+        l5_conditions.append("N<11")
+    if E < 11:
+        l5_conditions.append("E<11")
+    if S < 9:
+        l5_conditions.append("S<9")
+    
+    if len(l5_conditions) >= 2:
+        explanations.append(f"L5: {', '.join(l5_conditions)} (2+ conditions met)")
+        return "L5", explanations
+    
+    # 모든 조건을 만족하지 않으면 L6 (극도로 복잡)
+    explanations.append("L6: Extremely complex - no level criteria met with 2+ conditions")
+    return "L6", explanations
 
 def analyze_mermaid(text: str) -> dict:
     """Mermaid 플로우차트 분석"""
@@ -494,26 +487,20 @@ def analyze_mermaid(text: str) -> dict:
     trace.append(f"Edge types: {list(parsed.edge_types)}")
     
     metrics, aux = compute_metrics(parsed)
-    s, f = score(metrics)
-    lvl, ov = level_from_score(s["final"], metrics)
+    lvl, explanations = level_from_metrics(metrics)
     
     if metrics["has_cycle"]:
         trace.append(f"Cycle detected: SCC(size>=2) {metrics['SCC_count_ge2']}")
     
-    trace.append(f"DEPTH={metrics['DEPTH']}")
-    trace.append(f"X_LINK={metrics['X_LINK']}")
-    trace.append(f"Subgraph count={metrics['SUBGRAPH_COUNT']}, max depth={metrics['SUBGRAPH_DEPTH_max']}")
-    trace.append(f"BR={metrics['BR']}, JN={metrics['JN']}, PAR={metrics['PAR']}")
+    trace.append(f"N={metrics['N']}, E={metrics['E']}, S={metrics['SUBGRAPH_COUNT']}")
+    trace.append(f"Level criteria: {'; '.join(explanations)}")
     
     return {
         "ok": True,
         "reason": "parsed",
         "metrics": metrics,
-        "normalized": f,
-        "weights": WEIGHTS,
-        "score": s,
         "level": lvl,
-        "overrides": {"applied": ov, "explanations": ov},
+        "level_explanations": explanations,
         "trace": trace,
         "auxiliary": {
             "subgraph_definitions": list(parsed.subgraph_definitions),
@@ -531,9 +518,7 @@ def analyze_batch(items: Iterable[Tuple[str, str]]) -> List[dict]:
             "name": name,
             "ok": r.get("ok", False),
             "level": r.get("level"),
-            "score_final": r.get("score", {}).get("final"),
-            "score_base": r.get("score", {}).get("base"),
-            "score_booster": r.get("score", {}).get("booster"),
+            "level_explanations": r.get("level_explanations", [])
         }
         
         if r.get("ok"):
@@ -595,32 +580,35 @@ def read_file_safe(file_path: Path) -> str:
         print(f"File read error ({file_path}): {e}")
         return ""
 
-def save_results_to_csv(results: List[dict], output_file: str = "mermaid_analysis_results_perfect.csv"):
+def save_results_to_csv(results: List[dict], output_file: str = "mermaid_level_analysis_results.csv"):
     """분석 결과를 CSV 파일로 저장"""
     if not results:
         print("No results to save.")
         return
     
-    fieldnames = [
-        "name", "ok", "level", "score_final", "score_base", "score_booster",
-        "N", "E", "DEPTH", "BR", "JN", "X_LINK", 
-        "SUBGRAPH_COUNT", "SUBGRAPH_DEPTH_max",
-        "DEC", "ELR", "EDGE_TYPE_DIVERSITY", "STYLE_LINES", 
-        "has_cycle", "PAR"
-    ]
+    fieldnames = ["name", "N", "E", "SUBGRAPH_COUNT", "level", "explanations"]
     
     try:
         with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(results)
+            for row in results:
+                simplified_row = {
+                    "name": row.get("name"),
+                    "N": row.get("N"),
+                    "E": row.get("E"),
+                    "SUBGRAPH_COUNT": row.get("SUBGRAPH_COUNT"),
+                    "level": row.get("level"),
+                    "explanations": "; ".join(row.get("level_explanations", [])) if isinstance(row.get("level_explanations"), list) else row.get("level_explanations", "")
+                }
+                writer.writerow(simplified_row)
         print(f"Analysis results saved to '{output_file}' file.")
     except Exception as e:
         print(f"CSV file save error: {e}")
 
 def main():
     """메인 함수: mermaid 폴더의 모든 .mmd 파일을 분석하여 CSV로 저장"""
-    print("100% Accurate Mermaid Difficulty Analyzer Starting...")
+    print("New Level Criteria Mermaid Analyzer Starting...")
     
     # mermaid 디렉토리에서 .mmd 파일들 찾기
     mmd_files = find_mmd_files()
@@ -666,14 +654,6 @@ def main():
         print(f"\nLevel distribution:")
         for level in sorted(level_counts.keys()):
             print(f"  {level}: {level_counts[level]} files")
-    
-    # 상위 점수 파일들
-    successful_results = [r for r in results if r["ok"] and r["score_final"] is not None]
-    if successful_results:
-        successful_results.sort(key=lambda x: x["score_final"], reverse=True)
-        print(f"\nTop 5 files (by score):")
-        for i, r in enumerate(successful_results[:5], 1):
-            print(f"  {i}. {r['name']}: {r['level']} (score: {r['score_final']})")
     
     # 실패한 파일들
     failed_results = [r for r in results if not r["ok"]]

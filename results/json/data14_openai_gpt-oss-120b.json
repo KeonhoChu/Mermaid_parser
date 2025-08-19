@@ -1,14 +1,314 @@
 {
-  "ok": false,
+  "ok": true,
   "warnings": [
-    "모델이 JSON 대신 분석 텍스트를 생성했습니다"
+    "JSON 추출 후 파싱 실패: Expecting ',' delimiter: line 220 column 6 (char 4100)",
+    "구문 수정 후 파싱 실패: Expecting ',' delimiter: line 220 column 6 (char 4100)",
+    "잘린 JSON 복구 후 파싱 성공"
   ],
-  "nodes": [],
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "HUB",
+      "label": "워크로드 라우팅",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D1",
+      "label": "원천 수집",
+      "shape": "rect",
+      "subgraphs": [
+        "S_DATA"
+      ]
+    },
+    {
+      "id": "D2",
+      "label": "메타데이터 등록",
+      "shape": "rect",
+      "subgraphs": [
+        "S_DATA"
+      ]
+    },
+    {
+      "id": "D3",
+      "label": "품질 OK?",
+      "shape": "diamond",
+      "subgraphs": [
+        "S_DATA"
+      ]
+    },
+    {
+      "id": "D4",
+      "label": "정제/라벨 수정",
+      "shape": "rect",
+      "subgraphs": [
+        "S_DATA"
+      ]
+    },
+    {
+      "id": "D5",
+      "label": "버전 스냅샷",
+      "shape": "double_circle",
+      "subgraphs": [
+        "S_DATA"
+      ]
+    },
+    {
+      "id": "E1",
+      "label": "전처리 파이프",
+      "shape": "rect",
+      "subgraphs": [
+        "S_EXP",
+        "S_RUN"
+      ]
+    },
+    {
+      "id": "E2",
+      "label": "학습",
+      "shape": "rect",
+      "subgraphs": [
+        "S_EXP",
+        "S_RUN"
+      ]
+    },
+    {
+      "id": "E3",
+      "label": "평가",
+      "shape": "rect",
+      "subgraphs": [
+        "S_EXP",
+        "S_RUN"
+      ]
+    },
+    {
+      "id": "E4",
+      "label": "목표 달성?",
+      "shape": "diamond",
+      "subgraphs": [
+        "S_EXP",
+        "S_RUN"
+      ]
+    },
+    {
+      "id": "E_OK",
+      "label": "모델 후보",
+      "shape": "rect",
+      "subgraphs": [
+        "S_EXP",
+        "S_RUN"
+      ]
+    },
+    {
+      "id": "ET1",
+      "label": "파라미터/메트릭 로깅",
+      "shape": "rect",
+      "subgraphs": [
+        "S_EXP",
+        "S_TRACK"
+      ]
+    },
+    {
+      "id": "ET2",
+      "label": "아티팩트 저장소",
+      "shape": "rect",
+      "subgraphs": [
+        "S_EXP",
+        "S_TRACK"
+      ]
+    },
+    {
+      "id": "C1",
+      "label": "큐 등록",
+      "shape": "rect",
+      "subgraphs": [
+        "S_COMP",
+        "S_SCH"
+      ]
+    },
+    {
+      "id": "C2",
+      "label": "GPU 가용?",
+      "shape": "diamond",
+      "subgraphs": [
+        "S_COMP",
+        "S_SCH"
+      ]
+    },
+    {
+      "id": "C3",
+      "label": "대기/프리엠션",
+      "shape": "rect",
+      "subgraphs": [
+        "S_COMP",
+        "S_SCH"
+      ]
+    },
+    {
+      "id": "C4",
+      "label": "노드 할당",
+      "shape": "rect",
+      "subgraphs": [
+        "S_COMP",
+        "S_SCH"
+      ]
+    },
+    {
+      "id": "C5",
+      "label": "리소스 모니터",
+      "shape": "rect",
+      "subgraphs": [
+        "S_COMP",
+        "S_MON"
+      ]
+    },
+    {
+      "id": "C6",
+      "label": "오류/OOM?",
+      "shape": "diamond",
+      "subgraphs": [
+        "S_COMP",
+        "S_MON"
+      ]
+    },
+    {
+      "id": "C7",
+      "label": "자동 중단/재시작",
+      "shape": "rect",
+      "subgraphs": [
+        "S_COMP",
+        "S_MON"
+      ]
+    },
+    {
+      "id": "C_OK",
+      "label": "정상",
+      "shape": "rect",
+      "subgraphs": [
+        "S_COMP",
+        "S_MON"
+      ]
+    },
+    {
+      "id": "R1",
+      "label": "프로토콜 제출",
+      "shape": "rect",
+      "subgraphs": [
+        "S_IRB"
+      ]
+    },
+    {
+      "id": "R2",
+      "label": "보완 필요?",
+      "shape": "diamond",
+      "subgraphs": [
+        "S_IRB"
+      ]
+    },
+    {
+      "id": "R3",
+      "label": "수정 반영",
+      "shape": "rect",
+      "subgraphs": [
+        "S_IRB"
+      ]
+    },
+    {
+      "id": "R_OK",
+      "label": "승인",
+      "shape": "rect",
+      "subgraphs": [
+        "S_IRB"
+      ]
+    },
+    {
+      "id": "P1",
+      "label": "원고 초안",
+      "shape": "rect",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "실험표 정리",
+      "shape": "rect",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "그림/부록 생성",
+      "shape": "rect",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P4",
+      "label": "저널 포맷 충족?",
+      "shape": "diamond",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P5",
+      "label": "포맷 수정",
+      "shape": "rect",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P6",
+      "label": "투고",
+      "shape": "rect",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P7",
+      "label": "리뷰 결과",
+      "shape": "diamond",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P8",
+      "label": "대폭수정",
+      "shape": "rect",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    },
+    {
+      "id": "P9",
+      "label": "경미수정",
+      "shape": "rect",
+      "subgraphs": [
+        "S_PUB"
+      ]
+    }
+  ],
   "edges": [],
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "파싱 실패: 텍스트 분석 응답",
+    "natural_language": "자동 생성된 요약",
     "entry_nodes": [],
     "exit_nodes": []
   }

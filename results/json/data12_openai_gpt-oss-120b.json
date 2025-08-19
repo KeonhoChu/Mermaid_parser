@@ -1,4 +1,336 @@
 {
-  "error": "JSON 파싱 실패: Expecting value: line 1 column 1 (char 0)",
-  "raw_response": "{\n  \"ok\": true,\n  \"warnings\": [],\n  \"nodes\": [\n    {\n      \"id\": \"START\",\n      \"label\": \"Start\",\n      \"shape\": \"circle\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"INJ\",\n      \"label\": \"데이터 주입\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"VAL\",\n      \"label\": \"스키마 유효?\",\n      \"shape\": \"diamond\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"ROUTE\",\n      \"label\": \"배치/실시간?\",\n      \"shape\": \"diamond\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"ERR\",\n      \"label\": \"보정 파이프라인\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"E1\",\n      \"label\": \"추출\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"E2\",\n      \"label\": \"정제\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"E3\",\n      \"label\": \"결측>5%?\",\n      \"shape\": \"diamond\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"E4\",\n      \"label\": \"대체/삭제\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"E5\",\n      \"label\": \"스케일링\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"OUT1\",\n      \"label\": \"Staging\",\n      \"shape\": \"circle\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"S1\",\n      \"label\": \"Kafka\",\n      \"shape\": \"double_rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"S2\",\n      \"label\": \"Window Agg\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"S3\",\n      \"label\": \"지연>3s?\",\n      \"shape\": \"diamond\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"S4\",\n      \"label\": \"Backpressure\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"OUT2\",\n      \"label\": \"Feature Store\",\n      \"shape\": \"circle\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"TRAIN\",\n      \"label\": \"모델 학습\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"EVAL\",\n      \"label\": \"AUC ≥ 0.88?\",\n      \"shape\": \"diamond\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"DEPLOY\",\n      \"label\": \"배포\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"MON\",\n      \"label\": \"모니터링\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"ROLL\",\n      \"label\": \"롤백\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"END\",\n      \"label\": \"End\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    },\n    {\n      \"id\": \"TUNE\",\n      \"label\": \"하이퍼파라미터 탐색\",\n      \"shape\": \"rect\",\n      \"subgraphs\": []\n    }\n  ],\n  \"edges\": [\n    {\n      \"source\": \"START\",\n      \"target\": \"INJ\",\n      \"type\": \"-->\",\n      \"label\": null\n    },\n    {\n      \"source\": \"INJ\",\n      \"target\": \"VAL\",\n      \"type\": \"-->\",\n      \"label\": null\n    },\n    {\n      \"source\": \"VAL\",\n      \"target\": \"ROUTE\",\n      \"type\": \"-->\",\n      \"label\": null\n    },\n    {\n      \"source\": \"VAL\",\n      \"target\": \"ERR\",\n      \"type\": \"-->\",\n      \"label\": null\n    },\n    {\n      \"source\": \"ERR\",\n      \"target\": \"VAL"
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "INJ",
+      "label": "데이터 주입",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "VAL",
+      "label": "스키마 유효?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "ROUTE",
+      "label": "배치/실시간?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "ERR",
+      "label": "보정 파이프라인",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E1",
+      "label": "추출",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E2",
+      "label": "정제",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E3",
+      "label": "결측>5%?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "E4",
+      "label": "대체/삭제",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E5",
+      "label": "스케일링",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OUT1",
+      "label": "Staging",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "S1",
+      "label": "Kafka",
+      "shape": "double_rect",
+      "subgraphs": []
+    },
+    {
+      "id": "S2",
+      "label": "Window Agg",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "S3",
+      "label": "지연>3s?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "S4",
+      "label": "Backpressure",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OUT2",
+      "label": "Feature Store",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "TRAIN",
+      "label": "모델 학습",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "EVAL",
+      "label": "AUC ≥ 0.88?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "DEPLOY",
+      "label": "배포",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "TUNE",
+      "label": "하이퍼파라미터 탐색",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "MON",
+      "label": "모니터링",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ROLL",
+      "label": "롤백",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "circle",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "START",
+      "target": "INJ",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "INJ",
+      "target": "VAL",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "VAL",
+      "target": "ROUTE",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "VAL",
+      "target": "ERR",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "ERR",
+      "target": "VAL",
+      "type": "-->",
+      "label": "재시도"
+    },
+    {
+      "source": "ROUTE",
+      "target": "ETL",
+      "type": "-->",
+      "label": "배치"
+    },
+    {
+      "source": "ROUTE",
+      "target": "STREAM",
+      "type": "-->",
+      "label": "실시간"
+    },
+    {
+      "source": "E1",
+      "target": "E2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E2",
+      "target": "E3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E3",
+      "target": "E4",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "E3",
+      "target": "E5",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "E4",
+      "target": "E5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E5",
+      "target": "OUT1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S1",
+      "target": "S2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S2",
+      "target": "S3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S3",
+      "target": "S4",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "S4",
+      "target": "S2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S3",
+      "target": "OUT2",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "OUT1",
+      "target": "TRAIN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "OUT2",
+      "target": "TRAIN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "TRAIN",
+      "target": "EVAL",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "EVAL",
+      "target": "DEPLOY",
+      "type": "-->",
+      "label": "예"
+    },
+    {
+      "source": "EVAL",
+      "target": "TUNE",
+      "type": "-->",
+      "label": "아니오"
+    },
+    {
+      "source": "TUNE",
+      "target": "TRAIN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "DEPLOY",
+      "target": "MON",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "MON",
+      "target": "ROLL",
+      "type": "-->",
+      "label": "drift>0.1"
+    },
+    {
+      "source": "ROLL",
+      "target": "DEPLOY",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "MON",
+      "target": "END",
+      "type": "-->",
+      "label": "정상"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "ETL",
+      "title": "ETL 파이프라인"
+    },
+    {
+      "id": "STREAM",
+      "title": "실시간 파이프라인"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "The diagram describes a data pipeline that injects data, validates the schema, routes to batch ETL or real-time streaming, processes the data, trains a model, evaluates it, and if satisfactory deploys it with monitoring and rollback, otherwise tunes and retrains.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
 }

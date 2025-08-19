@@ -1,0 +1,5 @@
+name,N,E,SUBGRAPH_COUNT,level,explanations
+real01,6,7,2,L3,"L3: N<7, S<5 (2+ conditions met)"
+real02,4,3,0,L2,"L2: N<5, E<5, S<3 (2+ conditions met)"
+real03,3,1,0,L1,"L1: E<3, S=0 (2+ conditions met)"
+real04,0,3,4,L2,"L2: N<5, E<5 (2+ conditions met)"
