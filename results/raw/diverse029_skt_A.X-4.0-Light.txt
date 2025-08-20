@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Request", "label": "API Request", "shape": "rect"},
+    {"id": "Validate", "label": "Input Validation", "shape": "rect"},
+    {"id": "Auth", "label": "Authorization", "shape": "rect"},
+    {"id": "Business", "label": "Business Logic", "shape": "rect"},
+    {"id": "Data", "label": "Data Layer", "shape": "rect"},
+    {"id": "Response", "label": "API Response", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Request", "target": "Validate", "type": "-->"},
+    {"source": "Validate", "target": "Auth", "type": "-->"},
+    {"source": "Auth", "target": "Business", "type": "-->"},
+    {"source": "Business", "target": "Data", "type": "-->"},
+    {"source": "Data", "target": "Response", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describes API request processing flow."}
+}

@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "C",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "D",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": "label6"
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": "process6"
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": "result6"
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 B로, B에서 C로, C에서 D로 진행되는 순차 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

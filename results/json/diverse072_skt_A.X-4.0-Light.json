@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Investment",
+      "label": "Investment Account",
+      "shape": "rect"
+    },
+    {
+      "id": "Portfolio",
+      "label": "Build Portfolio",
+      "shape": "rect"
+    },
+    {
+      "id": "Trade",
+      "label": "Execute Trades",
+      "shape": "rect"
+    },
+    {
+      "id": "Monitor",
+      "label": "Monitor Performance",
+      "shape": "rect"
+    },
+    {
+      "id": "Rebalance",
+      "label": "Portfolio Rebalancing",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Investment",
+      "target": "Portfolio",
+      "type": "-->"
+    },
+    {
+      "source": "Portfolio",
+      "target": "Trade",
+      "type": "-->"
+    },
+    {
+      "source": "Trade",
+      "target": "Monitor",
+      "type": "-->"
+    },
+    {
+      "source": "Monitor",
+      "target": "Rebalance",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of investment process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

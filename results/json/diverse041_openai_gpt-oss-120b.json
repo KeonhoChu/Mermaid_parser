@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Player",
+      "label": "Player",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Character",
+      "label": "Create Character",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Tutorial",
+      "label": "Play Tutorial",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "World",
+      "label": "Enter Game World",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Quest",
+      "label": "Accept Quest",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Combat",
+      "label": "Combat System",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Reward",
+      "label": "Earn Reward",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Player",
+      "target": "Character",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Character",
+      "target": "Tutorial",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Tutorial",
+      "target": "World",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "World",
+      "target": "Quest",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Quest",
+      "target": "Combat",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Combat",
+      "target": "Reward",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "플레이어가 캐릭터를 생성하고 튜토리얼을 진행한 뒤 게임 세계에 진입하여 퀘스트를 받아 전투를 하고 보상을 얻는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

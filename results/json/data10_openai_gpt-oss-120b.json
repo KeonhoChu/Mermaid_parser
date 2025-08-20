@@ -100,7 +100,7 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "A flowchart showing requirements, design, implementation, testing, deployment, and operation with feedback loops.",
+    "natural_language": "요구사항에서 설계, 구현, 테스트, 배포, 운영을 순환하며 연결된 흐름을 나타낸다.",
     "entry_nodes": [],
     "exit_nodes": []
   }

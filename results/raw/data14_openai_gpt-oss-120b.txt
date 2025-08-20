@@ -2,221 +2,170 @@
   "ok": true,
   "warnings": [],
   "nodes": [
-    {
-      "id": "START",
-      "label": "Start",
-      "shape": "rect",
-      "subgraphs": []
-    },
-    {
-      "id": "HUB",
-      "label": "워크로드 라우팅",
-      "shape": "diamond",
-      "subgraphs": []
-    },
-    {
-      "id": "END",
-      "label": "End",
-      "shape": "rect",
-      "subgraphs": []
-    },
-    {
-      "id": "D1",
-      "label": "원천 수집",
-      "shape": "rect",
-      "subgraphs": ["S_DATA"]
-    },
-    {
-      "id": "D2",
-      "label": "메타데이터 등록",
-      "shape": "rect",
-      "subgraphs": ["S_DATA"]
-    },
-    {
-      "id": "D3",
-      "label": "품질 OK?",
-      "shape": "diamond",
-      "subgraphs": ["S_DATA"]
-    },
-    {
-      "id": "D4",
-      "label": "정제/라벨 수정",
-      "shape": "rect",
-      "subgraphs": ["S_DATA"]
-    },
-    {
-      "id": "D5",
-      "label": "버전 스냅샷",
-      "shape": "double_circle",
-      "subgraphs": ["S_DATA"]
-    },
-    {
-      "id": "E1",
-      "label": "전처리 파이프",
-      "shape": "rect",
-      "subgraphs": ["S_EXP", "S_RUN"]
-    },
-    {
-      "id": "E2",
-      "label": "학습",
-      "shape": "rect",
-      "subgraphs": ["S_EXP", "S_RUN"]
-    },
-    {
-      "id": "E3",
-      "label": "평가",
-      "shape": "rect",
-      "subgraphs": ["S_EXP", "S_RUN"]
-    },
-    {
-      "id": "E4",
-      "label": "목표 달성?",
-      "shape": "diamond",
-      "subgraphs": ["S_EXP", "S_RUN"]
-    },
-    {
-      "id": "E_OK",
-      "label": "모델 후보",
-      "shape": "rect",
-      "subgraphs": ["S_EXP", "S_RUN"]
-    },
-    {
-      "id": "ET1",
-      "label": "파라미터/메트릭 로깅",
-      "shape": "rect",
-      "subgraphs": ["S_EXP", "S_TRACK"]
-    },
-    {
-      "id": "ET2",
-      "label": "아티팩트 저장소",
-      "shape": "rect",
-      "subgraphs": ["S_EXP", "S_TRACK"]
-    },
-    {
-      "id": "C1",
-      "label": "큐 등록",
-      "shape": "rect",
-      "subgraphs": ["S_COMP", "S_SCH"]
-    },
-    {
-      "id": "C2",
-      "label": "GPU 가용?",
-      "shape": "diamond",
-      "subgraphs": ["S_COMP", "S_SCH"]
-    },
-    {
-      "id": "C3",
-      "label": "대기/프리엠션",
-      "shape": "rect",
-      "subgraphs": ["S_COMP", "S_SCH"]
-    },
-    {
-      "id": "C4",
-      "label": "노드 할당",
-      "shape": "rect",
-      "subgraphs": ["S_COMP", "S_SCH"]
-    },
-    {
-      "id": "C5",
-      "label": "리소스 모니터",
-      "shape": "rect",
-      "subgraphs": ["S_COMP", "S_MON"]
-    },
-    {
-      "id": "C6",
-      "label": "오류/OOM?",
-      "shape": "diamond",
-      "subgraphs": ["S_COMP", "S_MON"]
-    },
-    {
-      "id": "C7",
-      "label": "자동 중단/재시작",
-      "shape": "rect",
-      "subgraphs": ["S_COMP", "S_MON"]
-    },
-    {
-      "id": "C_OK",
-      "label": "정상",
-      "shape": "rect",
-      "subgraphs": ["S_COMP", "S_MON"]
-    },
-    {
-      "id": "R1",
-      "label": "프로토콜 제출",
-      "shape": "rect",
-      "subgraphs": ["S_IRB"]
-    },
-    {
-      "id": "R2",
-      "label": "보완 필요?",
-      "shape": "diamond",
-      "subgraphs": ["S_IRB"]
-    },
-    {
-      "id": "R3",
-      "label": "수정 반영",
-      "shape": "rect",
-      "subgraphs": ["S_IRB"]
-    },
-    {
-      "id": "R_OK",
-      "label": "승인",
-      "shape": "rect",
-      "subgraphs": ["S_IRB"]
-    },
-    {
-      "id": "P1",
-      "label": "원고 초안",
-      "shape": "rect",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P2",
-      "label": "실험표 정리",
-      "shape": "rect",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P3",
-      "label": "그림/부록 생성",
-      "shape": "rect",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P4",
-      "label": "저널 포맷 충족?",
-      "shape": "diamond",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P5",
-      "label": "포맷 수정",
-      "shape": "rect",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P6",
-      "label": "투고",
-      "shape": "rect",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P7",
-      "label": "리뷰 결과",
-      "shape": "diamond",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P8",
-      "label": "대폭수정",
-      "shape": "rect",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id": "P9",
-      "label": "경미수정",
-      "shape": "rect",
-      "subgraphs": ["S_PUB"]
-    },
-    {
-      "id":
+    { "id": "START", "label": "Start", "shape": "rect", "subgraphs": [] },
+    { "id": "HUB", "label": "워크로드 라우팅", "shape": "diamond", "subgraphs": [] },
+    { "id": "END", "label": "End", "shape": "rect", "subgraphs": [] },
+    { "id": "D1", "label": "원천 수집", "shape": "rect", "subgraphs": [] },
+    { "id": "D2", "label": "메타데이터 등록", "shape": "rect", "subgraphs": [] },
+    { "id": "D3", "label": "품질 OK?", "shape": "diamond", "subgraphs": [] },
+    { "id": "D4", "label": "정제/라벨 수정", "shape": "rect", "subgraphs": [] },
+    { "id": "D5", "label": "버전 스냅샷", "shape": "rect", "subgraphs": [] },
+    { "id": "E1", "label": "전처리 파이프", "shape": "rect", "subgraphs": [] },
+    { "id": "E2", "label": "학습", "shape": "rect", "subgraphs": [] },
+    { "id": "E3", "label": "평가", "shape": "rect", "subgraphs": [] },
+    { "id": "E4", "label": "목표 달성?", "shape": "diamond", "subgraphs": [] },
+    { "id": "E_OK", "label": "모델 후보", "shape": "rect", "subgraphs": [] },
+    { "id": "ET1", "label": "파라미터/메트릭 로깅", "shape": "rect", "subgraphs": [] },
+    { "id": "ET2", "label": "아티팩트 저장소", "shape": "rect", "subgraphs": [] },
+    { "id": "C1", "label": "큐 등록", "shape": "rect", "subgraphs": [] },
+    { "id": "C2", "label": "GPU 가용?", "shape": "diamond", "subgraphs": [] },
+    { "id": "C3", "label": "대기/프리엠션", "shape": "rect", "subgraphs": [] },
+    { "id": "C4", "label": "노드 할당", "shape": "rect", "subgraphs": [] },
+    { "id": "C5", "label": "리소스 모니터", "shape": "rect", "subgraphs": [] },
+    { "id": "C6", "label": "오류/OOM?", "shape": "diamond", "subgraphs": [] },
+    { "id": "C7", "label": "자동 중단/재시작", "shape": "rect", "subgraphs": [] },
+    { "id": "C_OK", "label": "정상", "shape": "rect", "subgraphs": [] },
+    { "id": "R1", "label": "프로토콜 제출", "shape": "rect", "subgraphs": [] },
+    { "id": "R2", "label": "보완 필요?", "shape": "diamond", "subgraphs": [] },
+    { "id": "R3", "label": "수정 반영", "shape": "rect", "subgraphs": [] },
+    { "id": "R_OK", "label": "승인", "shape": "rect", "subgraphs": [] },
+    { "id": "P1", "label": "원고 초안", "shape": "rect", "subgraphs": [] },
+    { "id": "P2", "label": "실험표 정리", "shape": "rect", "subgraphs": [] },
+    { "id": "P3", "label": "그림/부록 생성", "shape": "rect", "subgraphs": [] },
+    { "id": "P4", "label": "저널 포맷 충족?", "shape": "diamond", "subgraphs": [] },
+    { "id": "P5", "label": "포맷 수정", "shape": "rect", "subgraphs": [] },
+    { "id": "P6", "label": "투고", "shape": "rect", "subgraphs": [] },
+    { "id": "P7", "label": "리뷰 결과", "shape": "diamond", "subgraphs": [] },
+    { "id": "P8", "label": "대폭수정", "shape": "rect", "subgraphs": [] },
+    { "id": "P9", "label": "경미수정", "shape": "rect", "subgraphs": [] },
+    { "id": "P_OK", "label": "게재", "shape": "rect", "subgraphs": [] },
+    { "id": "L1", "label": "이슈 등록", "shape": "rect", "subgraphs": [] },
+    { "id": "L2", "label": "브랜치 생성", "shape": "rect", "subgraphs": [] },
+    { "id": "L3", "label": "PR 제출", "shape": "rect", "subgraphs": [] },
+    { "id": "L4", "label": "리뷰 통과?", "shape": "diamond", "subgraphs": [] },
+    { "id": "L5", "label": "수정", "shape": "rect", "subgraphs": [] },
+    { "id": "L6", "label": "병합", "shape": "rect", "subgraphs": [] },
+    { "id": "L_OK", "label": "릴리즈 태그", "shape": "rect", "subgraphs": [] },
+    { "id": "G1", "label": "공고 탐색", "shape": "rect", "subgraphs": [] },
+    { "id": "G2", "label": "제안서 작성", "shape": "rect", "subgraphs": [] },
+    { "id": "G3", "label": "내부 승인?", "shape": "diamond", "subgraphs": [] },
+    { "id": "G4", "label": "수정/재검토", "shape": "rect", "subgraphs": [] },
+    { "id": "G5", "label": "제출", "shape": "rect", "subgraphs": [] },
+    { "id": "G6", "label": "선정?", "shape": "diamond", "subgraphs": [] },
+    { "id": "G7", "label": "피드백 반영", "shape": "rect", "subgraphs": [] },
+    { "id": "G_OK", "label": "예산 집행", "shape": "rect", "subgraphs": [] },
+    { "id": "K1", "label": "노트 업로드", "shape": "rect", "subgraphs": [] },
+    { "id": "K2", "label": "태깅/검색 인덱스", "shape": "rect", "subgraphs": [] },
+    { "id": "K3", "label": "중복/품질?", "shape": "diamond", "subgraphs": [] },
+    { "id": "K4", "label": "정제/합치기", "shape": "rect", "subgraphs": [] },
+    { "id": "K_OK", "label": "게시", "shape": "rect", "subgraphs": [] }
+  ],
+  "edges": [
+    { "source": "START", "target": "HUB", "type": "-->", "label": null },
+    { "source": "HUB", "target": "S_DATA", "type": "-->", "label": "데이터" },
+    { "source": "HUB", "target": "S_EXP", "type": "-->", "label": "실험" },
+    { "source": "HUB", "target": "S_COMP", "type": "-->", "label": "컴퓨트" },
+    { "source": "HUB", "target": "S_IRB", "type": "-->", "label": "윤리" },
+    { "source": "HUB", "target": "S_PUB", "type": "-->", "label": "출판" },
+    { "source": "HUB", "target": "S_COL", "type": "-->", "label": "협업" },
+    { "source": "HUB", "target": "S_GRANT", "type": "-->", "label": "그랜트" },
+    { "source": "HUB", "target": "S_KB", "type": "-->", "label": "지식" },
+    { "source": "D1", "target": "D2", "type": "-->", "label": null },
+    { "source": "D2", "target": "D3", "type": "-->", "label": null },
+    { "source": "D3", "target": "D4", "type": "-->", "label": "No" },
+    { "source": "D4", "target": "D2", "type": "-->", "label": null },
+    { "source": "D3", "target": "D5", "type": "-->", "label": "Yes" },
+    { "source": "E1", "target": "E2", "type": "-->", "label": null },
+    { "source": "E2", "target": "E3", "type": "-->", "label": null },
+    { "source": "E3", "target": "E4", "type": "-->", "label": null },
+    { "source": "E4", "target": "E2", "type": "-->", "label": "No" },
+    { "source": "E4", "target": "E_OK", "type": "-->", "label": "Yes" },
+    { "source": "ET1", "target": "ET2", "type": "-->", "label": null },
+    { "source": "E2", "target": "ET1", "type": "-->", "label": null },
+    { "source": "E_OK", "target": "ET2", "type": "-->", "label": null },
+    { "source": "C1", "target": "C2", "type": "-->", "label": null },
+    { "source": "C2", "target": "C3", "type": "-->", "label": "No" },
+    { "source": "C3", "target": "C1", "type": "-->", "label": null },
+    { "source": "C2", "target": "C4", "type": "-->", "label": "Yes" },
+    { "source": "C5", "target": "C6", "type": "-->", "label": null },
+    { "source": "C6", "target": "C7", "type": "-->", "label": "Yes" },
+    { "source": "C7", "target": "C1", "type": "-->", "label": null },
+    { "source": "C6", "target": "C_OK", "type": "-->", "label": "No" },
+    { "source": "C4", "target": "C5", "type": "-->", "label": null },
+    { "source": "R1", "target": "R2", "type": "-->", "label": null },
+    { "source": "R2", "target": "R3", "type": "-->", "label": "Yes" },
+    { "source": "R3", "target": "R1", "type": "-->", "label": null },
+    { "source": "R2", "target": "R_OK", "type": "-->", "label": "No" },
+    { "source": "P1", "target": "P2", "type": "-->", "label": null },
+    { "source": "P2", "target": "P3", "type": "-->", "label": null },
+    { "source": "P3", "target": "P4", "type": "-->", "label": null },
+    { "source": "P4", "target": "P5", "type": "-->", "label": "No" },
+    { "source": "P5", "target": "P3", "type": "-->", "label": null },
+    { "source": "P4", "target": "P6", "type": "-->", "label": "Yes" },
+    { "source": "P6", "target": "P7", "type": "-->", "label": null },
+    { "source": "P7", "target": "P8", "type": "-->", "label": "Reject" },
+    { "source": "P8", "target": "P1", "type": "-->", "label": null },
+    { "source": "P7", "target": "P9", "type": "-->", "label": "Minor" },
+    { "source": "P9", "target": "P6", "type": "-->", "label": null },
+    { "source": "P7", "target": "P_OK", "type": "-->", "label": "Accept" },
+    { "source": "L1", "target": "L2", "type": "-->", "label": null },
+    { "source": "L2", "target": "L3", "type": "-->", "label": null },
+    { "source": "L3", "target": "L4", "type": "-->", "label": null },
+    { "source": "L4", "target": "L5", "type": "-->", "label": "No" },
+    { "source": "L5", "target": "L3", "type": "-->", "label": null },
+    { "source": "L4", "target": "L6", "type": "-->", "label": "Yes" },
+    { "source": "L6", "target": "L_OK", "type": "-->", "label": null },
+    { "source": "G1", "target": "G2", "type": "-->", "label": null },
+    { "source": "G2", "target": "G3", "type": "-->", "label": null },
+    { "source": "G3", "target": "G4", "type": "-->", "label": "No" },
+    { "source": "G4", "target": "G2", "type": "-->", "label": null },
+    { "source": "G3", "target": "G5", "type": "-->", "label": "Yes" },
+    { "source": "G5", "target": "G6", "type": "-->", "label": null },
+    { "source": "G6", "target": "G7", "type": "-->", "label": "No" },
+    { "source": "G7", "target": "G2", "type": "-->", "label": null },
+    { "source": "G6", "target": "G_OK", "type": "-->", "label": "Yes" },
+    { "source": "K1", "target": "K2", "type": "-->", "label": null },
+    { "source": "K2", "target": "K3", "type": "-->", "label": null },
+    { "source": "K3", "target": "K4", "type": "-->", "label": "Yes" },
+    { "source": "K4", "target": "K2", "type": "-->", "label": null },
+    { "source": "K3", "target": "K_OK", "type": "-->", "label": "No" },
+    { "source": "S_DATA", "target": "E1", "type": "-->", "label": null },
+    { "source": "D5", "target": "C1", "type": "-->", "label": null },
+    { "source": "S_COMP", "target": "E2", "type": "-->", "label": null },
+    { "source": "R_OK", "target": "P1", "type": "-->", "label": null },
+    { "source": "ET2", "target": "P2", "type": "-->", "label": null },
+    { "source": "S_COL", "target": "P3", "type": "-->", "label": null },
+    { "source": "S_GRANT", "target": "P1", "type": "-->", "label": null },
+    { "source": "K_OK", "target": "P3", "type": "-->", "label": null },
+    { "source": "P2", "target": "K1", "type": "-->", "label": null },
+    { "source": "K_OK", "target": "L1", "type": "-->", "label": null },
+    { "source": "R1", "target": "K1", "type": "-->", "label": null },
+    { "source": "P7", "target": "K1", "type": "-->", "label": null },
+    { "source": "P_OK", "target": "END", "type": "-->", "label": null },
+    { "source": "L_OK", "target": "END", "type": "-->", "label": null },
+    { "source": "G_OK", "target": "END", "type": "-->", "label": null },
+    { "source": "C_OK", "target": "END", "type": "-->", "label": null }
+  ],
+  "subgraphs": [
+    { "id": "S_DATA", "title": "DATA MGMT" },
+    { "id": "S_EXP", "title": "EXPERIMENTS" },
+    { "id": "S_RUN", "title": "실험 실행" },
+    { "id": "S_TRACK", "title": "추적/버저닝" },
+    { "id": "S_COMP", "title": "COMPUTE CLUSTER" },
+    { "id": "S_SCH", "title": "스케줄링" },
+    { "id": "S_MON", "title": "모니터링" },
+    { "id": "S_IRB", "title": "ETHICS/IRB" },
+    { "id": "S_PUB", "title": "PUBLICATION" },
+    { "id": "S_COL", "title": "COLLAB & REPO" },
+    { "id": "S_GRANT", "title": "GRANT MGMT" },
+    { "id": "S_KB", "title": "KNOWLEDGE BASE" }
+  ],
+  "decisions": [
+    "D3", "E4", "C2", "C6", "R2", "P4", "P7", "L4", "G3", "G6", "K3", "HUB"
+  ],
+  "summary": {
+    "natural_language": "이 흐름도는 워크로드 라우팅 허브를 중심으로 데이터 관리, 실험, 컴퓨트 클러스터, 윤리·IRB, 출판, 협업·레포, 그랜트 관리, 지식베이스 등 8개의 주요 서브시스템을 연결하고, 각 서브시스템 내부의 프로세스와 의사결정 흐름을 상세히 나타냅니다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
+  }
+}

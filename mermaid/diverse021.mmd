@@ -1,0 +1,8 @@
+flowchart TB
+    Users --> CDN[Content Delivery Network]
+    CDN --> LB[Load Balancer]
+    LB --> Web1[Web Server 1]
+    LB --> Web2[Web Server 2]
+    Web1 --> App[Application Server]
+    Web2 --> App
+    App --> DB[(Database)]

@@ -112,12 +112,12 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "Flowchart for data validation, processing, conditional handling, and error logging.",
+    "natural_language": "시작에서 데이터 유효성을 확인하고, 유효하면 처리를 진행한 뒤 조건을 검사하여 결과를 저장하거나 재처리 요청을 합니다. 유효하지 않으면 에러 로그를 기록하고 종료합니다.",
     "entry_nodes": [
-      "S"
+      "START"
     ],
     "exit_nodes": [
-      "X"
+      "END"
     ]
   }
 }

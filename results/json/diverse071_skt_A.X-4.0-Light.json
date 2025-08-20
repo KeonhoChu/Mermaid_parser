@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Application",
+      "label": "Loan Application",
+      "shape": "rect"
+    },
+    {
+      "id": "Verify",
+      "label": "Document Verification",
+      "shape": "rect"
+    },
+    {
+      "id": "Credit",
+      "label": "Credit Check",
+      "shape": "rect"
+    },
+    {
+      "id": "Approval",
+      "label": "Loan Approval",
+      "shape": "diamond"
+    },
+    {
+      "id": "Disburse",
+      "label": "Loan Disbursement",
+      "shape": "rect"
+    },
+    {
+      "id": "Decline",
+      "label": "Application Declined",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Application",
+      "target": "Verify",
+      "type": "-->"
+    },
+    {
+      "source": "Verify",
+      "target": "Credit",
+      "type": "-->"
+    },
+    {
+      "source": "Credit",
+      "target": "Approval",
+      "type": "-->"
+    },
+    {
+      "source": "Approval",
+      "target": "Disburse",
+      "type": "-->"
+    },
+    {
+      "source": "Approval",
+      "target": "Decline",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart for loan application process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

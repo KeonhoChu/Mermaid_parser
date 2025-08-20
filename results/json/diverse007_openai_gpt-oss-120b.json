@@ -1,0 +1,81 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Frontend",
+      "label": "Frontend",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "API",
+      "label": "REST API",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Backend",
+      "label": "Backend Service",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Cache",
+      "label": "Redis Cache",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Database",
+      "label": "PostgreSQL",
+      "shape": "circle",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Frontend",
+      "target": "API",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "API",
+      "target": "Backend",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Backend",
+      "target": "Cache",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Backend",
+      "target": "Database",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Cache",
+      "target": "Backend",
+      "type": "-.->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "프론트엔드가 REST API를 호출하고, API가 백엔드 서비스와 연결되며, 백엔드가 Redis 캐시와 PostgreSQL 데이터베이스에 연결되고, 캐시가 백엔드와 순환 관계를 가집니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

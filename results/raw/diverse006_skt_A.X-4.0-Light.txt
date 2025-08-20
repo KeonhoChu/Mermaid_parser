@@ -1,0 +1,34 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "Inicio", "shape": "rect"},
+    {"id": "B", "label": "Identificación de Requisitos", "shape": "rect"},
+    {"id": "C", "label": "Análisis de Requisitos", "shape": "rect"},
+    {"id": "D", "label": "Requisitos Claros?", "shape": "diamond"},
+    {"id": "E", "label": "Diseño de la Solución", "shape": "rect"},
+    {"id": "F", "label": "Desarrollo", "shape": "rect"},
+    {"id": "G", "label": "Pruebas", "shape": "rect"},
+    {"id": "H", "label": "Pruebas Exitosas?", "shape": "diamond"},
+    {"id": "I", "label": "Implementación", "shape": "rect"},
+    {"id": "J", "label": "Documentación", "shape": "rect"},
+    {"id": "K", "label": "Entrega al Cliente", "shape": "rect"},
+    {"id": "L", "label": "Fin", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "B", "target": "C", "type": "-->"},
+    {"source": "C", "target": "D", "type": "-->"},
+    {"source": "D", "target": "E", "type": "-->", "condition": "Sí"},
+    {"source": "D", "target": "B", "type": "-->", "condition": "No"},
+    {"source": "E", "target": "F", "type": "-->"},
+    {"source": "F", "target": "G", "type": "-->"},
+    {"source": "G", "target": "H", "type": "-->"},
+    {"source": "H", "target": "I", "type": "-->", "condition": "Sí"},
+    {"source": "H", "target": "F", "type": "-->", "condition": "No"},
+    {"source": "I", "target": "J", "type": "-->"},
+    {"source": "J", "target": "K", "type": "-->"},
+    {"source": "K", "target": "L", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart representing a software development process."}
+}

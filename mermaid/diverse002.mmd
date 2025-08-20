@@ -1,0 +1,8 @@
+flowchart TD
+A[Find Candidate on LinkedIn] --> B{Initial Screening}
+B -->|Meets Criteria| C{Technical Assessment}
+C -->|Passes| D[Interview Process]
+D -->|Successful| E[Final Selection]
+B -->|Does not meet criteria| F[Reject Candidate]
+C -->|Fails| F
+D -->|Unsuccessful| F

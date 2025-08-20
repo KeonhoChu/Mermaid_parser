@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Feature",
+      "label": "Feature Request",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Analysis",
+      "label": "Business Analysis",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Design",
+      "label": "Technical Design",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Estimate",
+      "label": "Time Estimation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Approval",
+      "label": "Stakeholder Approval",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Development",
+      "label": "Implementation",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Feature",
+      "target": "Analysis",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Analysis",
+      "target": "Design",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Design",
+      "target": "Estimate",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Estimate",
+      "target": "Approval",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Approval",
+      "target": "Development",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 플로우차트는 기능 요청부터 구현까지의 과정을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

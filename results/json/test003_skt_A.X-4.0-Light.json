@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect"
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "shape": "rect"
+    },
+    {
+      "id": "C3",
+      "label": "C3",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->"
+    },
+    {
+      "source": "B",
+      "target": "C3",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart with nodes A, B, C3 and directed edges A->B, B->C3"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

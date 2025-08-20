@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Surgery",
+      "label": "Schedule Surgery",
+      "shape": "rect"
+    },
+    {
+      "id": "Prep",
+      "label": "Pre-Op Preparation",
+      "shape": "rect"
+    },
+    {
+      "id": "OR",
+      "label": "Operating Room",
+      "shape": "rect"
+    },
+    {
+      "id": "Recovery",
+      "label": "Recovery Room",
+      "shape": "rect"
+    },
+    {
+      "id": "Discharge",
+      "label": "Patient Discharge",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Surgery",
+      "target": "Prep",
+      "type": "-->"
+    },
+    {
+      "source": "Prep",
+      "target": "OR",
+      "type": "-->"
+    },
+    {
+      "source": "OR",
+      "target": "Recovery",
+      "type": "-->"
+    },
+    {
+      "source": "Recovery",
+      "target": "Discharge",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of patient surgery process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

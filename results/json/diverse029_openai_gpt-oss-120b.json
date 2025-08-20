@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Request",
+      "label": "API Request",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Validate",
+      "label": "Input Validation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Auth",
+      "label": "Authorization",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Business",
+      "label": "Business Logic",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Data",
+      "label": "Data Layer",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Response",
+      "label": "API Response",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Request",
+      "target": "Validate",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Validate",
+      "target": "Auth",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Auth",
+      "target": "Business",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Business",
+      "target": "Data",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Data",
+      "target": "Response",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "API 요청이 입력 검증, 인가, 비즈니스 로직, 데이터 계층을 거쳐 응답으로 반환되는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

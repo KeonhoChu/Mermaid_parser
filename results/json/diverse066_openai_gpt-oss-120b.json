@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Supply",
+      "label": "Supply Chain",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Vendor",
+      "label": "Vendor Management",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Purchase",
+      "label": "Purchase Order",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Receive",
+      "label": "Receive Goods",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Storage",
+      "label": "Warehouse Storage",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Supply",
+      "target": "Vendor",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Vendor",
+      "target": "Purchase",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Purchase",
+      "target": "Receive",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Receive",
+      "target": "Storage",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "공급망에서 공급업체 관리, 구매 주문, 물품 수령, 창고 보관까지의 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

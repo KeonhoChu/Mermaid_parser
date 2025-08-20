@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Forecast",
+      "label": "Demand Forecast",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Plan",
+      "label": "Supply Planning",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Procure",
+      "label": "Procurement",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Stock",
+      "label": "Stock Management",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Fulfill",
+      "label": "Order Fulfillment",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Forecast",
+      "target": "Plan",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Plan",
+      "target": "Procure",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Procure",
+      "target": "Stock",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Stock",
+      "target": "Fulfill",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "수요 예측에서 공급 계획, 조달, 재고 관리, 주문 이행까지 순차적으로 진행되는 흐름을 나타냅니다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
+  }
+}

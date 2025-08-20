@@ -1,0 +1,279 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "rect"
+    },
+    {
+      "id": "INJ",
+      "label": "데이터 주입",
+      "shape": "rect"
+    },
+    {
+      "id": "VAL",
+      "label": "스키마 유효?",
+      "shape": "diamond"
+    },
+    {
+      "id": "ROUTE",
+      "label": "배치/실시간?",
+      "shape": "diamond"
+    },
+    {
+      "id": "ERR",
+      "label": "보정 파이프라인",
+      "shape": "rect"
+    },
+    {
+      "id": "E1",
+      "label": "추출",
+      "shape": "rect"
+    },
+    {
+      "id": "E2",
+      "label": "정제",
+      "shape": "rect"
+    },
+    {
+      "id": "E3",
+      "label": "결측>5%?",
+      "shape": "diamond"
+    },
+    {
+      "id": "E4",
+      "label": "대체/삭제",
+      "shape": "rect"
+    },
+    {
+      "id": "E5",
+      "label": "스케일링",
+      "shape": "rect"
+    },
+    {
+      "id": "OUT1",
+      "label": "Staging",
+      "shape": "rect"
+    },
+    {
+      "id": "S1",
+      "label": "Kafka",
+      "shape": "rect"
+    },
+    {
+      "id": "S2",
+      "label": "Window Agg",
+      "shape": "rect"
+    },
+    {
+      "id": "S3",
+      "label": "지연>3s?",
+      "shape": "diamond"
+    },
+    {
+      "id": "S4",
+      "label": "Backpressure",
+      "shape": "rect"
+    },
+    {
+      "id": "OUT2",
+      "label": "Feature Store",
+      "shape": "rect"
+    },
+    {
+      "id": "TRAIN",
+      "label": "모델 학습",
+      "shape": "rect"
+    },
+    {
+      "id": "EVAL",
+      "label": "AUC ≥ 0.88?",
+      "shape": "diamond"
+    },
+    {
+      "id": "DEPLOY",
+      "label": "배포",
+      "shape": "rect"
+    },
+    {
+      "id": "MON",
+      "label": "모니터링",
+      "shape": "rect"
+    },
+    {
+      "id": "ROLL",
+      "label": "롤백",
+      "shape": "rect"
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "START",
+      "target": "INJ",
+      "type": "-->"
+    },
+    {
+      "source": "INJ",
+      "target": "VAL",
+      "type": "-->"
+    },
+    {
+      "source": "VAL",
+      "target": "ROUTE",
+      "type": "-->"
+    },
+    {
+      "source": "VAL",
+      "target": "ERR",
+      "type": "-->"
+    },
+    {
+      "source": "ERR",
+      "target": "VAL",
+      "type": "-->"
+    },
+    {
+      "source": "ROUTE",
+      "target": "ETL",
+      "type": "-->"
+    },
+    {
+      "source": "ROUTE",
+      "target": "STREAM",
+      "type": "-->"
+    },
+    {
+      "source": "ETL",
+      "target": "E1",
+      "type": "-->"
+    },
+    {
+      "source": "E1",
+      "target": "E2",
+      "type": "-->"
+    },
+    {
+      "source": "E2",
+      "target": "E3",
+      "type": "-->"
+    },
+    {
+      "source": "E3",
+      "target": "E4",
+      "type": "-->"
+    },
+    {
+      "source": "E3",
+      "target": "E5",
+      "type": "-->"
+    },
+    {
+      "source": "E4",
+      "target": "OUT1",
+      "type": "-->"
+    },
+    {
+      "source": "E5",
+      "target": "OUT1",
+      "type": "-->"
+    },
+    {
+      "source": "STREAM",
+      "target": "S1",
+      "type": "-->"
+    },
+    {
+      "source": "S1",
+      "target": "S2",
+      "type": "-->"
+    },
+    {
+      "source": "S2",
+      "target": "S3",
+      "type": "-->"
+    },
+    {
+      "source": "S3",
+      "target": "S4",
+      "type": "-->"
+    },
+    {
+      "source": "S4",
+      "target": "S2",
+      "type": "-->"
+    },
+    {
+      "source": "S3",
+      "target": "OUT2",
+      "type": "-->"
+    },
+    {
+      "source": "TRAIN",
+      "target": "OUT1",
+      "type": "-->"
+    },
+    {
+      "source": "TRAIN",
+      "target": "OUT2",
+      "type": "-->"
+    },
+    {
+      "source": "EVAL",
+      "target": "DEPLOY",
+      "type": "-->"
+    },
+    {
+      "source": "EVAL",
+      "target": "TUNE",
+      "type": "-->"
+    },
+    {
+      "source": "TUNE",
+      "target": "TRAIN",
+      "type": "-->"
+    },
+    {
+      "source": "DEPLOY",
+      "target": "MON",
+      "type": "-->"
+    },
+    {
+      "source": "MON",
+      "target": "ROLL",
+      "type": "-->"
+    },
+    {
+      "source": "ROLL",
+      "target": "DEPLOY",
+      "type": "-->"
+    },
+    {
+      "source": "MON",
+      "target": "END",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "ETL",
+      "title": "ETL 파이프라인"
+    },
+    {
+      "id": "STREAM",
+      "title": "실시간 파이프라인"
+    }
+  ],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing data processing pipelines with ETL and real-time components, including validation, transformation, and model training/deployment."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

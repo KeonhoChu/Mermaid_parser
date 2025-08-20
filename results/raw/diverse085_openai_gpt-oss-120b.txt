@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Import",
+      "label": "Import Goods",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Customs",
+      "label": "Customs Clearance",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Documentation",
+      "label": "Import Documentation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Release",
+      "label": "Goods Release",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Domestic",
+      "label": "Domestic Distribution",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Import",
+      "target": "Customs",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Customs",
+      "target": "Documentation",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Documentation",
+      "target": "Release",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Release",
+      "target": "Domestic",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "수입 물품이 통관을 거쳐 문서화되고, 물품이 방출되어 국내 유통으로 이동하는 과정입니다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
+  }
+}

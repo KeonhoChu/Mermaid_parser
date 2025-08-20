@@ -1,0 +1,143 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A1",
+      "label": "요구사항 수집",
+      "shape": "rect"
+    },
+    {
+      "id": "A2",
+      "label": "타당성 분석",
+      "shape": "rect"
+    },
+    {
+      "id": "A3",
+      "label": "자원 배분",
+      "shape": "rect"
+    },
+    {
+      "id": "B1",
+      "label": "아키텍처 설계",
+      "shape": "rect"
+    },
+    {
+      "id": "B2",
+      "label": "모듈 개발",
+      "shape": "rect"
+    },
+    {
+      "id": "B3",
+      "label": "단위 테스트",
+      "shape": "rect"
+    },
+    {
+      "id": "B4",
+      "label": "통합",
+      "shape": "rect"
+    },
+    {
+      "id": "C1",
+      "label": "배포",
+      "shape": "rect"
+    },
+    {
+      "id": "C2",
+      "label": "모니터링",
+      "shape": "rect"
+    },
+    {
+      "id": "C3",
+      "label": "장애 대응",
+      "shape": "rect"
+    },
+    {
+      "id": "C4",
+      "label": "버전 관리",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A1",
+      "target": "A2",
+      "type": "-->"
+    },
+    {
+      "source": "A2",
+      "target": "B1",
+      "type": "-->"
+    },
+    {
+      "source": "A3",
+      "target": "B2",
+      "type": "-->"
+    },
+    {
+      "source": "B2",
+      "target": "B3",
+      "type": "-->"
+    },
+    {
+      "source": "B2",
+      "target": "B4",
+      "type": "-->"
+    },
+    {
+      "source": "B4",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "C1",
+      "target": "C2",
+      "type": "-->"
+    },
+    {
+      "source": "C2",
+      "target": "C3",
+      "type": "-->"
+    },
+    {
+      "source": "C3",
+      "target": "C4",
+      "type": "-->"
+    },
+    {
+      "source": "C4",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "B1",
+      "target": "C4",
+      "type": "-.->"
+    },
+    {
+      "source": "A2",
+      "target": "B1",
+      "type": "-.->"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "PLAN",
+      "title": "계획 단계"
+    },
+    {
+      "id": "DEV",
+      "title": "개발 단계"
+    },
+    {
+      "id": "OPS",
+      "title": "운영 단계"
+    }
+  ],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing project lifecycle with stages: PLAN, DEV, OPS, and their respective tasks and dependencies."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

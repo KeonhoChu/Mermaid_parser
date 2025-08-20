@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Pipeline1", "label": "파이프라인 1단계", "shape": "rect"},
+    {"id": "Pipeline2", "label": "파이프라인 2단계", "shape": "rect"},
+    {"id": "Pipeline3", "label": "파이프라인 3단계", "shape": "rect"},
+    {"id": "Pipeline4", "label": "파이프라인 4단계", "shape": "rect"},
+    {"id": "Pipeline5", "label": "파이프라인 5단계", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Pipeline1", "target": "Pipeline2", "type": "-->"},
+    {"source": "Pipeline2", "target": "Pipeline3", "type": "-->"},
+    {"source": "Pipeline3", "target": "Pipeline4", "type": "-->"},
+    {"source": "Pipeline4", "target": "Pipeline5", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "파이프라인 1단계부터 5단계까지의 흐름을 나타내는 흐름도"}
+}

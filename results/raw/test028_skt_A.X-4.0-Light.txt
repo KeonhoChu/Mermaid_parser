@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A8", "label": "A8", "shape": "rect"},
+    {"id": "B8", "label": "B8", "shape": "rect"},
+    {"id": "C8", "label": "C8", "shape": "rect"},
+    {"id": "D8", "label": "D8", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A8", "target": "B8", "type": "-->"},
+    {"source": "B8", "target": "C8", "type": "=="},
+    {"source": "C8", "target": "D8", "type": ".-."}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with nodes A8, B8, C8, D8 and directed edges."}
+}

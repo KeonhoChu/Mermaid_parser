@@ -1,0 +1,154 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Start",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Process6",
+      "label": "Process6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision",
+      "label": "Check 6",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Success",
+      "label": "Success",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "End1",
+      "label": "End1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Retry",
+      "label": "Retry",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Fail",
+      "label": "Fail",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "End2",
+      "label": "End2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Log1",
+      "label": "Log1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Log2",
+      "label": "Log2",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Start",
+      "target": "Process6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Process6",
+      "target": "Decision",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Decision",
+      "target": "S1",
+      "type": "-->",
+      "label": "Pass"
+    },
+    {
+      "source": "Decision",
+      "target": "S2",
+      "type": "-->",
+      "label": "Fail"
+    },
+    {
+      "source": "Success",
+      "target": "End1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Retry",
+      "target": "Process6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Fail",
+      "target": "End2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Log1",
+      "target": "Log2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Success",
+      "target": "Log1",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "Fail",
+      "target": "Log2",
+      "type": "===",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S1",
+      "title": "Success Path"
+    },
+    {
+      "id": "S2",
+      "title": "Failure Path"
+    },
+    {
+      "id": "S3",
+      "title": "Log System"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "시작 노드에서 프로세스를 거쳐 조건을 확인하고, 성공 경로와 실패 경로로 분기하여 각각 로그 시스템과 연동되는 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

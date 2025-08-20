@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Iniciar Documentación",
+      "shape": "rect"
+    },
+    {
+      "id": "B",
+      "label": "Recolectar Información",
+      "shape": "rect"
+    },
+    {
+      "id": "C",
+      "label": "Organizar Datos",
+      "shape": "rect"
+    },
+    {
+      "id": "D",
+      "label": "Redactar Documentos",
+      "shape": "rect"
+    },
+    {
+      "id": "E",
+      "label": "Revisar y Aprobar",
+      "shape": "rect"
+    },
+    {
+      "id": "F",
+      "label": "Publicar Documentación",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->"
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->"
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->"
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->"
+    },
+    {
+      "source": "E",
+      "target": "F",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of document creation process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

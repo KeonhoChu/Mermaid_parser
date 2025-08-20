@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Lab", "label": "Lab Session", "shape": "rect"},
+    {"id": "Safety", "label": "Safety Briefing", "shape": "rect"},
+    {"id": "Experiment", "label": "Conduct Experiment", "shape": "rect"},
+    {"id": "Record", "label": "Record Data", "shape": "rect"},
+    {"id": "Report", "label": "Lab Report", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Lab", "target": "Safety", "type": "-->"},
+    {"source": "Safety", "target": "Experiment", "type": "-->"},
+    {"source": "Experiment", "target": "Record", "type": "-->"},
+    {"source": "Record", "target": "Report", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of lab session process"}
+}

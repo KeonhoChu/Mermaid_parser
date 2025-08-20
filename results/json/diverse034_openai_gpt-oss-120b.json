@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Exam",
+      "label": "Create Exam",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Schedule",
+      "label": "Schedule Exam",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Proctor",
+      "label": "Proctor Exam",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Grade",
+      "label": "Grade Papers",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Results",
+      "label": "Publish Results",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Exam",
+      "target": "Schedule",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Schedule",
+      "target": "Proctor",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Proctor",
+      "target": "Grade",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Grade",
+      "target": "Results",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "시험을 생성하고 일정을 잡은 뒤 감독하고 채점하여 결과를 발표합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

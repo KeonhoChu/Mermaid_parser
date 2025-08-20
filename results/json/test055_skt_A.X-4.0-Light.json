@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A5",
+      "label": "A5",
+      "shape": "rect"
+    },
+    {
+      "id": "B5",
+      "label": "B5",
+      "shape": "rect"
+    },
+    {
+      "id": "C5",
+      "label": "C5",
+      "shape": "rect"
+    },
+    {
+      "id": "D5",
+      "label": "D5",
+      "shape": "rect"
+    },
+    {
+      "id": "E5",
+      "label": "E5",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A5",
+      "target": "B5",
+      "type": "-->"
+    },
+    {
+      "source": "B5",
+      "target": "C5",
+      "type": "-->"
+    },
+    {
+      "source": "C5",
+      "target": "D5",
+      "type": "-->"
+    },
+    {
+      "source": "D5",
+      "target": "E5",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart from A5 to E5 with sequential nodes."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Application",
+      "label": "Job Application",
+      "shape": "rect"
+    },
+    {
+      "id": "Screen",
+      "label": "Resume Screening",
+      "shape": "rect"
+    },
+    {
+      "id": "Phone",
+      "label": "Phone Interview",
+      "shape": "rect"
+    },
+    {
+      "id": "OnSite",
+      "label": "Onsite Interview",
+      "shape": "rect"
+    },
+    {
+      "id": "Decision",
+      "label": "Hiring Decision",
+      "shape": "rect"
+    },
+    {
+      "id": "Offer",
+      "label": "Job Offer",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Application",
+      "target": "Screen",
+      "type": "-->"
+    },
+    {
+      "source": "Screen",
+      "target": "Phone",
+      "type": "-->"
+    },
+    {
+      "source": "Phone",
+      "target": "OnSite",
+      "type": "-->"
+    },
+    {
+      "source": "OnSite",
+      "target": "Decision",
+      "type": "-->"
+    },
+    {
+      "source": "Decision",
+      "target": "Offer",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of job application process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

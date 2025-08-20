@@ -1,5 +1,216 @@
-name,model,level,N_actual,E_actual,SUBGRAPH_COUNT_actual,explanations,llm_ok,llm_warnings,n_nodes_pred,n_edges_pred,json_raw_path
-real01,openai/gpt-oss-120b,L3,6,7,2,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,7,results\json\real01_openai_gpt-oss-120b.json
-real02,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,results\json\real02_openai_gpt-oss-120b.json
-real03,openai/gpt-oss-120b,L1,3,1,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,results\json\real03_openai_gpt-oss-120b.json
-real04,openai/gpt-oss-120b,L2,0,3,4,"L2: N<5, E<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,results\json\real04_openai_gpt-oss-120b.json
+name,model,level,N_actual,E_actual,SUBGRAPH_COUNT_actual,explanations,llm_ok,llm_warnings,n_nodes_pred,n_edges_pred,n_subgraphs_pred,json_raw_path
+data01,openai/gpt-oss-120b,L3,5,9,2,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,9,2,results\json\data01_openai_gpt-oss-120b.json
+data02,openai/gpt-oss-120b,L4,8,10,0,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,10,0,results\json\data02_openai_gpt-oss-120b.json
+data03,openai/gpt-oss-120b,L4,7,7,3,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,3,results\json\data03_openai_gpt-oss-120b.json
+data04,openai/gpt-oss-120b,L5,10,14,0,"L5: N<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,14,0,results\json\data04_openai_gpt-oss-120b.json
+data05,openai/gpt-oss-120b,L6,11,11,3,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,11,11,3,results\json\data05_openai_gpt-oss-120b.json
+data06,openai/gpt-oss-120b,L4,8,9,0,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,9,0,results\json\data06_openai_gpt-oss-120b.json
+data07,openai/gpt-oss-120b,L4,8,12,0,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,12,0,results\json\data07_openai_gpt-oss-120b.json
+data08,openai/gpt-oss-120b,L4,8,9,3,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,9,3,results\json\data08_openai_gpt-oss-120b.json
+data09,openai/gpt-oss-120b,L4,7,7,2,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,2,results\json\data09_openai_gpt-oss-120b.json
+data10,openai/gpt-oss-120b,L3,6,9,0,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,9,0,results\json\data10_openai_gpt-oss-120b.json
+data11,openai/gpt-oss-120b,L6,62,77,15,L6: Extremely complex - no level criteria met with 2+ conditions,True,"JSON 추출 후 파싱 실패: Expecting ',' delimiter: line 160 column 50 (char 11431);구문 수정 후 파싱 실패: Expecting ',' delimiter: line 160 column 50 (char 11431);잘린 JSON 복구 후 파싱 성공",60,79,0,results\json\data11_openai_gpt-oss-120b.json
+data12,openai/gpt-oss-120b,L6,22,14,2,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,23,28,2,results\json\data12_openai_gpt-oss-120b.json
+data13,openai/gpt-oss-120b,L6,45,54,12,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,41,59,12,results\json\data13_openai_gpt-oss-120b.json
+data14,openai/gpt-oss-120b,L6,62,77,12,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,57,84,12,results\json\data14_openai_gpt-oss-120b.json
+data15,openai/gpt-oss-120b,L6,57,67,16,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,55,67,16,results\json\data15_openai_gpt-oss-120b.json
+diverse001,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,12,11,1,results\json\diverse001_openai_gpt-oss-120b.json
+diverse002,openai/gpt-oss-120b,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,7,0,results\json\diverse002_openai_gpt-oss-120b.json
+diverse003,openai/gpt-oss-120b,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse003_openai_gpt-oss-120b.json
+diverse004,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\diverse004_openai_gpt-oss-120b.json
+diverse005,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse005_openai_gpt-oss-120b.json
+diverse006,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,12,13,0,results\json\diverse006_openai_gpt-oss-120b.json
+diverse007,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\diverse007_openai_gpt-oss-120b.json
+diverse008,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse008_openai_gpt-oss-120b.json
+diverse009,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse009_openai_gpt-oss-120b.json
+diverse010,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse010_openai_gpt-oss-120b.json
+diverse011,openai/gpt-oss-120b,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,6,0,results\json\diverse011_openai_gpt-oss-120b.json
+diverse012,openai/gpt-oss-120b,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,6,0,results\json\diverse012_openai_gpt-oss-120b.json
+diverse013,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse013_openai_gpt-oss-120b.json
+diverse014,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse014_openai_gpt-oss-120b.json
+diverse015,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse015_openai_gpt-oss-120b.json
+diverse016,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse016_openai_gpt-oss-120b.json
+diverse017,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse017_openai_gpt-oss-120b.json
+diverse018,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse018_openai_gpt-oss-120b.json
+diverse019,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse019_openai_gpt-oss-120b.json
+diverse020,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse020_openai_gpt-oss-120b.json
+diverse021,openai/gpt-oss-120b,L4,7,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,0,results\json\diverse021_openai_gpt-oss-120b.json
+diverse022,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse022_openai_gpt-oss-120b.json
+diverse023,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\diverse023_openai_gpt-oss-120b.json
+diverse024,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse024_openai_gpt-oss-120b.json
+diverse025,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse025_openai_gpt-oss-120b.json
+diverse026,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse026_openai_gpt-oss-120b.json
+diverse027,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse027_openai_gpt-oss-120b.json
+diverse028,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse028_openai_gpt-oss-120b.json
+diverse029,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse029_openai_gpt-oss-120b.json
+diverse030,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse030_openai_gpt-oss-120b.json
+diverse031,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse031_openai_gpt-oss-120b.json
+diverse032,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse032_openai_gpt-oss-120b.json
+diverse033,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse033_openai_gpt-oss-120b.json
+diverse034,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse034_openai_gpt-oss-120b.json
+diverse035,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse035_openai_gpt-oss-120b.json
+diverse036,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse036_openai_gpt-oss-120b.json
+diverse037,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse037_openai_gpt-oss-120b.json
+diverse038,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse038_openai_gpt-oss-120b.json
+diverse039,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse039_openai_gpt-oss-120b.json
+diverse040,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse040_openai_gpt-oss-120b.json
+diverse041,openai/gpt-oss-120b,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,6,0,results\json\diverse041_openai_gpt-oss-120b.json
+diverse042,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse042_openai_gpt-oss-120b.json
+diverse043,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse043_openai_gpt-oss-120b.json
+diverse044,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse044_openai_gpt-oss-120b.json
+diverse045,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse045_openai_gpt-oss-120b.json
+diverse046,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse046_openai_gpt-oss-120b.json
+diverse047,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse047_openai_gpt-oss-120b.json
+diverse048,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse048_openai_gpt-oss-120b.json
+diverse049,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse049_openai_gpt-oss-120b.json
+diverse050,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse050_openai_gpt-oss-120b.json
+diverse051,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse051_openai_gpt-oss-120b.json
+diverse052,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse052_openai_gpt-oss-120b.json
+diverse053,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse053_openai_gpt-oss-120b.json
+diverse054,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse054_openai_gpt-oss-120b.json
+diverse055,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse055_openai_gpt-oss-120b.json
+diverse056,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse056_openai_gpt-oss-120b.json
+diverse057,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse057_openai_gpt-oss-120b.json
+diverse058,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse058_openai_gpt-oss-120b.json
+diverse059,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse059_openai_gpt-oss-120b.json
+diverse060,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse060_openai_gpt-oss-120b.json
+diverse061,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse061_openai_gpt-oss-120b.json
+diverse062,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse062_openai_gpt-oss-120b.json
+diverse063,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse063_openai_gpt-oss-120b.json
+diverse064,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\diverse064_openai_gpt-oss-120b.json
+diverse065,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\diverse065_openai_gpt-oss-120b.json
+diverse066,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse066_openai_gpt-oss-120b.json
+diverse067,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse067_openai_gpt-oss-120b.json
+diverse068,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse068_openai_gpt-oss-120b.json
+diverse069,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse069_openai_gpt-oss-120b.json
+diverse070,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse070_openai_gpt-oss-120b.json
+diverse071,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse071_openai_gpt-oss-120b.json
+diverse072,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse072_openai_gpt-oss-120b.json
+diverse073,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse073_openai_gpt-oss-120b.json
+diverse074,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse074_openai_gpt-oss-120b.json
+diverse075,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse075_openai_gpt-oss-120b.json
+diverse076,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse076_openai_gpt-oss-120b.json
+diverse077,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse077_openai_gpt-oss-120b.json
+diverse078,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse078_openai_gpt-oss-120b.json
+diverse079,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse079_openai_gpt-oss-120b.json
+diverse080,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse080_openai_gpt-oss-120b.json
+diverse081,openai/gpt-oss-120b,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse081_openai_gpt-oss-120b.json
+diverse082,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse082_openai_gpt-oss-120b.json
+diverse083,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse083_openai_gpt-oss-120b.json
+diverse084,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse084_openai_gpt-oss-120b.json
+diverse085,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse085_openai_gpt-oss-120b.json
+diverse086,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse086_openai_gpt-oss-120b.json
+diverse087,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse087_openai_gpt-oss-120b.json
+diverse088,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse088_openai_gpt-oss-120b.json
+diverse089,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse089_openai_gpt-oss-120b.json
+diverse090,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse090_openai_gpt-oss-120b.json
+diverse091,openai/gpt-oss-120b,L3,6,2,3,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,2,3,results\json\diverse091_openai_gpt-oss-120b.json
+diverse092,openai/gpt-oss-120b,L4,7,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,0,results\json\diverse092_openai_gpt-oss-120b.json
+diverse093,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse093_openai_gpt-oss-120b.json
+diverse094,openai/gpt-oss-120b,L4,8,8,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,8,0,results\json\diverse094_openai_gpt-oss-120b.json
+diverse095,openai/gpt-oss-120b,L4,8,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse095_openai_gpt-oss-120b.json
+diverse096,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\diverse096_openai_gpt-oss-120b.json
+diverse097,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\diverse097_openai_gpt-oss-120b.json
+diverse098,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse098_openai_gpt-oss-120b.json
+diverse099,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse099_openai_gpt-oss-120b.json
+diverse100,openai/gpt-oss-120b,L3,5,7,0,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,7,0,results\json\diverse100_openai_gpt-oss-120b.json
+test001,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,11,12,0,results\json\test001_openai_gpt-oss-120b.json
+test002,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test002_openai_gpt-oss-120b.json
+test003,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test003_openai_gpt-oss-120b.json
+test004,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test004_openai_gpt-oss-120b.json
+test005,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test005_openai_gpt-oss-120b.json
+test006,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test006_openai_gpt-oss-120b.json
+test007,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test007_openai_gpt-oss-120b.json
+test008,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test008_openai_gpt-oss-120b.json
+test009,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test009_openai_gpt-oss-120b.json
+test010,openai/gpt-oss-120b,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test010_openai_gpt-oss-120b.json
+test011,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test011_openai_gpt-oss-120b.json
+test012,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test012_openai_gpt-oss-120b.json
+test013,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,3,1,results\json\test013_openai_gpt-oss-120b.json
+test014,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test014_openai_gpt-oss-120b.json
+test015,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test015_openai_gpt-oss-120b.json
+test016,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test016_openai_gpt-oss-120b.json
+test017,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test017_openai_gpt-oss-120b.json
+test018,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test018_openai_gpt-oss-120b.json
+test019,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test019_openai_gpt-oss-120b.json
+test020,openai/gpt-oss-120b,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test020_openai_gpt-oss-120b.json
+test021,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test021_openai_gpt-oss-120b.json
+test022,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test022_openai_gpt-oss-120b.json
+test023,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test023_openai_gpt-oss-120b.json
+test024,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test024_openai_gpt-oss-120b.json
+test025,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test025_openai_gpt-oss-120b.json
+test026,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test026_openai_gpt-oss-120b.json
+test027,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test027_openai_gpt-oss-120b.json
+test028,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test028_openai_gpt-oss-120b.json
+test029,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test029_openai_gpt-oss-120b.json
+test030,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test030_openai_gpt-oss-120b.json
+test031,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test031_openai_gpt-oss-120b.json
+test032,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test032_openai_gpt-oss-120b.json
+test033,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test033_openai_gpt-oss-120b.json
+test034,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test034_openai_gpt-oss-120b.json
+test035,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test035_openai_gpt-oss-120b.json
+test036,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test036_openai_gpt-oss-120b.json
+test037,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test037_openai_gpt-oss-120b.json
+test038,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test038_openai_gpt-oss-120b.json
+test039,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test039_openai_gpt-oss-120b.json
+test040,openai/gpt-oss-120b,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test040_openai_gpt-oss-120b.json
+test041,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test041_openai_gpt-oss-120b.json
+test042,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test042_openai_gpt-oss-120b.json
+test043,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test043_openai_gpt-oss-120b.json
+test044,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test044_openai_gpt-oss-120b.json
+test045,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test045_openai_gpt-oss-120b.json
+test046,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test046_openai_gpt-oss-120b.json
+test047,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test047_openai_gpt-oss-120b.json
+test048,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test048_openai_gpt-oss-120b.json
+test049,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test049_openai_gpt-oss-120b.json
+test050,openai/gpt-oss-120b,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test050_openai_gpt-oss-120b.json
+test051,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test051_openai_gpt-oss-120b.json
+test052,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test052_openai_gpt-oss-120b.json
+test053,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test053_openai_gpt-oss-120b.json
+test054,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test054_openai_gpt-oss-120b.json
+test055,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test055_openai_gpt-oss-120b.json
+test056,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test056_openai_gpt-oss-120b.json
+test057,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test057_openai_gpt-oss-120b.json
+test058,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test058_openai_gpt-oss-120b.json
+test059,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test059_openai_gpt-oss-120b.json
+test060,openai/gpt-oss-120b,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test060_openai_gpt-oss-120b.json
+test061,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test061_openai_gpt-oss-120b.json
+test062,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test062_openai_gpt-oss-120b.json
+test063,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test063_openai_gpt-oss-120b.json
+test064,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test064_openai_gpt-oss-120b.json
+test065,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test065_openai_gpt-oss-120b.json
+test066,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test066_openai_gpt-oss-120b.json
+test067,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test067_openai_gpt-oss-120b.json
+test068,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test068_openai_gpt-oss-120b.json
+test069,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test069_openai_gpt-oss-120b.json
+test070,openai/gpt-oss-120b,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test070_openai_gpt-oss-120b.json
+test071,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test071_openai_gpt-oss-120b.json
+test072,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test072_openai_gpt-oss-120b.json
+test073,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test073_openai_gpt-oss-120b.json
+test074,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test074_openai_gpt-oss-120b.json
+test075,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test075_openai_gpt-oss-120b.json
+test076,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test076_openai_gpt-oss-120b.json
+test077,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test077_openai_gpt-oss-120b.json
+test078,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test078_openai_gpt-oss-120b.json
+test079,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test079_openai_gpt-oss-120b.json
+test080,openai/gpt-oss-120b,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test080_openai_gpt-oss-120b.json
+test081,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test081_openai_gpt-oss-120b.json
+test082,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test082_openai_gpt-oss-120b.json
+test083,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test083_openai_gpt-oss-120b.json
+test084,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test084_openai_gpt-oss-120b.json
+test085,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test085_openai_gpt-oss-120b.json
+test086,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test086_openai_gpt-oss-120b.json
+test087,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test087_openai_gpt-oss-120b.json
+test088,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test088_openai_gpt-oss-120b.json
+test089,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test089_openai_gpt-oss-120b.json
+test090,openai/gpt-oss-120b,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test090_openai_gpt-oss-120b.json
+test091,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test091_openai_gpt-oss-120b.json
+test092,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test092_openai_gpt-oss-120b.json
+test093,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test093_openai_gpt-oss-120b.json
+test094,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,9,3,results\json\test094_openai_gpt-oss-120b.json
+test095,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,8,3,results\json\test095_openai_gpt-oss-120b.json
+test096,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test096_openai_gpt-oss-120b.json
+test097,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test097_openai_gpt-oss-120b.json
+test098,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,8,3,results\json\test098_openai_gpt-oss-120b.json
+test099,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test099_openai_gpt-oss-120b.json
+test100,openai/gpt-oss-120b,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test100_openai_gpt-oss-120b.json

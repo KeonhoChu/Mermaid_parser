@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Mod",
+      "label": "Game Mod",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Upload",
+      "label": "Upload to Workshop",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Review",
+      "label": "Community Review",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Feature",
+      "label": "Featured Mod",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Download",
+      "label": "Player Downloads",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Mod",
+      "target": "Upload",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Upload",
+      "target": "Review",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Review",
+      "target": "Feature",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Feature",
+      "target": "Download",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "게임 모드가 워크숍에 업로드되고 커뮤니티 리뷰를 거쳐 추천 모드가 된 뒤 플레이어가 다운로드합니다.",
+    "entry_nodes": [
+      "Mod"
+    ],
+    "exit_nodes": [
+      "Download"
+    ]
+  }
+}

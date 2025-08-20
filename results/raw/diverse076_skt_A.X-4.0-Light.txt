@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Insurance", "label": "Insurance Policy", "shape": "rect"},
+    {"id": "Premium", "label": "Premium Payment", "shape": "rect"},
+    {"id": "Claim", "label": "File Claim", "shape": "rect"},
+    {"id": "Assess", "label": "Claim Assessment", "shape": "rect"},
+    {"id": "Payout", "label": "Insurance Payout", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Insurance", "target": "Premium", "type": "-->"},
+    {"source": "Premium", "target": "Claim", "type": "-->"},
+    {"source": "Claim", "target": "Assess", "type": "-->"},
+    {"source": "Assess", "target": "Payout", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of insurance process from policy to payout"}
+}

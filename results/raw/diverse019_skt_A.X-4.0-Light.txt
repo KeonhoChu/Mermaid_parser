@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Employee", "label": "Employee", "shape": "rect"},
+    {"id": "Training", "label": "Training Program", "shape": "rect"},
+    {"id": "Assessment", "label": "Skills Assessment", "shape": "rect"},
+    {"id": "Certification", "label": "Get Certification", "shape": "rect"},
+    {"id": "Career", "label": "Career Development", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Employee", "target": "Training", "type": "-->"},
+    {"source": "Training", "target": "Assessment", "type": "-->"},
+    {"source": "Assessment", "target": "Certification", "type": "-->"},
+    {"source": "Certification", "target": "Career", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Employee goes through Training, Assessment, Certification, leading to Career Development."}
+}

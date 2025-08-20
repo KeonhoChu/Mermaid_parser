@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Route", "label": "Route Planning", "shape": "rect"},
+    {"id": "Optimize", "label": "Route Optimization", "shape": "rect"},
+    {"id": "Dispatch", "label": "Dispatch Vehicle", "shape": "rect"},
+    {"id": "Track", "label": "GPS Tracking", "shape": "rect"},
+    {"id": "Arrive", "label": "Arrival Confirmation", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Route", "target": "Optimize", "type": "-->"},
+    {"source": "Optimize", "target": "Dispatch", "type": "-->"},
+    {"source": "Dispatch", "target": "Track", "type": "-->"},
+    {"source": "Track", "target": "Arrive", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of route planning and delivery process"}
+}

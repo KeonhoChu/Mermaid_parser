@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A9",
+      "label": "A9",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B9",
+      "label": "B9",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C9",
+      "label": "C9",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D9",
+      "label": "D9",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A9",
+      "target": "C9",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A9",
+      "target": "D9",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B9",
+      "target": "C9",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B9",
+      "target": "D9",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A9와 B9가 시작점이고, C9와 D9로 흐르는 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

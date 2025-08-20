@@ -1,0 +1,153 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Start",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Process10",
+      "label": "Process10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision",
+      "label": "Check 10",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Success",
+      "label": "Success",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "End1",
+      "label": "End1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Retry",
+      "label": "Retry",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Fail",
+      "label": "Fail",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "End2",
+      "label": "End2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Log1",
+      "label": "Log1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Log2",
+      "label": "Log2",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Start",
+      "target": "Process10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Process10",
+      "target": "Decision",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Decision",
+      "target": "S1",
+      "type": "-->",
+      "label": "Pass"
+    },
+    {
+      "source": "Decision",
+      "target": "S2",
+      "type": "-->",
+      "label": "Fail"
+    },
+    {
+      "source": "Success",
+      "target": "End1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Retry",
+      "target": "Process10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Fail",
+      "target": "End2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Log1",
+      "target": "Log2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Success",
+      "target": "Log1",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "Fail",
+      "target": "Log2",
+      "type": "===",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S1",
+      "title": "Success Path"
+    },
+    {
+      "id": "S2",
+      "title": "Failure Path"
+    },
+    {
+      "id": "S3",
+      "title": "Log System"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "시작에서 프로세스를 수행하고 10을 검사한 뒤, 성공 경로에서는 종료1로, 실패 경로에서는 재시도 후 다시 프로세스를 거쳐 종료2로 이동합니다. 성공과 실패 결과는 로그 시스템에 기록됩니다.",
+    "entry_nodes": [
+      "Start"
+    ],
+    "exit_nodes": [
+      "End1",
+      "End2"
+    ]
+  }
+}

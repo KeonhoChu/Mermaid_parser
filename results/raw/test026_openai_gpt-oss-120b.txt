@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A6",
+      "label": "A6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B6",
+      "label": "B6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C6",
+      "label": "C6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D6",
+      "label": "D6",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A6",
+      "target": "B6",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "B6",
+      "target": "C6",
+      "type": "===",
+      "label": null
+    },
+    {
+      "source": "C6",
+      "target": "D6",
+      "type": "-.-",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A6에서 B6으로, B6에서 C6으로, C6에서 D6으로 연결된 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

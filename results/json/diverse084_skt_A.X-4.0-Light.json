@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Inventory",
+      "label": "Inventory",
+      "shape": "rect"
+    },
+    {
+      "id": "Count",
+      "label": "Inventory Count",
+      "shape": "rect"
+    },
+    {
+      "id": "Reconcile",
+      "label": "Reconcile Differences",
+      "shape": "rect"
+    },
+    {
+      "id": "Adjust",
+      "label": "Inventory Adjustment",
+      "shape": "rect"
+    },
+    {
+      "id": "Report",
+      "label": "Inventory Report",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Inventory",
+      "target": "Count",
+      "type": "-->"
+    },
+    {
+      "source": "Count",
+      "target": "Reconcile",
+      "type": "-->"
+    },
+    {
+      "source": "Reconcile",
+      "target": "Adjust",
+      "type": "-->"
+    },
+    {
+      "source": "Adjust",
+      "target": "Report",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of inventory management process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

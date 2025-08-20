@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Fraud",
+      "label": "Fraud Detection",
+      "shape": "rect"
+    },
+    {
+      "id": "Alert",
+      "label": "Generate Alert",
+      "shape": "rect"
+    },
+    {
+      "id": "Investigate",
+      "label": "Investigation",
+      "shape": "rect"
+    },
+    {
+      "id": "Action",
+      "label": "Take Action",
+      "shape": "rect"
+    },
+    {
+      "id": "Report",
+      "label": "Fraud Report",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Fraud",
+      "target": "Alert",
+      "type": "-->"
+    },
+    {
+      "source": "Alert",
+      "target": "Investigate",
+      "type": "-->"
+    },
+    {
+      "source": "Investigate",
+      "target": "Action",
+      "type": "-->"
+    },
+    {
+      "source": "Action",
+      "target": "Report",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of Fraud Detection process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

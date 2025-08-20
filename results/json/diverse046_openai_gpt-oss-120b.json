@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Battle",
+      "label": "PvP Battle",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Matchmaking",
+      "label": "Player Matching",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Arena",
+      "label": "Battle Arena",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Victory",
+      "label": "Declare Winner",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Rating",
+      "label": "Update Rating",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Battle",
+      "target": "Matchmaking",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Matchmaking",
+      "target": "Arena",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Arena",
+      "target": "Victory",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Victory",
+      "target": "Rating",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "PvP 전투에서 매칭, 전투장, 승리 선언, 레이팅 업데이트 과정을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

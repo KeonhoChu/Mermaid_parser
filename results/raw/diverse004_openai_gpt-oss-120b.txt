@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Develop",
+      "label": "Develop",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "PR",
+      "label": "Pull Request",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Review",
+      "label": "Code Review",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Merge",
+      "label": "Merge",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "CI",
+      "label": "CI Pipeline",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "CD",
+      "label": "CD Pipeline",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Develop",
+      "target": "PR",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "PR",
+      "target": "Review",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Review",
+      "target": "Merge",
+      "type": "-->",
+      "label": "Approve"
+    },
+    {
+      "source": "Review",
+      "target": "Develop",
+      "type": "-->",
+      "label": "Changes"
+    },
+    {
+      "source": "Merge",
+      "target": "CI",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CI",
+      "target": "CD",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "개발 단계에서 PR을 만들고 코드 리뷰를 거쳐 승인되면 머지한 뒤 CI와 CD 파이프라인을 실행하는 흐름이다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

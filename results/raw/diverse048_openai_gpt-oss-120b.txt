@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Level",
+      "label": "Level Design",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Test",
+      "label": "Playtest",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Balance",
+      "label": "Game Balance",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Deploy",
+      "label": "Level Release",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Feedback",
+      "label": "Player Feedback",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Level",
+      "target": "Test",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Test",
+      "target": "Balance",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Balance",
+      "target": "Deploy",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Deploy",
+      "target": "Feedback",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "레벨 디자인에서 플레이테스트, 게임 밸런스, 레벨 릴리스, 플레이어 피드백 순으로 진행되는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

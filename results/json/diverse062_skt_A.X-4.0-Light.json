@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Material",
+      "label": "Raw Materials",
+      "shape": "rect"
+    },
+    {
+      "id": "Inventory",
+      "label": "Material Inventory",
+      "shape": "rect"
+    },
+    {
+      "id": "Production",
+      "label": "Production Line",
+      "shape": "rect"
+    },
+    {
+      "id": "Assembly",
+      "label": "Product Assembly",
+      "shape": "rect"
+    },
+    {
+      "id": "Packaging",
+      "label": "Product Packaging",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Material",
+      "target": "Inventory",
+      "type": "-->"
+    },
+    {
+      "source": "Inventory",
+      "target": "Production",
+      "type": "-->"
+    },
+    {
+      "source": "Production",
+      "target": "Assembly",
+      "type": "-->"
+    },
+    {
+      "source": "Assembly",
+      "target": "Packaging",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of production process from raw materials to packaging."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

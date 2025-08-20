@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "Inicio", "shape": "rect"},
+    {"id": "B", "label": "Identificación de Stakeholders", "shape": "rect"},
+    {"id": "C", "label": "Recolección de Requisitos", "shape": "rect"},
+    {"id": "D", "label": "Análisis de Requisitos", "shape": "rect"},
+    {"id": "E", "label": "Documentación de Requisitos", "shape": "rect"},
+    {"id": "F", "label": "Validación y Verificación de Requisitos", "shape": "rect"},
+    {"id": "G", "label": "Aprobación de Requisitos", "shape": "rect"},
+    {"id": "H", "label": "Fin", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "B", "target": "C", "type": "-->"},
+    {"source": "C", "target": "D", "type": "-->"},
+    {"source": "D", "target": "E", "type": "-->"},
+    {"source": "E", "target": "F", "type": "-->"},
+    {"source": "F", "target": "G", "type": "-->"},
+    {"source": "G", "target": "H", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describing the process of requirement identification and validation."}
+}

@@ -1,0 +1,103 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Users",
+      "label": "Users",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "CDN",
+      "label": "Content Delivery Network",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "LB",
+      "label": "Load Balancer",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Web1",
+      "label": "Web Server 1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Web2",
+      "label": "Web Server 2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "App",
+      "label": "Application Server",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "DB",
+      "label": "Database",
+      "shape": "circle",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Users",
+      "target": "CDN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CDN",
+      "target": "LB",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "LB",
+      "target": "Web1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "LB",
+      "target": "Web2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Web1",
+      "target": "App",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Web2",
+      "target": "App",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "App",
+      "target": "DB",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "사용자가 CDN을 통해 로드 밸런서에 연결되고, 로드 밸런서는 두 개의 웹 서버로 트래픽을 분산시킨 후 애플리케이션 서버를 거쳐 데이터베이스에 도달합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

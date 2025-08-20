@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Forecast", "label": "Demand Forecast", "shape": "rect"},
+    {"id": "Plan", "label": "Supply Planning", "shape": "rect"},
+    {"id": "Procure", "label": "Procurement", "shape": "rect"},
+    {"id": "Stock", "label": "Stock Management", "shape": "rect"},
+    {"id": "Fulfill", "label": "Order Fulfillment", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Forecast", "target": "Plan", "type": "-->"},
+    {"source": "Plan", "target": "Procure", "type": "-->"},
+    {"source": "Procure", "target": "Stock", "type": "-->"},
+    {"source": "Stock", "target": "Fulfill", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of supply chain processes"}
+}

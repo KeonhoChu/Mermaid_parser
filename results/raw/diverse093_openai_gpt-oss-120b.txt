@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Alpha",
+      "label": "시스템 알파",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Beta",
+      "label": "시스템 베타",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Gamma",
+      "label": "시스템 감마",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Delta",
+      "label": "시스템 델타",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Epsilon",
+      "label": "시스템 엡실론",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Omega",
+      "label": "시스템 오메가",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Alpha",
+      "target": "Beta",
+      "type": "-.->",
+      "label": null
+    },
+    {
+      "source": "Beta",
+      "target": "Gamma",
+      "type": "===",
+      "label": null
+    },
+    {
+      "source": "Gamma",
+      "target": "Delta",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Delta",
+      "target": "Epsilon",
+      "type": "<-->",
+      "label": null
+    },
+    {
+      "source": "Alpha",
+      "target": "Omega",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "시스템 알파가 시스템 베타와 연결되고, 베타는 감마와 동등하게 연결됩니다. 감마는 델타로 흐르고, 델타는 엡실론과 양방향 연결됩니다. 또한 알파는 오메가로 직접 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

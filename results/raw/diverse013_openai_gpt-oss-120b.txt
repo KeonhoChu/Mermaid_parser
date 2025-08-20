@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Application",
+      "label": "Job Application",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Screen",
+      "label": "Resume Screening",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Phone",
+      "label": "Phone Interview",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OnSite",
+      "label": "Onsite Interview",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision",
+      "label": "Hiring Decision",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Offer",
+      "label": "Job Offer",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Application",
+      "target": "Screen",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Screen",
+      "target": "Phone",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Phone",
+      "target": "OnSite",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "OnSite",
+      "target": "Decision",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Decision",
+      "target": "Offer",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "지원서 검토부터 채용 제안까지의 과정을 나타낸 흐름도입니다.",
+    "entry_nodes": [
+      "Application"
+    ],
+    "exit_nodes": [
+      "Offer"
+    ]
+  }
+}

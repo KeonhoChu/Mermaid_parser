@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Therapy",
+      "label": "Physical Therapy",
+      "shape": "rect"
+    },
+    {
+      "id": "Assessment",
+      "label": "Initial Assessment",
+      "shape": "rect"
+    },
+    {
+      "id": "Plan",
+      "label": "Treatment Plan",
+      "shape": "rect"
+    },
+    {
+      "id": "Session",
+      "label": "Therapy Session",
+      "shape": "rect"
+    },
+    {
+      "id": "Progress",
+      "label": "Track Progress",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Therapy",
+      "target": "Assessment",
+      "type": "-->"
+    },
+    {
+      "source": "Assessment",
+      "target": "Plan",
+      "type": "-->"
+    },
+    {
+      "source": "Plan",
+      "target": "Session",
+      "type": "-->"
+    },
+    {
+      "source": "Session",
+      "target": "Progress",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of therapy process from Physical Therapy to Progress tracking."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

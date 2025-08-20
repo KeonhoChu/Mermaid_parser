@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Order",
+      "label": "Customer Order",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Planning",
+      "label": "Production Planning",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Schedule",
+      "label": "Production Schedule",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Manufacturing",
+      "label": "Manufacturing Process",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Delivery",
+      "label": "Product Delivery",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Order",
+      "target": "Planning",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Planning",
+      "target": "Schedule",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Schedule",
+      "target": "Manufacturing",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Manufacturing",
+      "target": "Delivery",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "고객 주문부터 제품 배송까지의 생산 프로세스를 나타낸다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
+  }
+}

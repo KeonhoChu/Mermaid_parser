@@ -1,0 +1,62 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "C",
+      "shape": "rect",
+      "subgraphs": ["S1"]
+    },
+    {
+      "id": "D",
+      "label": "D",
+      "shape": "rect",
+      "subgraphs": ["S1"]
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "S1",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S1",
+      "title": "Group 1"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 B로 흐르고, B에서 그룹 1에 포함된 C와 D로 연결됩니다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
+  }
+}

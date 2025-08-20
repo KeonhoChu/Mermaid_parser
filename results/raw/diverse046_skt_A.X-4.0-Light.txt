@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Battle", "label": "PvP Battle", "shape": "rect"},
+    {"id": "Matchmaking", "label": "Player Matching", "shape": "rect"},
+    {"id": "Arena", "label": "Battle Arena", "shape": "rect"},
+    {"id": "Victory", "label": "Declare Winner", "shape": "rect"},
+    {"id": "Rating", "label": "Update Rating", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Battle", "target": "Matchmaking", "type": "-->"},
+    {"source": "Matchmaking", "target": "Arena", "type": "-->"},
+    {"source": "Arena", "target": "Victory", "type": "-->"},
+    {"source": "Victory", "target": "Rating", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of PvP Battle process"}
+}

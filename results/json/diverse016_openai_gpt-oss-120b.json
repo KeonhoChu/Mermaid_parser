@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Complaint",
+      "label": "Customer Complaint",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Investigate",
+      "label": "Investigate Issue",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Solution",
+      "label": "Propose Solution",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Implement",
+      "label": "Implement Fix",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Follow",
+      "label": "Follow Up",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Close",
+      "label": "Close Ticket",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Complaint",
+      "target": "Investigate",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Investigate",
+      "target": "Solution",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Solution",
+      "target": "Implement",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Implement",
+      "target": "Follow",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Follow",
+      "target": "Close",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "고객 불만을 조사하고 해결책을 제시한 뒤 티켓을 종료하는 프로세스.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

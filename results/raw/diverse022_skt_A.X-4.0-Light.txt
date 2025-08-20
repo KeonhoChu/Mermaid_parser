@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Source", "label": "Source DB", "shape": "rect"},
+    {"id": "ETL", "label": "ETL Process", "shape": "rect"},
+    {"id": "Stage", "label": "Staging", "shape": "rect"},
+    {"id": "Transform", "label": "Data Transform", "shape": "rect"},
+    {"id": "Warehouse", "label": "Data Warehouse", "shape": "rect"},
+    {"id": "BI", "label": "Business Intelligence", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Source", "target": "ETL", "type": "-->"},
+    {"source": "ETL", "target": "Stage", "type": "-->"},
+    {"source": "Stage", "target": "Transform", "type": "-->"},
+    {"source": "Transform", "target": "Warehouse", "type": "-->"},
+    {"source": "Warehouse", "target": "BI", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart from Source DB to Business Intelligence via ETL, Staging, Data Transform, and Data Warehouse."}
+}

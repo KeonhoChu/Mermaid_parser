@@ -1,0 +1,5 @@
+flowchart LR
+    Backup[Data Backup] --> Verify[Verify Backup]
+    Verify --> Archive[Archive Storage]
+    Archive --> Restore[Disaster Recovery]
+    Restore --> Validate[Validate Restore]

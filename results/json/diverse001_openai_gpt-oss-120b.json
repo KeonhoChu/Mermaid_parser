@@ -1,0 +1,164 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "SistemResponse",
+      "label": "Identify the need for a candidate with 5 years of experience in AI implementation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "CreateJobDescription",
+      "label": "Create a job description specifying the required qualifications",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "SearchCandidates",
+      "label": "Search for potential candidates on LinkedIn using relevant keywords",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ReviewProfiles",
+      "label": "Review candidate profiles and resumes for relevant experience and qualifications",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ContactCandidates",
+      "label": "Contact potential candidates through LinkedIn messaging or email",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "InitialInterview",
+      "label": "Conduct initial phone or video interviews to assess candidate's suitability for the role",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ShortlistCandidates",
+      "label": "Shortlist candidates based on their qualifications and interview performance",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "InDepthInterview",
+      "label": "Conduct in-depth interviews with shortlisted candidates to further evaluate their experience and skills in AI implementation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "VerifyQualifications",
+      "label": "Verify the candidates' experience and qualifications through reference checks and background screening",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "SelectCandidate",
+      "label": "Select the candidate who best meets the requirements and offer them the job",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "FinalizeHiring",
+      "label": "Finalize the hiring process by negotiating the terms of employment and preparing the necessary documentation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OnboardCandidate",
+      "label": "Onboard the selected candidate and provide them with the necessary resources and support to successfully implement AI in the organization",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "SistemResponse",
+      "target": "CreateJobDescription",
+      "type": "-->",
+      "label": "Job description"
+    },
+    {
+      "source": "CreateJobDescription",
+      "target": "SearchCandidates",
+      "type": "-->",
+      "label": "Job description"
+    },
+    {
+      "source": "SearchCandidates",
+      "target": "ReviewProfiles",
+      "type": "-->",
+      "label": "LinkedIn profiles of potential candidates"
+    },
+    {
+      "source": "ReviewProfiles",
+      "target": "ContactCandidates",
+      "type": "-->",
+      "label": "Shortlisted candidates"
+    },
+    {
+      "source": "ContactCandidates",
+      "target": "InitialInterview",
+      "type": "-->",
+      "label": "Shortlisted candidates"
+    },
+    {
+      "source": "InitialInterview",
+      "target": "ShortlistCandidates",
+      "type": "-->",
+      "label": "Initial phone or video interviews"
+    },
+    {
+      "source": "ShortlistCandidates",
+      "target": "InDepthInterview",
+      "type": "-->",
+      "label": "Shortlisted candidates"
+    },
+    {
+      "source": "InDepthInterview",
+      "target": "VerifyQualifications",
+      "type": "-->",
+      "label": "Shortlisted candidates"
+    },
+    {
+      "source": "VerifyQualifications",
+      "target": "SelectCandidate",
+      "type": "-->",
+      "label": "Shortlisted candidates"
+    },
+    {
+      "source": "SelectCandidate",
+      "target": "FinalizeHiring",
+      "type": "-->",
+      "label": "Selected candidate for the role"
+    },
+    {
+      "source": "FinalizeHiring",
+      "target": "OnboardCandidate",
+      "type": "-->",
+      "label": "Selected candidate for the role"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "TOP",
+      "title": "TOP"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "AI 구현을 위한 5년 경력 후보자를 찾고, 채용 절차를 진행하여 최종적으로 채용하고 온보딩하는 과정",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

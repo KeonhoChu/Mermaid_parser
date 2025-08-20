@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Pharmacy",
+      "label": "Pharmacy",
+      "shape": "rect"
+    },
+    {
+      "id": "Prescription",
+      "label": "Receive Prescription",
+      "shape": "rect"
+    },
+    {
+      "id": "Verify",
+      "label": "Verify Medication",
+      "shape": "rect"
+    },
+    {
+      "id": "Dispense",
+      "label": "Dispense Medicine",
+      "shape": "rect"
+    },
+    {
+      "id": "Counseling",
+      "label": "Patient Counseling",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Pharmacy",
+      "target": "Prescription",
+      "type": "-->"
+    },
+    {
+      "source": "Prescription",
+      "target": "Verify",
+      "type": "-->"
+    },
+    {
+      "source": "Verify",
+      "target": "Dispense",
+      "type": "-->"
+    },
+    {
+      "source": "Dispense",
+      "target": "Counseling",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of Pharmacy process from receiving a prescription to patient counseling."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

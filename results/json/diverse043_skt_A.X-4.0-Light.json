@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Achievement",
+      "label": "Achievement System",
+      "shape": "rect"
+    },
+    {
+      "id": "Progress",
+      "label": "Track Progress",
+      "shape": "rect"
+    },
+    {
+      "id": "Complete",
+      "label": "Achievement Complete",
+      "shape": "rect"
+    },
+    {
+      "id": "Unlock",
+      "label": "Unlock Reward",
+      "shape": "rect"
+    },
+    {
+      "id": "Display",
+      "label": "Display Badge",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Achievement",
+      "target": "Progress",
+      "type": "-->"
+    },
+    {
+      "source": "Progress",
+      "target": "Complete",
+      "type": "-->"
+    },
+    {
+      "source": "Complete",
+      "target": "Unlock",
+      "type": "-->"
+    },
+    {
+      "source": "Unlock",
+      "target": "Display",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart describing achievement system progression."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Application",
+      "label": "Admission Application",
+      "shape": "rect"
+    },
+    {
+      "id": "Review",
+      "label": "Application Review",
+      "shape": "rect"
+    },
+    {
+      "id": "Interview",
+      "label": "Student Interview",
+      "shape": "rect"
+    },
+    {
+      "id": "Decision",
+      "label": "Admission Decision",
+      "shape": "rect"
+    },
+    {
+      "id": "Enroll",
+      "label": "Student Enrollment",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Application",
+      "target": "Review",
+      "type": "-->"
+    },
+    {
+      "source": "Review",
+      "target": "Interview",
+      "type": "-->"
+    },
+    {
+      "source": "Interview",
+      "target": "Decision",
+      "type": "-->"
+    },
+    {
+      "source": "Decision",
+      "target": "Enroll",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of admission process from application to enrollment"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

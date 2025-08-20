@@ -1,0 +1,81 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Inspection",
+      "label": "Quality Inspection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Standard",
+      "label": "Meet Standards?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Accept",
+      "label": "Accept Product",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Reject",
+      "label": "Reject Product",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Rework",
+      "label": "Product Rework",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Inspection",
+      "target": "Standard",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Standard",
+      "target": "Accept",
+      "type": "-->",
+      "label": "Yes"
+    },
+    {
+      "source": "Standard",
+      "target": "Reject",
+      "type": "-->",
+      "label": "No"
+    },
+    {
+      "source": "Reject",
+      "target": "Rework",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Rework",
+      "target": "Inspection",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "품질 검사를 수행하고 기준을 충족하면 제품을 수락하고, 충족하지 않으면 재작업 후 다시 검사합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

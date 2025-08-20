@@ -1,0 +1,5 @@
+flowchart TD
+    Return[Product Return] --> Authorize[Return Authorization]
+    Authorize --> Inspect[Return Inspection]
+    Inspect --> Refund[Process Refund]
+    Refund --> Restock[Restock Item]

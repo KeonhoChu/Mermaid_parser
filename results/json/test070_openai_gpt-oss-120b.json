@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A10",
+      "label": "A10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B10",
+      "label": "B10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C10",
+      "label": "C10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D10",
+      "label": "D10",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A10",
+      "target": "C10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A10",
+      "target": "D10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B10",
+      "target": "C10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B10",
+      "target": "D10",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "두 개의 시작 노드(A10, B10)에서 두 개의 목표 노드(C10, D10)로 각각 연결되는 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

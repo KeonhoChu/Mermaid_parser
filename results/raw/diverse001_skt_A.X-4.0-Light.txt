@@ -1,0 +1,34 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "SistemResponse", "label": "Identify the need for a candidate with 5 years of experience in AI implementation", "shape": "rect"},
+    {"id": "CreateJobDescription", "label": "Create a job description specifying the required qualifications", "shape": "rect"},
+    {"id": "SearchCandidates", "label": "Search for potential candidates on LinkedIn using relevant keywords", "shape": "rect"},
+    {"id": "ReviewProfiles", "label": "Review candidate profiles and resumes for relevant experience and qualifications", "shape": "rect"},
+    {"id": "ContactCandidates", "label": "Contact potential candidates through LinkedIn messaging or email", "shape": "rect"},
+    {"id": "InitialInterview", "label": "Conduct initial phone or video interviews to assess candidate's suitability for the role", "shape": "rect"},
+    {"id": "ShortlistCandidates", "label": "Shortlist candidates based on their qualifications and interview performance", "shape": "rect"},
+    {"id": "InDepthInterview", "label": "Conduct in-depth interviews with shortlisted candidates to further evaluate their experience and skills in AI implementation", "shape": "rect"},
+    {"id": "VerifyQualifications", "label": "Verify the candidates' experience and qualifications through reference checks and background screening", "shape": "rect"},
+    {"id": "SelectCandidate", "label": "Select the candidate who best meets the requirements and offer them the job", "shape": "rect"},
+    {"id": "FinalizeHiring", "label": "Finalize the hiring process by negotiating the terms of employment and preparing the necessary documentation", "shape": "rect"},
+    {"id": "OnboardCandidate", "label": "Onboard the selected candidate and provide them with the necessary resources and support to successfully implement AI in the organization", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "SistemResponse", "target": "CreateJobDescription", "type": "-->"},
+    {"source": "CreateJobDescription", "target": "SearchCandidates", "type": "-->"},
+    {"source": "SearchCandidates", "target": "ReviewProfiles", "type": "-->"},
+    {"source": "ReviewProfiles", "target": "ContactCandidates", "type": "-->"},
+    {"source": "ContactCandidates", "target": "InitialInterview", "type": "-->"},
+    {"source": "InitialInterview", "target": "ShortlistCandidates", "type": "-->"},
+    {"source": "ShortlistCandidates", "target": "InDepthInterview", "type": "-->"},
+    {"source": "InDepthInterview", "target": "VerifyQualifications", "type": "-->"},
+    {"source": "VerifyQualifications", "target": "SelectCandidate", "type": "-->"},
+    {"source": "SelectCandidate", "target": "FinalizeHiring", "type": "-->"},
+    {"source": "FinalizeHiring", "target": "OnboardCandidate", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "TOP", "title": "Hiring Process for AI Implementation Role"}
+  ],
+  "summary": {"natural_language": "Flowchart for hiring a candidate with 5 years of experience in AI implementation."}
+}

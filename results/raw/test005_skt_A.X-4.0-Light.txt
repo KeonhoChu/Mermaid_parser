@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "A", "shape": "rect"},
+    {"id": "B", "label": "B", "shape": "rect"},
+    {"id": "C5", "label": "C5", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "B", "target": "C5", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with nodes A, B, C5 and directed edges from A to B, and B to C5."}
+}

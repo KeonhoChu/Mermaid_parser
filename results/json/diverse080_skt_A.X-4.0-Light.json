@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Payment",
+      "label": "Digital Payment",
+      "shape": "rect"
+    },
+    {
+      "id": "Gateway",
+      "label": "Payment Gateway",
+      "shape": "rect"
+    },
+    {
+      "id": "Processor",
+      "label": "Payment Processor",
+      "shape": "rect"
+    },
+    {
+      "id": "Bank",
+      "label": "Banking Network",
+      "shape": "rect"
+    },
+    {
+      "id": "Confirmation",
+      "label": "Payment Confirmation",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Payment",
+      "target": "Gateway",
+      "type": "-->"
+    },
+    {
+      "source": "Gateway",
+      "target": "Processor",
+      "type": "-->"
+    },
+    {
+      "source": "Processor",
+      "target": "Bank",
+      "type": "-->"
+    },
+    {
+      "source": "Bank",
+      "target": "Confirmation",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of digital payment process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

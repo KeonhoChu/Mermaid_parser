@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Route",
+      "label": "Route Planning",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Optimize",
+      "label": "Route Optimization",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Dispatch",
+      "label": "Dispatch Vehicle",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Track",
+      "label": "GPS Tracking",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Arrive",
+      "label": "Arrival Confirmation",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Route",
+      "target": "Optimize",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Optimize",
+      "target": "Dispatch",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Dispatch",
+      "target": "Track",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Track",
+      "target": "Arrive",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 플로우차트는 경로 계획부터 도착 확인까지의 과정을 보여줍니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

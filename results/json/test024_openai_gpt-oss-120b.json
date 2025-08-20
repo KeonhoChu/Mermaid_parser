@@ -1,0 +1,59 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A4",
+      "label": "A4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B4",
+      "label": "B4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C4",
+      "label": "C4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D4",
+      "label": "D4",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A4",
+      "target": "B4",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "B4",
+      "target": "C4",
+      "type": "===",
+      "label": null
+    },
+    {
+      "source": "C4",
+      "target": "D4",
+      "type": "-.-",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A4에서 B4로 연결되고, B4에서 C4로 두꺼운 선, C4에서 D4로 점선이 연결된 흐름도입니다.",
+    "entry_nodes": [],
+    "exit_nodes": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Backup", "label": "Data Backup", "shape": "rect"},
+    {"id": "Verify", "label": "Verify Backup", "shape": "rect"},
+    {"id": "Archive", "label": "Archive Storage", "shape": "rect"},
+    {"id": "Restore", "label": "Disaster Recovery", "shape": "rect"},
+    {"id": "Validate", "label": "Validate Restore", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Backup", "target": "Verify", "type": "-->"},
+    {"source": "Verify", "target": "Archive", "type": "-->"},
+    {"source": "Archive", "target": "Restore", "type": "-->"},
+    {"source": "Restore", "target": "Validate", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describes data backup process."}
+}

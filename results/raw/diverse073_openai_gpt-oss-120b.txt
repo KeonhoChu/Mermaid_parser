@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Transaction",
+      "label": "Bank Transaction",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Validate",
+      "label": "Validate Transaction",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Process",
+      "label": "Process Payment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Settlement",
+      "label": "Transaction Settlement",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Record",
+      "label": "Update Records",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Transaction",
+      "target": "Validate",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Validate",
+      "target": "Process",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Process",
+      "target": "Settlement",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Settlement",
+      "target": "Record",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "은행 거래가 검증, 처리, 정산 및 기록되는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

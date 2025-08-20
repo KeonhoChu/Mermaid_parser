@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Budget",
+      "label": "Create Budget",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Track",
+      "label": "Expense Tracking",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Compare",
+      "label": "Budget vs Actual",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Adjust",
+      "label": "Budget Adjustment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Report",
+      "label": "Financial Report",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Budget",
+      "target": "Track",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Track",
+      "target": "Compare",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Compare",
+      "target": "Adjust",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Adjust",
+      "target": "Report",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "예산을 생성하고 지출을 추적한 뒤 실제와 비교하여 조정하고 최종 보고서를 작성하는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

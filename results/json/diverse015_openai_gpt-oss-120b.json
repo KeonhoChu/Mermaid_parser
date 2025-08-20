@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Order",
+      "label": "Order",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Inventory",
+      "label": "Check Stock",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Pick",
+      "label": "Pick Items",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Backorder",
+      "label": "Create Backorder",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Pack",
+      "label": "Package",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Ship",
+      "label": "Ship Order",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Order",
+      "target": "Inventory",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Inventory",
+      "target": "Pick",
+      "type": "-->",
+      "label": "Available"
+    },
+    {
+      "source": "Inventory",
+      "target": "Backorder",
+      "type": "-->",
+      "label": "Out of Stock"
+    },
+    {
+      "source": "Pick",
+      "target": "Pack",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Pack",
+      "target": "Ship",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "주문이 재고 확인을 거쳐 재고가 있으면 아이템을 픽하고 포장 후 배송되며, 재고가 없을 경우 백오더가 생성됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

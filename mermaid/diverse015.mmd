@@ -1,0 +1,6 @@
+flowchart LR
+    Order --> Inventory{Check Stock}
+    Inventory -->|Available| Pick[Pick Items]
+    Inventory -->|Out of Stock| Backorder[Create Backorder]
+    Pick --> Pack[Package]
+    Pack --> Ship[Ship Order]

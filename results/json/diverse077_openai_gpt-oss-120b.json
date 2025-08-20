@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Mortgage",
+      "label": "Mortgage Application",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Appraisal",
+      "label": "Property Appraisal",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Underwriting",
+      "label": "Loan Underwriting",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Closing",
+      "label": "Loan Closing",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Service",
+      "label": "Loan Servicing",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Mortgage",
+      "target": "Appraisal",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Appraisal",
+      "target": "Underwriting",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Underwriting",
+      "target": "Closing",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Closing",
+      "target": "Service",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "주택담보대출 신청부터 감정, 심사, 계약, 서비스까지의 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

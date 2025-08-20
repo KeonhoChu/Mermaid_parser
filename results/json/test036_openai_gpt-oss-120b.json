@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B6",
+      "label": "B6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C6",
+      "label": "C6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D6",
+      "label": "D6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E6",
+      "label": "E6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F6",
+      "label": "F6",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "D6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B6",
+      "target": "E6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C6",
+      "target": "E6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D6",
+      "target": "F6",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 B6, C6, D6로 흐르고, B6와 C6는 E6로, D6는 F6로 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

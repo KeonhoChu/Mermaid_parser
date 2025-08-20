@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A2",
+      "label": "A2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B2",
+      "label": "B2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C2",
+      "label": "C2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D2",
+      "label": "D2",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A2",
+      "target": "C2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A2",
+      "target": "D2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "C2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "D2",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A2와 B2가 C2와 D2로 연결되는 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

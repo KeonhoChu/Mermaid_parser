@@ -1,0 +1,81 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Application",
+      "label": "Loan Application",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Verify",
+      "label": "Document Verification",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Credit",
+      "label": "Credit Check",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Approval",
+      "label": "Loan Approval",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Disburse",
+      "label": "Loan Disbursement",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decline",
+      "label": "Application Declined",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Application",
+      "target": "Verify",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Verify",
+      "target": "Credit",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Credit",
+      "target": "Approval",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Approval",
+      "target": "Disburse",
+      "type": "-->",
+      "label": "Yes"
+    },
+    {
+      "source": "Approval",
+      "target": "Decline",
+      "type": "-->",
+      "label": "No"
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "대출 신청이 문서 검증, 신용 검사, 승인 여부를 거쳐 대출 실행 또는 거절로 진행됩니다.",
+    "entry_nodes": ["Application"],
+    "exit_nodes": ["Disburse", "Decline"]
+  }
+}

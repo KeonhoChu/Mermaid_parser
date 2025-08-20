@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Return",
+      "label": "Product Return",
+      "shape": "rect"
+    },
+    {
+      "id": "Authorize",
+      "label": "Return Authorization",
+      "shape": "rect"
+    },
+    {
+      "id": "Inspect",
+      "label": "Return Inspection",
+      "shape": "rect"
+    },
+    {
+      "id": "Refund",
+      "label": "Process Refund",
+      "shape": "rect"
+    },
+    {
+      "id": "Restock",
+      "label": "Restock Item",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Return",
+      "target": "Authorize",
+      "type": "-->"
+    },
+    {
+      "source": "Authorize",
+      "target": "Inspect",
+      "type": "-->"
+    },
+    {
+      "source": "Inspect",
+      "target": "Refund",
+      "type": "-->"
+    },
+    {
+      "source": "Refund",
+      "target": "Restock",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart for product return process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

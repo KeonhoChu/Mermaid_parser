@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Inventory",
+      "label": "Inventory",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Count",
+      "label": "Inventory Count",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Reconcile",
+      "label": "Reconcile Differences",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Adjust",
+      "label": "Inventory Adjustment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Report",
+      "label": "Inventory Report",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Inventory",
+      "target": "Count",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Count",
+      "target": "Reconcile",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Reconcile",
+      "target": "Adjust",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Adjust",
+      "target": "Report",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "재고를 계산하고 차이를 조정하여 최종 재고 보고서를 생성하는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

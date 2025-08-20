@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Event",
+      "label": "Event Source",
+      "shape": "rect"
+    },
+    {
+      "id": "Queue",
+      "label": "Message Queue",
+      "shape": "rect"
+    },
+    {
+      "id": "Consumer1",
+      "label": "Consumer 1",
+      "shape": "rect"
+    },
+    {
+      "id": "Consumer2",
+      "label": "Consumer 2",
+      "shape": "rect"
+    },
+    {
+      "id": "Process1",
+      "label": "Process A",
+      "shape": "rect"
+    },
+    {
+      "id": "Process2",
+      "label": "Process B",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Event",
+      "target": "Queue",
+      "type": "-->"
+    },
+    {
+      "source": "Queue",
+      "target": "Consumer1",
+      "type": "-->"
+    },
+    {
+      "source": "Queue",
+      "target": "Consumer2",
+      "type": "-->"
+    },
+    {
+      "source": "Consumer1",
+      "target": "Process1",
+      "type": "-->"
+    },
+    {
+      "source": "Consumer2",
+      "target": "Process2",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of event processing with multiple consumers and processes."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

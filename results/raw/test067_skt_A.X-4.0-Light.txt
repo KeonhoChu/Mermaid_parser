@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A7", "label": "A7", "shape": "rect"},
+    {"id": "B7", "label": "B7", "shape": "rect"},
+    {"id": "C7", "label": "C7", "shape": "rect"},
+    {"id": "D7", "label": "D7", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A7", "target": "C7", "type": "-->"},
+    {"source": "A7", "target": "D7", "type": "-->"},
+    {"source": "B7", "target": "C7", "type": "-->"},
+    {"source": "B7", "target": "D7", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with nodes A7, B7, C7, D7 connected in parallel."}
+}

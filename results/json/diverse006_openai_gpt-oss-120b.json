@@ -1,0 +1,174 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Inicio",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Identificación de Requisitos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "Análisis de Requisitos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "Requisitos Claros?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "Diseño de la Solución",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "Desarrollo",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "G",
+      "label": "Pruebas",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "H",
+      "label": "Pruebas Exitosas?",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "I",
+      "label": "Implementación",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "J",
+      "label": "Documentación",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "K",
+      "label": "Entrega al Cliente",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "L",
+      "label": "Fin",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": "Sí"
+    },
+    {
+      "source": "D",
+      "target": "B",
+      "type": "-->",
+      "label": "No"
+    },
+    {
+      "source": "E",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F",
+      "target": "G",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "G",
+      "target": "H",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "H",
+      "target": "I",
+      "type": "-->",
+      "label": "Sí"
+    },
+    {
+      "source": "H",
+      "target": "F",
+      "type": "-->",
+      "label": "No"
+    },
+    {
+      "source": "I",
+      "target": "J",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "J",
+      "target": "K",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "K",
+      "target": "L",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [
+    "D",
+    "H"
+  ],
+  "summary": {
+    "natural_language": "요구사항 식별부터 고객에게 전달까지의 전체 프로세스를 나타낸 흐름도입니다.",
+    "entry_nodes": [
+      "A"
+    ],
+    "exit_nodes": [
+      "L"
+    ]
+  }
+}

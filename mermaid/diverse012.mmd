@@ -1,0 +1,7 @@
+flowchart TD
+    Lead[Sales Lead] --> Qualify{Qualify Lead}
+    Qualify -->|Yes| Contact[Initial Contact]
+    Qualify -->|No| Archive[Archive Lead]
+    Contact --> Demo[Product Demo]
+    Demo --> Proposal[Send Proposal]
+    Proposal --> Close[Close Deal]

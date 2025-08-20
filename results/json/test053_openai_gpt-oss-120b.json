@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A3",
+      "label": "A3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B3",
+      "label": "B3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C3",
+      "label": "C3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D3",
+      "label": "D3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E3",
+      "label": "E3",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A3",
+      "target": "B3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B3",
+      "target": "C3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C3",
+      "target": "D3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D3",
+      "target": "E3",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A3에서 시작해 E3까지 순차적으로 연결된 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

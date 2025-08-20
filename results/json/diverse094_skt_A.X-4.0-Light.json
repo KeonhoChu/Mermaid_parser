@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Node1",
+      "label": "Node1",
+      "shape": "rect"
+    },
+    {
+      "id": "Node2",
+      "label": "Node2",
+      "shape": "rect"
+    },
+    {
+      "id": "Node3",
+      "label": "Node3",
+      "shape": "rect"
+    },
+    {
+      "id": "Node4",
+      "label": "Node4",
+      "shape": "rect"
+    },
+    {
+      "id": "Node5",
+      "label": "Node5",
+      "shape": "rect"
+    },
+    {
+      "id": "Node6",
+      "label": "Node6",
+      "shape": "rect"
+    },
+    {
+      "id": "Node7",
+      "label": "Node7",
+      "shape": "rect"
+    },
+    {
+      "id": "Node8",
+      "label": "Node8",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Node1",
+      "target": "Node2",
+      "type": "-->"
+    },
+    {
+      "source": "Node2",
+      "target": "Node3",
+      "type": "-->"
+    },
+    {
+      "source": "Node3",
+      "target": "Node4",
+      "type": "-->"
+    },
+    {
+      "source": "Node4",
+      "target": "Node5",
+      "type": "-->"
+    },
+    {
+      "source": "Node5",
+      "target": "Node6",
+      "type": "-->"
+    },
+    {
+      "source": "Node6",
+      "target": "Node7",
+      "type": "-->"
+    },
+    {
+      "source": "Node7",
+      "target": "Node8",
+      "type": "-->"
+    },
+    {
+      "source": "Node8",
+      "target": "Node1",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart with nodes connected in a loop."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

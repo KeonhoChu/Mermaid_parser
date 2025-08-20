@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Library",
+      "label": "Library System",
+      "shape": "rect"
+    },
+    {
+      "id": "Search",
+      "label": "Search Books",
+      "shape": "rect"
+    },
+    {
+      "id": "Reserve",
+      "label": "Reserve Book",
+      "shape": "rect"
+    },
+    {
+      "id": "Checkout",
+      "label": "Check Out",
+      "shape": "rect"
+    },
+    {
+      "id": "Return",
+      "label": "Return Book",
+      "shape": "rect"
+    },
+    {
+      "id": "Fine",
+      "label": "Late Fee?",
+      "shape": "diamond"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Library",
+      "target": "Search",
+      "type": "-->"
+    },
+    {
+      "source": "Search",
+      "target": "Reserve",
+      "type": "-->"
+    },
+    {
+      "source": "Reserve",
+      "target": "Checkout",
+      "type": "-->"
+    },
+    {
+      "source": "Checkout",
+      "target": "Return",
+      "type": "-->"
+    },
+    {
+      "source": "Return",
+      "target": "Fine",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of Library System process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

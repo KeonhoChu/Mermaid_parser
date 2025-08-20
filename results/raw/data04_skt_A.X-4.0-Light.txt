@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "A", "shape": "rect"},
+    {"id": "B", "label": "B", "shape": "rect"},
+    {"id": "C", "label": "C", "shape": "rect"},
+    {"id": "D", "label": "D", "shape": "rect"},
+    {"id": "E", "label": "E", "shape": "rect"},
+    {"id": "F", "label": "F", "shape": "rect"},
+    {"id": "G", "label": "G", "shape": "rect"},
+    {"id": "H", "label": "H", "shape": "rect"},
+    {"id": "I", "label": "I", "shape": "rect"},
+    {"id": "J", "label": "J", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "A", "target": "C", "type": "-->"},
+    {"source": "B", "target": "D", "type": "-->"},
+    {"source": "B", "target": "E", "type": "-->"},
+    {"source": "C", "target": "E", "type": "-->"},
+    {"source": "C", "target": "F", "type": "-->"},
+    {"source": "D", "target": "G", "type": "-->"},
+    {"source": "E", "target": "H", "type": "-->"},
+    {"source": "E", "target": "I", "type": "-->"},
+    {"source": "F", "target": "I", "type": "-->"},
+    {"source": "G", "target": "J", "type": "-->"},
+    {"source": "H", "target": "J", "type": "-->"},
+    {"source": "I", "target": "J", "type": "-->"},
+    {"source": "J", "target": "A", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with nodes A to J and directed edges as per the Mermaid syntax."}
+}

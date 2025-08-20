@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Supply", "label": "Supply Chain", "shape": "rect"},
+    {"id": "Vendor", "label": "Vendor Management", "shape": "rect"},
+    {"id": "Purchase", "label": "Purchase Order", "shape": "rect"},
+    {"id": "Receive", "label": "Receive Goods", "shape": "rect"},
+    {"id": "Storage", "label": "Warehouse Storage", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Supply", "target": "Vendor", "type": "-->"},
+    {"source": "Vendor", "target": "Purchase", "type": "-->"},
+    {"source": "Purchase", "target": "Receive", "type": "-->"},
+    {"source": "Receive", "target": "Storage", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of supply chain process"}
+}

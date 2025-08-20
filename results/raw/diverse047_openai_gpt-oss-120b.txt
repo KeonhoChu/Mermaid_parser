@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Economy",
+      "label": "Game Economy",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Shop",
+      "label": "In-Game Shop",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Purchase",
+      "label": "Buy Items",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Currency",
+      "label": "Virtual Currency",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Trade",
+      "label": "Player Trading",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Economy",
+      "target": "Shop",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Shop",
+      "target": "Purchase",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Purchase",
+      "target": "Currency",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Currency",
+      "target": "Trade",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "게임 경제에서 인게임 상점으로 이동하고, 아이템을 구매하면 가상 화폐가 사용되며, 플레이어 간 거래가 이루어집니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

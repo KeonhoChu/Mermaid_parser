@@ -1,0 +1,6 @@
+flowchart TD
+    Inspection[Quality Inspection] --> Standard{Meet Standards?}
+    Standard -->|Yes| Accept[Accept Product]
+    Standard -->|No| Reject[Reject Product]
+    Reject --> Rework[Product Rework]
+    Rework --> Inspection

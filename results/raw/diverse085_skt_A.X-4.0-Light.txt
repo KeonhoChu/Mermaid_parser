@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Import", "label": "Import Goods", "shape": "rect"},
+    {"id": "Customs", "label": "Customs Clearance", "shape": "rect"},
+    {"id": "Documentation", "label": "Import Documentation", "shape": "rect"},
+    {"id": "Release", "label": "Goods Release", "shape": "rect"},
+    {"id": "Domestic", "label": "Domestic Distribution", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Import", "target": "Customs", "type": "-->"},
+    {"source": "Customs", "target": "Documentation", "type": "-->"},
+    {"source": "Documentation", "target": "Release", "type": "-->"},
+    {"source": "Release", "target": "Domestic", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of import process."}
+}

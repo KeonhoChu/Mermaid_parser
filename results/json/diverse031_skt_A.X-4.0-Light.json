@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Student",
+      "label": "Student",
+      "shape": "rect"
+    },
+    {
+      "id": "Enroll",
+      "label": "Course Enrollment",
+      "shape": "rect"
+    },
+    {
+      "id": "Lesson",
+      "label": "Attend Lessons",
+      "shape": "rect"
+    },
+    {
+      "id": "Quiz",
+      "label": "Take Quiz",
+      "shape": "rect"
+    },
+    {
+      "id": "Assignment",
+      "label": "Submit Assignment",
+      "shape": "rect"
+    },
+    {
+      "id": "Grade",
+      "label": "Receive Grade",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Student",
+      "target": "Enroll",
+      "type": "-->"
+    },
+    {
+      "source": "Enroll",
+      "target": "Lesson",
+      "type": "-->"
+    },
+    {
+      "source": "Lesson",
+      "target": "Quiz",
+      "type": "-->"
+    },
+    {
+      "source": "Quiz",
+      "target": "Assignment",
+      "type": "-->"
+    },
+    {
+      "source": "Assignment",
+      "target": "Grade",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of student course progression."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

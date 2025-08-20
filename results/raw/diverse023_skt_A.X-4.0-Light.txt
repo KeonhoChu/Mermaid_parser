@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "LoadBalancer", "label": "LoadBalancer", "shape": "rect"},
+    {"id": "Docker", "label": "Docker Containers", "shape": "rect"},
+    {"id": "App1", "label": "App Container 1", "shape": "rect"},
+    {"id": "App2", "label": "App Container 2", "shape": "rect"},
+    {"id": "DB", "label": "DB Container", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "LoadBalancer", "target": "Docker", "type": "-->"},
+    {"source": "App1", "target": "DB", "type": "-->"},
+    {"source": "App2", "target": "DB", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "Docker", "title": "Docker Containers"}
+  ],
+  "summary": {"natural_language": "Flowchart of Docker containers with load balancer and app/db connections"}
+}

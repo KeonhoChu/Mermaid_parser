@@ -1,0 +1,648 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "rect"
+    },
+    {
+      "id": "R_GATE",
+      "label": "데이터 라우팅",
+      "shape": "rect"
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect"
+    },
+    {
+      "id": "I1",
+      "label": "에이전트 수집",
+      "shape": "rect"
+    },
+    {
+      "id": "I2",
+      "label": "Batch Loader",
+      "shape": "rect"
+    },
+    {
+      "id": "I3",
+      "label": "Stream Ingest",
+      "shape": "rect"
+    },
+    {
+      "id": "I4",
+      "label": "Staging-RAW 적재",
+      "shape": "rect"
+    },
+    {
+      "id": "I5",
+      "label": "Realtime-RAW 큐",
+      "shape": "rect"
+    },
+    {
+      "id": "I6",
+      "label": "지연>3s?",
+      "shape": "diamond"
+    },
+    {
+      "id": "I7",
+      "label": "Backpressure 조절",
+      "shape": "rect"
+    },
+    {
+      "id": "I8",
+      "label": "실시간 정제",
+      "shape": "rect"
+    },
+    {
+      "id": "I9",
+      "label": "배치 정제",
+      "shape": "rect"
+    },
+    {
+      "id": "G1",
+      "label": "스키마 검증",
+      "shape": "rect"
+    },
+    {
+      "id": "G2",
+      "label": "결측률>5%?",
+      "shape": "diamond"
+    },
+    {
+      "id": "G3",
+      "label": "대체/삭제",
+      "shape": "rect"
+    },
+    {
+      "id": "G4",
+      "label": "유효성 승인",
+      "shape": "rect"
+    },
+    {
+      "id": "GS1",
+      "label": "PII 탐지",
+      "shape": "rect"
+    },
+    {
+      "id": "GS2",
+      "label": "마스킹",
+      "shape": "rect"
+    },
+    {
+      "id": "GS3",
+      "label": "권한 라벨",
+      "shape": "rect"
+    },
+    {
+      "id": "P1",
+      "label": "포맷 식별",
+      "shape": "rect"
+    },
+    {
+      "id": "P2",
+      "label": "JSON/CSV/XML 파싱",
+      "shape": "rect"
+    },
+    {
+      "id": "P3",
+      "label": "스키마 매핑",
+      "shape": "rect"
+    },
+    {
+      "id": "N1",
+      "label": "타입 캐스팅",
+      "shape": "rect"
+    },
+    {
+      "id": "N2",
+      "label": "스케일링",
+      "shape": "rect"
+    },
+    {
+      "id": "N3",
+      "label": "카테고리 인코딩",
+      "shape": "rect"
+    },
+    {
+      "id": "F1",
+      "label": "피쳐 선택",
+      "shape": "rect"
+    },
+    {
+      "id": "F2",
+      "label": "피쳐 결합",
+      "shape": "rect"
+    },
+    {
+      "id": "F3",
+      "label": "피쳐 검증",
+      "shape": "rect"
+    },
+    {
+      "id": "H1",
+      "label": "KV-Cache",
+      "shape": "rect"
+    },
+    {
+      "id": "H2",
+      "label": "Feature Store",
+      "shape": "rect"
+    },
+    {
+      "id": "C1",
+      "label": "Data Lake - Bronze",
+      "shape": "rect"
+    },
+    {
+      "id": "C2",
+      "label": "Lake - Silver",
+      "shape": "rect"
+    },
+    {
+      "id": "C3",
+      "label": "Lake - Gold",
+      "shape": "rect"
+    },
+    {
+      "id": "T1",
+      "label": "데이터 로더",
+      "shape": "rect"
+    },
+    {
+      "id": "T2",
+      "label": "학습 파이프라인",
+      "shape": "rect"
+    },
+    {
+      "id": "T3",
+      "label": "성능 AUC>=0.90?",
+      "shape": "diamond"
+    },
+    {
+      "id": "T4",
+      "label": "아티팩트 저장",
+      "shape": "rect"
+    },
+    {
+      "id": "T5",
+      "label": "하이퍼파라미터 탐색",
+      "shape": "rect"
+    },
+    {
+      "id": "SV1",
+      "label": "모델 레지스트리 조회",
+      "shape": "rect"
+    },
+    {
+      "id": "SV2",
+      "label": "카나리 배포(10%)",
+      "shape": "rect"
+    },
+    {
+      "id": "SV3",
+      "label": "오류율<1%?",
+      "shape": "diamond"
+    },
+    {
+      "id": "SV4",
+      "label": "전면배포(100%)",
+      "shape": "rect"
+    },
+    {
+      "id": "SV5",
+      "label": "롤백",
+      "shape": "rect"
+    },
+    {
+      "id": "M1",
+      "label": "지표수집",
+      "shape": "rect"
+    },
+    {
+      "id": "M2",
+      "label": "성능/드리프트 감지",
+      "shape": "rect"
+    },
+    {
+      "id": "M3",
+      "label": "드리프트>0.1?",
+      "shape": "diamond"
+    },
+    {
+      "id": "M4",
+      "label": "알림&차단",
+      "shape": "rect"
+    },
+    {
+      "id": "M5",
+      "label": "세이프가드 정책",
+      "shape": "rect"
+    },
+    {
+      "id": "O1",
+      "label": "스케줄러",
+      "shape": "rect"
+    },
+    {
+      "id": "O2",
+      "label": "워크플로우 엔진",
+      "shape": "rect"
+    },
+    {
+      "id": "O3",
+      "label": "재시도 필요?",
+      "shape": "diamond"
+    },
+    {
+      "id": "O4",
+      "label": "Retry w/Backoff",
+      "shape": "rect"
+    },
+    {
+      "id": "O5",
+      "label": "휴지",
+      "shape": "rect"
+    },
+    {
+      "id": "PROC_OUT",
+      "label": "PROC 완료",
+      "shape": "rect"
+    },
+    {
+      "id": "ST_OUT",
+      "label": "저장 완료",
+      "shape": "rect"
+    },
+    {
+      "id": "SV_OUT",
+      "label": "서빙 활성",
+      "shape": "rect"
+    },
+    {
+      "id": "M_OUT",
+      "label": "조치 완료",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "START",
+      "target": "R_GATE",
+      "type": "-->"
+    },
+    {
+      "source": "R_GATE",
+      "target": "S_ING",
+      "type": "-->"
+    },
+    {
+      "source": "R_GATE",
+      "target": "S_ING",
+      "type": "-->"
+    },
+    {
+      "source": "S_ING",
+      "target": "S_GOV",
+      "type": "-->"
+    },
+    {
+      "source": "S_GOV",
+      "target": "S_PROC",
+      "type": "-->"
+    },
+    {
+      "source": "S_PROC",
+      "target": "S_STORE",
+      "type": "-->"
+    },
+    {
+      "source": "S_STORE",
+      "target": "S_TRAIN",
+      "type": "-->"
+    },
+    {
+      "source": "S_TRAIN",
+      "target": "S_SERVE",
+      "type": "-->"
+    },
+    {
+      "source": "S_SERVE",
+      "target": "S_MON",
+      "type": "-->"
+    },
+    {
+      "source": "S_MON",
+      "target": "S_CTRL",
+      "type": "-->"
+    },
+    {
+      "source": "S_ING",
+      "target": "I1",
+      "type": "-->"
+    },
+    {
+      "source": "I1",
+      "target": "I2",
+      "type": "-->"
+    },
+    {
+      "source": "I1",
+      "target": "I3",
+      "type": "-->"
+    },
+    {
+      "source": "I2",
+      "target": "I4",
+      "type": "-->"
+    },
+    {
+      "source": "I3",
+      "target": "I5",
+      "type": "-->"
+    },
+    {
+      "source": "I5",
+      "target": "I6",
+      "type": "-->"
+    },
+    {
+      "source": "I6",
+      "target": "I7",
+      "type": "-->"
+    },
+    {
+      "source": "I7",
+      "target": "I5",
+      "type": "-->"
+    },
+    {
+      "source": "I6",
+      "target": "I8",
+      "type": "-->"
+    },
+    {
+      "source": "I9",
+      "target": "I4",
+      "type": "-->"
+    },
+    {
+      "source": "G1",
+      "target": "G2",
+      "type": "-->"
+    },
+    {
+      "source": "G2",
+      "target": "G3",
+      "type": "-->"
+    },
+    {
+      "source": "G3",
+      "target": "G4",
+      "type": "-->"
+    },
+    {
+      "source": "GS1",
+      "target": "GS2",
+      "type": "-->"
+    },
+    {
+      "source": "GS2",
+      "target": "GS3",
+      "type": "-->"
+    },
+    {
+      "source": "P1",
+      "target": "P2",
+      "type": "-->"
+    },
+    {
+      "source": "P2",
+      "target": "P3",
+      "type": "-->"
+    },
+    {
+      "source": "N1",
+      "target": "N2",
+      "type": "-->"
+    },
+    {
+      "source": "N2",
+      "target": "N3",
+      "type": "-->"
+    },
+    {
+      "source": "F1",
+      "target": "F2",
+      "type": "-->"
+    },
+    {
+      "source": "F2",
+      "target": "F3",
+      "type": "-->"
+    },
+    {
+      "source": "H1",
+      "target": "H2",
+      "type": "-->"
+    },
+    {
+      "source": "C1",
+      "target": "C2",
+      "type": "-->"
+    },
+    {
+      "source": "C2",
+      "target": "C3",
+      "type": "-->"
+    },
+    {
+      "source": "T1",
+      "target": "T2",
+      "type": "-->"
+    },
+    {
+      "source": "T2",
+      "target": "T3",
+      "type": "-->"
+    },
+    {
+      "source": "T3",
+      "target": "T4",
+      "type": "-->"
+    },
+    {
+      "source": "T5",
+      "target": "T2",
+      "type": "-->"
+    },
+    {
+      "source": "SV1",
+      "target": "SV2",
+      "type": "-->"
+    },
+    {
+      "source": "SV2",
+      "target": "SV3",
+      "type": "-->"
+    },
+    {
+      "source": "SV3",
+      "target": "SV4",
+      "type": "-->"
+    },
+    {
+      "source": "SV3",
+      "target": "SV5",
+      "type": "-->"
+    },
+    {
+      "source": "SV4",
+      "target": "SV_OUT",
+      "type": "-->"
+    },
+    {
+      "source": "SV5",
+      "target": "SV1",
+      "type": "-->"
+    },
+    {
+      "source": "M1",
+      "target": "M2",
+      "type": "-->"
+    },
+    {
+      "source": "M2",
+      "target": "M3",
+      "type": "-->"
+    },
+    {
+      "source": "M3",
+      "target": "M4",
+      "type": "-->"
+    },
+    {
+      "source": "M3",
+      "target": "M5",
+      "type": "-->"
+    },
+    {
+      "source": "M5",
+      "target": "M_OUT",
+      "type": "-->"
+    },
+    {
+      "source": "M6",
+      "target": "M_OUT",
+      "type": "-->"
+    },
+    {
+      "source": "O1",
+      "target": "O2",
+      "type": "-->"
+    },
+    {
+      "source": "O2",
+      "target": "O3",
+      "type": "-->"
+    },
+    {
+      "source": "O3",
+      "target": "O4",
+      "type": "-->"
+    },
+    {
+      "source": "O3",
+      "target": "O5",
+      "type": "-->"
+    },
+    {
+      "source": "O2",
+      "target": "G1",
+      "type": "-->"
+    },
+    {
+      "source": "O_OUT",
+      "target": "M1",
+      "type": "-->"
+    },
+    {
+      "source": "I5",
+      "target": "I6",
+      "type": "-->"
+    },
+    {
+      "source": "I7",
+      "target": "I5",
+      "type": "-->"
+    },
+    {
+      "source": "M2",
+      "target": "M3",
+      "type": "-->"
+    },
+    {
+      "source": "M3",
+      "target": "M2",
+      "type": "-->"
+    },
+    {
+      "source": "SV5",
+      "target": "SV1",
+      "type": "-->"
+    },
+    {
+      "source": "M5",
+      "target": "T1",
+      "type": "-->"
+    },
+    {
+      "source": "S_CTRL",
+      "target": "END",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S_ING",
+      "title": "INGEST (수집 레이어)"
+    },
+    {
+      "id": "S_GOV",
+      "title": "GOV (품질/거버넌스)"
+    },
+    {
+      "id": "S_PROC",
+      "title": "PROC (처리 레이어)"
+    },
+    {
+      "id": "S_STORE",
+      "title": "STORE (저장소)"
+    },
+    {
+      "id": "S_TRAIN",
+      "title": "TRAIN (학습/튜닝)"
+    },
+    {
+      "id": "S_SERVE",
+      "title": "SERVE (배포/서빙)"
+    },
+    {
+      "id": "S_MON",
+      "title": "MON (관측/모니터링)"
+    },
+    {
+      "id": "S_CTRL",
+      "title": "CTRL (제어/오케스트레이션)"
+    }
+  ],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing a data processing pipeline with stages of ingestion, governance, processing, storage, training, serving, monitoring, and orchestration."
+  },
+  "warnings": [
+    "JSON 추출 후 파싱 성공"
+  ],
+  "decisions": []
+}

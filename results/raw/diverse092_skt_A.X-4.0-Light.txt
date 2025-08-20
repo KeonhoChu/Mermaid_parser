@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Start", "label": "Start", "shape": "rect"},
+    {"id": "Decision1", "label": "Decision1{조건 1}", "shape": "diamond"},
+    {"id": "Decision2", "label": "Decision2{조건 2}", "shape": "diamond"},
+    {"id": "End1", "label": "종료 A", "shape": "rect"},
+    {"id": "Action1", "label": "액션 A", "shape": "rect"},
+    {"id": "Action2", "label": "액션 B", "shape": "rect"},
+    {"id": "End2", "label": "종료 B", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Start", "target": "Decision1", "type": "-->"},
+    {"source": "Decision1", "target": "Decision2", "type": "-->"},
+    {"source": "Decision1", "target": "End1", "type": "-->"},
+    {"source": "Decision2", "target": "Action1", "type": "-->"},
+    {"source": "Decision2", "target": "Action2", "type": "-->"},
+    {"source": "Action1", "target": "End2", "type": "-->"},
+    {"source": "Action2", "target": "End2", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with start, decision nodes, actions, and end points."}
+}

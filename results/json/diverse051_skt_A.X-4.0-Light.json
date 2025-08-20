@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Patient",
+      "label": "Patient",
+      "shape": "rect"
+    },
+    {
+      "id": "Registration",
+      "label": "Patient Registration",
+      "shape": "rect"
+    },
+    {
+      "id": "Triage",
+      "label": "Medical Triage",
+      "shape": "rect"
+    },
+    {
+      "id": "Doctor",
+      "label": "See Doctor",
+      "shape": "rect"
+    },
+    {
+      "id": "Diagnosis",
+      "label": "Medical Diagnosis",
+      "shape": "rect"
+    },
+    {
+      "id": "Treatment",
+      "label": "Treatment Plan",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Patient",
+      "target": "Registration",
+      "type": "-->"
+    },
+    {
+      "source": "Registration",
+      "target": "Triage",
+      "type": "-->"
+    },
+    {
+      "source": "Triage",
+      "target": "Doctor",
+      "type": "-->"
+    },
+    {
+      "source": "Doctor",
+      "target": "Diagnosis",
+      "type": "-->"
+    },
+    {
+      "source": "Diagnosis",
+      "target": "Treatment",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of patient care process from registration to treatment."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

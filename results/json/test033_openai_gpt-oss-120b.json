@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B3",
+      "label": "B3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C3",
+      "label": "C3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D3",
+      "label": "D3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E3",
+      "label": "E3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F3",
+      "label": "F3",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "D3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B3",
+      "target": "E3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C3",
+      "target": "E3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D3",
+      "target": "F3",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 시작해 B3, C3, D3로 흐르고, B3와 C3는 E3로, D3는 F3로 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

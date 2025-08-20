@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Customer",
+      "label": "Customer",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Browse",
+      "label": "Browse Products",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Select",
+      "label": "Select Item",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Cart",
+      "label": "Add to Cart",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Checkout",
+      "label": "Checkout",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Payment",
+      "label": "Process Payment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Ship",
+      "label": "Shipping",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Customer",
+      "target": "Browse",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Browse",
+      "target": "Select",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Select",
+      "target": "Cart",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Cart",
+      "target": "Checkout",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Checkout",
+      "target": "Payment",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Payment",
+      "target": "Ship",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "고객이 제품을 탐색하고 선택한 뒤 장바구니에 담아 결제 과정을 거쳐 배송되는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "Customer"
+    ],
+    "exit_nodes": [
+      "Ship"
+    ]
+  }
+}

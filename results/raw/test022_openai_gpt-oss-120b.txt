@@ -1,0 +1,57 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A2",
+      "label": "A2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B2",
+      "label": "B2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C2",
+      "label": "C2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D2",
+      "label": "D2",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A2",
+      "target": "B2",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "C2",
+      "type": "===",
+      "label": null
+    },
+    {
+      "source": "C2",
+      "target": "D2",
+      "type": "-.-",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A2와 B2가 연결되고, B2와 C2가 강하게 연결되며, C2와 D2가 점선으로 연결됩니다.",
+    "entry_nodes": ["A2"],
+    "exit_nodes": ["D2"]
+  }
+}

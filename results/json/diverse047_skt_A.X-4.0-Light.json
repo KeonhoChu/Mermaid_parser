@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Economy",
+      "label": "Game Economy",
+      "shape": "rect"
+    },
+    {
+      "id": "Shop",
+      "label": "In-Game Shop",
+      "shape": "rect"
+    },
+    {
+      "id": "Purchase",
+      "label": "Buy Items",
+      "shape": "rect"
+    },
+    {
+      "id": "Currency",
+      "label": "Virtual Currency",
+      "shape": "rect"
+    },
+    {
+      "id": "Trade",
+      "label": "Player Trading",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Economy",
+      "target": "Shop",
+      "type": "-->"
+    },
+    {
+      "source": "Shop",
+      "target": "Purchase",
+      "type": "-->"
+    },
+    {
+      "source": "Purchase",
+      "target": "Currency",
+      "type": "-->"
+    },
+    {
+      "source": "Currency",
+      "target": "Trade",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of game economy interactions"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

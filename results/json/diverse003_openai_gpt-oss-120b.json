@@ -1,0 +1,111 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Planning",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Design",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "Site Preparation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "Foundation Construction",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "Superstructure Construction",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "Finishing",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "G",
+      "label": "Inspection and Testing",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "H",
+      "label": "Opening",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F",
+      "target": "G",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "G",
+      "target": "H",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "프로젝트는 계획 단계부터 시작해 설계, 현장 준비, 기초 공사, 상부 구조물 건설, 마감, 검사 및 테스트를 거쳐 최종 개장까지 순차적으로 진행됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

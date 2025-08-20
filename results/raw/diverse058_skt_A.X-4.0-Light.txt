@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Radiology", "label": "Radiology", "shape": "rect"},
+    {"id": "Scan", "label": "Medical Scan", "shape": "rect"},
+    {"id": "Image", "label": "Capture Image", "shape": "rect"},
+    {"id": "Radiologist", "label": "Radiologist Review", "shape": "rect"},
+    {"id": "Report", "label": "Diagnostic Report", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Radiology", "target": "Scan", "type": "-->"},
+    {"source": "Scan", "target": "Image", "type": "-->"},
+    {"source": "Image", "target": "Radiologist", "type": "-->"},
+    {"source": "Radiologist", "target": "Report", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of medical imaging process from Radiology to Diagnostic Report."}
+}

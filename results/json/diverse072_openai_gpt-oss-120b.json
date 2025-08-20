@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Investment",
+      "label": "Investment Account",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Portfolio",
+      "label": "Build Portfolio",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Trade",
+      "label": "Execute Trades",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Monitor",
+      "label": "Monitor Performance",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Rebalance",
+      "label": "Portfolio Rebalancing",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Investment",
+      "target": "Portfolio",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Portfolio",
+      "target": "Trade",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Trade",
+      "target": "Monitor",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Monitor",
+      "target": "Rebalance",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "투자 계좌에서 포트폴리오를 구축하고, 거래를 실행한 뒤 성과를 모니터링하고 재조정하는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Safety", "label": "Safety Protocol", "shape": "rect"},
+    {"id": "Training", "label": "Safety Training", "shape": "rect"},
+    {"id": "Equipment", "label": "Safety Equipment", "shape": "rect"},
+    {"id": "Compliance", "label": "Safety Compliance", "shape": "rect"},
+    {"id": "Audit", "label": "Safety Audit", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Safety", "target": "Training", "type": "-->"},
+    {"source": "Training", "target": "Equipment", "type": "-->"},
+    {"source": "Equipment", "target": "Compliance", "type": "-->"},
+    {"source": "Compliance", "target": "Audit", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart showing safety protocol process."}
+}

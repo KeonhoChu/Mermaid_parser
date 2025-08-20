@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Source",
+      "label": "Source DB",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "ETL",
+      "label": "ETL Process",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Stage",
+      "label": "Staging",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "Transform",
+      "label": "Data Transform",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Warehouse",
+      "label": "Data Warehouse",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "BI",
+      "label": "Business Intelligence",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Source",
+      "target": "ETL",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "ETL",
+      "target": "Stage",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Stage",
+      "target": "Transform",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Transform",
+      "target": "Warehouse",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Warehouse",
+      "target": "BI",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "소스 DB에서 ETL 과정을 거쳐 스테이징, 변환 후 데이터 웨어하우스로 이동하고, 최종적으로 BI 시스템에 전달됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

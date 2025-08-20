@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Fleet",
+      "label": "Fleet Management",
+      "shape": "rect"
+    },
+    {
+      "id": "Vehicle",
+      "label": "Vehicle Maintenance",
+      "shape": "rect"
+    },
+    {
+      "id": "Driver",
+      "label": "Driver Assignment",
+      "shape": "rect"
+    },
+    {
+      "id": "Route",
+      "label": "Route Assignment",
+      "shape": "rect"
+    },
+    {
+      "id": "Performance",
+      "label": "Performance Tracking",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Fleet",
+      "target": "Vehicle",
+      "type": "-->"
+    },
+    {
+      "source": "Vehicle",
+      "target": "Driver",
+      "type": "-->"
+    },
+    {
+      "source": "Driver",
+      "target": "Route",
+      "type": "-->"
+    },
+    {
+      "source": "Route",
+      "target": "Performance",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of Fleet Management process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Layer1",
+      "label": "계층 1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Layer2",
+      "label": "계층 2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Layer3",
+      "label": "계층 3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Layer4",
+      "label": "계층 4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Layer5",
+      "label": "계층 5",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Layer1",
+      "target": "Layer2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Layer2",
+      "target": "Layer3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Layer3",
+      "target": "Layer4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Layer4",
+      "target": "Layer5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Layer5",
+      "target": "Layer1",
+      "type": "-.->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "계층 1부터 계층 5까지 순차적으로 연결되고, 마지막에 계층 5가 계층 1로 돌아가는 순환 구조입니다.",
+    "entry_nodes": [],
+    "exit_nodes": []
+  }
+}

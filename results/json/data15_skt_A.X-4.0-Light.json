@@ -1,0 +1,610 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "rect"
+    },
+    {
+      "id": "ENTRY",
+      "label": "요청 수신",
+      "shape": "rect"
+    },
+    {
+      "id": "ROUTER",
+      "label": "도메인/경로 라우팅",
+      "shape": "rect"
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect"
+    },
+    {
+      "id": "A1",
+      "label": "OIDC 로그인",
+      "shape": "rect"
+    },
+    {
+      "id": "A2",
+      "label": "토큰 발급",
+      "shape": "rect"
+    },
+    {
+      "id": "A3",
+      "label": "스코프 파싱",
+      "shape": "rect"
+    },
+    {
+      "id": "A4",
+      "label": "권한 충족?",
+      "shape": "diamond"
+    },
+    {
+      "id": "A_OK",
+      "label": "Auth OK",
+      "shape": "rect"
+    },
+    {
+      "id": "T1",
+      "label": "도메인→테넌트ID",
+      "shape": "rect"
+    },
+    {
+      "id": "T2",
+      "label": "존재?",
+      "shape": "diamond"
+    },
+    {
+      "id": "T3",
+      "label": "플랜 조회",
+      "shape": "rect"
+    },
+    {
+      "id": "T4",
+      "label": "쿼터 초과?",
+      "shape": "diamond"
+    },
+    {
+      "id": "T_ERR",
+      "label": "404 테넌트 없음",
+      "shape": "rect"
+    },
+    {
+      "id": "T_LIM",
+      "label": "429 쿼터 초과",
+      "shape": "rect"
+    },
+    {
+      "id": "T_OK",
+      "label": "Tenant OK",
+      "shape": "rect"
+    },
+    {
+      "id": "B1",
+      "label": "사용량 누계",
+      "shape": "rect"
+    },
+    {
+      "id": "B2",
+      "label": "청구 시점?",
+      "shape": "diamond"
+    },
+    {
+      "id": "B3",
+      "label": "결제 시도",
+      "shape": "rect"
+    },
+    {
+      "id": "B4",
+      "label": "승인?",
+      "shape": "diamond"
+    },
+    {
+      "id": "B5",
+      "label": "재시도/대체수단",
+      "shape": "rect"
+    },
+    {
+      "id": "B6",
+      "label": "청구 완료",
+      "shape": "rect"
+    },
+    {
+      "id": "B7",
+      "label": "미수금 체크",
+      "shape": "rect"
+    },
+    {
+      "id": "B8",
+      "label": "연체?",
+      "shape": "diamond"
+    },
+    {
+      "id": "B9",
+      "label": "알림/제한",
+      "shape": "rect"
+    },
+    {
+      "id": "B_AR_OK",
+      "label": "정상",
+      "shape": "rect"
+    },
+    {
+      "id": "F1",
+      "label": "플래그 평가",
+      "shape": "rect"
+    },
+    {
+      "id": "F2",
+      "label": "활성?",
+      "shape": "diamond"
+    },
+    {
+      "id": "F3",
+      "label": "신규 경로",
+      "shape": "rect"
+    },
+    {
+      "id": "F4",
+      "label": "기존 경로",
+      "shape": "rect"
+    },
+    {
+      "id": "F_OUT",
+      "label": "Flag OK",
+      "shape": "rect"
+    },
+    {
+      "id": "P1",
+      "label": "API 이벤트",
+      "shape": "rect"
+    },
+    {
+      "id": "P2",
+      "label": "큐 적재",
+      "shape": "rect"
+    },
+    {
+      "id": "P3",
+      "label": "지연>2s?",
+      "shape": "diamond"
+    },
+    {
+      "id": "P4",
+      "label": "Backpressure",
+      "shape": "rect"
+    },
+    {
+      "id": "P5",
+      "label": "정제",
+      "shape": "rect"
+    },
+    {
+      "id": "P6",
+      "label": "파싱/정규화",
+      "shape": "rect"
+    },
+    {
+      "id": "P7",
+      "label": "특징 생성",
+      "shape": "rect"
+    },
+    {
+      "id": "P8",
+      "label": "검증",
+      "shape": "rect"
+    },
+    {
+      "id": "P9",
+      "label": "Hot KV",
+      "shape": "rect"
+    },
+    {
+      "id": "P10",
+      "label": "Cold Lake",
+      "shape": "rect"
+    },
+    {
+      "id": "C1",
+      "label": "PII 스캔",
+      "shape": "rect"
+    },
+    {
+      "id": "C2",
+      "label": "마스킹/토큰화",
+      "shape": "rect"
+    },
+    {
+      "id": "C3",
+      "label": "위반?",
+      "shape": "diamond"
+    },
+    {
+      "id": "C4",
+      "label": "차단/알림",
+      "shape": "rect"
+    },
+    {
+      "id": "C5",
+      "label": "정책 업데이트",
+      "shape": "rect"
+    },
+    {
+      "id": "C_OK",
+      "label": "Compliant",
+      "shape": "rect"
+    },
+    {
+      "id": "IR1",
+      "label": "오류율 모니터",
+      "shape": "rect"
+    },
+    {
+      "id": "IR2",
+      "label": "임계 초과?",
+      "shape": "diamond"
+    },
+    {
+      "id": "IR3",
+      "label": "온콜 호출",
+      "shape": "rect"
+    },
+    {
+      "id": "IR4",
+      "label": "대응/롤백",
+      "shape": "rect"
+    },
+    {
+      "id": "IR_OK",
+      "label": "정상",
+      "shape": "rect"
+    },
+    {
+      "id": "A5",
+      "label": "403 반환",
+      "shape": "rect"
+    },
+    {
+      "id": "T_ERR",
+      "label": "404 테넌트 없음",
+      "shape": "rect"
+    },
+    {
+      "id": "T_LIM",
+      "label": "429 쿼터 초과",
+      "shape": "rect"
+    },
+    {
+      "id": "B_OUT",
+      "label": "Billing OK",
+      "shape": "rect"
+    },
+    {
+      "id": "F_OUT",
+      "label": "Flag OK",
+      "shape": "rect"
+    },
+    {
+      "id": "C_OK",
+      "label": "Compliant",
+      "shape": "rect"
+    },
+    {
+      "id": "IR_OK",
+      "label": "정상",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "START",
+      "target": "ENTRY",
+      "type": "-->"
+    },
+    {
+      "source": "ENTRY",
+      "target": "ROUTER",
+      "type": "-->"
+    },
+    {
+      "source": "ROUTER",
+      "target": "S_AUTH",
+      "type": "-->"
+    },
+    {
+      "source": "A2",
+      "target": "A3",
+      "type": "-->"
+    },
+    {
+      "source": "A4",
+      "target": "A5",
+      "type": "-->"
+    },
+    {
+      "source": "A4",
+      "target": "A_OK",
+      "type": "-->"
+    },
+    {
+      "source": "A_OK",
+      "target": "S_TENANT",
+      "type": "-->"
+    },
+    {
+      "source": "T1",
+      "target": "T2",
+      "type": "-->"
+    },
+    {
+      "source": "T2",
+      "target": "T3",
+      "type": "-->"
+    },
+    {
+      "source": "T3",
+      "target": "T4",
+      "type": "-->"
+    },
+    {
+      "source": "T4",
+      "target": "T_ERR",
+      "type": "-->"
+    },
+    {
+      "source": "T4",
+      "target": "T_LIM",
+      "type": "-->"
+    },
+    {
+      "source": "T4",
+      "target": "T_OK",
+      "type": "-->"
+    },
+    {
+      "source": "T_OK",
+      "target": "S_FLAG",
+      "type": "-->"
+    },
+    {
+      "source": "S_FLAG",
+      "target": "S_PIPE",
+      "type": "-->"
+    },
+    {
+      "source": "S_PIPE",
+      "target": "S_COMP",
+      "type": "-->"
+    },
+    {
+      "source": "S_COMP",
+      "target": "S_BILL",
+      "type": "-->"
+    },
+    {
+      "source": "S_BILL",
+      "target": "S_IR",
+      "type": "-->"
+    },
+    {
+      "source": "B6",
+      "target": "B7",
+      "type": "-->"
+    },
+    {
+      "source": "B7",
+      "target": "B8",
+      "type": "-->"
+    },
+    {
+      "source": "B8",
+      "target": "B9",
+      "type": "-->"
+    },
+    {
+      "source": "B9",
+      "target": "B7",
+      "type": "-->"
+    },
+    {
+      "source": "C1",
+      "target": "C2",
+      "type": "-->"
+    },
+    {
+      "source": "C2",
+      "target": "C3",
+      "type": "-->"
+    },
+    {
+      "source": "C3",
+      "target": "C4",
+      "type": "-->"
+    },
+    {
+      "source": "C4",
+      "target": "C5",
+      "type": "-->"
+    },
+    {
+      "source": "C5",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "IR1",
+      "target": "IR2",
+      "type": "-->"
+    },
+    {
+      "source": "IR2",
+      "target": "IR3",
+      "type": "-->"
+    },
+    {
+      "source": "IR3",
+      "target": "IR4",
+      "type": "-->"
+    },
+    {
+      "source": "IR4",
+      "target": "IR_OK",
+      "type": "-->"
+    },
+    {
+      "source": "A5",
+      "target": "END",
+      "type": "-->"
+    },
+    {
+      "source": "T_ERR",
+      "target": "END",
+      "type": "-->"
+    },
+    {
+      "source": "T_LIM",
+      "target": "END",
+      "type": "-->"
+    },
+    {
+      "source": "B_OUT",
+      "target": "IR1",
+      "type": "-->"
+    },
+    {
+      "source": "F_OUT",
+      "target": "P1",
+      "type": "-->"
+    },
+    {
+      "source": "C_OK",
+      "target": "B1",
+      "type": "-->"
+    },
+    {
+      "source": "C4",
+      "target": "IR3",
+      "type": "-->"
+    },
+    {
+      "source": "IR_OK",
+      "target": "END",
+      "type": "-->"
+    },
+    {
+      "source": "P4",
+      "target": "P2",
+      "type": "-->"
+    },
+    {
+      "source": "B5",
+      "target": "B3",
+      "type": "-->"
+    },
+    {
+      "source": "P3",
+      "target": "P4",
+      "type": "-->"
+    },
+    {
+      "source": "P8",
+      "target": "P7",
+      "type": "-->"
+    },
+    {
+      "source": "P7",
+      "target": "P6",
+      "type": "-->"
+    },
+    {
+      "source": "P6",
+      "target": "P5",
+      "type": "-->"
+    },
+    {
+      "source": "P5",
+      "target": "P9",
+      "type": "-->"
+    },
+    {
+      "source": "P9",
+      "target": "P10",
+      "type": "-->"
+    },
+    {
+      "source": "P10",
+      "target": "P8",
+      "type": "-->"
+    },
+    {
+      "source": "S_AUTH",
+      "target": "A1",
+      "type": "-->"
+    },
+    {
+      "source": "S_TENANT",
+      "target": "T1",
+      "type": "-->"
+    },
+    {
+      "source": "S_FLAG",
+      "target": "F1",
+      "type": "-->"
+    },
+    {
+      "source": "S_PIPE",
+      "target": "P1",
+      "type": "-->"
+    },
+    {
+      "source": "S_COMP",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "S_BILL",
+      "target": "B1",
+      "type": "-->"
+    },
+    {
+      "source": "S_IR",
+      "target": "IR1",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S_AUTH",
+      "title": "AUTH (인증/권한)"
+    },
+    {
+      "id": "S_TENANT",
+      "title": "TENANT ROUTER"
+    },
+    {
+      "id": "S_FLAG",
+      "title": "FEATURE FLAG & RELEASE"
+    },
+    {
+      "id": "S_PIPE",
+      "title": "DATA PIPELINE"
+    },
+    {
+      "id": "S_COMP",
+      "title": "COMPLIANCE & AUDIT"
+    },
+    {
+      "id": "S_IR",
+      "title": "INCIDENT RESPONSE"
+    }
+  ],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing a complex system with authentication, tenant routing, billing, data pipeline, compliance, and incident response processes."
+  },
+  "warnings": [
+    "JSON 추출 후 파싱 성공"
+  ],
+  "decisions": []
+}

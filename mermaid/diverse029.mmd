@@ -1,0 +1,6 @@
+flowchart TD
+    Request[API Request] --> Validate[Input Validation]
+    Validate --> Auth[Authorization]
+    Auth --> Business[Business Logic]
+    Business --> Data[Data Layer]
+    Data --> Response[API Response]

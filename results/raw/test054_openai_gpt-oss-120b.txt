@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A4",
+      "label": "A4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B4",
+      "label": "B4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C4",
+      "label": "C4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D4",
+      "label": "D4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E4",
+      "label": "E4",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A4",
+      "target": "B4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B4",
+      "target": "C4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C4",
+      "target": "D4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D4",
+      "target": "E4",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A4에서 시작해 B4, C4, D4를 거쳐 E4로 진행하는 순차 흐름입니다.",
+    "entry_nodes": [
+      "A4"
+    ],
+    "exit_nodes": [
+      "E4"
+    ]
+  }
+}

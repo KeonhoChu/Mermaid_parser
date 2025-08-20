@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Emergency", "label": "Emergency Call", "shape": "rect"},
+    {"id": "Dispatch", "label": "Dispatch Ambulance", "shape": "rect"},
+    {"id": "Scene", "label": "Arrive at Scene", "shape": "rect"},
+    {"id": "Stabilize", "label": "Stabilize Patient", "shape": "rect"},
+    {"id": "Transport", "label": "Transport to Hospital", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Emergency", "target": "Dispatch", "type": "-->"},
+    {"source": "Dispatch", "target": "Scene", "type": "-->"},
+    {"source": "Scene", "target": "Stabilize", "type": "-->"},
+    {"source": "Stabilize", "target": "Transport", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of emergency response process"}
+}

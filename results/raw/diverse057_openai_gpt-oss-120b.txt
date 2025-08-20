@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Insurance",
+      "label": "Insurance Claim",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Verify",
+      "label": "Verify Coverage",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Process",
+      "label": "Process Claim",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Approve",
+      "label": "Approve Payment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Reimburse",
+      "label": "Reimburse Provider",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Insurance",
+      "target": "Verify",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Verify",
+      "target": "Process",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Process",
+      "target": "Approve",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Approve",
+      "target": "Reimburse",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "보험 청구가 검증, 처리, 승인, 제공자에게 재보상되는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -52,6 +52,12 @@ def parse_mermaid_flowchart(text: str) -> Parsed:
                 p.subgraph_definitions.add(sg_id)
             continue
         
+        # 인라인 서브그래프 처리 (A --> |label| subgraph S1["title"])
+        inline_sg_pattern = r'subgraph\s+([A-Za-z0-9_]+)\s*\['
+        inline_sg_matches = re.findall(inline_sg_pattern, line, re.IGNORECASE)
+        for sg_id in inline_sg_matches:
+            p.subgraph_definitions.add(sg_id)
+        
         if line.lower() == 'end':
             if subgraph_stack:
                 subgraph_stack.pop()
@@ -148,8 +154,11 @@ def parse_mermaid_flowchart(text: str) -> Parsed:
         # 일반 엣지 처리
         edge_patterns = [
             (r'([A-Za-z0-9_]+)(?:\[[^\]]*\])?\s*-->\s*([A-Za-z0-9_]+)(?:\[[^\]]*\])?', "arrow"),
+            (r'([A-Za-z0-9_]+)(?:\[[^\]]*\])?\s*---\s*([A-Za-z0-9_]+)(?:\[[^\]]*\])?', "undirected"),
             (r'([A-Za-z0-9_]+)(?:\[[^\]]*\])?\s*-\.->\s*([A-Za-z0-9_]+)(?:\[[^\]]*\])?', "dotted"),
+            (r'([A-Za-z0-9_]+)(?:\[[^\]]*\])?\s*-\.-\s*([A-Za-z0-9_]+)(?:\[[^\]]*\])?', "dotted_undirected"),
             (r'([A-Za-z0-9_]+)(?:\[[^\]]*\])?\s*==>\s*([A-Za-z0-9_]+)(?:\[[^\]]*\])?', "thick"),
+            (r'([A-Za-z0-9_]+)(?:\[[^\]]*\])?\s*===\s*([A-Za-z0-9_]+)(?:\[[^\]]*\])?', "thick_undirected"),
             (r'([A-Za-z0-9_]+)(?:\[[^\]]*\])?\s*<-->\s*([A-Za-z0-9_]+)(?:\[[^\]]*\])?', "bidirectional"),
         ]
         
@@ -595,10 +604,10 @@ def save_results_to_csv(results: List[dict], output_file: str = "mermaid_level_a
             for row in results:
                 simplified_row = {
                     "name": row.get("name"),
+                    "level": row.get("level"),
                     "N": row.get("N"),
                     "E": row.get("E"),
                     "SUBGRAPH_COUNT": row.get("SUBGRAPH_COUNT"),
-                    "level": row.get("level"),
                     "explanations": "; ".join(row.get("level_explanations", [])) if isinstance(row.get("level_explanations"), list) else row.get("level_explanations", "")
                 }
                 writer.writerow(simplified_row)

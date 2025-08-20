@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Level", "label": "Level Design", "shape": "rect"},
+    {"id": "Test", "label": "Playtest", "shape": "rect"},
+    {"id": "Balance", "label": "Game Balance", "shape": "rect"},
+    {"id": "Deploy", "label": "Level Release", "shape": "rect"},
+    {"id": "Feedback", "label": "Player Feedback", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Level", "target": "Test", "type": "-->"},
+    {"source": "Test", "target": "Balance", "type": "-->"},
+    {"source": "Balance", "target": "Deploy", "type": "-->"},
+    {"source": "Deploy", "target": "Feedback", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describes the process from Level Design to Player Feedback."}
+}

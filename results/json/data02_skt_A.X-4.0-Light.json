@@ -1,0 +1,105 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "ROOT",
+      "label": "최상위 결정",
+      "shape": "rect"
+    },
+    {
+      "id": "A1",
+      "label": "세부결정 A",
+      "shape": "rect"
+    },
+    {
+      "id": "A2",
+      "label": "액션 A2",
+      "shape": "rect"
+    },
+    {
+      "id": "A3",
+      "label": "액션 A3",
+      "shape": "rect"
+    },
+    {
+      "id": "B1",
+      "label": "세부결정 B",
+      "shape": "rect"
+    },
+    {
+      "id": "B2",
+      "label": "액션 B2",
+      "shape": "rect"
+    },
+    {
+      "id": "B3",
+      "label": "액션 B3",
+      "shape": "rect"
+    },
+    {
+      "id": "F",
+      "label": "최종결론",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "ROOT",
+      "target": "A1",
+      "type": "-->"
+    },
+    {
+      "source": "ROOT",
+      "target": "B1",
+      "type": "-->"
+    },
+    {
+      "source": "A1",
+      "target": "A2",
+      "type": "-->"
+    },
+    {
+      "source": "A1",
+      "target": "A3",
+      "type": "-->"
+    },
+    {
+      "source": "B1",
+      "target": "B2",
+      "type": "-->"
+    },
+    {
+      "source": "B1",
+      "target": "B3",
+      "type": "-->"
+    },
+    {
+      "source": "A2",
+      "target": "F",
+      "type": "-->"
+    },
+    {
+      "source": "A3",
+      "target": "F",
+      "type": "-->"
+    },
+    {
+      "source": "B2",
+      "target": "F",
+      "type": "-->"
+    },
+    {
+      "source": "B3",
+      "target": "F",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing decision tree with branches and outcomes."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

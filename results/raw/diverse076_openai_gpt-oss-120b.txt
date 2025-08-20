@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Insurance",
+      "label": "Insurance Policy",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Premium",
+      "label": "Premium Payment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Claim",
+      "label": "File Claim",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Assess",
+      "label": "Claim Assessment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Payout",
+      "label": "Insurance Payout",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Insurance",
+      "target": "Premium",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Premium",
+      "target": "Claim",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Claim",
+      "target": "Assess",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Assess",
+      "target": "Payout",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "보험 정책에서 프리미엄을 지불하고 청구를 제출하면 평가 후 보험금이 지급됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

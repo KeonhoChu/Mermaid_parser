@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Backup",
+      "label": "Data Backup",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Verify",
+      "label": "Verify Backup",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Archive",
+      "label": "Archive Storage",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Restore",
+      "label": "Disaster Recovery",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Validate",
+      "label": "Validate Restore",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Backup",
+      "target": "Verify",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Verify",
+      "target": "Archive",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Archive",
+      "target": "Restore",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Restore",
+      "target": "Validate",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "데이터 백업이 검증되고 아카이브 저장소로 이동한 뒤 재해 복구를 위해 복원되며, 최종적으로 복원 결과가 검증되는 흐름입니다.",
+    "entry_nodes": [
+      "Backup"
+    ],
+    "exit_nodes": [
+      "Validate"
+    ]
+  }
+}

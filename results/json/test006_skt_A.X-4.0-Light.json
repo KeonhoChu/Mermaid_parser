@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect"
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "shape": "rect"
+    },
+    {
+      "id": "C6",
+      "label": "C6",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->"
+    },
+    {
+      "source": "B",
+      "target": "C6",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart with nodes A, B, and C6 connected by arrows."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

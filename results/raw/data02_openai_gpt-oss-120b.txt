@@ -116,12 +116,12 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "Root decision branches into detailed decisions A and B, each leading to specific actions and finally converging on the final conclusion.",
+    "natural_language": "이 흐름도는 최상위 결정에서 A와 B 선택을 통해 각각 세부결정으로 이동하고, 조건에 따라 액션을 수행한 뒤 최종결론에 도달합니다.",
     "entry_nodes": [
-      "ROOT"
+      "START"
     ],
     "exit_nodes": [
-      "F"
+      "END"
     ]
   }
 }

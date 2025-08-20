@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Tournament",
+      "label": "Tournament",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Bracket",
+      "label": "Create Bracket",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Rounds",
+      "label": "Tournament Rounds",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Finals",
+      "label": "Grand Finals",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Champion",
+      "label": "Declare Champion",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Tournament",
+      "target": "Bracket",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Bracket",
+      "target": "Rounds",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Rounds",
+      "target": "Finals",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Finals",
+      "target": "Champion",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "토너먼트가 브라켓을 생성하고 라운드를 진행하여 결승에 도달한 뒤 챔피언을 선언합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

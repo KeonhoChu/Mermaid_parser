@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Achievement",
+      "label": "Achievement System",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Progress",
+      "label": "Track Progress",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Complete",
+      "label": "Achievement Complete",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Unlock",
+      "label": "Unlock Reward",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Display",
+      "label": "Display Badge",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Achievement",
+      "target": "Progress",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Progress",
+      "target": "Complete",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Complete",
+      "target": "Unlock",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Unlock",
+      "target": "Display",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "성취 시스템이 진행 상황을 추적하고, 완성 시 보상을 잠금 해제하여 배지를 표시합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

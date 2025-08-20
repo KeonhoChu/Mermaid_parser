@@ -1,0 +1,6 @@
+flowchart TD
+    Application[Loan Application] --> Verify[Document Verification]
+    Verify --> Credit[Credit Check]
+    Credit --> Approval{Loan Approval}
+    Approval -->|Yes| Disburse[Loan Disbursement]
+    Approval -->|No| Decline[Application Declined]

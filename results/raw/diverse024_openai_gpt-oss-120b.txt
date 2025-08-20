@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "API",
+      "label": "API Gateway",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Auth",
+      "label": "Auth Service",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "User",
+      "label": "User Service",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Order",
+      "label": "Order Service",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "UserDB",
+      "label": "User DB",
+      "shape": "circle",
+      "subgraphs": []
+    },
+    {
+      "id": "OrderDB",
+      "label": "Order DB",
+      "shape": "circle",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "API",
+      "target": "Auth",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "API",
+      "target": "User",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "API",
+      "target": "Order",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "User",
+      "target": "UserDB",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Order",
+      "target": "OrderDB",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "API Gateway가 Auth Service, User Service, Order Service와 연결되고, User Service는 User DB와, Order Service는 Order DB와 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

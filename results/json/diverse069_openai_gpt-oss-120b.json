@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Lean",
+      "label": "Lean Manufacturing",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Analyze",
+      "label": "Process Analysis",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Improve",
+      "label": "Process Improvement",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Implement",
+      "label": "Implementation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Monitor",
+      "label": "Performance Monitor",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Lean",
+      "target": "Analyze",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Analyze",
+      "target": "Improve",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Improve",
+      "target": "Implement",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Implement",
+      "target": "Monitor",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "Lean 제조에서 시작해 프로세스를 분석하고 개선하여 구현한 뒤 성과를 모니터링하는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

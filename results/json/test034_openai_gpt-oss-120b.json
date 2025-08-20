@@ -1,0 +1,94 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B4",
+      "label": "B4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C4",
+      "label": "C4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D4",
+      "label": "D4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E4",
+      "label": "E4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F4",
+      "label": "F4",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "D4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B4",
+      "target": "E4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C4",
+      "target": "E4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D4",
+      "target": "F4",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 시작하여 B4, C4, D4로 흐르고, B4와 C4는 E4에 연결되고, D4는 F4에 연결됩니다.",
+    "entry_nodes": [
+      "A"
+    ],
+    "exit_nodes": [
+      "E4",
+      "F4"
+    ]
+  }
+}

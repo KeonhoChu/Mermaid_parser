@@ -1,0 +1,15 @@
+flowchart TD
+    subgraph A["데이터 입력"]
+        Input1[입력 A]
+        Input2[입력 B]
+    end
+    subgraph B["데이터 처리"]
+        Process1[처리 A]
+        Process2[처리 B]
+    end
+    subgraph C["결과 출력"]
+        Output1[출력 A]
+        Output2[출력 B]
+    end
+    A --> B
+    B --> C

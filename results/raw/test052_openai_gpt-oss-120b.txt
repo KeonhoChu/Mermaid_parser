@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A2",
+      "label": "A2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B2",
+      "label": "B2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C2",
+      "label": "C2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D2",
+      "label": "D2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E2",
+      "label": "E2",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A2",
+      "target": "B2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "C2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C2",
+      "target": "D2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D2",
+      "target": "E2",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A2에서 시작해 B2, C2, D2를 거쳐 E2로 흐르는 순차적인 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -1,9 +1,7 @@
 {
   "ok": true,
   "warnings": [
-    "JSON 추출 후 파싱 실패: Expecting ',' delimiter: line 120 column 77 (char 8395)",
-    "구문 수정 후 파싱 실패: Expecting ',' delimiter: line 120 column 77 (char 8395)",
-    "잘린 JSON 복구 후 파싱 성공"
+    "원본 텍스트 직접 파싱 성공"
   ],
   "nodes": [
     {
@@ -337,12 +335,484 @@
       "subgraphs": []
     }
   ],
-  "edges": [],
-  "subgraphs": [],
+  "edges": [
+    {
+      "source": "START",
+      "target": "ENTRY",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "ENTRY",
+      "target": "ROUTER",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "ROUTER",
+      "target": "S_AUTH",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A1",
+      "target": "A2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A2",
+      "target": "A3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A3",
+      "target": "A4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A4",
+      "target": "A5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A4",
+      "target": "A_OK",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A5",
+      "target": "END",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A_OK",
+      "target": "S_TENANT",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T1",
+      "target": "T2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T2",
+      "target": "T_ERR",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T2",
+      "target": "T3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T3",
+      "target": "T4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T4",
+      "target": "T_LIM",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T4",
+      "target": "T_OK",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T_ERR",
+      "target": "END",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "T_LIM",
+      "target": "END",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S_TENANT",
+      "target": "S_FLAG",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S_FLAG",
+      "target": "S_PIPE",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S_PIPE",
+      "target": "S_COMP",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S_COMP",
+      "target": "S_BILL",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S_BILL",
+      "target": "S_IR",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B1",
+      "target": "B2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "B3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B3",
+      "target": "B4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B2",
+      "target": "B1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B4",
+      "target": "B5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B5",
+      "target": "B3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B4",
+      "target": "B6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B6",
+      "target": "B7",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B7",
+      "target": "B8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B8",
+      "target": "B9",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B9",
+      "target": "B7",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B8",
+      "target": "B_AR_OK",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B_AR_OK",
+      "target": "B_OUT",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B_OUT",
+      "target": "IR1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F1",
+      "target": "F2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F2",
+      "target": "F3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F2",
+      "target": "F4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F3",
+      "target": "F_OUT",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F4",
+      "target": "F_OUT",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F_OUT",
+      "target": "P1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P1",
+      "target": "P2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P2",
+      "target": "P3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P3",
+      "target": "P4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P4",
+      "target": "P2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P3",
+      "target": "P5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P5",
+      "target": "P6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P6",
+      "target": "P7",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P7",
+      "target": "P8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P8",
+      "target": "P9",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "P9",
+      "target": "P10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C1",
+      "target": "C2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C2",
+      "target": "C3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C3",
+      "target": "C4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C4",
+      "target": "C5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C5",
+      "target": "C1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C3",
+      "target": "C_OK",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C_OK",
+      "target": "B1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "IR1",
+      "target": "IR2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "IR2",
+      "target": "IR3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "IR3",
+      "target": "IR4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "IR4",
+      "target": "IR_OK",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "IR2",
+      "target": "IR_OK",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "IR_OK",
+      "target": "END",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C4",
+      "target": "IR3",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S_AUTH",
+      "title": "AUTH (인증/권한)"
+    },
+    {
+      "id": "S_IDP",
+      "title": "IDP 연동"
+    },
+    {
+      "id": "S_ACL",
+      "title": "권한/스코프"
+    },
+    {
+      "id": "S_TENANT",
+      "title": "TENANT ROUTER"
+    },
+    {
+      "id": "S_TMAP",
+      "title": "테넌트 매핑"
+    },
+    {
+      "id": "S_TPLAN",
+      "title": "플랜/쿼터"
+    },
+    {
+      "id": "S_BILL",
+      "title": "BILLING"
+    },
+    {
+      "id": "S_CHARGE",
+      "title": "과금흐름"
+    },
+    {
+      "id": "S_AR",
+      "title": "정산/미수"
+    },
+    {
+      "id": "S_FLAG",
+      "title": "FEATURE FLAG & RELEASE"
+    },
+    {
+      "id": "S_PIPE",
+      "title": "DATA PIPELINE"
+    },
+    {
+      "id": "S_ING",
+      "title": "수집"
+    },
+    {
+      "id": "S_PROC",
+      "title": "처리"
+    },
+    {
+      "id": "S_STORE",
+      "title": "저장"
+    },
+    {
+      "id": "S_COMP",
+      "title": "COMPLIANCE & AUDIT"
+    },
+    {
+      "id": "S_IR",
+      "title": "INCIDENT RESPONSE"
+    }
+  ],
   "decisions": [],
   "summary": {
-    "natural_language": "자동 생성된 요약",
-    "entry_nodes": [],
-    "exit_nodes": []
+    "natural_language": "요청을 수신하고 도메인/경로 라우팅 후 인증·권한, 테넌트 라우팅, 기능 플래그, 데이터 파이프라인, 컴플라이언스, 청구·정산, 사고 대응 순으로 처리하며 각 단계에서 조건에 따라 분기하고 최종적으로 END에 도달합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
   }
 }

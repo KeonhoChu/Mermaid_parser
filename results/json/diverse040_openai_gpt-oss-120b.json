@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Assessment",
+      "label": "Student Assessment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Rubric",
+      "label": "Apply Rubric",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Score",
+      "label": "Calculate Score",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Feedback",
+      "label": "Provide Feedback",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Improvement",
+      "label": "Learning Improvement",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Assessment",
+      "target": "Rubric",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Rubric",
+      "target": "Score",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Score",
+      "target": "Feedback",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Feedback",
+      "target": "Improvement",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "학생 평가에서 루브릭을 적용하고 점수를 계산한 뒤 피드백을 제공하여 학습 개선을 돕는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

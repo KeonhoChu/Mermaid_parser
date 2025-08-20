@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Lead",
+      "label": "Sales Lead",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Qualify",
+      "label": "Qualify Lead",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Contact",
+      "label": "Initial Contact",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Archive",
+      "label": "Archive Lead",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Demo",
+      "label": "Product Demo",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Proposal",
+      "label": "Send Proposal",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Close",
+      "label": "Close Deal",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Lead",
+      "target": "Qualify",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Qualify",
+      "target": "Contact",
+      "type": "-->",
+      "label": "Yes"
+    },
+    {
+      "source": "Qualify",
+      "target": "Archive",
+      "type": "-->",
+      "label": "No"
+    },
+    {
+      "source": "Contact",
+      "target": "Demo",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Demo",
+      "target": "Proposal",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Proposal",
+      "target": "Close",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 흐름도는 영업 리드를 자격 판단하고, 초기 연락, 제품 데모, 제안서 전송, 계약 체결까지의 과정을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

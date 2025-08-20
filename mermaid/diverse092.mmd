@@ -1,0 +1,8 @@
+flowchart LR
+    Start --> Decision1{조건 1}
+    Decision1 -->|True| Decision2{조건 2}
+    Decision1 -->|False| End1[종료 A]
+    Decision2 -->|True| Action1[액션 A]
+    Decision2 -->|False| Action2[액션 B]
+    Action1 --> End2[종료 B]
+    Action2 --> End2

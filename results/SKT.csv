@@ -1,0 +1,216 @@
+name,model,level,N_actual,E_actual,SUBGRAPH_COUNT_actual,explanations,llm_ok,llm_warnings,n_nodes_pred,n_edges_pred,n_subgraphs_pred,json_raw_path
+data01,skt/A.X-4.0-Light,L3,5,9,2,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,9,2,results\json\data01_skt_A.X-4.0-Light.json
+data02,skt/A.X-4.0-Light,L4,8,10,0,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,10,0,results\json\data02_skt_A.X-4.0-Light.json
+data03,skt/A.X-4.0-Light,L4,7,7,3,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,3,results\json\data03_skt_A.X-4.0-Light.json
+data04,skt/A.X-4.0-Light,L5,10,14,0,"L5: N<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,14,0,results\json\data04_skt_A.X-4.0-Light.json
+data05,skt/A.X-4.0-Light,L6,11,11,3,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,11,12,3,results\json\data05_skt_A.X-4.0-Light.json
+data06,skt/A.X-4.0-Light,L4,8,9,0,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,9,0,results\json\data06_skt_A.X-4.0-Light.json
+data07,skt/A.X-4.0-Light,L4,8,12,0,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,13,0,results\json\data07_skt_A.X-4.0-Light.json
+data08,skt/A.X-4.0-Light,L4,8,9,3,"L4: N<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,10,3,results\json\data08_skt_A.X-4.0-Light.json
+data09,skt/A.X-4.0-Light,L4,7,7,2,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,2,results\json\data09_skt_A.X-4.0-Light.json
+data10,skt/A.X-4.0-Light,L3,6,9,0,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,8,0,results\json\data10_skt_A.X-4.0-Light.json
+data11,skt/A.X-4.0-Light,L6,62,77,15,L6: Extremely complex - no level criteria met with 2+ conditions,True,JSON 추출 후 파싱 성공,57,63,8,results\json\data11_skt_A.X-4.0-Light.json
+data12,skt/A.X-4.0-Light,L6,22,14,2,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,22,29,2,results\json\data12_skt_A.X-4.0-Light.json
+data13,skt/A.X-4.0-Light,L6,45,54,12,L6: Extremely complex - no level criteria met with 2+ conditions,True,JSON 추출 후 파싱 성공,41,59,6,results\json\data13_skt_A.X-4.0-Light.json
+data14,skt/A.X-4.0-Light,L6,62,77,12,L6: Extremely complex - no level criteria met with 2+ conditions,True,JSON 추출 후 파싱 성공,57,86,8,results\json\data14_skt_A.X-4.0-Light.json
+data15,skt/A.X-4.0-Light,L6,57,67,16,L6: Extremely complex - no level criteria met with 2+ conditions,True,JSON 추출 후 파싱 성공,59,55,6,results\json\data15_skt_A.X-4.0-Light.json
+diverse001,skt/A.X-4.0-Light,L5,12,10,1,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,12,11,1,results\json\diverse001_skt_A.X-4.0-Light.json
+diverse002,skt/A.X-4.0-Light,L3,6,7,0,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,7,0,results\json\diverse002_skt_A.X-4.0-Light.json
+diverse003,skt/A.X-4.0-Light,L4,8,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse003_skt_A.X-4.0-Light.json
+diverse004,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\diverse004_skt_A.X-4.0-Light.json
+diverse005,skt/A.X-4.0-Light,L4,8,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse005_skt_A.X-4.0-Light.json
+diverse006,skt/A.X-4.0-Light,L6,12,13,0,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,12,13,0,results\json\diverse006_skt_A.X-4.0-Light.json
+diverse007,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\diverse007_skt_A.X-4.0-Light.json
+diverse008,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse008_skt_A.X-4.0-Light.json
+diverse009,skt/A.X-4.0-Light,L4,8,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse009_skt_A.X-4.0-Light.json
+diverse010,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse010_skt_A.X-4.0-Light.json
+diverse011,skt/A.X-4.0-Light,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,6,0,results\json\diverse011_skt_A.X-4.0-Light.json
+diverse012,skt/A.X-4.0-Light,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\diverse012_skt_A.X-4.0-Light.json
+diverse013,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse013_skt_A.X-4.0-Light.json
+diverse014,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse014_skt_A.X-4.0-Light.json
+diverse015,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse015_skt_A.X-4.0-Light.json
+diverse016,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse016_skt_A.X-4.0-Light.json
+diverse017,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse017_skt_A.X-4.0-Light.json
+diverse018,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse018_skt_A.X-4.0-Light.json
+diverse019,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse019_skt_A.X-4.0-Light.json
+diverse020,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse020_skt_A.X-4.0-Light.json
+diverse021,skt/A.X-4.0-Light,L4,7,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,0,results\json\diverse021_skt_A.X-4.0-Light.json
+diverse022,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse022_skt_A.X-4.0-Light.json
+diverse023,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,3,1,results\json\diverse023_skt_A.X-4.0-Light.json
+diverse024,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse024_skt_A.X-4.0-Light.json
+diverse025,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse025_skt_A.X-4.0-Light.json
+diverse026,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse026_skt_A.X-4.0-Light.json
+diverse027,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse027_skt_A.X-4.0-Light.json
+diverse028,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse028_skt_A.X-4.0-Light.json
+diverse029,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse029_skt_A.X-4.0-Light.json
+diverse030,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse030_skt_A.X-4.0-Light.json
+diverse031,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse031_skt_A.X-4.0-Light.json
+diverse032,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse032_skt_A.X-4.0-Light.json
+diverse033,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse033_skt_A.X-4.0-Light.json
+diverse034,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse034_skt_A.X-4.0-Light.json
+diverse035,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse035_skt_A.X-4.0-Light.json
+diverse036,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse036_skt_A.X-4.0-Light.json
+diverse037,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse037_skt_A.X-4.0-Light.json
+diverse038,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse038_skt_A.X-4.0-Light.json
+diverse039,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse039_skt_A.X-4.0-Light.json
+diverse040,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse040_skt_A.X-4.0-Light.json
+diverse041,skt/A.X-4.0-Light,L3,7,6,0,"L3: E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,6,0,results\json\diverse041_skt_A.X-4.0-Light.json
+diverse042,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse042_skt_A.X-4.0-Light.json
+diverse043,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse043_skt_A.X-4.0-Light.json
+diverse044,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse044_skt_A.X-4.0-Light.json
+diverse045,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse045_skt_A.X-4.0-Light.json
+diverse046,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse046_skt_A.X-4.0-Light.json
+diverse047,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse047_skt_A.X-4.0-Light.json
+diverse048,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse048_skt_A.X-4.0-Light.json
+diverse049,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse049_skt_A.X-4.0-Light.json
+diverse050,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse050_skt_A.X-4.0-Light.json
+diverse051,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse051_skt_A.X-4.0-Light.json
+diverse052,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse052_skt_A.X-4.0-Light.json
+diverse053,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse053_skt_A.X-4.0-Light.json
+diverse054,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse054_skt_A.X-4.0-Light.json
+diverse055,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse055_skt_A.X-4.0-Light.json
+diverse056,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse056_skt_A.X-4.0-Light.json
+diverse057,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse057_skt_A.X-4.0-Light.json
+diverse058,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse058_skt_A.X-4.0-Light.json
+diverse059,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse059_skt_A.X-4.0-Light.json
+diverse060,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse060_skt_A.X-4.0-Light.json
+diverse061,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse061_skt_A.X-4.0-Light.json
+diverse062,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse062_skt_A.X-4.0-Light.json
+diverse063,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse063_skt_A.X-4.0-Light.json
+diverse064,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\diverse064_skt_A.X-4.0-Light.json
+diverse065,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\diverse065_skt_A.X-4.0-Light.json
+diverse066,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse066_skt_A.X-4.0-Light.json
+diverse067,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse067_skt_A.X-4.0-Light.json
+diverse068,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse068_skt_A.X-4.0-Light.json
+diverse069,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse069_skt_A.X-4.0-Light.json
+diverse070,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse070_skt_A.X-4.0-Light.json
+diverse071,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse071_skt_A.X-4.0-Light.json
+diverse072,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse072_skt_A.X-4.0-Light.json
+diverse073,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse073_skt_A.X-4.0-Light.json
+diverse074,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse074_skt_A.X-4.0-Light.json
+diverse075,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse075_skt_A.X-4.0-Light.json
+diverse076,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse076_skt_A.X-4.0-Light.json
+diverse077,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse077_skt_A.X-4.0-Light.json
+diverse078,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse078_skt_A.X-4.0-Light.json
+diverse079,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse079_skt_A.X-4.0-Light.json
+diverse080,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse080_skt_A.X-4.0-Light.json
+diverse081,skt/A.X-4.0-Light,L3,6,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse081_skt_A.X-4.0-Light.json
+diverse082,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse082_skt_A.X-4.0-Light.json
+diverse083,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse083_skt_A.X-4.0-Light.json
+diverse084,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse084_skt_A.X-4.0-Light.json
+diverse085,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse085_skt_A.X-4.0-Light.json
+diverse086,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse086_skt_A.X-4.0-Light.json
+diverse087,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse087_skt_A.X-4.0-Light.json
+diverse088,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse088_skt_A.X-4.0-Light.json
+diverse089,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse089_skt_A.X-4.0-Light.json
+diverse090,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse090_skt_A.X-4.0-Light.json
+diverse091,skt/A.X-4.0-Light,L3,6,2,3,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,7,3,results\json\diverse091_skt_A.X-4.0-Light.json
+diverse092,skt/A.X-4.0-Light,L4,7,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,7,7,0,results\json\diverse092_skt_A.X-4.0-Light.json
+diverse093,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,5,0,results\json\diverse093_skt_A.X-4.0-Light.json
+diverse094,skt/A.X-4.0-Light,L4,8,8,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,8,0,results\json\diverse094_skt_A.X-4.0-Light.json
+diverse095,skt/A.X-4.0-Light,L4,8,7,0,"L4: N<9, E<9, S<7 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,8,7,0,results\json\diverse095_skt_A.X-4.0-Light.json
+diverse096,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\diverse096_skt_A.X-4.0-Light.json
+diverse097,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\diverse097_skt_A.X-4.0-Light.json
+diverse098,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse098_skt_A.X-4.0-Light.json
+diverse099,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\diverse099_skt_A.X-4.0-Light.json
+diverse100,skt/A.X-4.0-Light,L3,5,7,0,"L3: N<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,7,0,results\json\diverse100_skt_A.X-4.0-Light.json
+test001,skt/A.X-4.0-Light,L6,11,12,0,L6: Extremely complex - no level criteria met with 2+ conditions,True,원본 텍스트 직접 파싱 성공,11,12,0,results\json\test001_skt_A.X-4.0-Light.json
+test002,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test002_skt_A.X-4.0-Light.json
+test003,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test003_skt_A.X-4.0-Light.json
+test004,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test004_skt_A.X-4.0-Light.json
+test005,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test005_skt_A.X-4.0-Light.json
+test006,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test006_skt_A.X-4.0-Light.json
+test007,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test007_skt_A.X-4.0-Light.json
+test008,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test008_skt_A.X-4.0-Light.json
+test009,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test009_skt_A.X-4.0-Light.json
+test010,skt/A.X-4.0-Light,L1,3,2,0,"L1: E<3, S=0 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,3,2,0,results\json\test010_skt_A.X-4.0-Light.json
+test011,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test011_skt_A.X-4.0-Light.json
+test012,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test012_skt_A.X-4.0-Light.json
+test013,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test013_skt_A.X-4.0-Light.json
+test014,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test014_skt_A.X-4.0-Light.json
+test015,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test015_skt_A.X-4.0-Light.json
+test016,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test016_skt_A.X-4.0-Light.json
+test017,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test017_skt_A.X-4.0-Light.json
+test018,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test018_skt_A.X-4.0-Light.json
+test019,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test019_skt_A.X-4.0-Light.json
+test020,skt/A.X-4.0-Light,L2,4,3,1,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,1,results\json\test020_skt_A.X-4.0-Light.json
+test021,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test021_skt_A.X-4.0-Light.json
+test022,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test022_skt_A.X-4.0-Light.json
+test023,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test023_skt_A.X-4.0-Light.json
+test024,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test024_skt_A.X-4.0-Light.json
+test025,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test025_skt_A.X-4.0-Light.json
+test026,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test026_skt_A.X-4.0-Light.json
+test027,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test027_skt_A.X-4.0-Light.json
+test028,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test028_skt_A.X-4.0-Light.json
+test029,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test029_skt_A.X-4.0-Light.json
+test030,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test030_skt_A.X-4.0-Light.json
+test031,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test031_skt_A.X-4.0-Light.json
+test032,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test032_skt_A.X-4.0-Light.json
+test033,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test033_skt_A.X-4.0-Light.json
+test034,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test034_skt_A.X-4.0-Light.json
+test035,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test035_skt_A.X-4.0-Light.json
+test036,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test036_skt_A.X-4.0-Light.json
+test037,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test037_skt_A.X-4.0-Light.json
+test038,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test038_skt_A.X-4.0-Light.json
+test039,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test039_skt_A.X-4.0-Light.json
+test040,skt/A.X-4.0-Light,L3,6,6,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,6,6,0,results\json\test040_skt_A.X-4.0-Light.json
+test041,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test041_skt_A.X-4.0-Light.json
+test042,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,2,results\json\test042_skt_A.X-4.0-Light.json
+test043,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,2,results\json\test043_skt_A.X-4.0-Light.json
+test044,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,2,results\json\test044_skt_A.X-4.0-Light.json
+test045,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,2,results\json\test045_skt_A.X-4.0-Light.json
+test046,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,2,results\json\test046_skt_A.X-4.0-Light.json
+test047,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,2,results\json\test047_skt_A.X-4.0-Light.json
+test048,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test048_skt_A.X-4.0-Light.json
+test049,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,2,results\json\test049_skt_A.X-4.0-Light.json
+test050,skt/A.X-4.0-Light,L2,5,4,2,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,2,results\json\test050_skt_A.X-4.0-Light.json
+test051,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test051_skt_A.X-4.0-Light.json
+test052,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test052_skt_A.X-4.0-Light.json
+test053,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test053_skt_A.X-4.0-Light.json
+test054,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test054_skt_A.X-4.0-Light.json
+test055,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test055_skt_A.X-4.0-Light.json
+test056,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test056_skt_A.X-4.0-Light.json
+test057,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test057_skt_A.X-4.0-Light.json
+test058,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test058_skt_A.X-4.0-Light.json
+test059,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test059_skt_A.X-4.0-Light.json
+test060,skt/A.X-4.0-Light,L2,5,4,0,"L2: E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,4,0,results\json\test060_skt_A.X-4.0-Light.json
+test061,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test061_skt_A.X-4.0-Light.json
+test062,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test062_skt_A.X-4.0-Light.json
+test063,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test063_skt_A.X-4.0-Light.json
+test064,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test064_skt_A.X-4.0-Light.json
+test065,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test065_skt_A.X-4.0-Light.json
+test066,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test066_skt_A.X-4.0-Light.json
+test067,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test067_skt_A.X-4.0-Light.json
+test068,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test068_skt_A.X-4.0-Light.json
+test069,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test069_skt_A.X-4.0-Light.json
+test070,skt/A.X-4.0-Light,L2,4,4,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,4,0,results\json\test070_skt_A.X-4.0-Light.json
+test071,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test071_skt_A.X-4.0-Light.json
+test072,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test072_skt_A.X-4.0-Light.json
+test073,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test073_skt_A.X-4.0-Light.json
+test074,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test074_skt_A.X-4.0-Light.json
+test075,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test075_skt_A.X-4.0-Light.json
+test076,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test076_skt_A.X-4.0-Light.json
+test077,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test077_skt_A.X-4.0-Light.json
+test078,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test078_skt_A.X-4.0-Light.json
+test079,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test079_skt_A.X-4.0-Light.json
+test080,skt/A.X-4.0-Light,L2,4,3,0,"L2: N<5, E<5, S<3 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,4,3,0,results\json\test080_skt_A.X-4.0-Light.json
+test081,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test081_skt_A.X-4.0-Light.json
+test082,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test082_skt_A.X-4.0-Light.json
+test083,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test083_skt_A.X-4.0-Light.json
+test084,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test084_skt_A.X-4.0-Light.json
+test085,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test085_skt_A.X-4.0-Light.json
+test086,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test086_skt_A.X-4.0-Light.json
+test087,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test087_skt_A.X-4.0-Light.json
+test088,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test088_skt_A.X-4.0-Light.json
+test089,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test089_skt_A.X-4.0-Light.json
+test090,skt/A.X-4.0-Light,L3,5,5,0,"L3: N<7, E<7, S<5 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,5,5,0,results\json\test090_skt_A.X-4.0-Light.json
+test091,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test091_skt_A.X-4.0-Light.json
+test092,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test092_skt_A.X-4.0-Light.json
+test093,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,9,10,3,results\json\test093_skt_A.X-4.0-Light.json
+test094,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,9,10,3,results\json\test094_skt_A.X-4.0-Light.json
+test095,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,9,10,3,results\json\test095_skt_A.X-4.0-Light.json
+test096,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test096_skt_A.X-4.0-Light.json
+test097,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test097_skt_A.X-4.0-Light.json
+test098,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test098_skt_A.X-4.0-Light.json
+test099,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,10,10,3,results\json\test099_skt_A.X-4.0-Light.json
+test100,skt/A.X-4.0-Light,L5,11,10,3,"L5: E<11, S<9 (2+ conditions met)",True,원본 텍스트 직접 파싱 성공,9,10,3,results\json\test100_skt_A.X-4.0-Light.json

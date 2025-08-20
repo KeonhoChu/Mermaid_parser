@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Supplier", "label": "Supplier", "shape": "rect"},
+    {"id": "Receive", "label": "Receive Goods", "shape": "rect"},
+    {"id": "Inspect", "label": "Quality Inspection", "shape": "rect"},
+    {"id": "Store", "label": "Store in Warehouse", "shape": "rect"},
+    {"id": "Distribute", "label": "Distribution Center", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Supplier", "target": "Receive", "type": "-->"},
+    {"source": "Receive", "target": "Inspect", "type": "-->"},
+    {"source": "Inspect", "target": "Store", "type": "-->"},
+    {"source": "Store", "target": "Distribute", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of goods receiving and distribution process."}
+}

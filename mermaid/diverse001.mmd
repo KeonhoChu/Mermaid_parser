@@ -1,0 +1,15 @@
+flowchart TD
+subgraph TOP
+direction TB
+SistemResponse("Identify the need for a candidate with 5 years of experience in AI implementation") -->|Job description| CreateJobDescription("Create a job description specifying the required qualifications")
+CreateJobDescription -->|Job description| SearchCandidates("Search for potential candidates on LinkedIn using relevant keywords")
+SearchCandidates -->|LinkedIn profiles of potential candidates| ReviewProfiles("Review candidate profiles and resumes for relevant experience and qualifications")
+ReviewProfiles -->|Shortlisted candidates| ContactCandidates("Contact potential candidates through LinkedIn messaging or email")
+ContactCandidates -->|Shortlisted candidates| InitialInterview("Conduct initial phone or video interviews to assess candidate's suitability for the role")
+InitialInterview -->|Initial phone or video interviews| ShortlistCandidates("Shortlist candidates based on their qualifications and interview performance")
+ShortlistCandidates -->|Shortlisted candidates| InDepthInterview("Conduct in-depth interviews with shortlisted candidates to further evaluate their experience and skills in AI implementation")
+InDepthInterview -->|Shortlisted candidates| VerifyQualifications("Verify the candidates' experience and qualifications through reference checks and background screening")
+VerifyQualifications -->|Shortlisted candidates| SelectCandidate("Select the candidate who best meets the requirements and offer them the job")
+SelectCandidate -->|Selected candidate for the role| FinalizeHiring("Finalize the hiring process by negotiating the terms of employment and preparing the necessary documentation")
+FinalizeHiring -->|Selected candidate for the role| OnboardCandidate("Onboard the selected candidate and provide them with the necessary resources and support to successfully implement AI in the organization")
+end

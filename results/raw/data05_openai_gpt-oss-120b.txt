@@ -6,67 +6,67 @@
       "id": "A1",
       "label": "요구사항 수집",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["PLAN"]
     },
     {
       "id": "A2",
       "label": "타당성 분석",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["PLAN"]
     },
     {
       "id": "A3",
       "label": "자원 배분",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["PLAN"]
     },
     {
       "id": "B1",
       "label": "아키텍처 설계",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["DEV"]
     },
     {
       "id": "B2",
       "label": "모듈 개발",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["DEV"]
     },
     {
       "id": "B3",
       "label": "단위 테스트",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["DEV"]
     },
     {
       "id": "B4",
       "label": "통합",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["DEV"]
     },
     {
       "id": "C1",
       "label": "배포",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["OPS"]
     },
     {
       "id": "C2",
       "label": "모니터링",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["OPS"]
     },
     {
       "id": "C3",
       "label": "장애 대응",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["OPS"]
     },
     {
       "id": "C4",
       "label": "버전 관리",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["OPS"]
     }
   ],
   "edges": [
@@ -153,8 +153,8 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "The diagram shows three phases—planning, development, and operations—with their respective tasks and the flow of work between them.",
-    "entry_nodes": [],
-    "exit_nodes": []
+    "natural_language": "요구사항 수집부터 배포, 모니터링까지 계획, 개발, 운영 단계의 흐름을 나타낸다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
   }
 }

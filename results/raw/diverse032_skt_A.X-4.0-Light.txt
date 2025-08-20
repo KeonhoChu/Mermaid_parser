@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Research", "label": "Research Topic", "shape": "rect"},
+    {"id": "Proposal", "label": "Write Proposal", "shape": "rect"},
+    {"id": "Advisor", "label": "Advisor Review", "shape": "rect"},
+    {"id": "Experiment", "label": "Conduct Experiment", "shape": "rect"},
+    {"id": "Analysis", "label": "Data Analysis", "shape": "rect"},
+    {"id": "Paper", "label": "Write Paper", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Research", "target": "Proposal", "type": "-->"},
+    {"source": "Proposal", "target": "Advisor", "type": "-->"},
+    {"source": "Advisor", "target": "Experiment", "type": "-->"},
+    {"source": "Experiment", "target": "Analysis", "type": "-->"},
+    {"source": "Analysis", "target": "Paper", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of research process from topic selection to paper writing."}
+}

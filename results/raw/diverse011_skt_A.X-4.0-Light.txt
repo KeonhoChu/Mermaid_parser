@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Customer", "label": "Customer", "shape": "rect"},
+    {"id": "Browse", "label": "Browse Products", "shape": "rect"},
+    {"id": "Select", "label": "Select Item", "shape": "rect"},
+    {"id": "Cart", "label": "Add to Cart", "shape": "rect"},
+    {"id": "Checkout", "label": "Checkout", "shape": "rect"},
+    {"id": "Payment", "label": "Process Payment", "shape": "rect"},
+    {"id": "Ship", "label": "Shipping", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Customer", "target": "Browse", "type": "-->"},
+    {"source": "Browse", "target": "Select", "type": "-->"},
+    {"source": "Select", "target": "Cart", "type": "-->"},
+    {"source": "Cart", "target": "Checkout", "type": "-->"},
+    {"source": "Checkout", "target": "Payment", "type": "-->"},
+    {"source": "Payment", "target": "Ship", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Customer flows through the process of browsing, selecting, adding to cart, checking out, processing payment, and shipping."}
+}

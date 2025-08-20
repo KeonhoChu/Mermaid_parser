@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A10",
+      "label": "A10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B10",
+      "label": "B10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C10",
+      "label": "C10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D10",
+      "label": "D10",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A10",
+      "target": "B10",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "B10",
+      "target": "C10",
+      "type": "===",
+      "label": null
+    },
+    {
+      "source": "C10",
+      "target": "D10",
+      "type": "-.-",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 플로우차트는 A10에서 B10으로, B10에서 C10으로, C10에서 D10으로 순차적으로 연결되는 간단한 선형 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

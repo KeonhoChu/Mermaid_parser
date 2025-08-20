@@ -1,0 +1,65 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Layer1",
+      "label": "계층 1",
+      "shape": "rect"
+    },
+    {
+      "id": "Layer2",
+      "label": "계층 2",
+      "shape": "rect"
+    },
+    {
+      "id": "Layer3",
+      "label": "계층 3",
+      "shape": "rect"
+    },
+    {
+      "id": "Layer4",
+      "label": "계층 4",
+      "shape": "rect"
+    },
+    {
+      "id": "Layer5",
+      "label": "계층 5",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Layer1",
+      "target": "Layer2",
+      "type": "-->"
+    },
+    {
+      "source": "Layer2",
+      "target": "Layer3",
+      "type": "-->"
+    },
+    {
+      "source": "Layer3",
+      "target": "Layer4",
+      "type": "-->"
+    },
+    {
+      "source": "Layer4",
+      "target": "Layer5",
+      "type": "-->"
+    },
+    {
+      "source": "Layer5",
+      "target": "Layer1",
+      "type": "-.->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart showing a circular dependency among layers."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Monitor",
+      "label": "Monitoring",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Logs",
+      "label": "Log Collection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Metrics",
+      "label": "Metrics Collection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Analysis",
+      "label": "Log Analysis",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Dashboard",
+      "label": "Metrics Dashboard",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Alerts",
+      "label": "Alert System",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Monitor",
+      "target": "Logs",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Monitor",
+      "target": "Metrics",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Logs",
+      "target": "Analysis",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Metrics",
+      "target": "Dashboard",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Analysis",
+      "target": "Alerts",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "모니터링 단계에서 로그와 메트릭을 수집하고, 로그는 분석을 거쳐 알림 시스템으로 연결되며, 메트릭은 대시보드에 표시됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

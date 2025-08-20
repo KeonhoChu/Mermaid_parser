@@ -1,0 +1,55 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A6",
+      "label": "A6",
+      "shape": "rect"
+    },
+    {
+      "id": "B6",
+      "label": "B6",
+      "shape": "rect"
+    },
+    {
+      "id": "C6",
+      "label": "C6",
+      "shape": "rect"
+    },
+    {
+      "id": "D6",
+      "label": "D6",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A6",
+      "target": "C6",
+      "type": "-->"
+    },
+    {
+      "source": "A6",
+      "target": "D6",
+      "type": "-->"
+    },
+    {
+      "source": "B6",
+      "target": "C6",
+      "type": "-->"
+    },
+    {
+      "source": "B6",
+      "target": "D6",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart with nodes A6, B6, C6, D6 connected by arrows."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

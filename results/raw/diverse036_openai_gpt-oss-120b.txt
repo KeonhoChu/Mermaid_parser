@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Application",
+      "label": "Admission Application",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Review",
+      "label": "Application Review",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Interview",
+      "label": "Student Interview",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision",
+      "label": "Admission Decision",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Enroll",
+      "label": "Student Enrollment",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Application",
+      "target": "Review",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Review",
+      "target": "Interview",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Interview",
+      "target": "Decision",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Decision",
+      "target": "Enroll",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "입학 신청이 검토되고 인터뷰를 거쳐 최종 결정을 내린 후 학생이 등록됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

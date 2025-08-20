@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Cold", "label": "Cold Chain", "shape": "rect"},
+    {"id": "Temperature", "label": "Temperature Monitor", "shape": "rect"},
+    {"id": "Transport", "label": "Refrigerated Transport", "shape": "rect"},
+    {"id": "Verify", "label": "Temperature Verification", "shape": "rect"},
+    {"id": "Deliver", "label": "Cold Delivery", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Cold", "target": "Temperature", "type": "-->"},
+    {"source": "Temperature", "target": "Transport", "type": "-->"},
+    {"source": "Transport", "target": "Verify", "type": "-->"},
+    {"source": "Verify", "target": "Deliver", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of cold chain process"}
+}

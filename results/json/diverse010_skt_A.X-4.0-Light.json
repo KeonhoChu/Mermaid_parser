@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Feature",
+      "label": "Feature Request",
+      "shape": "rect"
+    },
+    {
+      "id": "Analysis",
+      "label": "Business Analysis",
+      "shape": "rect"
+    },
+    {
+      "id": "Design",
+      "label": "Technical Design",
+      "shape": "rect"
+    },
+    {
+      "id": "Estimate",
+      "label": "Time Estimation",
+      "shape": "rect"
+    },
+    {
+      "id": "Approval",
+      "label": "Stakeholder Approval",
+      "shape": "rect"
+    },
+    {
+      "id": "Development",
+      "label": "Implementation",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Feature",
+      "target": "Analysis",
+      "type": "-->"
+    },
+    {
+      "source": "Analysis",
+      "target": "Design",
+      "type": "-->"
+    },
+    {
+      "source": "Design",
+      "target": "Estimate",
+      "type": "-->"
+    },
+    {
+      "source": "Estimate",
+      "target": "Approval",
+      "type": "-->"
+    },
+    {
+      "source": "Approval",
+      "target": "Development",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of feature development process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

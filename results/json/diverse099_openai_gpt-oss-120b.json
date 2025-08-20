@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Pipeline1",
+      "label": "파이프라인 1단계",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Pipeline2",
+      "label": "파이프라인 2단계",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Pipeline3",
+      "label": "파이프라인 3단계",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Pipeline4",
+      "label": "파이프라인 4단계",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Pipeline5",
+      "label": "파이프라인 5단계",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Pipeline1",
+      "target": "Pipeline2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Pipeline2",
+      "target": "Pipeline3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Pipeline3",
+      "target": "Pipeline4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Pipeline4",
+      "target": "Pipeline5",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "파이프라인 1단계부터 5단계까지 순차적으로 연결된 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

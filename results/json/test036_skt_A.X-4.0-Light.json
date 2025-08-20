@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect"
+    },
+    {
+      "id": "B6",
+      "label": "B6",
+      "shape": "rect"
+    },
+    {
+      "id": "C6",
+      "label": "C6",
+      "shape": "rect"
+    },
+    {
+      "id": "D6",
+      "label": "D6",
+      "shape": "rect"
+    },
+    {
+      "id": "E6",
+      "label": "E6",
+      "shape": "rect"
+    },
+    {
+      "id": "F6",
+      "label": "F6",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B6",
+      "type": "-->"
+    },
+    {
+      "source": "A",
+      "target": "C6",
+      "type": "-->"
+    },
+    {
+      "source": "A",
+      "target": "D6",
+      "type": "-->"
+    },
+    {
+      "source": "B6",
+      "target": "E6",
+      "type": "-->"
+    },
+    {
+      "source": "C6",
+      "target": "E6",
+      "type": "-->"
+    },
+    {
+      "source": "D6",
+      "target": "F6",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart with nodes A, B6, C6, D6, E6, F6 and directed edges."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

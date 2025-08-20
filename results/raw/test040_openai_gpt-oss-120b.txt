@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B10",
+      "label": "B10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C10",
+      "label": "C10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D10",
+      "label": "D10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E10",
+      "label": "E10",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F10",
+      "label": "F10",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "D10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B10",
+      "target": "E10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C10",
+      "target": "E10",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D10",
+      "target": "F10",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 시작하여 B10, C10, D10로 흐르고, B10와 C10는 E10로, D10는 F10으로 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

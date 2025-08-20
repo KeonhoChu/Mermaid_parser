@@ -1,0 +1,6 @@
+flowchart LR
+    API[API Gateway] --> Auth[Auth Service]
+    API --> User[User Service] 
+    API --> Order[Order Service]
+    User --> UserDB[(User DB)]
+    Order --> OrderDB[(Order DB)]

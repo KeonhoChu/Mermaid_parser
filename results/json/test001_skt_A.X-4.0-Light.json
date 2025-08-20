@@ -1,0 +1,130 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Start",
+      "label": "Receive Raw Materials",
+      "shape": "rect"
+    },
+    {
+      "id": "Inspect",
+      "label": "Inspect Raw Materials",
+      "shape": "rect"
+    },
+    {
+      "id": "Assembly",
+      "label": "Assemble Products",
+      "shape": "rect"
+    },
+    {
+      "id": "QualityCheck",
+      "label": "Continuous Quality Checks",
+      "shape": "rect"
+    },
+    {
+      "id": "FinalInspection",
+      "label": "Final Inspection",
+      "shape": "rect"
+    },
+    {
+      "id": "Package",
+      "label": "Package Products",
+      "shape": "rect"
+    },
+    {
+      "id": "Store",
+      "label": "Store in Warehouse",
+      "shape": "rect"
+    },
+    {
+      "id": "Ship",
+      "label": "Ship to Customers",
+      "shape": "rect"
+    },
+    {
+      "id": "Discard",
+      "label": "Discard Materials",
+      "shape": "rect"
+    },
+    {
+      "id": "ReworkOrDiscard",
+      "label": "Rework or Discard Products",
+      "shape": "rect"
+    },
+    {
+      "id": "End",
+      "label": "End Process",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Start",
+      "target": "Inspect",
+      "type": "-->"
+    },
+    {
+      "source": "Inspect",
+      "target": "Assembly",
+      "type": "-->"
+    },
+    {
+      "source": "Inspect",
+      "target": "Discard",
+      "type": "-->"
+    },
+    {
+      "source": "Assembly",
+      "target": "QualityCheck",
+      "type": "-->"
+    },
+    {
+      "source": "QualityCheck",
+      "target": "FinalInspection",
+      "type": "-->"
+    },
+    {
+      "source": "FinalInspection",
+      "target": "Package",
+      "type": "-->"
+    },
+    {
+      "source": "FinalInspection",
+      "target": "ReworkOrDiscard",
+      "type": "-->"
+    },
+    {
+      "source": "Package",
+      "target": "Store",
+      "type": "-->"
+    },
+    {
+      "source": "Store",
+      "target": "Ship",
+      "type": "-->"
+    },
+    {
+      "source": "Discard",
+      "target": "End",
+      "type": "-->"
+    },
+    {
+      "source": "ReworkOrDiscard",
+      "target": "End",
+      "type": "-->"
+    },
+    {
+      "source": "Ship",
+      "target": "End",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of a manufacturing process from raw material reception to product shipping."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

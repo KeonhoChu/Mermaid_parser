@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Guild",
+      "label": "Join Guild",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Member",
+      "label": "Guild Member",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Event",
+      "label": "Guild Event",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Contribute",
+      "label": "Contribute Points",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Rank",
+      "label": "Guild Ranking",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Guild",
+      "target": "Member",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Member",
+      "target": "Event",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Event",
+      "target": "Contribute",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Contribute",
+      "target": "Rank",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "길드에 가입하고, 멤버가 이벤트에 참여해 포인트를 기여하고 순위를 확인하는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

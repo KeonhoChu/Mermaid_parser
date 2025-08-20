@@ -1,0 +1,6 @@
+flowchart LR
+    Source[(Source DB)] --> ETL[ETL Process]
+    ETL --> Stage[(Staging)]
+    Stage --> Transform[Data Transform]
+    Transform --> Warehouse[(Data Warehouse)]
+    Warehouse --> BI[Business Intelligence]

@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "R",
+      "label": "요구사항",
+      "shape": "rect"
+    },
+    {
+      "id": "D",
+      "label": "설계",
+      "shape": "rect"
+    },
+    {
+      "id": "I",
+      "label": "구현",
+      "shape": "rect"
+    },
+    {
+      "id": "T",
+      "label": "테스트",
+      "shape": "rect"
+    },
+    {
+      "id": "DEP",
+      "label": "배포",
+      "shape": "rect"
+    },
+    {
+      "id": "M",
+      "label": "운영",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "R",
+      "target": "D",
+      "type": "-->"
+    },
+    {
+      "source": "D",
+      "target": "I",
+      "type": "-->"
+    },
+    {
+      "source": "I",
+      "target": "DEP",
+      "type": "-->"
+    },
+    {
+      "source": "DEP",
+      "target": "M",
+      "type": "-->"
+    },
+    {
+      "source": "M",
+      "target": "R",
+      "type": "-->"
+    },
+    {
+      "source": "D",
+      "target": "T",
+      "type": "-.->"
+    },
+    {
+      "source": "I",
+      "target": "DEP",
+      "type": "-.->"
+    },
+    {
+      "source": "T",
+      "target": "R",
+      "type": "-.->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing a software development process."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

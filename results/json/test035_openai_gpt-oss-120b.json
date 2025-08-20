@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B5",
+      "label": "B5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C5",
+      "label": "C5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D5",
+      "label": "D5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E5",
+      "label": "E5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F5",
+      "label": "F5",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "D5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B5",
+      "target": "E5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C5",
+      "target": "E5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D5",
+      "target": "F5",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 시작해 B5, C5, D5로 흐르고, B5와 C5는 E5로, D5는 F5로 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

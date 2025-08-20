@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "Find Candidate on LinkedIn", "shape": "rect"},
+    {"id": "B", "label": "Initial Screening", "shape": "rect"},
+    {"id": "C", "label": "Technical Assessment", "shape": "rect"},
+    {"id": "D", "label": "Interview Process", "shape": "rect"},
+    {"id": "E", "label": "Final Selection", "shape": "rect"},
+    {"id": "F", "label": "Reject Candidate", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "B", "target": "C", "type": "-->"},
+    {"source": "C", "target": "D", "type": "-->"},
+    {"source": "D", "target": "E", "type": "-->"},
+    {"source": "B", "target": "F", "type": "-->"},
+    {"source": "C", "target": "F", "type": "-->"},
+    {"source": "D", "target": "F", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart for candidate selection process"}
+}

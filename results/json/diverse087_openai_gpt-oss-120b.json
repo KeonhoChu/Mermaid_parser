@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Return",
+      "label": "Product Return",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Authorize",
+      "label": "Return Authorization",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Inspect",
+      "label": "Return Inspection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Refund",
+      "label": "Process Refund",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Restock",
+      "label": "Restock Item",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Return",
+      "target": "Authorize",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Authorize",
+      "target": "Inspect",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Inspect",
+      "target": "Refund",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Refund",
+      "target": "Restock",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "제품 반환 프로세스는 반환 승인, 검사, 환불, 재입고 순으로 진행됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

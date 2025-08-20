@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Robot", "label": "Industrial Robot", "shape": "rect"},
+    {"id": "Program", "label": "Robot Programming", "shape": "rect"},
+    {"id": "Calibrate", "label": "Robot Calibration", "shape": "rect"},
+    {"id": "Automate", "label": "Automated Process", "shape": "rect"},
+    {"id": "Efficiency", "label": "Improved Efficiency", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Robot", "target": "Program", "type": "-->"},
+    {"source": "Program", "target": "Calibrate", "type": "-->"},
+    {"source": "Calibrate", "target": "Automate", "type": "-->"},
+    {"source": "Automate", "target": "Efficiency", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of industrial robot process from programming to improved efficiency"}
+}

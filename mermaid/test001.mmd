@@ -1,0 +1,13 @@
+flowchart TD
+Start[Receive Raw Materials] --> Inspect[Inspect Raw Materials]
+Inspect -->|Pass| Assembly[Assemble Products]
+Inspect -->|Fail| Discard[Discard Materials]
+Assembly --> QualityCheck[Continuous Quality Checks]
+QualityCheck --> FinalInspection[Final Inspection]
+FinalInspection -->|Pass| Package[Package Products]
+FinalInspection -->|Fail| ReworkOrDiscard[Rework or Discard Products]
+Package --> Store[Store in Warehouse]
+Store --> Ship[Ship to Customers]
+Discard --> End[End Process]
+ReworkOrDiscard --> End
+Ship --> End

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Exam", "label": "Create Exam", "shape": "rect"},
+    {"id": "Schedule", "label": "Schedule Exam", "shape": "rect"},
+    {"id": "Proctor", "label": "Proctor Exam", "shape": "rect"},
+    {"id": "Grade", "label": "Grade Papers", "shape": "rect"},
+    {"id": "Results", "label": "Publish Results", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Exam", "target": "Schedule", "type": "-->"},
+    {"source": "Schedule", "target": "Proctor", "type": "-->"},
+    {"source": "Proctor", "target": "Grade", "type": "-->"},
+    {"source": "Grade", "target": "Results", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of exam process from creation to results publication"}
+}

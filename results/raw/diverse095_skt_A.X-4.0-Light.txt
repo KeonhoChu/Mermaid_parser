@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Central", "label": "중앙 노드", "shape": "rect"},
+    {"id": "Branch1", "label": "분기 1", "shape": "rect"},
+    {"id": "Branch2", "label": "분기 2", "shape": "rect"},
+    {"id": "Branch3", "label": "분기 3", "shape": "rect"},
+    {"id": "Leaf1", "label": "리프 1", "shape": "rect"},
+    {"id": "Leaf2", "label": "리프 2", "shape": "rect"},
+    {"id": "Leaf3", "label": "리프 3", "shape": "rect"},
+    {"id": "Leaf4", "label": "리프 4", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Central", "target": "Branch1", "type": "-->"},
+    {"source": "Central", "target": "Branch2", "type": "-->"},
+    {"source": "Central", "target": "Branch3", "type": "-->"},
+    {"source": "Branch1", "target": "Leaf1", "type": "-->"},
+    {"source": "Branch1", "target": "Leaf2", "type": "-->"},
+    {"source": "Branch2", "target": "Leaf3", "type": "-->"},
+    {"source": "Branch3", "target": "Leaf4", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Mermaid flowchart with central node and branches leading to leaves."}
+}

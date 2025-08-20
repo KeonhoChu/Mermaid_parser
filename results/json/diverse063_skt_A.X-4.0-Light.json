@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Order",
+      "label": "Customer Order",
+      "shape": "rect"
+    },
+    {
+      "id": "Planning",
+      "label": "Production Planning",
+      "shape": "rect"
+    },
+    {
+      "id": "Schedule",
+      "label": "Production Schedule",
+      "shape": "rect"
+    },
+    {
+      "id": "Manufacturing",
+      "label": "Manufacturing Process",
+      "shape": "rect"
+    },
+    {
+      "id": "Delivery",
+      "label": "Product Delivery",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Order",
+      "target": "Planning",
+      "type": "-->"
+    },
+    {
+      "source": "Planning",
+      "target": "Schedule",
+      "type": "-->"
+    },
+    {
+      "source": "Schedule",
+      "target": "Manufacturing",
+      "type": "-->"
+    },
+    {
+      "source": "Manufacturing",
+      "target": "Delivery",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of production process from order to delivery"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

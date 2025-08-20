@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Employee",
+      "label": "Employee",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Training",
+      "label": "Training Program",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Assessment",
+      "label": "Skills Assessment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Certification",
+      "label": "Get Certification",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Career",
+      "label": "Career Development",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Employee",
+      "target": "Training",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Training",
+      "target": "Assessment",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Assessment",
+      "target": "Certification",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Certification",
+      "target": "Career",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "직원은 교육 프로그램을 이수하고, 기술 평가를 통해 인증을 받아 경력 개발로 이어집니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

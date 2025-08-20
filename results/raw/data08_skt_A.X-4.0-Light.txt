@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "C1", "label": "Web", "shape": "rect"},
+    {"id": "C2", "label": "Mobile", "shape": "rect"},
+    {"id": "S1", "label": "API Gateway", "shape": "rect"},
+    {"id": "S2", "label": "Auth Service", "shape": "rect"},
+    {"id": "S3", "label": "Data Service", "shape": "rect"},
+    {"id": "S4", "label": "ML Service", "shape": "rect"},
+    {"id": "D1", "label": "SQL DB", "shape": "rect"},
+    {"id": "D2", "label": "NoSQL DB", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "C1", "target": "S1", "type": "-->"},
+    {"source": "C2", "target": "S1", "type": "-->"},
+    {"source": "S1", "target": "S2", "type": "-->"},
+    {"source": "S1", "target": "S3", "type": "-->"},
+    {"source": "S1", "target": "S4", "type": "-->"},
+    {"source": "S2", "target": "D1", "type": "-->"},
+    {"source": "S3", "target": "D2", "type": "-->"},
+    {"source": "S4", "target": "D2", "type": "-->"},
+    {"source": "D1", "target": "S3", "type": "-->"},
+    {"source": "D2", "target": "S1", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "CLIENT", "title": "CLIENT"},
+    {"id": "SERVER", "title": "SERVER"},
+    {"id": "DB", "title": "DB"}
+  ],
+  "summary": {"natural_language": "Flowchart representing client, server, and database components with relationships."}
+}

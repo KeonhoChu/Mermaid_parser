@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Develop", "label": "Develop", "shape": "rect"},
+    {"id": "PR", "label": "Pull Request", "shape": "rect"},
+    {"id": "Review", "label": "Code Review", "shape": "rect"},
+    {"id": "Merge", "label": "Merge", "shape": "rect"},
+    {"id": "CI", "label": "CI Pipeline", "shape": "rect"},
+    {"id": "CD", "label": "CD Pipeline", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Develop", "target": "PR", "type": "-->"},
+    {"source": "PR", "target": "Review", "type": "-->"},
+    {"source": "Review", "target": "Merge", "type": "-->"},
+    {"source": "Review", "target": "Develop", "type": "-->"},
+    {"source": "Merge", "target": "CI", "type": "-->"},
+    {"source": "CI", "target": "CD", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of software development process."}
+}

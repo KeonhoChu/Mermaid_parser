@@ -1,0 +1,6 @@
+flowchart TD
+    Event[Event Source] --> Queue[Message Queue]
+    Queue --> Consumer1[Consumer 1]
+    Queue --> Consumer2[Consumer 2]
+    Consumer1 --> Process1[Process A]
+    Consumer2 --> Process2[Process B]

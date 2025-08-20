@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B8",
+      "label": "B8",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C8",
+      "label": "C8",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D8",
+      "label": "D8",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E8",
+      "label": "E8",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F8",
+      "label": "F8",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "C8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A",
+      "target": "D8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B8",
+      "target": "E8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C8",
+      "target": "E8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D8",
+      "target": "F8",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 시작해 B8, C8, D8로 흐르고, B8와 C8는 E8로, D8는 F8로 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

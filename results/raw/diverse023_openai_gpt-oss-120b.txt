@@ -1,0 +1,72 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "LoadBalancer",
+      "label": "LoadBalancer",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "App1",
+      "label": "App Container 1",
+      "shape": "rect",
+      "subgraphs": [
+        "Docker"
+      ]
+    },
+    {
+      "id": "App2",
+      "label": "App Container 2",
+      "shape": "rect",
+      "subgraphs": [
+        "Docker"
+      ]
+    },
+    {
+      "id": "DB",
+      "label": "DB Container",
+      "shape": "rect",
+      "subgraphs": [
+        "Docker"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "LoadBalancer",
+      "target": "Docker",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "App1",
+      "target": "DB",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "App2",
+      "target": "DB",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "Docker",
+      "title": "Docker Containers"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "로드밸런서가 Docker 컨테이너 그룹에 연결되고, 두 앱 컨테이너가 DB 컨테이너에 연결되는 구조입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

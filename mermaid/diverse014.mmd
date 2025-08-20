@@ -1,0 +1,5 @@
+flowchart TD
+    Invoice[Create Invoice] --> Send[Send to Customer]
+    Send --> Payment[Receive Payment]
+    Payment --> Reconcile[Reconcile Accounts]
+    Reconcile --> Report[Financial Report]

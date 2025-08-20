@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "A", "shape": "rect"},
+    {"id": "B", "label": "B", "shape": "rect"},
+    {"id": "C", "label": "C", "shape": "rect"},
+    {"id": "D", "label": "D", "shape": "rect"},
+    {"id": "E", "label": "E", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "B", "target": "S1", "type": "-->"},
+    {"source": "C", "target": "D", "type": "-->"},
+    {"source": "E", "target": "S2", "type": "-->"},
+    {"source": "S2", "target": "S1", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "S1", "title": "Outer 6"},
+    {"id": "S2", "title": "Inner 6"}
+  ],
+  "summary": {"natural_language": "Flowchart with nodes A, B, C, D, E and subgraphs S1 and S2."}
+}

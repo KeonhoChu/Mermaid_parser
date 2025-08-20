@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Insurance", "label": "Insurance Claim", "shape": "rect"},
+    {"id": "Verify", "label": "Verify Coverage", "shape": "rect"},
+    {"id": "Process", "label": "Process Claim", "shape": "rect"},
+    {"id": "Approve", "label": "Approve Payment", "shape": "rect"},
+    {"id": "Reimburse", "label": "Reimburse Provider", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Insurance", "target": "Verify", "type": "-->"},
+    {"source": "Verify", "target": "Process", "type": "-->"},
+    {"source": "Process", "target": "Approve", "type": "-->"},
+    {"source": "Approve", "target": "Reimburse", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart for insurance claim process"}
+}

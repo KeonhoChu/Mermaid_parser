@@ -1,0 +1,104 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Start",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision1",
+      "label": "조건 1",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision2",
+      "label": "조건 2",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "End1",
+      "label": "종료 A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Action1",
+      "label": "액션 A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Action2",
+      "label": "액션 B",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "End2",
+      "label": "종료 B",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Start",
+      "target": "Decision1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Decision1",
+      "target": "Decision2",
+      "type": "-->",
+      "label": "True"
+    },
+    {
+      "source": "Decision1",
+      "target": "End1",
+      "type": "-->",
+      "label": "False"
+    },
+    {
+      "source": "Decision2",
+      "target": "Action1",
+      "type": "-->",
+      "label": "True"
+    },
+    {
+      "source": "Decision2",
+      "target": "Action2",
+      "type": "-->",
+      "label": "False"
+    },
+    {
+      "source": "Action1",
+      "target": "End2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Action2",
+      "target": "End2",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "시작에서 조건 1을 검사하고, 참이면 조건 2로 이동하고, 거짓이면 종료 A로 이동합니다. 조건 2가 참이면 액션 A를 수행하고 종료 B로, 거짓이면 액션 B를 수행하고 종료 B로 이동합니다.",
+    "entry_nodes": [
+      "Start"
+    ],
+    "exit_nodes": [
+      "End1",
+      "End2"
+    ]
+  }
+}

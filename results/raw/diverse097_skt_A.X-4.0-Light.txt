@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Matrix1", "label": "매트릭스 A", "shape": "rect"},
+    {"id": "Matrix2", "label": "매트릭스 B", "shape": "rect"},
+    {"id": "Compute", "label": "연산 처리", "shape": "rect"},
+    {"id": "Result1", "label": "결과 A", "shape": "rect"},
+    {"id": "Result2", "label": "결과 B", "shape": "rect"},
+    {"id": "Output", "label": "최종 출력", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Matrix1", "target": "Compute", "type": "-->"},
+    {"source": "Matrix2", "target": "Compute", "type": "-->"},
+    {"source": "Compute", "target": "Result1", "type": "-->"},
+    {"source": "Compute", "target": "Result2", "type": "-->"},
+    {"source": "Result1", "target": "Output", "type": "-->"},
+    {"source": "Result2", "target": "Output", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "매트릭스 A와 B의 연산 처리 후 결과 A와 B를 최종 출력으로 연결"}
+}

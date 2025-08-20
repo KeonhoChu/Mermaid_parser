@@ -1,0 +1,120 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "CEO",
+      "label": "CEO",
+      "shape": "rect"
+    },
+    {
+      "id": "CTO",
+      "label": "CTO",
+      "shape": "rect"
+    },
+    {
+      "id": "DEV1",
+      "label": "개발팀",
+      "shape": "rect"
+    },
+    {
+      "id": "DEV2",
+      "label": "AI팀",
+      "shape": "rect"
+    },
+    {
+      "id": "CFO",
+      "label": "CFO",
+      "shape": "rect"
+    },
+    {
+      "id": "FIN1",
+      "label": "회계팀",
+      "shape": "rect"
+    },
+    {
+      "id": "COO",
+      "label": "COO",
+      "shape": "rect"
+    },
+    {
+      "id": "OPS1",
+      "label": "운영팀",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "CEO",
+      "target": "CTO",
+      "type": "-->"
+    },
+    {
+      "source": "CEO",
+      "target": "CFO",
+      "type": "-->"
+    },
+    {
+      "source": "CEO",
+      "target": "COO",
+      "type": "-->"
+    },
+    {
+      "source": "CTO",
+      "target": "DEV1",
+      "type": "-->"
+    },
+    {
+      "source": "CTO",
+      "target": "DEV2",
+      "type": "-->"
+    },
+    {
+      "source": "CFO",
+      "target": "FIN1",
+      "type": "-->"
+    },
+    {
+      "source": "COO",
+      "target": "OPS1",
+      "type": "-->"
+    },
+    {
+      "source": "DEV1",
+      "target": "CTO",
+      "type": "-->"
+    },
+    {
+      "source": "DEV2",
+      "target": "CTO",
+      "type": "-->"
+    },
+    {
+      "source": "FIN1",
+      "target": "CFO",
+      "type": "-->"
+    },
+    {
+      "source": "OPS1",
+      "target": "COO",
+      "type": "-->"
+    },
+    {
+      "source": "COO",
+      "target": "CEO",
+      "type": "-->"
+    },
+    {
+      "source": "CEO",
+      "target": "COO",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing organizational hierarchy and reporting lines."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Budget", "label": "Annual Budget", "shape": "rect"},
+    {"id": "Department", "label": "Department Allocation", "shape": "rect"},
+    {"id": "Project", "label": "Project Funding", "shape": "rect"},
+    {"id": "Track", "label": "Expense Tracking", "shape": "rect"},
+    {"id": "Report", "label": "Monthly Report", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Budget", "target": "Department", "type": "-->"},
+    {"source": "Department", "target": "Project", "type": "-->"},
+    {"source": "Project", "target": "Track", "type": "-->"},
+    {"source": "Track", "target": "Report", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart showing budget allocation process."}
+}

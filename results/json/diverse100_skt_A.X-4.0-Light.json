@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Hub",
+      "label": "허브",
+      "shape": "rect"
+    },
+    {
+      "id": "Spoke1",
+      "label": "스포크 1",
+      "shape": "rect"
+    },
+    {
+      "id": "Spoke2",
+      "label": "스포크 2",
+      "shape": "rect"
+    },
+    {
+      "id": "Spoke3",
+      "label": "스포크 3",
+      "shape": "rect"
+    },
+    {
+      "id": "Spoke4",
+      "label": "스포크 4",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Hub",
+      "target": "Spoke1",
+      "type": "-->"
+    },
+    {
+      "source": "Hub",
+      "target": "Spoke2",
+      "type": "-->"
+    },
+    {
+      "source": "Hub",
+      "target": "Spoke3",
+      "type": "-->"
+    },
+    {
+      "source": "Hub",
+      "target": "Spoke4",
+      "type": "-->"
+    },
+    {
+      "source": "Spoke1",
+      "target": "Spoke2",
+      "type": "-.->"
+    },
+    {
+      "source": "Spoke2",
+      "target": "Spoke3",
+      "type": "-.->"
+    },
+    {
+      "source": "Spoke3",
+      "target": "Spoke4",
+      "type": "-.->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Mermaid flowchart with a central Hub connecting to four Spoke nodes in a linear fashion."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

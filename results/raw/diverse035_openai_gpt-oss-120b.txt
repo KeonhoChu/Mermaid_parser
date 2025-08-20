@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Curriculum",
+      "label": "Design Curriculum",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Content",
+      "label": "Create Content",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Delivery",
+      "label": "Content Delivery",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Feedback",
+      "label": "Student Feedback",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Improve",
+      "label": "Curriculum Improvement",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Curriculum",
+      "target": "Content",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Content",
+      "target": "Delivery",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Delivery",
+      "target": "Feedback",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Feedback",
+      "target": "Improve",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 흐름도는 커리큘럼 설계에서 시작해 콘텐츠 생성, 전달, 학생 피드백, 그리고 커리큘럼 개선까지의 과정을 보여줍니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

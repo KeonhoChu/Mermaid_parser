@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Cross",
+      "label": "Cross Dock",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Unload",
+      "label": "Unload Truck",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Sort",
+      "label": "Sort Products",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Load",
+      "label": "Load Truck",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Ship",
+      "label": "Ship Out",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Cross",
+      "target": "Unload",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Unload",
+      "target": "Sort",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Sort",
+      "target": "Load",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Load",
+      "target": "Ship",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "크로스 도크에서 트럭을 내리고 제품을 분류한 뒤 다시 적재하여 출하하는 과정",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -1,0 +1,763 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start",
+      "shape": "rect"
+    },
+    {
+      "id": "HUB",
+      "label": "워크로드 라우팅",
+      "shape": "rect"
+    },
+    {
+      "id": "END",
+      "label": "End",
+      "shape": "rect"
+    },
+    {
+      "id": "D1",
+      "label": "원천 수집",
+      "shape": "rect"
+    },
+    {
+      "id": "D2",
+      "label": "메타데이터 등록",
+      "shape": "rect"
+    },
+    {
+      "id": "D3",
+      "label": "품질 OK?",
+      "shape": "diamond"
+    },
+    {
+      "id": "D4",
+      "label": "정제/라벨 수정",
+      "shape": "rect"
+    },
+    {
+      "id": "D5",
+      "label": "버전 스냅샷",
+      "shape": "rect"
+    },
+    {
+      "id": "E1",
+      "label": "전처리 파이프",
+      "shape": "rect"
+    },
+    {
+      "id": "E2",
+      "label": "학습",
+      "shape": "rect"
+    },
+    {
+      "id": "E3",
+      "label": "평가",
+      "shape": "rect"
+    },
+    {
+      "id": "E4",
+      "label": "목표 달성?",
+      "shape": "diamond"
+    },
+    {
+      "id": "E_OK",
+      "label": "모델 후보",
+      "shape": "rect"
+    },
+    {
+      "id": "ET1",
+      "label": "파라미터/메트릭 로깅",
+      "shape": "rect"
+    },
+    {
+      "id": "ET2",
+      "label": "아티팩트 저장소",
+      "shape": "rect"
+    },
+    {
+      "id": "C1",
+      "label": "큐 등록",
+      "shape": "rect"
+    },
+    {
+      "id": "C2",
+      "label": "GPU 가용?",
+      "shape": "diamond"
+    },
+    {
+      "id": "C3",
+      "label": "대기/프리엠션",
+      "shape": "rect"
+    },
+    {
+      "id": "C4",
+      "label": "노드 할당",
+      "shape": "rect"
+    },
+    {
+      "id": "C5",
+      "label": "리소스 모니터",
+      "shape": "rect"
+    },
+    {
+      "id": "C6",
+      "label": "오류/OOM?",
+      "shape": "diamond"
+    },
+    {
+      "id": "C7",
+      "label": "자동 중단/재시작",
+      "shape": "rect"
+    },
+    {
+      "id": "C_OK",
+      "label": "정상",
+      "shape": "rect"
+    },
+    {
+      "id": "R1",
+      "label": "프로토콜 제출",
+      "shape": "rect"
+    },
+    {
+      "id": "R2",
+      "label": "보완 필요?",
+      "shape": "diamond"
+    },
+    {
+      "id": "R3",
+      "label": "수정 반영",
+      "shape": "rect"
+    },
+    {
+      "id": "R_OK",
+      "label": "승인",
+      "shape": "rect"
+    },
+    {
+      "id": "P1",
+      "label": "원고 초안",
+      "shape": "rect"
+    },
+    {
+      "id": "P2",
+      "label": "실험표 정리",
+      "shape": "rect"
+    },
+    {
+      "id": "P3",
+      "label": "그림/부록 생성",
+      "shape": "rect"
+    },
+    {
+      "id": "P4",
+      "label": "저널 포맷 충족?",
+      "shape": "diamond"
+    },
+    {
+      "id": "P5",
+      "label": "포맷 수정",
+      "shape": "rect"
+    },
+    {
+      "id": "P6",
+      "label": "투고",
+      "shape": "rect"
+    },
+    {
+      "id": "P7",
+      "label": "리뷰 결과",
+      "shape": "rect"
+    },
+    {
+      "id": "P8",
+      "label": "대폭수정",
+      "shape": "rect"
+    },
+    {
+      "id": "P9",
+      "label": "경미수정",
+      "shape": "rect"
+    },
+    {
+      "id": "P_OK",
+      "label": "게재",
+      "shape": "rect"
+    },
+    {
+      "id": "L1",
+      "label": "이슈 등록",
+      "shape": "rect"
+    },
+    {
+      "id": "L2",
+      "label": "브랜치 생성",
+      "shape": "rect"
+    },
+    {
+      "id": "L3",
+      "label": "PR 제출",
+      "shape": "rect"
+    },
+    {
+      "id": "L4",
+      "label": "리뷰 통과?",
+      "shape": "diamond"
+    },
+    {
+      "id": "L5",
+      "label": "수정",
+      "shape": "rect"
+    },
+    {
+      "id": "L6",
+      "label": "병합",
+      "shape": "rect"
+    },
+    {
+      "id": "L_OK",
+      "label": "릴리즈 태그",
+      "shape": "rect"
+    },
+    {
+      "id": "G1",
+      "label": "공고 탐색",
+      "shape": "rect"
+    },
+    {
+      "id": "G2",
+      "label": "제안서 작성",
+      "shape": "rect"
+    },
+    {
+      "id": "G3",
+      "label": "내부 승인?",
+      "shape": "diamond"
+    },
+    {
+      "id": "G4",
+      "label": "수정/재검토",
+      "shape": "rect"
+    },
+    {
+      "id": "G5",
+      "label": "제출",
+      "shape": "rect"
+    },
+    {
+      "id": "G6",
+      "label": "선정?",
+      "shape": "diamond"
+    },
+    {
+      "id": "G7",
+      "label": "피드백 반영",
+      "shape": "rect"
+    },
+    {
+      "id": "G_OK",
+      "label": "예산 집행",
+      "shape": "rect"
+    },
+    {
+      "id": "K1",
+      "label": "노트 업로드",
+      "shape": "rect"
+    },
+    {
+      "id": "K2",
+      "label": "태깅/검색 인덱스",
+      "shape": "rect"
+    },
+    {
+      "id": "K3",
+      "label": "중복/품질?",
+      "shape": "diamond"
+    },
+    {
+      "id": "K4",
+      "label": "정제/합치기",
+      "shape": "rect"
+    },
+    {
+      "id": "K_OK",
+      "label": "게시",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "START",
+      "target": "HUB",
+      "type": "-->"
+    },
+    {
+      "source": "HUB",
+      "target": "D1",
+      "type": "-->"
+    },
+    {
+      "source": "D1",
+      "target": "D2",
+      "type": "-->"
+    },
+    {
+      "source": "D2",
+      "target": "D3",
+      "type": "-->"
+    },
+    {
+      "source": "D3",
+      "target": "D4",
+      "type": "-->"
+    },
+    {
+      "source": "D3",
+      "target": "D5",
+      "type": "-->"
+    },
+    {
+      "source": "D4",
+      "target": "D2",
+      "type": "-->"
+    },
+    {
+      "source": "D5",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "E1",
+      "target": "E2",
+      "type": "-->"
+    },
+    {
+      "source": "E2",
+      "target": "E3",
+      "type": "-->"
+    },
+    {
+      "source": "E3",
+      "target": "E4",
+      "type": "-->"
+    },
+    {
+      "source": "E4",
+      "target": "E2",
+      "type": "-->"
+    },
+    {
+      "source": "E4",
+      "target": "E_OK",
+      "type": "-->"
+    },
+    {
+      "source": "E_OK",
+      "target": "P1",
+      "type": "-->"
+    },
+    {
+      "source": "ET1",
+      "target": "ET2",
+      "type": "-->"
+    },
+    {
+      "source": "C1",
+      "target": "C2",
+      "type": "-->"
+    },
+    {
+      "source": "C2",
+      "target": "C3",
+      "type": "-->"
+    },
+    {
+      "source": "C3",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "C2",
+      "target": "C4",
+      "type": "-->"
+    },
+    {
+      "source": "C4",
+      "target": "C5",
+      "type": "-->"
+    },
+    {
+      "source": "C5",
+      "target": "C6",
+      "type": "-->"
+    },
+    {
+      "source": "C6",
+      "target": "C7",
+      "type": "-->"
+    },
+    {
+      "source": "C7",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "R1",
+      "target": "R2",
+      "type": "-->"
+    },
+    {
+      "source": "R2",
+      "target": "R3",
+      "type": "-->"
+    },
+    {
+      "source": "R3",
+      "target": "R_OK",
+      "type": "-->"
+    },
+    {
+      "source": "P1",
+      "target": "P2",
+      "type": "-->"
+    },
+    {
+      "source": "P2",
+      "target": "P3",
+      "type": "-->"
+    },
+    {
+      "source": "P3",
+      "target": "P4",
+      "type": "-->"
+    },
+    {
+      "source": "P4",
+      "target": "P5",
+      "type": "-->"
+    },
+    {
+      "source": "P5",
+      "target": "P3",
+      "type": "-->"
+    },
+    {
+      "source": "P4",
+      "target": "P6",
+      "type": "-->"
+    },
+    {
+      "source": "P6",
+      "target": "P7",
+      "type": "-->"
+    },
+    {
+      "source": "P7",
+      "target": "P8",
+      "type": "-->"
+    },
+    {
+      "source": "P8",
+      "target": "P1",
+      "type": "-->"
+    },
+    {
+      "source": "P7",
+      "target": "P9",
+      "type": "-->"
+    },
+    {
+      "source": "P9",
+      "target": "P6",
+      "type": "-->"
+    },
+    {
+      "source": "P7",
+      "target": "P_OK",
+      "type": "-->"
+    },
+    {
+      "source": "L1",
+      "target": "L2",
+      "type": "-->"
+    },
+    {
+      "source": "L2",
+      "target": "L3",
+      "type": "-->"
+    },
+    {
+      "source": "L3",
+      "target": "L4",
+      "type": "-->"
+    },
+    {
+      "source": "L4",
+      "target": "L5",
+      "type": "-->"
+    },
+    {
+      "source": "L5",
+      "target": "L3",
+      "type": "-->"
+    },
+    {
+      "source": "L4",
+      "target": "L6",
+      "type": "-->"
+    },
+    {
+      "source": "L6",
+      "target": "L_OK",
+      "type": "-->"
+    },
+    {
+      "source": "G1",
+      "target": "G2",
+      "type": "-->"
+    },
+    {
+      "source": "G2",
+      "target": "G3",
+      "type": "-->"
+    },
+    {
+      "source": "G3",
+      "target": "G4",
+      "type": "-->"
+    },
+    {
+      "source": "G4",
+      "target": "G2",
+      "type": "-->"
+    },
+    {
+      "source": "G2",
+      "target": "G5",
+      "type": "-->"
+    },
+    {
+      "source": "G5",
+      "target": "G6",
+      "type": "-->"
+    },
+    {
+      "source": "G6",
+      "target": "G7",
+      "type": "-->"
+    },
+    {
+      "source": "G7",
+      "target": "G2",
+      "type": "-->"
+    },
+    {
+      "source": "G6",
+      "target": "G_OK",
+      "type": "-->"
+    },
+    {
+      "source": "K1",
+      "target": "K2",
+      "type": "-->"
+    },
+    {
+      "source": "K2",
+      "target": "K3",
+      "type": "-->"
+    },
+    {
+      "source": "K3",
+      "target": "K4",
+      "type": "-->"
+    },
+    {
+      "source": "K4",
+      "target": "K2",
+      "type": "-->"
+    },
+    {
+      "source": "K4",
+      "target": "K_OK",
+      "type": "-->"
+    },
+    {
+      "source": "E1",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "D5",
+      "target": "E2",
+      "type": "-->"
+    },
+    {
+      "source": "S_DATA",
+      "target": "D1",
+      "type": "-->"
+    },
+    {
+      "source": "S_EXP",
+      "target": "E1",
+      "type": "-->"
+    },
+    {
+      "source": "S_COMP",
+      "target": "E2",
+      "type": "-->"
+    },
+    {
+      "source": "S_IRB",
+      "target": "R1",
+      "type": "-->"
+    },
+    {
+      "source": "S_PUB",
+      "target": "P1",
+      "type": "-->"
+    },
+    {
+      "source": "S_COL",
+      "target": "L1",
+      "type": "-->"
+    },
+    {
+      "source": "S_GRANT",
+      "target": "G1",
+      "type": "-->"
+    },
+    {
+      "source": "S_KB",
+      "target": "K1",
+      "type": "-->"
+    },
+    {
+      "source": "S_DATA",
+      "target": "E_OK",
+      "type": "-->"
+    },
+    {
+      "source": "ET2",
+      "target": "P2",
+      "type": "-->"
+    },
+    {
+      "source": "S_COL",
+      "target": "P3",
+      "type": "-->"
+    },
+    {
+      "source": "S_GRANT",
+      "target": "P1",
+      "type": "-->"
+    },
+    {
+      "source": "K_OK",
+      "target": "L1",
+      "type": "-->"
+    },
+    {
+      "source": "R1",
+      "target": "K1",
+      "type": "-->"
+    },
+    {
+      "source": "P7",
+      "target": "K1",
+      "type": "-->"
+    },
+    {
+      "source": "C7",
+      "target": "C1",
+      "type": "-->"
+    },
+    {
+      "source": "E4",
+      "target": "E2",
+      "type": "-->"
+    },
+    {
+      "source": "P5",
+      "target": "P3",
+      "type": "-->"
+    },
+    {
+      "source": "P8",
+      "target": "P1",
+      "type": "-->"
+    },
+    {
+      "source": "L5",
+      "target": "L3",
+      "type": "-->"
+    },
+    {
+      "source": "G7",
+      "target": "G2",
+      "type": "-->"
+    },
+    {
+      "source": "P_OK",
+      "target": "END",
+      "type": "-->"
+    },
+    {
+      "source": "L_OK",
+      "target": "END",
+      "type": "-->"
+    },
+    {
+      "source": "G_OK",
+      "target": "END",
+      "type": "-->"
+    },
+    {
+      "source": "C_OK",
+      "target": "END",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S_DATA",
+      "title": "DATA MGMT"
+    },
+    {
+      "id": "S_EXP",
+      "title": "EXPERIMENTS"
+    },
+    {
+      "id": "S_COMP",
+      "title": "COMPUTE CLUSTER"
+    },
+    {
+      "id": "S_IRB",
+      "title": "ETHICS/IRB"
+    },
+    {
+      "id": "S_PUB",
+      "title": "PUBLICATION"
+    },
+    {
+      "id": "S_COL",
+      "title": "COLLAB & REPO"
+    },
+    {
+      "id": "S_GRANT",
+      "title": "GRANT MGMT"
+    },
+    {
+      "id": "S_KB",
+      "title": "KNOWLEDGE BASE"
+    }
+  ],
+  "summary": {
+    "natural_language": "Mermaid flowchart representing a data processing and workflow management system with multiple stages including data management, experiments, compute cluster, ethics, publication, collaboration, grant management, and knowledge base."
+  },
+  "warnings": [
+    "JSON 추출 후 파싱 성공"
+  ],
+  "decisions": []
+}

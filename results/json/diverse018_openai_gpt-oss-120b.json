@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Contract",
+      "label": "Contract Draft",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Legal",
+      "label": "Legal Review",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Negotiate",
+      "label": "Negotiation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Sign",
+      "label": "Digital Signature",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Execute",
+      "label": "Contract Execution",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Contract",
+      "target": "Legal",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Legal",
+      "target": "Negotiate",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Negotiate",
+      "target": "Sign",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Sign",
+      "target": "Execute",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "계약 초안이 법무 검토를 거쳐 협상, 디지털 서명, 실행 단계로 진행되는 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

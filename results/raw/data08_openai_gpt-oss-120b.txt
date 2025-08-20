@@ -2,35 +2,129 @@
   "ok": true,
   "warnings": [],
   "nodes": [
-    {"id":"C1","label":"Web","shape":"rect","subgraphs":["CLIENT"]},
-    {"id":"C2","label":"Mobile","shape":"rect","subgraphs":["CLIENT"]},
-    {"id":"S1","label":"API Gateway","shape":"rect","subgraphs":["SERVER"]},
-    {"id":"S2","label":"Auth Service","shape":"rect","subgraphs":["SERVER"]},
-    {"id":"S3","label":"Data Service","shape":"rect","subgraphs":["SERVER"]},
-    {"id":"S4","label":"ML Service","shape":"rect","subgraphs":["SERVER"]},
-    {"id":"D1","label":"SQL DB","shape":"rect","subgraphs":["DB"]},
-    {"id":"D2","label":"NoSQL DB","shape":"rect","subgraphs":["DB"]}
+    {
+      "id": "C1",
+      "label": "Web",
+      "shape": "rect",
+      "subgraphs": ["CLIENT"]
+    },
+    {
+      "id": "C2",
+      "label": "Mobile",
+      "shape": "rect",
+      "subgraphs": ["CLIENT"]
+    },
+    {
+      "id": "S1",
+      "label": "API Gateway",
+      "shape": "rect",
+      "subgraphs": ["SERVER"]
+    },
+    {
+      "id": "S2",
+      "label": "Auth Service",
+      "shape": "rect",
+      "subgraphs": ["SERVER"]
+    },
+    {
+      "id": "S3",
+      "label": "Data Service",
+      "shape": "rect",
+      "subgraphs": ["SERVER"]
+    },
+    {
+      "id": "S4",
+      "label": "ML Service",
+      "shape": "rect",
+      "subgraphs": ["SERVER"]
+    },
+    {
+      "id": "D1",
+      "label": "SQL DB",
+      "shape": "rect",
+      "subgraphs": ["DB"]
+    },
+    {
+      "id": "D2",
+      "label": "NoSQL DB",
+      "shape": "rect",
+      "subgraphs": ["DB"]
+    }
   ],
   "edges": [
-    {"source":"CLIENT","target":"S1","type":"-->","label":null},
-    {"source":"S1","target":"S2","type":"-->","label":null},
-    {"source":"S1","target":"S3","type":"-->","label":null},
-    {"source":"S1","target":"S4","type":"-->","label":null},
-    {"source":"S2","target":"D1","type":"-->","label":null},
-    {"source":"S3","target":"D2","type":"-->","label":null},
-    {"source":"S4","target":"D2","type":"-->","label":null},
-    {"source":"D1","target":"S3","type":"-->","label":null},
-    {"source":"D2","target":"S1","type":"-->","label":null}
+    {
+      "source": "CLIENT",
+      "target": "S1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S1",
+      "target": "S2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S1",
+      "target": "S3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S1",
+      "target": "S4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S2",
+      "target": "D1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S3",
+      "target": "D2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "S4",
+      "target": "D2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D1",
+      "target": "S3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D2",
+      "target": "S1",
+      "type": "-->",
+      "label": null
+    }
   ],
   "subgraphs": [
-    {"id":"CLIENT","title":"CLIENT"},
-    {"id":"SERVER","title":"SERVER"},
-    {"id":"DB","title":"DB"}
+    {
+      "id": "CLIENT",
+      "title": "CLIENT"
+    },
+    {
+      "id": "SERVER",
+      "title": "SERVER"
+    },
+    {
+      "id": "DB",
+      "title": "DB"
+    }
   ],
   "decisions": [],
   "summary": {
-    "natural_language":"Web and Mobile clients connect to an API Gateway, which routes requests to Auth, Data, and ML services; these services interact with SQL and NoSQL databases, with data flowing back to services and the gateway.",
-    "entry_nodes":["C1","C2"],
-    "exit_nodes":[]
+    "natural_language": "클라이언트가 API 게이트웨이와 연결되고, 서버의 각 서비스가 데이터베이스와 상호작용하는 흐름을 나타낸다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
   }
 }

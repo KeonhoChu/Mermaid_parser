@@ -67,7 +67,7 @@
     {
       "id": "OUT1",
       "label": "Staging",
-      "shape": "circle",
+      "shape": "double_circle",
       "subgraphs": []
     },
     {
@@ -97,7 +97,7 @@
     {
       "id": "OUT2",
       "label": "Feature Store",
-      "shape": "circle",
+      "shape": "double_circle",
       "subgraphs": []
     },
     {
@@ -175,18 +175,6 @@
       "label": "재시도"
     },
     {
-      "source": "ROUTE",
-      "target": "ETL",
-      "type": "-->",
-      "label": "배치"
-    },
-    {
-      "source": "ROUTE",
-      "target": "STREAM",
-      "type": "-->",
-      "label": "실시간"
-    },
-    {
       "source": "E1",
       "target": "E2",
       "type": "-->",
@@ -251,6 +239,18 @@
       "target": "OUT2",
       "type": "-->",
       "label": "아니오"
+    },
+    {
+      "source": "ROUTE",
+      "target": "ETL",
+      "type": "-->",
+      "label": "배치"
+    },
+    {
+      "source": "ROUTE",
+      "target": "STREAM",
+      "type": "-->",
+      "label": "실시간"
     },
     {
       "source": "OUT1",
@@ -325,7 +325,7 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "The diagram describes a data pipeline that injects data, validates the schema, routes to batch ETL or real-time streaming, processes the data, trains a model, evaluates it, and if satisfactory deploys it with monitoring and rollback, otherwise tunes and retrains.",
+    "natural_language": "데이터 주입부터 모델 학습, 평가, 배포까지 배치와 실시간 파이프라인을 포함한 전체 흐름을 나타냅니다.",
     "entry_nodes": [
       "START"
     ],

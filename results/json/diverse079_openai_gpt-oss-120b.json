@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Iniciar Documentación",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Recolectar Información",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "Organizar Datos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "Redactar Documentos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "Revisar y Aprobar",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "Publicar Documentación",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 흐름도는 문서화 프로세스를 시작부터 끝까지 단계별로 보여줍니다: 문서 시작, 정보 수집, 데이터 정리, 문서 작성, 검토 및 승인, 그리고 최종 공개.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

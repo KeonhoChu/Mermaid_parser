@@ -1,0 +1,9 @@
+flowchart TD
+    subgraph Docker["Docker Containers"]
+        App1[App Container 1]
+        App2[App Container 2]
+        DB[DB Container]
+    end
+    LoadBalancer --> Docker
+    App1 --> DB
+    App2 --> DB

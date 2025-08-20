@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "A", "shape": "rect"},
+    {"id": "B", "label": "B", "shape": "rect"},
+    {"id": "C", "label": "C", "shape": "rect"},
+    {"id": "D", "label": "D", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "C", "target": "D", "type": "-->"},
+    {"source": "B", "target": "S1", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "S1", "title": "Group 3"}
+  ],
+  "summary": {"natural_language": "Flowchart with nodes A, B, C, D and subgraph Group 3."}
+}

@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Safety",
+      "label": "Safety Protocol",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Training",
+      "label": "Safety Training",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Equipment",
+      "label": "Safety Equipment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Compliance",
+      "label": "Safety Compliance",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Audit",
+      "label": "Safety Audit",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Safety",
+      "target": "Training",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Training",
+      "target": "Equipment",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Equipment",
+      "target": "Compliance",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Compliance",
+      "target": "Audit",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "안전 프로토콜에서 시작해 안전 교육, 안전 장비, 안전 준수를 거쳐 최종적으로 안전 감사를 수행하는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

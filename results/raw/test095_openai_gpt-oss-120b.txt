@@ -1,0 +1,138 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Start",
+      "label": "Start",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Process5",
+      "label": "Process5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision",
+      "label": "Check 5",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "Success",
+      "label": "Success",
+      "shape": "rect",
+      "subgraphs": ["S1"]
+    },
+    {
+      "id": "End1",
+      "label": "End1",
+      "shape": "rect",
+      "subgraphs": ["S1"]
+    },
+    {
+      "id": "Retry",
+      "label": "Retry",
+      "shape": "rect",
+      "subgraphs": ["S2"]
+    },
+    {
+      "id": "Fail",
+      "label": "Fail",
+      "shape": "rect",
+      "subgraphs": ["S2"]
+    },
+    {
+      "id": "End2",
+      "label": "End2",
+      "shape": "rect",
+      "subgraphs": ["S2"]
+    },
+    {
+      "id": "Log1",
+      "label": "Log1",
+      "shape": "rect",
+      "subgraphs": ["S3"]
+    },
+    {
+      "id": "Log2",
+      "label": "Log2",
+      "shape": "rect",
+      "subgraphs": ["S3"]
+    }
+  ],
+  "edges": [
+    {
+      "source": "Start",
+      "target": "Process5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Process5",
+      "target": "Decision",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Success",
+      "target": "End1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Retry",
+      "target": "Process5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Fail",
+      "target": "End2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Log1",
+      "target": "Log2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Success",
+      "target": "Log1",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "Fail",
+      "target": "Log2",
+      "type": "===",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S1",
+      "title": "Success Path"
+    },
+    {
+      "id": "S2",
+      "title": "Failure Path"
+    },
+    {
+      "id": "S3",
+      "title": "Log System"
+    }
+  ],
+  "decisions": [
+    "Decision"
+  ],
+  "summary": {
+    "natural_language": "시작 노드에서 Process5를 거쳐 Decision을 판단하고, Pass인 경우 Success Path를 따라 End1에 도달하고, Fail인 경우 Failure Path를 따라 Retry하거나 End2에 도달합니다. 또한 로그 시스템이 연결되어 있습니다.",
+    "entry_nodes": ["Start"],
+    "exit_nodes": ["End1", "End2"]
+  }
+}

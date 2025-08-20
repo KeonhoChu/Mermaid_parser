@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Match",
+      "label": "Find Match",
+      "shape": "rect"
+    },
+    {
+      "id": "Lobby",
+      "label": "Game Lobby",
+      "shape": "rect"
+    },
+    {
+      "id": "Start",
+      "label": "Start Game",
+      "shape": "rect"
+    },
+    {
+      "id": "Play",
+      "label": "Gameplay",
+      "shape": "rect"
+    },
+    {
+      "id": "End",
+      "label": "Game End",
+      "shape": "rect"
+    },
+    {
+      "id": "Stats",
+      "label": "Show Statistics",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Match",
+      "target": "Lobby",
+      "type": "-->"
+    },
+    {
+      "source": "Lobby",
+      "target": "Start",
+      "type": "-->"
+    },
+    {
+      "source": "Start",
+      "target": "Play",
+      "type": "-->"
+    },
+    {
+      "source": "Play",
+      "target": "End",
+      "type": "-->"
+    },
+    {
+      "source": "End",
+      "target": "Stats",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart describing game progression from finding a match to showing statistics."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

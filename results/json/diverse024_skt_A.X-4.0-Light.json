@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "API",
+      "label": "API Gateway",
+      "shape": "rect"
+    },
+    {
+      "id": "Auth",
+      "label": "Auth Service",
+      "shape": "rect"
+    },
+    {
+      "id": "User",
+      "label": "User Service",
+      "shape": "rect"
+    },
+    {
+      "id": "Order",
+      "label": "Order Service",
+      "shape": "rect"
+    },
+    {
+      "id": "UserDB",
+      "label": "User DB",
+      "shape": "rect"
+    },
+    {
+      "id": "OrderDB",
+      "label": "Order DB",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "API",
+      "target": "Auth",
+      "type": "-->"
+    },
+    {
+      "source": "API",
+      "target": "User",
+      "type": "-->"
+    },
+    {
+      "source": "API",
+      "target": "Order",
+      "type": "-->"
+    },
+    {
+      "source": "User",
+      "target": "UserDB",
+      "type": "-->"
+    },
+    {
+      "source": "Order",
+      "target": "OrderDB",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of services and their interactions."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

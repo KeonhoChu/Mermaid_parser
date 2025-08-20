@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A5", "label": "A5", "shape": "rect"},
+    {"id": "B5", "label": "B5", "shape": "rect"},
+    {"id": "C5", "label": "C5", "shape": "rect"},
+    {"id": "D5", "label": "D5", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A5", "target": "C5", "type": "-->"},
+    {"source": "A5", "target": "D5", "type": "-->"},
+    {"source": "B5", "target": "C5", "type": "-->"},
+    {"source": "B5", "target": "D5", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with nodes A5, B5, C5, D5 connected by arrows."}
+}

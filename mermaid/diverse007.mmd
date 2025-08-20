@@ -1,0 +1,6 @@
+flowchart LR
+    Frontend --> API[REST API]
+    API --> Backend[Backend Service]
+    Backend --> Cache[Redis Cache]
+    Backend --> Database[(PostgreSQL)]
+    Cache -.-> Backend

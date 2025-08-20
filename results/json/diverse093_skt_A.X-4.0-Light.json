@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Alpha",
+      "label": "시스템 알파",
+      "shape": "rect"
+    },
+    {
+      "id": "Beta",
+      "label": "시스템 베타",
+      "shape": "rect"
+    },
+    {
+      "id": "Gamma",
+      "label": "시스템 감마",
+      "shape": "rect"
+    },
+    {
+      "id": "Delta",
+      "label": "시스템 델타",
+      "shape": "rect"
+    },
+    {
+      "id": "Epsilon",
+      "label": "시스템 엡실론",
+      "shape": "rect"
+    },
+    {
+      "id": "Omega",
+      "label": "시스템 오메가",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Alpha",
+      "target": "Beta",
+      "type": "-->"
+    },
+    {
+      "source": "Beta",
+      "target": "Gamma",
+      "type": "=="
+    },
+    {
+      "source": "Gamma",
+      "target": "Delta",
+      "type": "-->"
+    },
+    {
+      "source": "Delta",
+      "target": "Epsilon",
+      "type": "<-->"
+    },
+    {
+      "source": "Alpha",
+      "target": "Omega",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Mermaid flowchart with nodes and directed/bidirectional edges"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

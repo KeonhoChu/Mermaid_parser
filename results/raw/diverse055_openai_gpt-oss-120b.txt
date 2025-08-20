@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Pharmacy",
+      "label": "Pharmacy",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Prescription",
+      "label": "Receive Prescription",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Verify",
+      "label": "Verify Medication",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Dispense",
+      "label": "Dispense Medicine",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Counseling",
+      "label": "Patient Counseling",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Pharmacy",
+      "target": "Prescription",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Prescription",
+      "target": "Verify",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Verify",
+      "target": "Dispense",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Dispense",
+      "target": "Counseling",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "약국에서 처방전을 받고, 약을 확인하고, 조제한 뒤 환자에게 상담을 제공하는 흐름.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

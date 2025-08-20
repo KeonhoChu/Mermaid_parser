@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Order", "label": "Order", "shape": "rect"},
+    {"id": "Warehouse", "label": "Warehouse Pick", "shape": "rect"},
+    {"id": "Pack", "label": "Package Item", "shape": "rect"},
+    {"id": "Label", "label": "Shipping Label", "shape": "rect"},
+    {"id": "Carrier", "label": "Shipping Carrier", "shape": "rect"},
+    {"id": "Delivery", "label": "Final Delivery", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Order", "target": "Warehouse", "type": "-->"},
+    {"source": "Warehouse", "target": "Pack", "type": "-->"},
+    {"source": "Pack", "target": "Label", "type": "-->"},
+    {"source": "Label", "target": "Carrier", "type": "-->"},
+    {"source": "Carrier", "target": "Delivery", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of order processing from start to delivery."}
+}

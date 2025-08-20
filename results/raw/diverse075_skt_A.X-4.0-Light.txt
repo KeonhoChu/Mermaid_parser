@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Budget", "label": "Create Budget", "shape": "rect"},
+    {"id": "Track", "label": "Expense Tracking", "shape": "rect"},
+    {"id": "Compare", "label": "Budget vs Actual", "shape": "rect"},
+    {"id": "Adjust", "label": "Budget Adjustment", "shape": "rect"},
+    {"id": "Report", "label": "Financial Report", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Budget", "target": "Track", "type": "-->"},
+    {"source": "Track", "target": "Compare", "type": "-->"},
+    {"source": "Compare", "target": "Adjust", "type": "-->"},
+    {"source": "Adjust", "target": "Report", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of budget management process"}
+}

@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Order", "label": "Order", "shape": "rect"},
+    {"id": "Inventory", "label": "Inventory", "shape": "rect"},
+    {"id": "Pick", "label": "Pick", "shape": "rect"},
+    {"id": "Pack", "label": "Pack", "shape": "rect"},
+    {"id": "Ship", "label": "Ship", "shape": "rect"},
+    {"id": "Backorder", "label": "Backorder", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Order", "target": "Inventory", "type": "-->"},
+    {"source": "Inventory", "target": "Pick", "type": "-->"},
+    {"source": "Inventory", "target": "Backorder", "type": "-->"},
+    {"source": "Pick", "target": "Pack", "type": "-->"},
+    {"source": "Pack", "target": "Ship", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of order processing with inventory checks and backorder handling."}
+}

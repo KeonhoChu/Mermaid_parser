@@ -1,0 +1,117 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Node1",
+      "label": "Node1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Node2",
+      "label": "Node2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Node3",
+      "label": "Node3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Node4",
+      "label": "Node4",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Node5",
+      "label": "Node5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Node6",
+      "label": "Node6",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Node7",
+      "label": "Node7",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Node8",
+      "label": "Node8",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Node1",
+      "target": "Node2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Node2",
+      "target": "Node3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Node3",
+      "target": "Node4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Node4",
+      "target": "Node5",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Node5",
+      "target": "Node6",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Node6",
+      "target": "Node7",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Node7",
+      "target": "Node8",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Node8",
+      "target": "Node1",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "Node1부터 Node8까지 순환하는 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

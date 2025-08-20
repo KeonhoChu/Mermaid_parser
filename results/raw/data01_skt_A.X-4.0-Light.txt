@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "N1", "label": "A", "shape": "rect"},
+    {"id": "N2", "label": "B", "shape": "rect"},
+    {"id": "N3", "label": "C", "shape": "rect"},
+    {"id": "N4", "label": "D", "shape": "rect"},
+    {"id": "N5", "label": "E", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "S1", "target": "N1", "type": "-->"},
+    {"source": "S1", "target": "N2", "type": "-->"},
+    {"source": "S1", "target": "N5", "type": "-->"},
+    {"source": "N1", "target": "N3", "type": "-->"},
+    {"source": "N1", "target": "N4", "type": "-->"},
+    {"source": "N2", "target": "N3", "type": "-->"},
+    {"source": "N4", "target": "N1", "type": "-->"},
+    {"source": "S2", "target": "N5", "type": "-->"},
+    {"source": "S2", "target": "N1", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "S1", "title": "Subgraph1"},
+    {"id": "S2", "title": "Subgraph2"}
+  ],
+  "summary": {"natural_language": "Flowchart with two subgraphs, S1 and S2, containing nodes A, B, C, D, E with directed edges."}
+}

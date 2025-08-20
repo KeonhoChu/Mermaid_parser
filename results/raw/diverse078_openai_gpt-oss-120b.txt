@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Risk",
+      "label": "Risk Assessment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Model",
+      "label": "Risk Model",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Score",
+      "label": "Risk Score",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Decision",
+      "label": "Decision Making",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Monitor",
+      "label": "Risk Monitoring",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Risk",
+      "target": "Model",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Model",
+      "target": "Score",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Score",
+      "target": "Decision",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Decision",
+      "target": "Monitor",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "위 플로우차트는 위험 평가에서 모델링, 점수 산출, 의사결정, 위험 모니터링 순으로 진행되는 과정을 보여줍니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

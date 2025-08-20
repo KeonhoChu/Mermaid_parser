@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Upload",
+      "label": "File Upload",
+      "shape": "rect"
+    },
+    {
+      "id": "Virus",
+      "label": "Virus Scan",
+      "shape": "rect"
+    },
+    {
+      "id": "Storage",
+      "label": "Cloud Storage",
+      "shape": "rect"
+    },
+    {
+      "id": "CDN",
+      "label": "CDN Distribution",
+      "shape": "rect"
+    },
+    {
+      "id": "Access",
+      "label": "User Access",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Upload",
+      "target": "Virus",
+      "type": "-->"
+    },
+    {
+      "source": "Virus",
+      "target": "Storage",
+      "type": "-->"
+    },
+    {
+      "source": "Storage",
+      "target": "CDN",
+      "type": "-->"
+    },
+    {
+      "source": "CDN",
+      "target": "Access",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart describes file upload, virus scan, cloud storage, CDN distribution, and user access."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

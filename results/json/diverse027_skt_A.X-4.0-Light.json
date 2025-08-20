@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Monitor",
+      "label": "Monitoring",
+      "shape": "rect"
+    },
+    {
+      "id": "Logs",
+      "label": "Log Collection",
+      "shape": "rect"
+    },
+    {
+      "id": "Metrics",
+      "label": "Metrics Collection",
+      "shape": "rect"
+    },
+    {
+      "id": "Analysis",
+      "label": "Log Analysis",
+      "shape": "rect"
+    },
+    {
+      "id": "Dashboard",
+      "label": "Metrics Dashboard",
+      "shape": "rect"
+    },
+    {
+      "id": "Alerts",
+      "label": "Alert System",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Monitor",
+      "target": "Logs",
+      "type": "-->"
+    },
+    {
+      "source": "Monitor",
+      "target": "Metrics",
+      "type": "-->"
+    },
+    {
+      "source": "Logs",
+      "target": "Analysis",
+      "type": "-->"
+    },
+    {
+      "source": "Metrics",
+      "target": "Dashboard",
+      "type": "-->"
+    },
+    {
+      "source": "Analysis",
+      "target": "Alerts",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of monitoring system with log and metrics collection, analysis, and alerting."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

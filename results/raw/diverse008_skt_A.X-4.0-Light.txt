@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "User", "label": "User Story", "shape": "rect"},
+    {"id": "Task", "label": "Development Task", "shape": "rect"},
+    {"id": "Code", "label": "Write Code", "shape": "rect"},
+    {"id": "Test", "label": "Write Tests", "shape": "rect"},
+    {"id": "Review", "label": "Peer Review", "shape": "rect"},
+    {"id": "Done", "label": "Definition of Done", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "User", "target": "Task", "type": "-->"},
+    {"source": "Task", "target": "Code", "type": "-->"},
+    {"source": "Code", "target": "Test", "type": "-->"},
+    {"source": "Test", "target": "Review", "type": "-->"},
+    {"source": "Review", "target": "Done", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of user story to done process"}
+}

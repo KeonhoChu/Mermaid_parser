@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Vaccine", "label": "Vaccination Program", "shape": "rect"},
+    {"id": "Schedule", "label": "Schedule Appointment", "shape": "rect"},
+    {"id": "Administer", "label": "Administer Vaccine", "shape": "rect"},
+    {"id": "Record", "label": "Update Records", "shape": "rect"},
+    {"id": "Monitor", "label": "Monitor Side Effects", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Vaccine", "target": "Schedule", "type": "-->"},
+    {"source": "Schedule", "target": "Administer", "type": "-->"},
+    {"source": "Administer", "target": "Record", "type": "-->"},
+    {"source": "Record", "target": "Monitor", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of vaccination process from scheduling to monitoring side effects."}
+}

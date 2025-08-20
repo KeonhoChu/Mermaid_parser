@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Fraud",
+      "label": "Fraud Detection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Alert",
+      "label": "Generate Alert",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Investigate",
+      "label": "Investigation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Action",
+      "label": "Take Action",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Report",
+      "label": "Fraud Report",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Fraud",
+      "target": "Alert",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Alert",
+      "target": "Investigate",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Investigate",
+      "target": "Action",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Action",
+      "target": "Report",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 흐름도는 사기 감지에서 알림 생성, 조사, 조치, 그리고 사기 보고서 작성까지의 과정을 나타냅니다.",
+    "entry_nodes": [
+      "Fraud"
+    ],
+    "exit_nodes": [
+      "Report"
+    ]
+  }
+}

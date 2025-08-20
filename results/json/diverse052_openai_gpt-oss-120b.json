@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Symptom",
+      "label": "Report Symptoms",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Examination",
+      "label": "Physical Exam",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Tests",
+      "label": "Medical Tests",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Results",
+      "label": "Test Results",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Prescription",
+      "label": "Write Prescription",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Symptom",
+      "target": "Examination",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Examination",
+      "target": "Tests",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Tests",
+      "target": "Results",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Results",
+      "target": "Prescription",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "환자가 증상을 보고하면 신체 검사를 거쳐 검사를 시행하고 결과에 따라 처방을 작성합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

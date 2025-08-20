@@ -113,8 +113,12 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "A flowchart with two subgraphs linking nodes A, B, C, D, and E as defined.",
-    "entry_nodes": [],
-    "exit_nodes": []
+    "natural_language": "이 플로우차트는 두 개의 서브그래프와 다섯 개의 노드로 구성되어 있으며, 노드 간의 연결 관계를 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
   }
 }

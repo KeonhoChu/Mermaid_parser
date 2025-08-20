@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Workshop",
+      "label": "Workshop",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Registration",
+      "label": "Student Registration",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Materials",
+      "label": "Prepare Materials",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Session",
+      "label": "Conduct Session",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Certificate",
+      "label": "Issue Certificate",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Workshop",
+      "target": "Registration",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Registration",
+      "target": "Materials",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Materials",
+      "target": "Session",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Session",
+      "target": "Certificate",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "워크숍에서 학생 등록, 자료 준비, 세션 진행, 인증서 발급까지의 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

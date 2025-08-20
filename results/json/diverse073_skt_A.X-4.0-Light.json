@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Transaction",
+      "label": "Bank Transaction",
+      "shape": "rect"
+    },
+    {
+      "id": "Validate",
+      "label": "Validate Transaction",
+      "shape": "rect"
+    },
+    {
+      "id": "Process",
+      "label": "Process Payment",
+      "shape": "rect"
+    },
+    {
+      "id": "Settlement",
+      "label": "Transaction Settlement",
+      "shape": "rect"
+    },
+    {
+      "id": "Record",
+      "label": "Update Records",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Transaction",
+      "target": "Validate",
+      "type": "-->"
+    },
+    {
+      "source": "Validate",
+      "target": "Process",
+      "type": "-->"
+    },
+    {
+      "source": "Process",
+      "target": "Settlement",
+      "type": "-->"
+    },
+    {
+      "source": "Settlement",
+      "target": "Record",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of bank transaction process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

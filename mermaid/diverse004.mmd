@@ -1,0 +1,7 @@
+flowchart TD
+    Develop --> PR[Pull Request]
+    PR --> Review[Code Review]
+    Review -->|Approve| Merge
+    Review -->|Changes| Develop
+    Merge --> CI[CI Pipeline]
+    CI --> CD[CD Pipeline]

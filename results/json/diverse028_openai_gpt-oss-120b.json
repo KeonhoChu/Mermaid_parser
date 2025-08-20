@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Upload",
+      "label": "File Upload",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Virus",
+      "label": "Virus Scan",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Storage",
+      "label": "Cloud Storage",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "CDN",
+      "label": "CDN Distribution",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Access",
+      "label": "User Access",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Upload",
+      "target": "Virus",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Virus",
+      "target": "Storage",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Storage",
+      "target": "CDN",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "CDN",
+      "target": "Access",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "파일 업로드 → 바이러스 스캔 → 클라우드 저장소 → CDN 배포 → 사용자 접근",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

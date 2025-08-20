@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Lab", "label": "Laboratory", "shape": "rect"},
+    {"id": "Sample", "label": "Collect Sample", "shape": "rect"},
+    {"id": "Analysis", "label": "Lab Analysis", "shape": "rect"},
+    {"id": "Report", "label": "Generate Report", "shape": "rect"},
+    {"id": "Doctor", "label": "Send to Doctor", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Lab", "target": "Sample", "type": "-->"},
+    {"source": "Sample", "target": "Analysis", "type": "-->"},
+    {"source": "Analysis", "target": "Report", "type": "-->"},
+    {"source": "Report", "target": "Doctor", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describes a process from sample collection to report generation and sending to a doctor."}
+}

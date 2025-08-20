@@ -1,0 +1,5 @@
+flowchart LR
+    Client --> Proxy[Reverse Proxy]
+    Proxy --> Cache[Cache Layer]
+    Cache --> Backend[Backend Service]
+    Backend --> Storage[(Data Storage)]

@@ -1,0 +1,15 @@
+	
+flowchart TD
+A[Inicio] --> B[Identificación de Requisitos]
+B --> C[Análisis de Requisitos]
+C --> D{Requisitos Claros?}
+D -->|Sí| E[Diseño de la Solución]
+D -->|No| B
+E --> F[Desarrollo]
+F --> G[Pruebas]
+G --> H{Pruebas Exitosas?}
+H -->|Sí| I[Implementación]
+H -->|No| F
+I --> J[Documentación]
+J --> K[Entrega al Cliente]
+K --> L[Fin]

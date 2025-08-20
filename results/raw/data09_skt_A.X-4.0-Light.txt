@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "E1", "label": "센서1", "shape": "rect"},
+    {"id": "E2", "label": "센서2", "shape": "rect"},
+    {"id": "E3", "label": "게이트웨이", "shape": "rect"},
+    {"id": "C1", "label": "데이터 수집", "shape": "rect"},
+    {"id": "C2", "label": "실시간 분석", "shape": "rect"},
+    {"id": "C3", "label": "대시보드", "shape": "rect"},
+    {"id": "C4", "label": "알림 시스템", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "E1", "target": "E3", "type": "-->"},
+    {"source": "E2", "target": "E3", "type": "-->"},
+    {"source": "E3", "target": "C1", "type": "-->"},
+    {"source": "C1", "target": "C2", "type": "-->"},
+    {"source": "C2", "target": "C3", "type": "-->"},
+    {"source": "C2", "target": "C4", "type": "-->"},
+    {"source": "C4", "target": "E3", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "EDGE", "title": "Edge Devices"},
+    {"id": "CLOUD", "title": "클라우드"}
+  ],
+  "summary": {"natural_language": "Mermaid flowchart representing edge devices and cloud services with connections."}
+}

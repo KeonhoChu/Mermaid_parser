@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "Inicio", "shape": "rect"},
+    {"id": "B", "label": "Configuración de Entorno", "shape": "rect"},
+    {"id": "C", "label": "Desarrollo de Código", "shape": "rect"},
+    {"id": "D", "label": "Pruebas Automatizadas", "shape": "rect"},
+    {"id": "E", "label": "Integración Continua", "shape": "rect"},
+    {"id": "F", "label": "Despliegue en GCP", "shape": "rect"},
+    {"id": "G", "label": "Monitoreo y Feedback", "shape": "rect"},
+    {"id": "H", "label": "Fin", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "B", "target": "C", "type": "-->"},
+    {"source": "C", "target": "D", "type": "-->"},
+    {"source": "D", "target": "E", "type": "-->"},
+    {"source": "E", "target": "F", "type": "-->"},
+    {"source": "F", "target": "G", "type": "-->"},
+    {"source": "G", "target": "H", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart representing a software development process from start to deployment and monitoring."}
+}

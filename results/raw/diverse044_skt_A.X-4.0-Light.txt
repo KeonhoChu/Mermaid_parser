@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Item", "label": "Collect Item", "shape": "rect"},
+    {"id": "Inventory", "label": "Add to Inventory", "shape": "rect"},
+    {"id": "Craft", "label": "Crafting System", "shape": "rect"},
+    {"id": "Upgrade", "label": "Item Upgrade", "shape": "rect"},
+    {"id": "Equip", "label": "Equip Item", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Item", "target": "Inventory", "type": "-->"},
+    {"source": "Inventory", "target": "Craft", "type": "-->"},
+    {"source": "Craft", "target": "Upgrade", "type": "-->"},
+    {"source": "Upgrade", "target": "Equip", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describes a process starting with collecting an item, adding it to inventory, crafting, upgrading, and finally equipping."}
+}

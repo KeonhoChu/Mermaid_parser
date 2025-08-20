@@ -11,27 +11,20 @@ from typing import Dict, Any, List, Tuple, Optional
 import requests
 import random
 
-VLLM_ENDPOINT = "http://10.240.1.8:8001/v1/chat/completions"
-MODEL_NAME = "openai/gpt-oss-120b"
+# VLLM_ENDPOINT = "http://10.240.1.8:8012/v1/chat/completions"
+# MODEL_NAME = "openai/gpt-oss-120b"
+
+VLLM_ENDPOINT = "http://10.240.1.8:8011/v1/chat/completions"
+MODEL_NAME = "skt/A.X-4.0-Light"
 
 # -------- 프롬프트 (정규화) --------
-SYSTEM_PROMPT = """You are a JSON-only Mermaid diagram parser. You MUST respond with only valid JSON, no explanations or analysis.
-
-Your task: Parse the Mermaid flowchart and output JSON with the exact schema provided.
-
-CRITICAL RULES:
-1. Output ONLY JSON - no text before or after
-2. Start response with { and end with }
-3. Do not explain your reasoning
-4. Do not analyze the diagram in text
-5. Just extract nodes, edges, and subgraphs into the JSON format
-"""
+SYSTEM_PROMPT = """Parse Mermaid flowchart to JSON only. No explanations. Start with { and end with }."""
 
 # -------- 유틸: 호출/파싱 --------
 def call_vllm(messages: List[Dict[str, str]],
               temperature: float = 0.0,
               top_p: float = 1.0,
-              max_tokens: int = 16000,
+              max_tokens: int = 7500,
               seed: int = 123,
               timeout: int = 120,
               retries: int = 3,
@@ -586,14 +579,19 @@ def parse_llm_json(text: str) -> Tuple[bool, Dict[str, Any], str]:
     warning_msg = ";".join(warnings) if warnings else ""
     return True, obj, warning_msg
 
-def count_nodes_edges(obj: Dict[str, Any]) -> Tuple[int, int]:
-    """노드와 엣지 개수 세기"""
+def count_nodes_edges_subgraphs(obj: Dict[str, Any]) -> Tuple[int, int, int]:
+    """노드, 엣지, 서브그래프 개수 세기"""
     try:
         nodes = obj.get("nodes", [])
         edges = obj.get("edges", [])
-        return len(nodes) if isinstance(nodes, list) else 0, len(edges) if isinstance(edges, list) else 0
+        subgraphs = obj.get("subgraphs", [])
+        return (
+            len(nodes) if isinstance(nodes, list) else 0,
+            len(edges) if isinstance(edges, list) else 0,
+            len(subgraphs) if isinstance(subgraphs, list) else 0
+        )
     except Exception:
-        return 0, 0
+        return 0, 0, 0
 
 # -------- 배치 실행 --------
 def run_batch(mermaid_dir: str = "mermaid",
@@ -677,49 +675,21 @@ def run_batch(mermaid_dir: str = "mermaid",
             print("빈 파일 스킵")
             continue
         
-        # 프롬프트 준비
-        user_msg = f"""Parse this Mermaid flowchart and return JSON ONLY:
+        # 프롬프트 준비 (토큰 최적화)
+        user_msg = f"""Parse this Mermaid flowchart to JSON:
 
 {mermaid_code}
 
-Output JSON with this exact structure (no other text):
-
+Return only JSON:
 {{
   "ok": true,
-  "warnings": [],
-  "nodes": [
-    {{
-      "id": "node_id",
-      "label": "node_label",
-      "shape": "rect",
-      "subgraphs": []
-    }}
-  ],
-  "edges": [
-    {{
-      "source": "node1",
-      "target": "node2", 
-      "type": "-->",
-      "label": null
-    }}
-  ],
-  "subgraphs": [
-    {{
-      "id": "subgraph_id",
-      "title": "subgraph_title"
-    }}
-  ],
-  "decisions": [],
-  "summary": {{
-    "natural_language": "Brief description",
-    "entry_nodes": ["START"],
-    "exit_nodes": ["END"]
-  }}
+  "nodes": [{{"id": "node_id", "label": "node_label", "shape": "rect"}}],
+  "edges": [{{"source": "node1", "target": "node2", "type": "-->"}}],
+  "subgraphs": [{{"id": "subgraph_id", "title": "title"}}],
+  "summary": {{"natural_language": "Korean description"}}
 }}
 
-Shape mapping: [] = "rect", {{}} = "diamond", () = "circle", (()) = "double_circle", [[]] = "double_rect", >> = "subroutine"
-
-START YOUR RESPONSE WITH {{ - NO OTHER TEXT"""
+Shapes: []=rect, {{}}=diamond, ()=circle. Start with {{"""
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_msg}
@@ -728,8 +698,17 @@ START YOUR RESPONSE WITH {{ - NO OTHER TEXT"""
         # API 호출
         llm_text = ""
         try:
-            # JSON 출력을 위해 더 제한적인 파라미터 사용 (토큰 수 증가)
-            llm_text = call_vllm(messages, temperature=0.0, top_p=0.9, max_tokens=10000)
+            # 입력 토큰 수 추정 (보수적: 2글자 = 1토큰, 한글/특수문자 고려)
+            input_tokens = len(user_msg + SYSTEM_PROMPT) // 2
+            max_output_tokens = min(6000, 8000 - input_tokens - 500)  # 500토큰 여유분
+            
+            print(f"추정 입력토큰: {input_tokens}, 출력토큰: {max_output_tokens}")
+            
+            if max_output_tokens < 1000:
+                print(f"입력이 너무 큽니다. 파일 크기: {len(mermaid_code)}글자")
+                max_output_tokens = 1000  # 최소한의 출력 보장
+                
+            llm_text = call_vllm(messages, temperature=0.0, top_p=0.9, max_tokens=max_output_tokens)
             ok, obj, warnings = parse_llm_json(llm_text)
             print(f"파싱 결과: {'성공' if ok else '실패'}")
             if warnings:
@@ -761,7 +740,7 @@ START YOUR RESPONSE WITH {{ - NO OTHER TEXT"""
             print(f"JSON 저장 실패: {e}")
         
         # 통계 수집
-        n_nodes, n_edges = count_nodes_edges(obj) if ok else (0, 0)
+        n_nodes, n_edges, n_subgraphs = count_nodes_edges_subgraphs(obj) if ok else (0, 0, 0)
         
         # 레벨 정보 가져오기
         level_info = level_map.get(name, {})
@@ -779,18 +758,19 @@ START YOUR RESPONSE WITH {{ - NO OTHER TEXT"""
             "llm_warnings": warnings,
             "n_nodes_pred": n_nodes,
             "n_edges_pred": n_edges,
+            "n_subgraphs_pred": n_subgraphs,
             "json_raw_path": str(json_path)
         })
         
-        print(f"노드: {n_nodes}, 엣지: {n_edges}")
+        print(f"노드: {n_nodes}, 엣지: {n_edges}, 서브그래프: {n_subgraphs}")
     
     # CSV 저장
-    out_csv = Path(out_dir) / "llm_runs.csv"
+    out_csv = Path(out_dir) / "SKT.csv"
     try:
         with open(out_csv, "w", newline="", encoding="utf-8") as f:
             fieldnames = [
                 "name", "model", "level", "N_actual", "E_actual", "SUBGRAPH_COUNT_actual", "explanations",
-                "llm_ok", "llm_warnings", "n_nodes_pred", "n_edges_pred", "json_raw_path"
+                "llm_ok", "llm_warnings", "n_nodes_pred", "n_edges_pred", "n_subgraphs_pred", "json_raw_path"
             ]
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
@@ -808,10 +788,10 @@ def test_connection():
         response = call_vllm([
             {"role": "user", "content": "Hello"}
         ], max_tokens=50)
-        print(f"✅ 연결 성공!")
+        print(f"연결 성공!")
         print(f"응답: {response[:200]}...")
     except Exception as e:
-        print(f"❌ 연결 실패: {e}")
+        print(f"연결 실패: {e}")
 
 if __name__ == "__main__":
     # 연결 테스트 먼저 실행

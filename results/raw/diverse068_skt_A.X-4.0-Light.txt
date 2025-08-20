@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Waste", "label": "Manufacturing Waste", "shape": "rect"},
+    {"id": "Sort", "label": "Waste Sorting", "shape": "rect"},
+    {"id": "Recycle", "label": "Recycling Process", "shape": "rect"},
+    {"id": "Reuse", "label": "Material Reuse", "shape": "rect"},
+    {"id": "Reduce", "label": "Waste Reduction", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Waste", "target": "Sort", "type": "-->"},
+    {"source": "Sort", "target": "Recycle", "type": "-->"},
+    {"source": "Recycle", "target": "Reuse", "type": "-->"},
+    {"source": "Reuse", "target": "Reduce", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of waste management process."}
+}

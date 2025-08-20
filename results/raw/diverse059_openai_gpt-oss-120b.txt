@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Therapy",
+      "label": "Physical Therapy",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Assessment",
+      "label": "Initial Assessment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Plan",
+      "label": "Treatment Plan",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Session",
+      "label": "Therapy Session",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Progress",
+      "label": "Track Progress",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Therapy",
+      "target": "Assessment",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Assessment",
+      "target": "Plan",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Plan",
+      "target": "Session",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Session",
+      "target": "Progress",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "물리 치료 과정에서 초기 평가, 치료 계획, 세션을 진행하고 진행 상황을 추적합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

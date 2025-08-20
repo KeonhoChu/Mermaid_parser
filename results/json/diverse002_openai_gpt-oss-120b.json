@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Find Candidate on LinkedIn",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Initial Screening",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "Technical Assessment",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "Interview Process",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "Final Selection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "Reject Candidate",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": "Meets Criteria"
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": "Passes"
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": "Successful"
+    },
+    {
+      "source": "B",
+      "target": "F",
+      "type": "-->",
+      "label": "Does not meet criteria"
+    },
+    {
+      "source": "C",
+      "target": "F",
+      "type": "-->",
+      "label": "Fails"
+    },
+    {
+      "source": "D",
+      "target": "F",
+      "type": "-->",
+      "label": "Unsuccessful"
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "LinkedIn에서 후보자를 찾고 초기 스크리닝, 기술 평가, 인터뷰 과정을 거쳐 최종 선발하거나 거절합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

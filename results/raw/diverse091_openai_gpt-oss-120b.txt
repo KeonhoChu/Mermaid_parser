@@ -1,0 +1,76 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Input1",
+      "label": "입력 A",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "Input2",
+      "label": "입력 B",
+      "shape": "rect",
+      "subgraphs": ["A"]
+    },
+    {
+      "id": "Process1",
+      "label": "처리 A",
+      "shape": "rect",
+      "subgraphs": ["B"]
+    },
+    {
+      "id": "Process2",
+      "label": "처리 B",
+      "shape": "rect",
+      "subgraphs": ["B"]
+    },
+    {
+      "id": "Output1",
+      "label": "출력 A",
+      "shape": "rect",
+      "subgraphs": ["C"]
+    },
+    {
+      "id": "Output2",
+      "label": "출력 B",
+      "shape": "rect",
+      "subgraphs": ["C"]
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "A",
+      "title": "데이터 입력"
+    },
+    {
+      "id": "B",
+      "title": "데이터 처리"
+    },
+    {
+      "id": "C",
+      "title": "결과 출력"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "입력 A와 입력 B를 받아 처리 A와 처리 B를 수행한 뒤, 출력 A와 출력 B를 생성하는 데이터 흐름입니다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A1",
+      "label": "A1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B1",
+      "label": "B1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C1",
+      "label": "C1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D1",
+      "label": "D1",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A1",
+      "target": "C1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "A1",
+      "target": "D1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B1",
+      "target": "C1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B1",
+      "target": "D1",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A1과 B1이 C1과 D1으로 연결되는 흐름도입니다.",
+    "entry_nodes": [
+      "A1",
+      "B1"
+    ],
+    "exit_nodes": [
+      "C1",
+      "D1"
+    ]
+  }
+}

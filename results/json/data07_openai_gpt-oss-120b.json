@@ -125,19 +125,15 @@
       "target": "CEO",
       "type": "-->",
       "label": null
-    },
-    {
-      "source": "CEO",
-      "target": "COO",
-      "type": "-->",
-      "label": null
     }
   ],
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "CEO oversees CTO, CFO, and COO; each leader manages their respective teams, which report back to the leader, and leaders report to the CEO.",
-    "entry_nodes": [],
+    "natural_language": "CEO가 CTO, CFO, COO와 연결되고 각 부서는 해당 팀에 보고하는 조직 구조를 나타냅니다.",
+    "entry_nodes": [
+      "CEO"
+    ],
     "exit_nodes": []
   }
 }

@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Fleet",
+      "label": "Fleet Management",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Vehicle",
+      "label": "Vehicle Maintenance",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Driver",
+      "label": "Driver Assignment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Route",
+      "label": "Route Assignment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Performance",
+      "label": "Performance Tracking",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Fleet",
+      "target": "Vehicle",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Vehicle",
+      "target": "Driver",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Driver",
+      "target": "Route",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Route",
+      "target": "Performance",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "플릿 관리에서 차량 유지보수, 운전자 배정, 경로 배정, 성과 추적 순으로 흐르는 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

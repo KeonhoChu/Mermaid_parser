@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A8",
+      "label": "A8",
+      "shape": "rect"
+    },
+    {
+      "id": "B8",
+      "label": "B8",
+      "shape": "rect"
+    },
+    {
+      "id": "C8",
+      "label": "C8",
+      "shape": "rect"
+    },
+    {
+      "id": "D8",
+      "label": "D8",
+      "shape": "rect"
+    },
+    {
+      "id": "E8",
+      "label": "E8",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A8",
+      "target": "B8",
+      "type": "-->"
+    },
+    {
+      "source": "B8",
+      "target": "C8",
+      "type": "-->"
+    },
+    {
+      "source": "C8",
+      "target": "D8",
+      "type": "-->"
+    },
+    {
+      "source": "D8",
+      "target": "E8",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart from A8 to E8 with nodes connected sequentially."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

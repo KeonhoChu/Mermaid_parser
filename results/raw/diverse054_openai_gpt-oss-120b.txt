@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Emergency",
+      "label": "Emergency Call",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Dispatch",
+      "label": "Dispatch Ambulance",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Scene",
+      "label": "Arrive at Scene",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Stabilize",
+      "label": "Stabilize Patient",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Transport",
+      "label": "Transport to Hospital",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Emergency",
+      "target": "Dispatch",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Dispatch",
+      "target": "Scene",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Scene",
+      "target": "Stabilize",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Stabilize",
+      "target": "Transport",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "응급 호출이 발생하면 구급차를 파견하고 현장에 도착해 환자를 안정시킨 뒤 병원으로 이송합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

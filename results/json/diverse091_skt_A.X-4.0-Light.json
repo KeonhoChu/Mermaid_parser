@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Input1",
+      "label": "입력 A",
+      "shape": "rect"
+    },
+    {
+      "id": "Input2",
+      "label": "입력 B",
+      "shape": "rect"
+    },
+    {
+      "id": "Process1",
+      "label": "처리 A",
+      "shape": "rect"
+    },
+    {
+      "id": "Process2",
+      "label": "처리 B",
+      "shape": "rect"
+    },
+    {
+      "id": "Output1",
+      "label": "출력 A",
+      "shape": "rect"
+    },
+    {
+      "id": "Output2",
+      "label": "출력 B",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Input1",
+      "target": "Process1",
+      "type": "-->"
+    },
+    {
+      "source": "Input2",
+      "target": "Process2",
+      "type": "-->"
+    },
+    {
+      "source": "Process1",
+      "target": "Output1",
+      "type": "-->"
+    },
+    {
+      "source": "Process2",
+      "target": "Output2",
+      "type": "-->"
+    },
+    {
+      "source": "Process1",
+      "target": "Process2",
+      "type": "-->"
+    },
+    {
+      "source": "Process2",
+      "target": "Output1",
+      "type": "-->"
+    },
+    {
+      "source": "Process1",
+      "target": "Output2",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "A",
+      "title": "데이터 입력"
+    },
+    {
+      "id": "B",
+      "title": "데이터 처리"
+    },
+    {
+      "id": "C",
+      "title": "결과 출력"
+    }
+  ],
+  "summary": {
+    "natural_language": "데이터 입력, 처리, 출력 단계로 구성된 흐름도"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

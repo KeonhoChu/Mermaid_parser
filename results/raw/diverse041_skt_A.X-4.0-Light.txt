@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Player", "label": "Player", "shape": "rect"},
+    {"id": "Character", "label": "Character", "shape": "rect"},
+    {"id": "Tutorial", "label": "Tutorial", "shape": "rect"},
+    {"id": "World", "label": "World", "shape": "rect"},
+    {"id": "Quest", "label": "Quest", "shape": "rect"},
+    {"id": "Combat", "label": "Combat System", "shape": "rect"},
+    {"id": "Reward", "label": "Earn Reward", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Player", "target": "Character", "type": "-->"},
+    {"source": "Character", "target": "Tutorial", "type": "-->"},
+    {"source": "Tutorial", "target": "World", "type": "-->"},
+    {"source": "World", "target": "Quest", "type": "-->"},
+    {"source": "Quest", "target": "Combat", "type": "-->"},
+    {"source": "Combat", "target": "Reward", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describing character creation and game progression."}
+}

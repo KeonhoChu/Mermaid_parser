@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Material",
+      "label": "Raw Materials",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Inventory",
+      "label": "Material Inventory",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Production",
+      "label": "Production Line",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Assembly",
+      "label": "Product Assembly",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Packaging",
+      "label": "Product Packaging",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Material",
+      "target": "Inventory",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Inventory",
+      "target": "Production",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Production",
+      "target": "Assembly",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Assembly",
+      "target": "Packaging",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "원자재가 재고를 거쳐 생산 라인, 조립, 포장으로 진행되는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

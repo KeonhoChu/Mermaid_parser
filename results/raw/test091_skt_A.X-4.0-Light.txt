@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Start", "label": "Start", "shape": "rect"},
+    {"id": "Process1", "label": "Process1", "shape": "rect"},
+    {"id": "Decision", "label": "Decision", "shape": "diamond"},
+    {"id": "Success", "label": "Success", "shape": "rect"},
+    {"id": "End1", "label": "End1", "shape": "rect"},
+    {"id": "Retry", "label": "Retry", "shape": "rect"},
+    {"id": "Fail", "label": "Fail", "shape": "rect"},
+    {"id": "End2", "label": "End2", "shape": "rect"},
+    {"id": "Log1", "label": "Log1", "shape": "circle"},
+    {"id": "Log2", "label": "Log2", "shape": "circle"}
+  ],
+  "edges": [
+    {"source": "Start", "target": "Process1", "type": "-->"},
+    {"source": "Process1", "target": "Decision", "type": "-->"},
+    {"source": "Decision", "target": "Success", "type": "->"},
+    {"source": "Decision", "target": "Retry", "type": "->"},
+    {"source": "Retry", "target": "Process1", "type": "-->"},
+    {"source": "Decision", "target": "Fail", "type": "->"},
+    {"source": "Fail", "target": "End2", "type": "-->"},
+    {"source": "Success", "target": "Log1", "type": "---"},
+    {"source": "Fail", "target": "Log2", "type": "===="},
+    {"source": "Log1", "target": "Log2", "type": "-->"}
+  ],
+  "subgraphs": [
+    {"id": "S1", "title": "Success Path"},
+    {"id": "S2", "title": "Failure Path"},
+    {"id": "S3", "title": "Log System"}
+  ],
+  "summary": {"natural_language": "Flowchart with start, process, decision, success/failure paths, and logging."}
+}

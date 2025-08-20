@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Library",
+      "label": "Library System",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Search",
+      "label": "Search Books",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Reserve",
+      "label": "Reserve Book",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Checkout",
+      "label": "Check Out",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Return",
+      "label": "Return Book",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Fine",
+      "label": "Late Fee?",
+      "shape": "diamond",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Library",
+      "target": "Search",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Search",
+      "target": "Reserve",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Reserve",
+      "target": "Checkout",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Checkout",
+      "target": "Return",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Return",
+      "target": "Fine",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "도서관 시스템에서 사용자가 책을 검색하고 예약한 뒤 대출하고 반납하며 연체 시 벌금을 확인하는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "Library"
+    ],
+    "exit_nodes": [
+      "Fine"
+    ]
+  }
+}

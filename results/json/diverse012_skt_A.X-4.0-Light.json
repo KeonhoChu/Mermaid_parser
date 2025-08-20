@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Lead",
+      "label": "Sales Lead",
+      "shape": "rect"
+    },
+    {
+      "id": "Qualify",
+      "label": "Qualify Lead",
+      "shape": "rect"
+    },
+    {
+      "id": "Contact",
+      "label": "Initial Contact",
+      "shape": "rect"
+    },
+    {
+      "id": "Demo",
+      "label": "Product Demo",
+      "shape": "rect"
+    },
+    {
+      "id": "Proposal",
+      "label": "Send Proposal",
+      "shape": "rect"
+    },
+    {
+      "id": "Close",
+      "label": "Close Deal",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Lead",
+      "target": "Qualify",
+      "type": "-->"
+    },
+    {
+      "source": "Qualify",
+      "target": "Contact",
+      "type": "-->"
+    },
+    {
+      "source": "Qualify",
+      "target": "Archive",
+      "type": "-->"
+    },
+    {
+      "source": "Contact",
+      "target": "Demo",
+      "type": "-->"
+    },
+    {
+      "source": "Demo",
+      "target": "Proposal",
+      "type": "-->"
+    },
+    {
+      "source": "Proposal",
+      "target": "Close",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of sales process from lead to close."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

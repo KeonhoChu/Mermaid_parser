@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Budget",
+      "label": "Annual Budget",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Department",
+      "label": "Department Allocation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Project",
+      "label": "Project Funding",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Track",
+      "label": "Expense Tracking",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Report",
+      "label": "Monthly Report",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Budget",
+      "target": "Department",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Department",
+      "target": "Project",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Project",
+      "target": "Track",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Track",
+      "target": "Report",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "연간 예산이 부서에 할당되고, 프로젝트 자금으로 이어져, 비용을 추적하고 월간 보고서를 생성합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

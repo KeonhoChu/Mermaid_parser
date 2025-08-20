@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Users", "label": "Users", "shape": "rect"},
+    {"id": "CDN", "label": "Content Delivery Network", "shape": "rect"},
+    {"id": "LB", "label": "Load Balancer", "shape": "rect"},
+    {"id": "Web1", "label": "Web Server 1", "shape": "rect"},
+    {"id": "Web2", "label": "Web Server 2", "shape": "rect"},
+    {"id": "App", "label": "Application Server", "shape": "rect"},
+    {"id": "DB", "label": "Database", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Users", "target": "CDN", "type": "-->"},
+    {"source": "CDN", "target": "LB", "type": "-->"},
+    {"source": "LB", "target": "Web1", "type": "-->"},
+    {"source": "LB", "target": "Web2", "type": "-->"},
+    {"source": "Web1", "target": "App", "type": "-->"},
+    {"source": "Web2", "target": "App", "type": "-->"},
+    {"source": "App", "target": "DB", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of a system with Users, CDN, Load Balancer, Web Servers, Application Server, and Database."}
+}

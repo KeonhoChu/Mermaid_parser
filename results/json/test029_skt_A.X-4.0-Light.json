@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "A9",
+      "label": "A9",
+      "shape": "rect"
+    },
+    {
+      "id": "B9",
+      "label": "B9",
+      "shape": "rect"
+    },
+    {
+      "id": "C9",
+      "label": "C9",
+      "shape": "rect"
+    },
+    {
+      "id": "D9",
+      "label": "D9",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "A9",
+      "target": "B9",
+      "type": "-->"
+    },
+    {
+      "source": "B9",
+      "target": "C9",
+      "type": "=="
+    },
+    {
+      "source": "C9",
+      "target": "D9",
+      "type": ".-."
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart with nodes A9, B9, C9, D9 and directed edges."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

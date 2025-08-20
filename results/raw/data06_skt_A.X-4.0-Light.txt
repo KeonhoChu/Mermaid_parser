@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "S", "label": "Start", "shape": "rect"},
+    {"id": "D", "label": "데이터 유효?", "shape": "diamond"},
+    {"id": "P", "label": "처리", "shape": "rect"},
+    {"id": "E1", "label": "에러 로그", "shape": "rect"},
+    {"id": "C", "label": "조건 충족?", "shape": "diamond"},
+    {"id": "R", "label": "결과 저장", "shape": "rect"},
+    {"id": "F", "label": "재처리 요청", "shape": "rect"},
+    {"id": "X", "label": "종료", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "S", "target": "D", "type": "-->"},
+    {"source": "D", "target": "P", "type": "-->"},
+    {"source": "D", "target": "E1", "type": "-->"},
+    {"source": "P", "target": "C", "type": "-->"},
+    {"source": "C", "target": "R", "type": "-->"},
+    {"source": "C", "target": "F", "type": "-->"},
+    {"source": "F", "target": "D", "type": "-->"},
+    {"source": "R", "target": "X", "type": "-->"},
+    {"source": "E1", "target": "X", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describing data validation, processing, error handling, condition checking, result storage, and reprocessing."}
+}

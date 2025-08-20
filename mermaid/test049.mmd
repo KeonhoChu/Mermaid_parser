@@ -1,0 +1,9 @@
+flowchart TD
+    A --> B
+    subgraph S1["Outer 9"]
+        subgraph S2["Inner 9"]
+            C --> D
+        end
+        E --> S2
+    end
+    B --> S1

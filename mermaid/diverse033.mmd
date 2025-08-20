@@ -1,0 +1,6 @@
+flowchart TD
+    Library[Library System] --> Search[Search Books]
+    Search --> Reserve[Reserve Book]
+    Reserve --> Checkout[Check Out]
+    Checkout --> Return[Return Book]
+    Return --> Fine{Late Fee?}

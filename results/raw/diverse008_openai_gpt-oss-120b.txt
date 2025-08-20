@@ -1,0 +1,81 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "User",
+      "label": "User Story",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Task",
+      "label": "Development Task",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Code",
+      "label": "Write Code",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Test",
+      "label": "Write Tests",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Review",
+      "label": "Peer Review",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Done",
+      "label": "Definition of Done",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "User",
+      "target": "Task",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Task",
+      "target": "Code",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Code",
+      "target": "Test",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Test",
+      "target": "Review",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Review",
+      "target": "Done",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "사용자 스토리에서 시작해 개발 작업, 코드 작성, 테스트, 피어 리뷰를 거쳐 정의된 완료 상태에 도달하는 흐름을 나타냅니다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
+  }
+}

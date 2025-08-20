@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Symptom", "label": "Report Symptoms", "shape": "rect"},
+    {"id": "Examination", "label": "Physical Exam", "shape": "rect"},
+    {"id": "Tests", "label": "Medical Tests", "shape": "rect"},
+    {"id": "Results", "label": "Test Results", "shape": "rect"},
+    {"id": "Prescription", "label": "Write Prescription", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Symptom", "target": "Examination", "type": "-->"},
+    {"source": "Examination", "target": "Tests", "type": "-->"},
+    {"source": "Tests", "target": "Results", "type": "-->"},
+    {"source": "Results", "target": "Prescription", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of medical process from reporting symptoms to writing a prescription."}
+}

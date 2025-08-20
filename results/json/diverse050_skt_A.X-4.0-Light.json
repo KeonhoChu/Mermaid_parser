@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Mod",
+      "label": "Game Mod",
+      "shape": "rect"
+    },
+    {
+      "id": "Upload",
+      "label": "Upload to Workshop",
+      "shape": "rect"
+    },
+    {
+      "id": "Review",
+      "label": "Community Review",
+      "shape": "rect"
+    },
+    {
+      "id": "Feature",
+      "label": "Featured Mod",
+      "shape": "rect"
+    },
+    {
+      "id": "Download",
+      "label": "Player Downloads",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Mod",
+      "target": "Upload",
+      "type": "-->"
+    },
+    {
+      "source": "Upload",
+      "target": "Review",
+      "type": "-->"
+    },
+    {
+      "source": "Review",
+      "target": "Feature",
+      "type": "-->"
+    },
+    {
+      "source": "Feature",
+      "target": "Download",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart describes the process from a game mod to player download."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

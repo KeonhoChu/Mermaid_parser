@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Lean", "label": "Lean Manufacturing", "shape": "rect"},
+    {"id": "Analyze", "label": "Process Analysis", "shape": "rect"},
+    {"id": "Improve", "label": "Process Improvement", "shape": "rect"},
+    {"id": "Implement", "label": "Implementation", "shape": "rect"},
+    {"id": "Monitor", "label": "Performance Monitor", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Lean", "target": "Analyze", "type": "-->"},
+    {"source": "Analyze", "target": "Improve", "type": "-->"},
+    {"source": "Improve", "target": "Implement", "type": "-->"},
+    {"source": "Implement", "target": "Monitor", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of Lean Manufacturing process."}
+}

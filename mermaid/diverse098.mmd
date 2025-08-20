@@ -1,0 +1,5 @@
+flowchart LR
+    Parallel1[병렬 처리 1] --> Sync[동기화 지점]
+    Parallel2[병렬 처리 2] --> Sync
+    Parallel3[병렬 처리 3] --> Sync
+    Sync --> Merge[병합 처리]

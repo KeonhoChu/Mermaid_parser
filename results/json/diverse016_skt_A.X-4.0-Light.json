@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Complaint",
+      "label": "Customer Complaint",
+      "shape": "rect"
+    },
+    {
+      "id": "Investigate",
+      "label": "Investigate Issue",
+      "shape": "rect"
+    },
+    {
+      "id": "Solution",
+      "label": "Propose Solution",
+      "shape": "rect"
+    },
+    {
+      "id": "Implement",
+      "label": "Implement Fix",
+      "shape": "rect"
+    },
+    {
+      "id": "Follow",
+      "label": "Follow Up",
+      "shape": "rect"
+    },
+    {
+      "id": "Close",
+      "label": "Close Ticket",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Complaint",
+      "target": "Investigate",
+      "type": "-->"
+    },
+    {
+      "source": "Investigate",
+      "target": "Solution",
+      "type": "-->"
+    },
+    {
+      "source": "Solution",
+      "target": "Implement",
+      "type": "-->"
+    },
+    {
+      "source": "Implement",
+      "target": "Follow",
+      "type": "-->"
+    },
+    {
+      "source": "Follow",
+      "target": "Close",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart for customer complaint resolution process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

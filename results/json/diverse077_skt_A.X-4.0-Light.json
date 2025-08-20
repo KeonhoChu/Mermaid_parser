@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Mortgage",
+      "label": "Mortgage Application",
+      "shape": "rect"
+    },
+    {
+      "id": "Appraisal",
+      "label": "Property Appraisal",
+      "shape": "rect"
+    },
+    {
+      "id": "Underwriting",
+      "label": "Loan Underwriting",
+      "shape": "rect"
+    },
+    {
+      "id": "Closing",
+      "label": "Loan Closing",
+      "shape": "rect"
+    },
+    {
+      "id": "Service",
+      "label": "Loan Servicing",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Mortgage",
+      "target": "Appraisal",
+      "type": "-->"
+    },
+    {
+      "source": "Appraisal",
+      "target": "Underwriting",
+      "type": "-->"
+    },
+    {
+      "source": "Underwriting",
+      "target": "Closing",
+      "type": "-->"
+    },
+    {
+      "source": "Closing",
+      "target": "Service",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of mortgage loan process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

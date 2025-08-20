@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Parallel1",
+      "label": "병렬 처리 1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Parallel2",
+      "label": "병렬 처리 2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Parallel3",
+      "label": "병렬 처리 3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Sync",
+      "label": "동기화 지점",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Merge",
+      "label": "병합 처리",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Parallel1",
+      "target": "Sync",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Parallel2",
+      "target": "Sync",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Parallel3",
+      "target": "Sync",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Sync",
+      "target": "Merge",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "병렬 처리 1, 2, 3이 동기화 지점에서 합쳐진 후 병합 처리로 이어지는 흐름.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Decision 10",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "C",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "D",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "E",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": "Yes"
+    },
+    {
+      "source": "B",
+      "target": "D",
+      "type": "-->",
+      "label": "No"
+    },
+    {
+      "source": "C",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 시작해 B(결정)으로 이동하고, Yes이면 C, No이면 D로 가서 E에 도달합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

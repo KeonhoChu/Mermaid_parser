@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Student",
+      "label": "Student",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Enroll",
+      "label": "Course Enrollment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Lesson",
+      "label": "Attend Lessons",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Quiz",
+      "label": "Take Quiz",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Assignment",
+      "label": "Submit Assignment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Grade",
+      "label": "Receive Grade",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Student",
+      "target": "Enroll",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Enroll",
+      "target": "Lesson",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Lesson",
+      "target": "Quiz",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Quiz",
+      "target": "Assignment",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Assignment",
+      "target": "Grade",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "학생이 과정을 등록하고, 수업을 듣고, 퀴즈를 풀고, 과제를 제출하여 성적을 받는 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

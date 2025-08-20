@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "A", "shape": "rect"},
+    {"id": "B4", "label": "B4", "shape": "rect"},
+    {"id": "C4", "label": "C4", "shape": "rect"},
+    {"id": "D4", "label": "D4", "shape": "rect"},
+    {"id": "E4", "label": "E4", "shape": "rect"},
+    {"id": "F4", "label": "F4", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B4", "type": "-->"},
+    {"source": "A", "target": "C4", "type": "-->"},
+    {"source": "A", "target": "D4", "type": "-->"},
+    {"source": "B4", "target": "E4", "type": "-->"},
+    {"source": "C4", "target": "E4", "type": "-->"},
+    {"source": "D4", "target": "F4", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with nodes A, B4, C4, D4, E4, F4 and directed edges."}
+}

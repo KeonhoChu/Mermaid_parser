@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A", "label": "A", "shape": "rect"},
+    {"id": "B", "label": "Decision 4", "shape": "diamond"},
+    {"id": "C", "label": "C", "shape": "rect"},
+    {"id": "D", "label": "D", "shape": "rect"},
+    {"id": "E", "label": "E", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A", "target": "B", "type": "-->"},
+    {"source": "B", "target": "C", "type": "-->"},
+    {"source": "B", "target": "D", "type": "-->"},
+    {"source": "C", "target": "E", "type": "-->"},
+    {"source": "D", "target": "E", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart with decision node and branches"}
+}

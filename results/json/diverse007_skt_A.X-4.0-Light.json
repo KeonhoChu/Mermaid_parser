@@ -1,0 +1,65 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Frontend",
+      "label": "Frontend",
+      "shape": "rect"
+    },
+    {
+      "id": "API",
+      "label": "API[REST API]",
+      "shape": "rect"
+    },
+    {
+      "id": "Backend",
+      "label": "Backend Service",
+      "shape": "rect"
+    },
+    {
+      "id": "Cache",
+      "label": "Redis Cache",
+      "shape": "rect"
+    },
+    {
+      "id": "Database",
+      "label": "PostgreSQL",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Frontend",
+      "target": "API",
+      "type": "-->"
+    },
+    {
+      "source": "API",
+      "target": "Backend",
+      "type": "-->"
+    },
+    {
+      "source": "Backend",
+      "target": "Cache",
+      "type": "-->"
+    },
+    {
+      "source": "Backend",
+      "target": "Database",
+      "type": "-->"
+    },
+    {
+      "source": "Cache",
+      "target": "Backend",
+      "type": "->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of system components and interactions"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

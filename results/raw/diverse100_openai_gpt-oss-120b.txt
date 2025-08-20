@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Hub",
+      "label": "허브",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Spoke1",
+      "label": "스포크 1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Spoke2",
+      "label": "스포크 2",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Spoke3",
+      "label": "스포크 3",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Spoke4",
+      "label": "스포크 4",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Hub",
+      "target": "Spoke1",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Hub",
+      "target": "Spoke2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Hub",
+      "target": "Spoke3",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Hub",
+      "target": "Spoke4",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Spoke1",
+      "target": "Spoke2",
+      "type": "-.->",
+      "label": null
+    },
+    {
+      "source": "Spoke2",
+      "target": "Spoke3",
+      "type": "-.->",
+      "label": null
+    },
+    {
+      "source": "Spoke3",
+      "target": "Spoke4",
+      "type": "-.->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "허브가 중심에 있고 네 개의 스포크가 허브와 연결된 허브-스포크 구조를 나타냅니다. 스포크 간에는 점선 연결이 있습니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

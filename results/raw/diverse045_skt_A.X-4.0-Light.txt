@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Guild", "label": "Join Guild", "shape": "rect"},
+    {"id": "Member", "label": "Guild Member", "shape": "rect"},
+    {"id": "Event", "label": "Guild Event", "shape": "rect"},
+    {"id": "Contribute", "label": "Contribute Points", "shape": "rect"},
+    {"id": "Rank", "label": "Guild Ranking", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Guild", "target": "Member", "type": "-->"},
+    {"source": "Member", "target": "Event", "type": "-->"},
+    {"source": "Event", "target": "Contribute", "type": "-->"},
+    {"source": "Contribute", "target": "Rank", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart showing progression from joining a guild to ranking based on contributions."}
+}

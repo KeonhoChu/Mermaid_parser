@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Supplier",
+      "label": "Supplier",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Receive",
+      "label": "Receive Goods",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Inspect",
+      "label": "Quality Inspection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Store",
+      "label": "Store in Warehouse",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Distribute",
+      "label": "Distribution Center",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Supplier",
+      "target": "Receive",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Receive",
+      "target": "Inspect",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Inspect",
+      "target": "Store",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Store",
+      "target": "Distribute",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "공급업체가 물품을 받아 품질 검사를 거쳐 창고에 보관하고 배포 센터로 전달하는 흐름",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

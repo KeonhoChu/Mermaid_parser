@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Client",
+      "label": "Client",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Proxy",
+      "label": "Reverse Proxy",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Cache",
+      "label": "Cache Layer",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Backend",
+      "label": "Backend Service",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Storage",
+      "label": "Data Storage",
+      "shape": "circle",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Client",
+      "target": "Proxy",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Proxy",
+      "target": "Cache",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Cache",
+      "target": "Backend",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Backend",
+      "target": "Storage",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "클라이언트가 리버스 프록시를 통해 캐시 레이어, 백엔드 서비스, 데이터 스토리지로 순차적으로 요청을 전달하는 흐름을 나타냅니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

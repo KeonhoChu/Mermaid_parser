@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "A7", "label": "A7", "shape": "rect"},
+    {"id": "B7", "label": "B7", "shape": "rect"},
+    {"id": "C7", "label": "C7", "shape": "rect"},
+    {"id": "D7", "label": "D7", "shape": "rect"},
+    {"id": "E7", "label": "E7", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "A7", "target": "B7", "type": "-->"},
+    {"source": "B7", "target": "C7", "type": "-->"},
+    {"source": "C7", "target": "D7", "type": "-->"},
+    {"source": "D7", "target": "E7", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart from A7 to E7 with sequential nodes."}
+}

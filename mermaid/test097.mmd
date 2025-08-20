@@ -1,0 +1,15 @@
+flowchart TD
+    Start --> Process7
+    Process7 --> Decision{Check 7}
+    Decision --> |Pass| subgraph S1["Success Path"]
+        Success --> End1
+    end
+    Decision --> |Fail| subgraph S2["Failure Path"] 
+        Retry --> Process7
+        Fail --> End2
+    end
+    subgraph S3["Log System"]
+        Log1 --> Log2
+    end
+    Success --- Log1
+    Fail === Log2

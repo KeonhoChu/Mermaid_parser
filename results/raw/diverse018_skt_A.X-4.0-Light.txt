@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Contract", "label": "Contract Draft", "shape": "rect"},
+    {"id": "Legal", "label": "Legal Review", "shape": "rect"},
+    {"id": "Negotiate", "label": "Negotiation", "shape": "rect"},
+    {"id": "Sign", "label": "Digital Signature", "shape": "rect"},
+    {"id": "Execute", "label": "Contract Execution", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Contract", "target": "Legal", "type": "-->"},
+    {"source": "Legal", "target": "Negotiate", "type": "-->"},
+    {"source": "Negotiate", "target": "Sign", "type": "-->"},
+    {"source": "Sign", "target": "Execute", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of contract process from draft to execution"}
+}

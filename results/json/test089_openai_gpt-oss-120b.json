@@ -1,0 +1,81 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Decision 9",
+      "shape": "diamond",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "C",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "D",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "E",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": "Yes"
+    },
+    {
+      "source": "B",
+      "target": "D",
+      "type": "-->",
+      "label": "No"
+    },
+    {
+      "source": "C",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A에서 시작해 B(결정)으로 이동하고, Yes이면 C, No이면 D로 가서 E로 합쳐지는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

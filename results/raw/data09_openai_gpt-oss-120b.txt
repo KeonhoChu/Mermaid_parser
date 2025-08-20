@@ -101,7 +101,7 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "Sensors send data to a gateway, which forwards it to cloud components for data collection, real-time analysis, dashboard display, and alert handling; alerts loop back to the gateway.",
+    "natural_language": "센서1과 센서2가 게이트웨이를 통해 클라우드에 데이터를 전송하고, 클라우드에서 데이터 수집·실시간 분석을 거쳐 대시보드와 알림 시스템을 제공하며, 알림이 다시 게이트웨이로 전달됩니다.",
     "entry_nodes": ["E1", "E2"],
     "exit_nodes": ["C3"]
   }

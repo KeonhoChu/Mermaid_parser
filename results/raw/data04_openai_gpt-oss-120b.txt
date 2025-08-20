@@ -32,8 +32,8 @@
   "subgraphs": [],
   "decisions": [],
   "summary": {
-    "natural_language": "A directed flowchart connecting nodes A through J with a feedback loop from J back to A.",
+    "natural_language": "이 플로우차트는 A에서 시작해 B와 C로 분기하고, 이후 여러 경로를 통해 최종적으로 J에 도달한 뒤 피드백을 받아 A로 돌아가는 순환 구조를 나타냅니다.",
     "entry_nodes": ["A"],
-    "exit_nodes": []
+    "exit_nodes": ["J"]
   }
 }

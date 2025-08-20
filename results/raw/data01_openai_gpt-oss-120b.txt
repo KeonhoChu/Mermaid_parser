@@ -6,31 +6,31 @@
       "id": "N1",
       "label": "A",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["S1"]
     },
     {
       "id": "N2",
       "label": "B",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["S1"]
     },
     {
       "id": "N3",
       "label": "C",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["S2"]
     },
     {
       "id": "N4",
       "label": "D",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["S2"]
     },
     {
       "id": "N5",
       "label": "E",
       "shape": "rect",
-      "subgraphs": []
+      "subgraphs": ["S2"]
     }
   ],
   "edges": [
@@ -101,12 +101,8 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "Flowchart with two subgraphs and five nodes showing connections.",
-    "entry_nodes": [
-      "START"
-    ],
-    "exit_nodes": [
-      "END"
-    ]
+    "natural_language": "이 플로우차트는 두 개의 서브그래프와 다섯 개의 노드로 구성되어 있으며, 노드 간의 연결 관계를 나타냅니다.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
   }
 }

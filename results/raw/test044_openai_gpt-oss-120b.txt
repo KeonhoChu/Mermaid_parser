@@ -1,0 +1,82 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "C",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "D",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "E",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "S2",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "S1",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [
+    {
+      "id": "S1",
+      "title": "Outer 4"
+    },
+    {
+      "id": "S2",
+      "title": "Inner 4"
+    }
+  ],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 플로우차트는 A에서 B로 이동하고, B는 외부 서브그래프 S1으로 연결됩니다. S1 안에는 내부 서브그래프 S2가 있으며, C가 D로 연결되고, E가 S2로 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

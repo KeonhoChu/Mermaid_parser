@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Product",
+      "label": "New Product",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Market",
+      "label": "Market Research",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Price",
+      "label": "Pricing Strategy",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Launch",
+      "label": "Product Launch",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Monitor",
+      "label": "Sales Monitoring",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Product",
+      "target": "Market",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Market",
+      "target": "Price",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Price",
+      "target": "Launch",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Launch",
+      "target": "Monitor",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "새 제품이 시장 조사, 가격 전략, 제품 출시, 판매 모니터링 과정을 거칩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A1",
+      "label": "A1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B1",
+      "label": "B1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C1",
+      "label": "C1",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D1",
+      "label": "D1",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A1",
+      "target": "B1",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "B1",
+      "target": "C1",
+      "type": "===",
+      "label": null
+    },
+    {
+      "source": "C1",
+      "target": "D1",
+      "type": "-.-",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 흐름도는 A1에서 B1으로, B1에서 C1으로, C1에서 D1으로 연결되는 순서를 보여줍니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

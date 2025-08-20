@@ -1,0 +1,111 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Inicio",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Configuración de Entorno",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "Desarrollo de Código",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "Pruebas Automatizadas",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "Integración Continua",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "Despliegue en GCP",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "G",
+      "label": "Monitoreo y Feedback",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "H",
+      "label": "Fin",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F",
+      "target": "G",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "G",
+      "target": "H",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 플로우차트는 시작부터 끝까지 환경 설정, 코드 개발, 자동 테스트, 지속적 통합, GCP 배포, 모니터링 및 피드백 과정을 보여줍니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Client", "label": "Client", "shape": "rect"},
+    {"id": "Proxy", "label": "Reverse Proxy", "shape": "rect"},
+    {"id": "Cache", "label": "Cache Layer", "shape": "rect"},
+    {"id": "Backend", "label": "Backend Service", "shape": "rect"},
+    {"id": "Storage", "label": "Data Storage", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Client", "target": "Proxy", "type": "-->"},
+    {"source": "Proxy", "target": "Cache", "type": "-->"},
+    {"source": "Cache", "target": "Backend", "type": "-->"},
+    {"source": "Backend", "target": "Storage", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart describes a client-proxy-cache-backend-storage architecture."}
+}

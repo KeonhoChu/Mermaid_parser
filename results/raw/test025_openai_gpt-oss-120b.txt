@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A5",
+      "label": "A5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B5",
+      "label": "B5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C5",
+      "label": "C5",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D5",
+      "label": "D5",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A5",
+      "target": "B5",
+      "type": "---",
+      "label": null
+    },
+    {
+      "source": "B5",
+      "target": "C5",
+      "type": "===",
+      "label": null
+    },
+    {
+      "source": "C5",
+      "target": "D5",
+      "type": "-.-",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "A5와 B5가 연결되고, B5와 C5가 같은 레벨로 연결되며, C5와 D5가 점선으로 연결됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

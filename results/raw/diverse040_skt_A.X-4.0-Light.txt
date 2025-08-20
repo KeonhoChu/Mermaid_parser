@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Assessment", "label": "Student Assessment", "shape": "rect"},
+    {"id": "Rubric", "label": "Apply Rubric", "shape": "rect"},
+    {"id": "Score", "label": "Calculate Score", "shape": "rect"},
+    {"id": "Feedback", "label": "Provide Feedback", "shape": "rect"},
+    {"id": "Improvement", "label": "Learning Improvement", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Assessment", "target": "Rubric", "type": "-->"},
+    {"source": "Rubric", "target": "Score", "type": "-->"},
+    {"source": "Score", "target": "Feedback", "type": "-->"},
+    {"source": "Feedback", "target": "Improvement", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of student assessment process."}
+}

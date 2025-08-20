@@ -1,0 +1,6 @@
+flowchart TD
+    Order --> Warehouse[Warehouse Pick]
+    Warehouse --> Pack[Package Item]
+    Pack --> Label[Shipping Label]
+    Label --> Carrier[Shipping Carrier]
+    Carrier --> Delivery[Final Delivery]

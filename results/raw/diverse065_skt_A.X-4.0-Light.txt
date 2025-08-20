@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Inspection", "label": "Quality Inspection", "shape": "rect"},
+    {"id": "Standard", "label": "Meet Standards?", "shape": "diamond"},
+    {"id": "Accept", "label": "Accept Product", "shape": "rect"},
+    {"id": "Reject", "label": "Reject Product", "shape": "rect"},
+    {"id": "Rework", "label": "Product Rework", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Inspection", "target": "Standard", "type": "-->"},
+    {"source": "Standard", "target": "Accept", "type": "-->"},
+    {"source": "Standard", "target": "Reject", "type": "-->"},
+    {"source": "Reject", "target": "Rework", "type": "-->"},
+    {"source": "Rework", "target": "Inspection", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart for product quality inspection process"}
+}

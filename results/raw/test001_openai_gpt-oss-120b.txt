@@ -1,0 +1,157 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Start",
+      "label": "Receive Raw Materials",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Inspect",
+      "label": "Inspect Raw Materials",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Assembly",
+      "label": "Assemble Products",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Discard",
+      "label": "Discard Materials",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "QualityCheck",
+      "label": "Continuous Quality Checks",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "FinalInspection",
+      "label": "Final Inspection",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Package",
+      "label": "Package Products",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Store",
+      "label": "Store in Warehouse",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Ship",
+      "label": "Ship to Customers",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "ReworkOrDiscard",
+      "label": "Rework or Discard Products",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "End",
+      "label": "End Process",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Start",
+      "target": "Inspect",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Inspect",
+      "target": "Assembly",
+      "type": "-->",
+      "label": "Pass"
+    },
+    {
+      "source": "Inspect",
+      "target": "Discard",
+      "type": "-->",
+      "label": "Fail"
+    },
+    {
+      "source": "Assembly",
+      "target": "QualityCheck",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "QualityCheck",
+      "target": "FinalInspection",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "FinalInspection",
+      "target": "Package",
+      "type": "-->",
+      "label": "Pass"
+    },
+    {
+      "source": "FinalInspection",
+      "target": "ReworkOrDiscard",
+      "type": "-->",
+      "label": "Fail"
+    },
+    {
+      "source": "Package",
+      "target": "Store",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Store",
+      "target": "Ship",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Discard",
+      "target": "End",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "ReworkOrDiscard",
+      "target": "End",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Ship",
+      "target": "End",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "원자재를 받아 검사하고, 합격 시 조립 후 품질 검사를 거쳐 포장, 창고 보관, 고객에게 배송하는 흐름이며, 불합격 시 폐기하거나 재작업 후 종료합니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

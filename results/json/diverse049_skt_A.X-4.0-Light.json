@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Tournament",
+      "label": "Tournament",
+      "shape": "rect"
+    },
+    {
+      "id": "Bracket",
+      "label": "Create Bracket",
+      "shape": "rect"
+    },
+    {
+      "id": "Rounds",
+      "label": "Tournament Rounds",
+      "shape": "rect"
+    },
+    {
+      "id": "Finals",
+      "label": "Grand Finals",
+      "shape": "rect"
+    },
+    {
+      "id": "Champion",
+      "label": "Declare Champion",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Tournament",
+      "target": "Bracket",
+      "type": "-->"
+    },
+    {
+      "source": "Bracket",
+      "target": "Rounds",
+      "type": "-->"
+    },
+    {
+      "source": "Rounds",
+      "target": "Finals",
+      "type": "-->"
+    },
+    {
+      "source": "Finals",
+      "target": "Champion",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of tournament process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

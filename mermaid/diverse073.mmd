@@ -1,0 +1,5 @@
+flowchart TD
+    Transaction[Bank Transaction] --> Validate[Validate Transaction]
+    Validate --> Process[Process Payment]
+    Process --> Settlement[Transaction Settlement]
+    Settlement --> Record[Update Records]

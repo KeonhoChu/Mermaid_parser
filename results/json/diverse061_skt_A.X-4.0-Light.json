@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Design",
+      "label": "Design",
+      "shape": "rect"
+    },
+    {
+      "id": "Prototype",
+      "label": "Prototype[Build Prototype]",
+      "shape": "rect"
+    },
+    {
+      "id": "Test",
+      "label": "Test[Product Testing]",
+      "shape": "rect"
+    },
+    {
+      "id": "Production",
+      "label": "Production[Mass Production]",
+      "shape": "rect"
+    },
+    {
+      "id": "Quality",
+      "label": "Quality[Quality Control]",
+      "shape": "rect"
+    },
+    {
+      "id": "Ship",
+      "label": "Ship[Ship Products]",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Design",
+      "target": "Prototype",
+      "type": "-->"
+    },
+    {
+      "source": "Prototype",
+      "target": "Test",
+      "type": "-->"
+    },
+    {
+      "source": "Test",
+      "target": "Production",
+      "type": "-->"
+    },
+    {
+      "source": "Production",
+      "target": "Quality",
+      "type": "-->"
+    },
+    {
+      "source": "Quality",
+      "target": "Ship",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of product development process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

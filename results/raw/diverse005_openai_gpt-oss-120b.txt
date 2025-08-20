@@ -1,0 +1,109 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Inicio",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "B",
+      "label": "Identificación de Stakeholders",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "C",
+      "label": "Recolección de Requisitos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "D",
+      "label": "Análisis de Requisitos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "E",
+      "label": "Documentación de Requisitos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "F",
+      "label": "Validación y Verificación de Requisitos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "G",
+      "label": "Aprobación de Requisitos",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "H",
+      "label": "Fin",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "C",
+      "target": "D",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "D",
+      "target": "E",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "E",
+      "target": "F",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "F",
+      "target": "G",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "G",
+      "target": "H",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 흐름도는 요구사항 식별부터 승인까지의 단계를 순차적으로 보여줍니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

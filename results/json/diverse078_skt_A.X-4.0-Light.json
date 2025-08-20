@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Risk",
+      "label": "Risk Assessment",
+      "shape": "rect"
+    },
+    {
+      "id": "Model",
+      "label": "Risk Model",
+      "shape": "rect"
+    },
+    {
+      "id": "Score",
+      "label": "Risk Score",
+      "shape": "rect"
+    },
+    {
+      "id": "Decision",
+      "label": "Decision Making",
+      "shape": "rect"
+    },
+    {
+      "id": "Monitor",
+      "label": "Risk Monitoring",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Risk",
+      "target": "Model",
+      "type": "-->"
+    },
+    {
+      "source": "Model",
+      "target": "Score",
+      "type": "-->"
+    },
+    {
+      "source": "Score",
+      "target": "Decision",
+      "type": "-->"
+    },
+    {
+      "source": "Decision",
+      "target": "Monitor",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of risk assessment process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

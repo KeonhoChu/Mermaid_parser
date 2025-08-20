@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Surgery",
+      "label": "Schedule Surgery",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Prep",
+      "label": "Pre-Op Preparation",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "OR",
+      "label": "Operating Room",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Recovery",
+      "label": "Recovery Room",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Discharge",
+      "label": "Patient Discharge",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Surgery",
+      "target": "Prep",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Prep",
+      "target": "OR",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "OR",
+      "target": "Recovery",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Recovery",
+      "target": "Discharge",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "수술 일정부터 환자 퇴원까지의 과정을 순차적으로 보여주는 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

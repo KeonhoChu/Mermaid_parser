@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Workshop",
+      "label": "Workshop",
+      "shape": "rect"
+    },
+    {
+      "id": "Registration",
+      "label": "Student Registration",
+      "shape": "rect"
+    },
+    {
+      "id": "Materials",
+      "label": "Prepare Materials",
+      "shape": "rect"
+    },
+    {
+      "id": "Session",
+      "label": "Conduct Session",
+      "shape": "rect"
+    },
+    {
+      "id": "Certificate",
+      "label": "Issue Certificate",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Workshop",
+      "target": "Registration",
+      "type": "-->"
+    },
+    {
+      "source": "Registration",
+      "target": "Materials",
+      "type": "-->"
+    },
+    {
+      "source": "Materials",
+      "target": "Session",
+      "type": "-->"
+    },
+    {
+      "source": "Session",
+      "target": "Certificate",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of workshop process"
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

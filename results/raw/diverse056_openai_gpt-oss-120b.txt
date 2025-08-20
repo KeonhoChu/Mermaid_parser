@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "warnings": [],
+  "nodes": [
+    {
+      "id": "Lab",
+      "label": "Laboratory",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Sample",
+      "label": "Collect Sample",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Analysis",
+      "label": "Lab Analysis",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Report",
+      "label": "Generate Report",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Doctor",
+      "label": "Send to Doctor",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Lab",
+      "target": "Sample",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Sample",
+      "target": "Analysis",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Analysis",
+      "target": "Report",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Report",
+      "target": "Doctor",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "실험실에서 샘플을 수집하고 분석하여 보고서를 생성한 뒤 의사에게 전송하는 흐름입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

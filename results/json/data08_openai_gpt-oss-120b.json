@@ -141,11 +141,12 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "Web and Mobile clients connect to an API Gateway, which routes requests to Auth, Data, and ML services; these services interact with SQL and NoSQL databases, with data flowing back to services and the gateway.",
+    "natural_language": "클라이언트가 API 게이트웨이와 연결되고, 서버의 각 서비스가 데이터베이스와 상호작용하는 흐름을 나타낸다.",
     "entry_nodes": [
-      "C1",
-      "C2"
+      "START"
     ],
-    "exit_nodes": []
+    "exit_nodes": [
+      "END"
+    ]
   }
 }

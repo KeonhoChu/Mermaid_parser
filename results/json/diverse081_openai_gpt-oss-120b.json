@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Order",
+      "label": "Order",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Warehouse",
+      "label": "Warehouse Pick",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Pack",
+      "label": "Package Item",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Label",
+      "label": "Shipping Label",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Carrier",
+      "label": "Shipping Carrier",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Delivery",
+      "label": "Final Delivery",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Order",
+      "target": "Warehouse",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Warehouse",
+      "target": "Pack",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Pack",
+      "target": "Label",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Label",
+      "target": "Carrier",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Carrier",
+      "target": "Delivery",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "주문이 창고에서 픽업되어 포장, 라벨 부착, 운송업체를 거쳐 최종 배송됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "nodes": [
+    {"id": "Curriculum", "label": "Design Curriculum", "shape": "rect"},
+    {"id": "Content", "label": "Create Content", "shape": "rect"},
+    {"id": "Delivery", "label": "Content Delivery", "shape": "rect"},
+    {"id": "Feedback", "label": "Student Feedback", "shape": "rect"},
+    {"id": "Improve", "label": "Curriculum Improvement", "shape": "rect"}
+  ],
+  "edges": [
+    {"source": "Curriculum", "target": "Content", "type": "-->"},
+    {"source": "Content", "target": "Delivery", "type": "-->"},
+    {"source": "Delivery", "target": "Feedback", "type": "-->"},
+    {"source": "Feedback", "target": "Improve", "type": "-->"}
+  ],
+  "subgraphs": [],
+  "summary": {"natural_language": "Flowchart of curriculum design process"}
+}

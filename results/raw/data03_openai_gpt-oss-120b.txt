@@ -105,8 +105,8 @@
   ],
   "decisions": [],
   "summary": {
-    "natural_language": "The flowchart shows three subgraphs: data collection (crawling → cleaning), AI modeling (preprocessing → training → evaluation), and visualization (statistical analysis → dashboard). Data moves from cleaning to preprocessing, from evaluation to statistical analysis, and from dashboard back to crawling, forming a cycle.",
-    "entry_nodes": [],
-    "exit_nodes": []
+    "natural_language": "데이터 수집에서 정제, 전처리, 학습, 평가, 통계분석, 대시보드 순으로 흐르고, 마지막에 대시보드가 크롤링을 다시 시작하도록 연결된 순환 흐름도.",
+    "entry_nodes": ["START"],
+    "exit_nodes": ["END"]
   }
 }

@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Lab",
+      "label": "Lab Session",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Safety",
+      "label": "Safety Briefing",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Experiment",
+      "label": "Conduct Experiment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Record",
+      "label": "Record Data",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Report",
+      "label": "Lab Report",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Lab",
+      "target": "Safety",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Safety",
+      "target": "Experiment",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Experiment",
+      "target": "Record",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Record",
+      "target": "Report",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "이 흐름도는 실험실 세션에서 안전 브리핑, 실험 수행, 데이터 기록, 보고서 작성 순서로 진행됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

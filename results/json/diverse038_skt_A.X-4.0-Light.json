@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "nodes": [
+    {
+      "id": "Degree",
+      "label": "Degree Requirements",
+      "shape": "rect"
+    },
+    {
+      "id": "Credits",
+      "label": "Credit Tracking",
+      "shape": "rect"
+    },
+    {
+      "id": "Advisor",
+      "label": "Academic Advising",
+      "shape": "rect"
+    },
+    {
+      "id": "Planning",
+      "label": "Course Planning",
+      "shape": "rect"
+    },
+    {
+      "id": "Graduation",
+      "label": "Graduation Check",
+      "shape": "rect"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Degree",
+      "target": "Credits",
+      "type": "-->"
+    },
+    {
+      "source": "Credits",
+      "target": "Advisor",
+      "type": "-->"
+    },
+    {
+      "source": "Advisor",
+      "target": "Planning",
+      "type": "-->"
+    },
+    {
+      "source": "Planning",
+      "target": "Graduation",
+      "type": "-->"
+    }
+  ],
+  "subgraphs": [],
+  "summary": {
+    "natural_language": "Flowchart of academic progression from Degree Requirements to Graduation Check."
+  },
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "decisions": []
+}

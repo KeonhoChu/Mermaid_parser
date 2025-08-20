@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Payment",
+      "label": "Digital Payment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Gateway",
+      "label": "Payment Gateway",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Processor",
+      "label": "Payment Processor",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Bank",
+      "label": "Banking Network",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Confirmation",
+      "label": "Payment Confirmation",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Payment",
+      "target": "Gateway",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Gateway",
+      "target": "Processor",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Processor",
+      "target": "Bank",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Bank",
+      "target": "Confirmation",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "디지털 결제는 결제 게이트웨이를 통해 결제 프로세서로 전달되고, 은행 네트워크를 거쳐 결제 확인으로 이어집니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

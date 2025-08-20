@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Research",
+      "label": "Research Topic",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Proposal",
+      "label": "Write Proposal",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Advisor",
+      "label": "Advisor Review",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Experiment",
+      "label": "Conduct Experiment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Analysis",
+      "label": "Data Analysis",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Paper",
+      "label": "Write Paper",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Research",
+      "target": "Proposal",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Proposal",
+      "target": "Advisor",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Advisor",
+      "target": "Experiment",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Experiment",
+      "target": "Analysis",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Analysis",
+      "target": "Paper",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "연구 주제 선정부터 논문 작성까지의 과정을 순차적으로 보여주는 흐름도입니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

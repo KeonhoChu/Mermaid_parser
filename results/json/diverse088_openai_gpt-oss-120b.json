@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Cold",
+      "label": "Cold Chain",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Temperature",
+      "label": "Temperature Monitor",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Transport",
+      "label": "Refrigerated Transport",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Verify",
+      "label": "Temperature Verification",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Deliver",
+      "label": "Cold Delivery",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Cold",
+      "target": "Temperature",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Temperature",
+      "target": "Transport",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Transport",
+      "target": "Verify",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Verify",
+      "target": "Deliver",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "콜드 체인에서 온도 모니터링을 거쳐 냉장 운송, 온도 검증, 최종 냉배달까지의 흐름을 나타낸다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}

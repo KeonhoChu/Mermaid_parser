@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "warnings": [
+    "원본 텍스트 직접 파싱 성공"
+  ],
+  "nodes": [
+    {
+      "id": "Vaccine",
+      "label": "Vaccination Program",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Schedule",
+      "label": "Schedule Appointment",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Administer",
+      "label": "Administer Vaccine",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Record",
+      "label": "Update Records",
+      "shape": "rect",
+      "subgraphs": []
+    },
+    {
+      "id": "Monitor",
+      "label": "Monitor Side Effects",
+      "shape": "rect",
+      "subgraphs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "Vaccine",
+      "target": "Schedule",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Schedule",
+      "target": "Administer",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Administer",
+      "target": "Record",
+      "type": "-->",
+      "label": null
+    },
+    {
+      "source": "Record",
+      "target": "Monitor",
+      "type": "-->",
+      "label": null
+    }
+  ],
+  "subgraphs": [],
+  "decisions": [],
+  "summary": {
+    "natural_language": "예방접종 프로그램은 예약을 잡고, 백신을 접종한 뒤 기록을 업데이트하고, 부작용을 모니터링하는 순서로 진행됩니다.",
+    "entry_nodes": [
+      "START"
+    ],
+    "exit_nodes": [
+      "END"
+    ]
+  }
+}
